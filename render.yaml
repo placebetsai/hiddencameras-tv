@@ -1,0 +1,25 @@
+services:
+  # Daily article generation — 3x/day at 8am, 1pm, 6pm ET (12, 17, 22 UTC)
+  - type: cron
+    name: hiddencameras-article-gen
+    env: node
+    region: oregon
+    plan: starter
+    schedule: "0 12,17,22 * * *"
+    buildCommand: npm install
+    startCommand: node scripts/generate-articles.js
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: NEXT_PUBLIC_AMAZON_TAG
+        sync: false
+      - key: X_API_KEY
+        sync: false
+      - key: X_API_SECRET
+        sync: false
+      - key: X_ACCESS_TOKEN
+        sync: false
+      - key: X_ACCESS_TOKEN_SECRET
+        sync: false

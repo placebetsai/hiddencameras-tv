@@ -1,0 +1,49 @@
+import Head from "next/head";
+import Link from "next/link";
+
+export default function Layout({ children, title, description, canonical }) {
+  const t = title || "HiddenCameras.tv — Home Security & Hidden Camera Reviews";
+  const d = description || "Expert reviews of hidden cameras, security cameras, and home surveillance systems. Find the best Ring, Arlo, Blink, Wyze, and Nest cameras for every budget.";
+
+  return (
+    <>
+      <Head>
+        <title>{t}</title>
+        <meta name="description" content={d} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href={canonical || "https://hiddencameras.tv"} />
+        <meta property="og:title" content={t} />
+        <meta property="og:description" content={d} />
+        <meta property="og:site_name" content="HiddenCameras.tv" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      {/* Navbar */}
+      <nav className="border-b border-brand-border sticky top-0 z-50 bg-brand-bg/95 backdrop-blur">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+          <Link href="/" className="font-bold text-lg tracking-tight">
+            <span className="text-brand-green">Hidden</span>Cameras.tv
+          </Link>
+          <div className="flex gap-5 text-sm text-gray-400">
+            <Link href="/reviews" className="hover:text-white transition">Reviews</Link>
+            <Link href="/blog" className="hover:text-white transition">Guides</Link>
+            <Link href="/best-hidden-cameras-airbnb" className="hover:text-white transition">Airbnb</Link>
+          </div>
+        </div>
+      </nav>
+
+      <main className="max-w-5xl mx-auto px-4 py-8">{children}</main>
+
+      <footer className="border-t border-brand-border mt-16 py-8 text-center text-sm text-gray-500">
+        <p className="mb-2">
+          <Link href="/" className="hover:text-white mx-2">Home</Link>
+          <Link href="/reviews" className="hover:text-white mx-2">Reviews</Link>
+          <Link href="/blog" className="hover:text-white mx-2">Guides</Link>
+          <Link href="/privacy" className="hover:text-white mx-2">Privacy</Link>
+        </p>
+        <p>© {new Date().getFullYear()} HiddenCameras.tv — As an Amazon Associate we earn from qualifying purchases.</p>
+      </footer>
+    </>
+  );
+}
