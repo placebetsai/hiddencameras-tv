@@ -29,6 +29,7 @@ export default function Layout({ children, title, description, canonical }) {
             <Link href="/reviews" className="hover:text-white transition">Reviews</Link>
             <Link href="/blog" className="hover:text-white transition">Guides</Link>
             <Link href="/best-hidden-cameras-airbnb" className="hover:text-white transition">Airbnb</Link>
+            <Link href="/contact" className="hover:text-white transition">Contact</Link>
           </div>
         </div>
       </nav>
