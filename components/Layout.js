@@ -21,15 +21,25 @@ export default function Layout({ children, title, description, canonical }) {
         <meta property="og:site_name" content="HiddenCameras.tv" />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://hiddencameras.tv/og-image.svg" />
+        <meta property="og:image" content="https://hiddencameras.tv/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hiddencameras4u" />
-        <meta name="twitter:image" content="https://hiddencameras.tv/og-image.svg" />
+        <meta name="twitter:image" content="https://hiddencameras.tv/og-image.png" />
+        <meta name="twitter:title" content={t} />
+        <meta name="twitter:description" content={d} />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="alternate icon" href="/favicon.svg" />
+        <meta name="theme-color" content="#00c853" />
+        {/* Favicons */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </Head>
 
