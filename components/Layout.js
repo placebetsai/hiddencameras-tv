@@ -23,8 +23,13 @@ export default function Layout({ children, title, description, canonical }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hiddencameras4u" />
         <meta name="twitter:image" content="https://hiddencameras.tv/og-image.svg" />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="google-site-verification" content="" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="alternate icon" href="/favicon.svg" />
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </Head>
 
       {/* Navbar */}
