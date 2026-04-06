@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
+import HeroCarousel from "../components/HeroCarousel";
 import ArticleCard from "../components/ArticleCard";
 import AdUnit from "../components/AdUnit";
-import CameraIcon from "../components/CameraIcon";
 import Link from "next/link";
 import path from "path";
 import fs from "fs";
@@ -18,10 +18,10 @@ const TOP_PICKS = [
 ];
 
 const LIVE_PREVIEW = [
-  { city: "New York", flag: "🇺🇸", label: "Times Square" },
-  { city: "Tokyo", flag: "🇯🇵", label: "Shibuya Crossing" },
-  { city: "Paris", flag: "🇫🇷", label: "Eiffel Tower" },
-  { city: "Dubai", flag: "🇦🇪", label: "Burj Khalifa" },
+  { city: "New York", flag: "🇺🇸", label: "Times Square", img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75&auto=format&fit=crop", alt: "Times Square New York City live cam" },
+  { city: "Tokyo", flag: "🇯🇵", label: "Shibuya Crossing", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=75&auto=format&fit=crop", alt: "Shibuya Crossing Tokyo live webcam" },
+  { city: "Paris", flag: "🇫🇷", label: "Eiffel Tower", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=75&auto=format&fit=crop", alt: "Eiffel Tower Paris live camera" },
+  { city: "Dubai", flag: "🇦🇪", label: "Burj Khalifa", img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=400&q=75&auto=format&fit=crop", alt: "Burj Khalifa Dubai live webcam" },
 ];
 
 function CamSVG({ color = "#00c853" }) {
@@ -41,61 +41,24 @@ function CamSVG({ color = "#00c853" }) {
 export default function Home({ articles }) {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative text-center mb-12 pt-6 scan-container rounded-2xl border border-brand-border bg-brand-card overflow-hidden">
-        {/* Background glow */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-96 h-96 bg-brand-green/5 rounded-full blur-3xl" />
-        </div>
+      {/* Hero Carousel */}
+      <section className="mb-8">
+        <HeroCarousel />
+      </section>
 
-        <div className="relative z-10 px-6 py-12">
-          {/* Animated camera */}
-          <div className="flex justify-center mb-6">
-            <div className="relative float-anim">
-              <div className="w-28 h-28 rounded-full border-2 border-brand-green/20 bg-brand-bg flex items-center justify-center shadow-2xl">
-                <CameraIcon size={64} />
-              </div>
-              <span className="absolute -top-1 -right-1 flex items-center gap-1 bg-red-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full">
-                <span className="live-dot w-1.5 h-1.5 rounded-full bg-white" />
-                LIVE
-              </span>
-            </div>
+      {/* Stats bar */}
+      <section className="card mb-10 grid grid-cols-2 md:grid-cols-4 divide-x divide-brand-border text-center">
+        {[
+          { n: "60+", label: "Live Cities" },
+          { n: "6", label: "Cameras Reviewed" },
+          { n: "100%", label: "Independent" },
+          { n: "24/7", label: "Streaming Live" },
+        ].map(s => (
+          <div key={s.label} className="py-4">
+            <div className="text-2xl font-extrabold text-brand-green">{s.n}</div>
+            <div className="text-gray-500 text-xs mt-0.5">{s.label}</div>
           </div>
-
-          <div className="inline-block pill bg-brand-green/10 text-brand-green mb-4">
-            UPDATED {new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" }).toUpperCase()}
-          </div>
-
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight tracking-tight">
-            The Best<br />
-            <span className="text-brand-green">Hidden Cameras</span><br />
-            Reviewed &amp; Ranked
-          </h1>
-          <p className="text-gray-400 max-w-xl mx-auto text-lg mb-8">
-            Independent reviews of Ring, Arlo, Blink, Wyze, Nest &amp; Eufy. Plus live public webcams from around the world.
-          </p>
-          <div className="flex justify-center gap-3 flex-wrap">
-            <Link href="/reviews" className="btn-primary text-base px-7 py-3">See All Reviews</Link>
-            <Link href="/live" className="flex items-center gap-2 border border-red-600/60 text-red-400 px-7 py-3 rounded-lg text-base font-semibold hover:border-red-500 hover:text-red-300 transition">
-              <span className="live-dot w-2 h-2 rounded-full bg-red-500 inline-block" />
-              Live World Cams
-            </Link>
-          </div>
-        </div>
-
-        {/* Stats bar */}
-        <div className="relative z-10 border-t border-brand-border grid grid-cols-3 divide-x divide-brand-border">
-          {[
-            { n: "6", label: "Cameras Tested" },
-            { n: "22+", label: "Live Cities" },
-            { n: "100%", label: "Independent" },
-          ].map(s => (
-            <div key={s.label} className="py-4">
-              <div className="text-xl font-extrabold text-brand-green">{s.n}</div>
-              <div className="text-gray-500 text-xs">{s.label}</div>
-            </div>
-          ))}
-        </div>
+        ))}
       </section>
 
       <AdUnit />
@@ -107,7 +70,7 @@ export default function Home({ articles }) {
             <span className="live-dot w-2.5 h-2.5 rounded-full bg-red-500 inline-block" />
             <h2 className="text-xl font-bold text-white">Live World Cameras</h2>
           </div>
-          <Link href="/live" className="text-brand-green text-sm hover:underline">View all 22+ cities →</Link>
+          <Link href="/live" className="text-brand-green text-sm hover:underline">View all 60+ cities →</Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {LIVE_PREVIEW.map(cam => (
@@ -116,24 +79,24 @@ export default function Home({ articles }) {
               href="/live"
               className="card p-0 overflow-hidden hover:border-red-500/50 transition group"
             >
-              <div className="relative h-28 bg-brand-bg scan-container flex items-center justify-center">
-                <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(0deg, #00c853, #00c853 1px, transparent 1px, transparent 4px)" }} />
-                <div className="absolute top-1.5 left-1.5 w-4 h-4 border-t-2 border-l-2 border-brand-green/40" />
-                <div className="absolute top-1.5 right-1.5 w-4 h-4 border-t-2 border-r-2 border-brand-green/40" />
-                <div className="absolute bottom-1.5 left-1.5 w-4 h-4 border-b-2 border-l-2 border-brand-green/40" />
-                <div className="absolute bottom-1.5 right-1.5 w-4 h-4 border-b-2 border-r-2 border-brand-green/40" />
-                <div className="text-center z-10">
-                  <div className="text-3xl">{cam.flag}</div>
-                </div>
-                <div className="absolute top-1.5 right-1.5 z-10">
+              <div className="relative h-36 overflow-hidden">
+                <img src={cam.img} alt={cam.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                {/* CCTV corners */}
+                <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-brand-green/60" />
+                <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-brand-green/60" />
+                <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-brand-green/60" />
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-brand-green/60" />
+                <div className="absolute top-2 left-2 z-10">
                   <span className="flex items-center gap-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full">
                     <span className="live-dot w-1 h-1 rounded-full bg-white" />LIVE
                   </span>
                 </div>
-              </div>
-              <div className="px-3 py-2">
-                <p className="text-white text-xs font-bold">{cam.city}</p>
-                <p className="text-gray-500 text-[11px]">{cam.label}</p>
+                <div className="absolute bottom-2 left-3 z-10">
+                  <p className="text-white text-xs font-bold drop-shadow">{cam.city}</p>
+                  <p className="text-gray-300 text-[10px] drop-shadow">{cam.label}</p>
+                </div>
+                <div className="absolute bottom-2 right-3 z-10 text-xl">{cam.flag}</div>
               </div>
             </Link>
           ))}
