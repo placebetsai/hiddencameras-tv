@@ -281,42 +281,51 @@ export default function Home({ articles }) {
           </section>
         )}
 
-        {/* ── My Cams CTA ── */}
+        {/* ── Upload Feed CTA ── */}
         <section className="mb-8 sm:mb-10">
-          <div className="relative overflow-hidden rounded-2xl border border-brand-green/30 bg-gradient-to-br from-brand-green/10 via-brand-card to-brand-card p-6 sm:p-8">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="relative">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="live-dot w-2 h-2 rounded-full bg-brand-green inline-block" />
-                <span className="text-brand-green text-xs font-extrabold tracking-widest">FREE ACCOUNT</span>
+          <div className="relative overflow-hidden rounded-2xl border border-brand-green/30 bg-brand-surface">
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-green/8 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-green/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative p-6 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-8">
+
+              {/* Left: copy */}
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-2 bg-brand-green/10 border border-brand-green/20 rounded-full px-3 py-1 mb-4">
+                  <span className="live-dot w-1.5 h-1.5 rounded-full bg-brand-green inline-block" />
+                  <span className="text-brand-green text-xs font-bold tracking-wider">FREE — NO CREDIT CARD</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-3 leading-tight">
+                  Have a Live Camera Feed?<br className="hidden sm:block" /> Share It With the World.
+                </h2>
+                <p className="text-gray-400 text-sm sm:text-base mb-5 max-w-md leading-relaxed">
+                  Add your home security, baby monitor, nanny cam, or pet cam. Keep it private or publish it to our global live directory — your choice.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {["🏠 Home Cam", "👶 Baby Monitor", "👀 Nanny Cam", "🐾 Pet Cam", "🏢 Business"].map(f => (
+                    <span key={f} className="text-xs text-gray-300 bg-brand-bg border border-brand-border rounded-full px-3 py-1.5 font-medium">{f}</span>
+                  ))}
+                </div>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <Link href="/my-cams" className="btn-primary px-7 py-3">Upload Your Feed →</Link>
+                  <Link href="/my-cams" className="text-sm text-gray-500 hover:text-white transition">Already have an account? Sign in →</Link>
+                </div>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 leading-tight">
-                Upload Your Feed.<br className="hidden sm:block" /> Go Live to the World.
-              </h2>
-              <p className="text-gray-400 text-sm sm:text-base mb-6 max-w-lg">
-                Have a live stream? Upload it here. Keep it private for yourself or make it public and join the global live cam directory. Free forever.
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+
+              {/* Right: stats */}
+              <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0">
                 {[
-                  { icon: "🏠", label: "Home Security" },
-                  { icon: "👶", label: "Baby Monitor" },
-                  { icon: "👀", label: "Nanny Cam" },
-                  { icon: "🐾", label: "Pet Cam" },
-                ].map(f => (
-                  <div key={f.label} className="bg-brand-bg/60 border border-brand-border rounded-xl py-3 text-center">
-                    <div className="text-2xl mb-1">{f.icon}</div>
-                    <div className="text-xs text-gray-400 font-medium">{f.label}</div>
+                  { n: "60+", label: "Countries" },
+                  { n: "500+", label: "Live Feeds" },
+                  { n: "24/7", label: "Always On" },
+                  { n: "Free", label: "Forever" },
+                ].map(s => (
+                  <div key={s.label} className="bg-brand-bg border border-brand-border rounded-xl p-4 text-center lg:min-w-[110px]">
+                    <div className="text-2xl font-black text-brand-green">{s.n}</div>
+                    <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
                   </div>
                 ))}
               </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/my-cams" className="btn-primary text-sm px-6 py-3 text-center">
-                  Upload Your Feed →
-                </Link>
-                <Link href="/my-cams" className="btn-ghost text-sm px-6 py-3 text-center text-gray-400">
-                  Already have an account? Sign in
-                </Link>
-              </div>
+
             </div>
           </div>
         </section>
