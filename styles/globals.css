@@ -3,18 +3,51 @@
 @tailwind utilities;
 
 html { background: #0d0d0d; color: #f3f4f6; }
-
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+@keyframes scanline {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.scan-container { position: relative; overflow: hidden; }
+.scan-container::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, rgba(0,200,83,0.05), transparent);
+  animation: scanline 5s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.live-dot { animation: blink-dot 1.2s ease-in-out infinite; }
+.float-anim { animation: float 3s ease-in-out infinite; }
 
 @layer components {
   .btn-primary {
     @apply bg-brand-green text-black font-bold px-5 py-2 rounded-lg hover:opacity-90 transition text-sm;
+  }
+  .btn-outline {
+    @apply border border-brand-border text-white px-5 py-2 rounded-lg text-sm hover:border-brand-green transition;
   }
   .card {
     @apply bg-brand-card border border-brand-border rounded-xl p-5;
   }
   .pill {
     @apply text-xs font-semibold px-2 py-1 rounded-full;
+  }
+  .section-title {
+    @apply text-xl font-bold text-white mb-6;
   }
   .prose-dark h2 { @apply text-xl font-bold mt-8 mb-3 text-white; }
   .prose-dark h3 { @apply text-lg font-semibold mt-6 mb-2 text-white; }

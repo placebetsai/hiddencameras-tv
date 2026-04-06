@@ -41,6 +41,10 @@ export default function Layout({ children, title, description, canonical }) {
           <div className="flex gap-5 text-sm text-gray-400">
             <Link href="/reviews" className="hover:text-white transition">Reviews</Link>
             <Link href="/blog" className="hover:text-white transition">Guides</Link>
+            <Link href="/live" className="hover:text-red-400 transition flex items-center gap-1">
+              <span className="live-dot w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />
+              Live
+            </Link>
             <Link href="/best-hidden-cameras-airbnb" className="hover:text-white transition">Airbnb</Link>
             <Link href="/contact" className="hover:text-white transition">Contact</Link>
           </div>
