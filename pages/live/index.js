@@ -83,7 +83,7 @@ const CAMS = [
   { id: "honolulu", city: "Honolulu", country: "USA (Hawaii)", continent: "Oceania", label: "Waikiki Beach", ytId: null, flag: "🇺🇸", type: "Beach" },
 ];
 
-const CAM_TYPES = ["All Types", "City", "Landmark", "Beach", "Nature"];
+const CAM_TYPES = ["All Types", "City", "Landmark", "Beach", "Nature", "Home", "Baby", "Pet"];
 
 // Verified Unsplash images for key cams
 const CAM_IMAGES = {
@@ -177,7 +177,10 @@ function CamCard({ cam }) {
         )}
         <div className="absolute top-2 left-2 z-10"><LiveBadge /></div>
         <div className="absolute top-2 right-2 z-10">
-          <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-brand-bg/80 text-gray-400 border border-brand-border">{cam.type}</span>
+          {cam.userCam
+            ? <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-brand-green/20 text-brand-green border border-brand-green/30">USER CAM</span>
+            : <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-brand-bg/80 text-gray-400 border border-brand-border">{cam.type}</span>
+          }
         </div>
       </div>
       <div className="p-3 flex flex-col flex-1">
@@ -217,8 +220,10 @@ export default function LiveCams() {
   const [type, setType] = useState("All Types");
   const [search, setSearch] = useState("");
   const [submittedCams, setSubmittedCams] = useState([]);
+  const [userCams, setUserCams] = useState([]);
 
   useEffect(() => {
+    // Approved world cam submissions
     supabase
       .from("submitted_cams")
       .select("*")
@@ -238,9 +243,32 @@ export default function LiveCams() {
           type: c.cam_type || "City",
         })));
       });
+
+    // Public user cams (home, baby, nanny, pet marked as public)
+    supabase
+      .from("private_cams")
+      .select("*")
+      .eq("is_public", true)
+      .order("created_at", { ascending: false })
+      .then(({ data }) => {
+        if (!data) return;
+        const typeMap = { home: "🏠", baby: "👶", nanny: "👀", pet: "🐾", business: "🏢", other: "📷" };
+        setUserCams(data.map(c => ({
+          id: `user-${c.id}`,
+          city: c.name,
+          country: "",
+          continent: "Other",
+          label: c.description || c.name,
+          ytId: null,
+          streamUrl: c.stream_url,
+          flag: typeMap[c.cam_type] || "📷",
+          type: c.cam_type === "home" ? "Home" : c.cam_type === "baby" ? "Baby" : c.cam_type === "pet" ? "Pet" : "Other",
+          userCam: true,
+        })));
+      });
   }, []);
 
-  const allCams = [...CAMS, ...submittedCams];
+  const allCams = [...CAMS, ...submittedCams, ...userCams];
 
   const filtered = allCams.filter(c => {
     if (continent !== "All" && c.continent !== continent) return false;
