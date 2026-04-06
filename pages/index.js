@@ -10,18 +10,18 @@ const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
 // ── Live cam grid (12 cameras with verified Unsplash images) ─────────────────
 const LIVE_GRID = [
-  { city: "New York", label: "Times Square", flag: "🇺🇸", img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80&auto=format&fit=crop", ytId: "kPnlOuCO3rA", featured: true },
-  { city: "Tokyo", label: "Shibuya Crossing", flag: "🇯🇵", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=75&auto=format&fit=crop" },
-  { city: "London", label: "Big Ben", flag: "🇬🇧", img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75&auto=format&fit=crop" },
-  { city: "Paris", label: "Eiffel Tower", flag: "🇫🇷", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=75&auto=format&fit=crop" },
-  { city: "Dubai", label: "Burj Khalifa", flag: "🇦🇪", img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=75&auto=format&fit=crop" },
-  { city: "Sydney", label: "Opera House", flag: "🇦🇺", img: "https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=600&q=75&auto=format&fit=crop" },
-  { city: "Rome", label: "Colosseum", flag: "🇮🇹", img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=75&auto=format&fit=crop" },
-  { city: "Singapore", label: "Marina Bay", flag: "🇸🇬", img: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=75&auto=format&fit=crop" },
-  { city: "Amsterdam", label: "Canal District", flag: "🇳🇱", img: "https://images.unsplash.com/photo-1534351590666-13e3e96b5702?w=600&q=75&auto=format&fit=crop" },
-  { city: "Istanbul", label: "Hagia Sophia", flag: "🇹🇷", img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=75&auto=format&fit=crop" },
-  { city: "Rio de Janeiro", label: "Christ the Redeemer", flag: "🇧🇷", img: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=75&auto=format&fit=crop" },
-  { city: "Bangkok", label: "City Center", flag: "🇹🇭", img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=75&auto=format&fit=crop" },
+  { city: "New York", label: "Times Square", flag: "🇺🇸", slug: "new-york-city", img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80&auto=format&fit=crop", ytId: "kPnlOuCO3rA", featured: true },
+  { city: "Tokyo", label: "Shibuya Crossing", flag: "🇯🇵", slug: "tokyo", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=75&auto=format&fit=crop" },
+  { city: "London", label: "Big Ben", flag: "🇬🇧", slug: "london", img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75&auto=format&fit=crop" },
+  { city: "Paris", label: "Eiffel Tower", flag: "🇫🇷", slug: "paris", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=75&auto=format&fit=crop" },
+  { city: "Dubai", label: "Burj Khalifa", flag: "🇦🇪", slug: "dubai", img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=75&auto=format&fit=crop" },
+  { city: "Sydney", label: "Opera House", flag: "🇦🇺", slug: "sydney", img: "https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=600&q=75&auto=format&fit=crop" },
+  { city: "Rome", label: "Colosseum", flag: "🇮🇹", slug: "rome", img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=75&auto=format&fit=crop" },
+  { city: "Singapore", label: "Marina Bay", flag: "🇸🇬", slug: "singapore", img: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=75&auto=format&fit=crop" },
+  { city: "Amsterdam", label: "Canal District", flag: "🇳🇱", slug: null, img: "https://images.unsplash.com/photo-1534351590666-13e3e96b5702?w=600&q=75&auto=format&fit=crop" },
+  { city: "Istanbul", label: "Hagia Sophia", flag: "🇹🇷", slug: null, img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=75&auto=format&fit=crop" },
+  { city: "Rio de Janeiro", label: "Christ the Redeemer", flag: "🇧🇷", slug: null, img: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=75&auto=format&fit=crop" },
+  { city: "Bangkok", label: "City Center", flag: "🇹🇭", slug: null, img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=75&auto=format&fit=crop" },
 ];
 
 // ── Camera picks ─────────────────────────────────────────────────────────────
@@ -87,9 +87,10 @@ const NEWS_ITEMS = [
 ];
 
 function LiveCamCard({ cam, featured }) {
+  const href = cam.slug ? `/live/${cam.slug}/` : "/live/";
   if (featured) {
     return (
-      <Link href="/live"
+      <Link href={href}
         className="relative overflow-hidden rounded-xl border border-brand-border group col-span-2 row-span-2 block"
         style={{ minHeight: "260px" }}>
         <img src={cam.img} alt={`${cam.label} ${cam.city} live camera`}
@@ -119,7 +120,7 @@ function LiveCamCard({ cam, featured }) {
     );
   }
   return (
-    <Link href="/live"
+    <Link href={href}
       className="relative overflow-hidden rounded-xl border border-brand-border group block aspect-video sm:aspect-auto sm:h-32">
       <img src={cam.img} alt={`${cam.label} ${cam.city} live camera`}
         className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" loading="lazy" />

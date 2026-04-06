@@ -1,20 +1,20 @@
 import Link from "next/link";
 
 const HEADLINES = [
-  { text: "Airbnb bans ALL indoor hidden cameras effective April 30, 2026", url: "/news#airbnb-ban" },
-  { text: "Ring unveils AI facial-recognition doorbell — launching Q3 2026", url: "/news#ring-ai" },
-  { text: "EU Surveillance Camera Privacy Act takes full effect June 1, 2026", url: "/news#eu-privacy" },
-  { text: "Hidden camera detector sales surge 340% after hotel incidents", url: "/detect-hidden-cameras" },
-  { text: "Tokyo deploys 50,000 AI-powered cameras for 2026 World Expo", url: "/news#tokyo-expo" },
-  { text: "Google Nest Cam Ultra 8K announced at $299 — shipping this summer", url: "/reviews" },
-  { text: "FTC fines covert spy cam seller $2.1M for deceptive marketing", url: "/news#ftc-fine" },
-  { text: "Wyze Cam v5 leaks: 4K, local AI processing, no subscription", url: "/reviews" },
-  { text: "Consumer Reports: Arlo Pro 5S wins Best Security Camera 2026", url: "/reviews" },
-  { text: "US airports installing full biometric cameras at all gates by 2027", url: "/news#airports" },
-  { text: "Apple HomeKit Secure Video expands to 24 new camera brands", url: "/news#homekit" },
-  { text: "Hikvision US government ban expanded to all state-level contracts", url: "/news#hikvision" },
-  { text: "New FCC rules require security cameras to meet minimum encryption standards", url: "/news#fcc" },
-  { text: "EarthCam launches 500 new 4K city webcam feeds across 80 countries", url: "/live" },
+  { text: "Airbnb bans ALL indoor hidden cameras effective April 30, 2026", url: "/news/" },
+  { text: "Ring unveils AI facial-recognition doorbell — launching Q3 2026", url: "/news/" },
+  { text: "EU Surveillance Camera Privacy Act takes full effect June 1, 2026", url: "/news/" },
+  { text: "Hidden camera detector sales surge 340% after hotel incidents", url: "/detect-hidden-cameras/" },
+  { text: "Tokyo deploys 50,000 AI-powered cameras for 2026 World Expo", url: "/news/" },
+  { text: "Google Nest Cam Ultra 8K announced at $299 — shipping this summer", url: "/reviews/" },
+  { text: "FTC fines covert spy cam seller $2.1M for deceptive marketing", url: "/news/" },
+  { text: "Wyze Cam v5 leaks: 4K, local AI processing, no subscription", url: "/reviews/" },
+  { text: "Consumer Reports: Arlo Pro 5S wins Best Security Camera 2026", url: "/reviews/" },
+  { text: "US airports installing full biometric cameras at all gates by 2027", url: "/news/" },
+  { text: "Apple HomeKit Secure Video expands to 24 new camera brands", url: "/news/" },
+  { text: "Hikvision US government ban expanded to all state-level contracts", url: "/news/" },
+  { text: "New FCC rules require security cameras to meet minimum encryption standards", url: "/news/" },
+  { text: "EarthCam launches 500 new 4K city webcam feeds across 80 countries", url: "/live/" },
 ];
 
 export default function NewsTicker() {
