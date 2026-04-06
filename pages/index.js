@@ -208,7 +208,7 @@ export default function Home({ articles }) {
           {[
             { n: "500+", label: "Live Cameras" },
             { n: "80+", label: "Countries" },
-            { n: "6", label: "Cameras Reviewed" },
+            { n: "300+", label: "Cameras Reviewed" },
             { n: "24/7", label: "Streaming Live" },
           ].map(s => (
             <div key={s.label} className="card text-center py-3 px-2">

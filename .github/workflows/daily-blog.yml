@@ -1,0 +1,35 @@
+name: Daily Blog Post
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # 10am UTC = 6am ET daily
+  workflow_dispatch:        # manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Anthropic SDK
+        run: npm install @anthropic-ai/sdk
+
+      - name: Generate blog post
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-blog.js
+
+      - name: Commit new article
+        run: |
+          git config user.name "hiddencameras-bot"
+          git config user.email "bot@hiddencameras.tv"
+          git add data/articles/
+          git diff --staged --quiet || git commit -m "Add daily blog post $(date +%Y-%m-%d)"
+          git push

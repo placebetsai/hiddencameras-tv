@@ -42,10 +42,20 @@ export default function Article({ article }) {
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">{article.category || "Guide"}</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3 leading-tight">{article.title}</h1>
-      <p className="text-gray-400 text-sm mb-6">
-        {new Date(article.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-        &nbsp;· {Math.ceil((article.body || "").split(" ").length / 200)} min read
-      </p>
+      <div className="flex items-center gap-3 mb-6">
+        {article.authorInitials && (
+          <div className="w-8 h-8 rounded-full bg-brand-green/20 border border-brand-green/30 flex items-center justify-center text-brand-green text-xs font-bold shrink-0">
+            {article.authorInitials}
+          </div>
+        )}
+        <p className="text-gray-400 text-sm">
+          {article.author && <span className="text-gray-300 font-medium">{article.author}</span>}
+          {article.author && <span className="mx-2 text-gray-600">·</span>}
+          {new Date(article.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+          <span className="mx-2 text-gray-600">·</span>
+          {Math.ceil((article.body || "").split(" ").length / 200)} min read
+        </p>
+      </div>
 
       <AdUnit />
 
