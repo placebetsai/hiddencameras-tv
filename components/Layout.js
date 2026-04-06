@@ -77,6 +77,8 @@ export default function Layout({ children, title, description, canonical }) {
             </div>
 
             <div className="hidden md:flex items-center gap-2">
+              <Link href="/about" className="nav-link px-2 py-1.5 rounded-lg text-xs hover:bg-brand-card">About</Link>
+              <Link href="/contact" className="nav-link px-2 py-1.5 rounded-lg text-xs hover:bg-brand-card">Contact</Link>
               <Link href="/submit-cam" className="btn-outline text-xs py-1.5 px-3">+ Submit Cam</Link>
               <Link href="/my-cams" className="btn-primary text-xs py-1.5 px-3">My Cams →</Link>
             </div>
