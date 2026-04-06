@@ -28,7 +28,7 @@ const LIVE_GRID = [
 const TOP_PICKS = [
   { name: "Blink Mini 2", tag: "EDITOR'S CHOICE", category: "Best Budget", price: "$34.99", rating: "4.4/5", asin: "B0CGX9GQ3Q", accent: "#1a73e8", pro: "No subscription needed" },
   { name: "Ring Indoor Cam 2nd Gen", tag: "BEST OVERALL", category: "Top Rated", price: "$59.99", rating: "4.5/5", asin: "B09WZBPX7K", accent: "#e87722", pro: "Color night vision" },
-  { name: "Wyze Cam v4", tag: "BEST VALUE", category: "Great Value", price: "$35.98", rating: "4.4/5", asin: "B0C3KXY935", accent: "#0078d7", pro: "14 days free cloud" },
+  { name: "Wyze Cam v4", tag: "BEST VALUE", category: "Great Value", price: "$35.98", rating: "4.4/5", asin: "B0CJ9YX7DG", accent: "#0078d7", pro: "14 days free cloud" },
   { name: "Arlo Pro 5S", tag: "BEST PREMIUM", category: "Premium Pick", price: "$199.99", rating: "4.3/5", asin: "B0B8QYZRSC", accent: "#7c3aed", pro: "4K HDR outdoor" },
   { name: "Google Nest Cam", tag: "SMART HOME", category: "Best AI", price: "$99.99", rating: "4.4/5", asin: "B09NYZGGJD", accent: "#4285f4", pro: "On-device AI detection" },
   { name: "Eufy S350", tag: "NO FEES", category: "No Subscription", price: "$79.99", rating: "4.5/5", asin: "B0C7VN19YS", accent: "#0d9488", pro: "Local storage, no monthly cost" },
