@@ -1,8 +1,11 @@
-name: Deploy to Cloudflare Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -18,14 +21,13 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build
-        run: npx @cloudflare/next-on-pages@1
+        run: npm run build
         env:
-          NEXT_PUBLIC_AMAZON_TAG: ${{ secrets.NEXT_PUBLIC_AMAZON_TAG }}
-          NEXT_PUBLIC_FORMSPREE_ID: ${{ secrets.NEXT_PUBLIC_FORMSPREE_ID }}
+          NEXT_PUBLIC_AMAZON_TAG: ${{ secrets.NEXT_PUBLIC_AMAZON_TAG || 'hiddencamerastv-20' }}
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: pages deploy .vercel/output/static --project-name=hiddencameras-tv --branch=main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          cname: hiddencameras.tv

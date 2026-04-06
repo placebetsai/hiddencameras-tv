@@ -1,6 +1,7 @@
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
 import AdUnit from "../components/AdUnit";
+import CameraIcon from "../components/CameraIcon";
 import Link from "next/link";
 import path from "path";
 import fs from "fs";
@@ -68,11 +69,29 @@ export default function Home({ articles }) {
   return (
     <Layout>
       {/* Hero */}
-      <section className="text-center mb-12 pt-4">
-        <div className="inline-block pill bg-brand-green/10 text-brand-green mb-4">UPDATED {new Date().toLocaleDateString("en-US",{month:"short",year:"numeric"})}</div>
-        <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-4 leading-tight">
+      <section className="text-center mb-12 pt-6">
+        {/* Camera graphic */}
+        <div className="flex justify-center mb-6">
+          <div className="relative">
+            {/* glow ring */}
+            <div className="absolute inset-0 rounded-full bg-brand-green/10 blur-2xl scale-150" />
+            <div className="relative flex items-center justify-center w-24 h-24 rounded-full border-2 border-brand-green/30 bg-brand-card shadow-lg shadow-brand-green/10">
+              <CameraIcon size={56} />
+            </div>
+            {/* live badge */}
+            <div className="absolute -top-1 -right-1 flex items-center gap-1 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse inline-block" />
+              LIVE
+            </div>
+          </div>
+        </div>
+
+        <div className="inline-block pill bg-brand-green/10 text-brand-green mb-4">
+          UPDATED {new Date().toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+        </div>
+        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
           The Best Hidden Cameras<br />
-          <span className="text-brand-green">Reviewed & Ranked</span>
+          <span className="text-brand-green">Reviewed &amp; Ranked</span>
         </h1>
         <p className="text-gray-400 max-w-xl mx-auto text-base mb-6">
           Expert reviews of Ring, Arlo, Blink, Wyze, and Nest cameras. Buying guides for every use case — home security, Airbnb, nanny cams, and more.
