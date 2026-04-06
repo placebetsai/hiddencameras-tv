@@ -15,6 +15,8 @@ const STATIC_PAGES = [
   { url: "/blog/", priority: "0.9", changefreq: "daily" },
   { url: "/live/", priority: "0.8", changefreq: "hourly" },
   { url: "/best-hidden-cameras-airbnb/", priority: "0.8", changefreq: "weekly" },
+  { url: "/about/", priority: "0.6", changefreq: "monthly" },
+  { url: "/submit-cam/", priority: "0.5", changefreq: "monthly" },
   { url: "/contact/", priority: "0.4", changefreq: "monthly" },
   { url: "/privacy/", priority: "0.3", changefreq: "monthly" },
 ];
