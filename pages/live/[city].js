@@ -77,8 +77,8 @@ const CITIES = [
       { label: "Champs-Élysées", ytId: null, type: "City Center" },
     ],
     security: { crime: "Moderate", surveillance: "High", police: "Police Nationale" },
-    asin: "B08DFPV5Y3",
-    productName: "Wyze Cam v4 Pan",
+    asin: "B0C3KXY935",
+    productName: "Wyze Cam v4",
   },
   {
     slug: "dubai",
