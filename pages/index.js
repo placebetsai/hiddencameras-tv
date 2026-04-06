@@ -291,10 +291,10 @@ export default function Home({ articles }) {
                 <span className="text-brand-green text-xs font-extrabold tracking-widest">FREE ACCOUNT</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 leading-tight">
-                Store &amp; Access Your Cams<br className="hidden sm:block" /> From Anywhere
+                Upload Your Feed.<br className="hidden sm:block" /> Go Live to the World.
               </h2>
               <p className="text-gray-400 text-sm sm:text-base mb-6 max-w-lg">
-                Save your home security, baby monitor, nanny cam, and pet cam links in one place. Access them on any device. Share privately or make them public.
+                Have a live stream? Upload it here. Keep it private for yourself or make it public and join the global live cam directory. Free forever.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
                 {[
@@ -311,7 +311,7 @@ export default function Home({ articles }) {
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href="/my-cams" className="btn-primary text-sm px-6 py-3 text-center">
-                  Create Free Account →
+                  Upload Your Feed →
                 </Link>
                 <Link href="/my-cams" className="btn-ghost text-sm px-6 py-3 text-center text-gray-400">
                   Already have an account? Sign in

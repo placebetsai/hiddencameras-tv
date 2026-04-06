@@ -78,14 +78,14 @@ export default function MyCams() {
   }
 
   if (!user) return (
-    <Layout title="My Cams — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
+    <Layout title="Share Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
       <div className="max-w-md mx-auto px-4 py-16">
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-2xl bg-brand-green/10 border border-brand-green/30 flex items-center justify-center mx-auto mb-4">
             <CameraIcon size={36} />
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">My Private Cams</h1>
-          <p className="text-brand-muted text-sm">Store your home, baby, nanny, or pet cam links securely. Share them or keep them private.</p>
+          <h1 className="text-2xl font-bold text-white mb-2">Share Your Live Feed</h1>
+          <p className="text-brand-muted text-sm">Have a live stream? Add it to the global directory. Keep it private or share it with the world.</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3 mb-8">
@@ -137,27 +137,27 @@ export default function MyCams() {
   );
 
   return (
-    <Layout title="My Cams — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
+    <Layout title="Upload Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-white">My Cams</h1>
+            <h1 className="text-2xl font-bold text-white">My Feeds</h1>
             <p className="text-brand-muted text-sm mt-1">{user.email}</p>
           </div>
           <div className="flex gap-2">
-            <button onClick={() => setShowForm(!showForm)} className="btn-primary">+ Add Camera</button>
+            <button onClick={() => setShowForm(!showForm)} className="btn-primary">+ Upload Feed</button>
             <button onClick={() => supabase.auth.signOut()} className="btn-ghost text-xs">Sign Out</button>
           </div>
         </div>
 
         {showForm && (
           <div className="card mb-6 border-brand-green/20">
-            <h3 className="font-bold text-white mb-4">Add New Camera</h3>
+            <h3 className="font-bold text-white mb-4">Upload New Feed</h3>
             <form onSubmit={handleSaveCam} className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="label">Camera Name *</label>
-                  <input required placeholder="e.g. Front Door, Baby Room" value={form.name}
+                  <label className="label">Feed Name *</label>
+                  <input required placeholder="e.g. Front Porch, Baby Room, Office" value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className="input" />
                 </div>
                 <div>
@@ -183,7 +183,7 @@ export default function MyCams() {
                   <div className="w-10 h-6 bg-brand-border peer-checked:bg-brand-green rounded-full transition-colors" />
                   <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4" />
                 </label>
-                <span className="text-sm text-brand-muted">Make publicly viewable on the live cams page</span>
+                <span className="text-sm text-brand-muted">List publicly in the live directory for others to watch</span>
               </div>
               <div className="flex gap-3">
                 <button type="submit" disabled={saving} className="btn-primary">{saving ? "Saving..." : "Save Camera"}</button>
@@ -199,10 +199,10 @@ export default function MyCams() {
           </div>
         ) : cams.length === 0 ? (
           <div className="text-center py-16 card">
-            <div className="text-5xl mb-4">📷</div>
-            <p className="text-white font-bold mb-2">No cameras yet</p>
-            <p className="text-brand-muted text-sm mb-5">Add your first camera to get started</p>
-            <button onClick={() => setShowForm(true)} className="btn-primary">+ Add Your First Cam</button>
+            <div className="text-5xl mb-4">📡</div>
+            <p className="text-white font-bold mb-2">No feeds uploaded yet</p>
+            <p className="text-brand-muted text-sm mb-5">Upload your first live feed — keep it private or share it with the world</p>
+            <button onClick={() => setShowForm(true)} className="btn-primary">+ Upload Your First Feed</button>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 gap-4">
