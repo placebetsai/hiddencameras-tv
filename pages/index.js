@@ -165,16 +165,16 @@ function ProductCard({ cam }) {
 
 function NewsCard({ item }) {
   return (
-    <div className="card hover:border-brand-borderHover transition-all">
+    <Link href="/news" className="card hover:border-brand-borderHover transition-all block group">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-xl">{item.icon}</span>
         <span className="text-[10px] font-extrabold tracking-widest px-2 py-0.5 rounded text-white"
           style={{ background: item.badgeColor }}>{item.badge}</span>
         <span className="text-brand-muted text-[10px] ml-auto">{item.date}</span>
       </div>
-      <h3 className="font-bold text-white text-sm leading-snug mb-2">{item.headline}</h3>
+      <h3 className="font-bold text-white text-sm leading-snug mb-2 group-hover:text-brand-green transition-colors">{item.headline}</h3>
       <p className="text-brand-muted text-xs leading-relaxed line-clamp-3">{item.summary}</p>
-    </div>
+    </Link>
   );
 }
 
@@ -216,8 +216,6 @@ export default function Home({ articles }) {
             </div>
           ))}
         </section>
-
-        <AdUnit />
 
         {/* ── LIVE NOW — Bento grid ── */}
         <section className="mb-8 sm:mb-10">
@@ -264,6 +262,8 @@ export default function Home({ articles }) {
           <SectionHead
             title="📡 Security & Surveillance News"
             sub="Latest in cameras, privacy law, and tech"
+            href="/news"
+            linkText="All news →"
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {NEWS_ITEMS.map(item => <NewsCard key={item.headline} item={item} />)}
