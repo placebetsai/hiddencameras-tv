@@ -69,10 +69,11 @@ export default function Layout({ children, title, description, canonical }) {
               <Link href="/live" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card flex items-center gap-1.5 text-red-400 hover:text-red-300 text-sm">
                 <span className="live-dot w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />Live Cams
               </Link>
+              <Link href="/news" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">News</Link>
+              <Link href="/detect-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Detect</Link>
               <Link href="/reviews" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Reviews</Link>
               <Link href="/blog" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Blog</Link>
               <Link href="/my-cams" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">My Cams</Link>
-              <Link href="/about" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">About</Link>
             </div>
 
             <div className="hidden md:flex items-center gap-2">
@@ -102,6 +103,8 @@ export default function Layout({ children, title, description, canonical }) {
               {[
                 { href: "/", label: "Home" },
                 { href: "/live", label: "🔴 Live World Cams" },
+                { href: "/news", label: "📰 Surveillance News" },
+                { href: "/detect-hidden-cameras", label: "🔍 Detect Hidden Cameras" },
                 { href: "/reviews", label: "Camera Reviews" },
                 { href: "/blog", label: "Blog & Guides" },
                 { href: "/my-cams", label: "My Cams" },

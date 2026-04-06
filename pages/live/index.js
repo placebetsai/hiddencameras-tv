@@ -253,8 +253,6 @@ export default function LiveCams() {
           ))}
         </div>
 
-        <AdUnit />
-
         {/* Search */}
         <div className="mb-3">
           <input
