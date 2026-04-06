@@ -152,7 +152,7 @@ function CamCard({ cam }) {
               <img src={img} alt={`${cam.label} ${cam.city} live webcam`}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
             ) : (
-              <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(0deg,#00c853,#00c853 1px,transparent 1px,transparent 4px)" }} />
+              <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(0deg,#2563eb,#2563eb 1px,transparent 1px,transparent 4px)" }} />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             {/* CCTV corners */}

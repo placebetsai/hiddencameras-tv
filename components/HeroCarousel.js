@@ -155,7 +155,7 @@ export default function HeroCarousel() {
             className="group flex flex-col items-center gap-1 transition"
             aria-label={`View ${s.location} live camera`}>
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg overflow-hidden border-2 transition-all"
-              style={{ borderColor: i === active ? "#00e676" : "rgba(255,255,255,0.15)", opacity: i === active ? 1 : 0.5 }}>
+              style={{ borderColor: i === active ? "#3b82f6" : "rgba(255,255,255,0.15)", opacity: i === active ? 1 : 0.5 }}>
               <img src={s.img} alt={`${s.location} thumbnail`} className="w-full h-full object-cover" loading="lazy" />
             </div>
           </button>
@@ -167,7 +167,7 @@ export default function HeroCarousel() {
         {SLIDES.map((_, i) => (
           <button key={i} onClick={() => { setActive(i); setPaused(true); }}
             className="w-1.5 h-1.5 rounded-full transition-all"
-            style={{ background: i === active ? "#00e676" : "rgba(255,255,255,0.3)" }} />
+            style={{ background: i === active ? "#3b82f6" : "rgba(255,255,255,0.3)" }} />
         ))}
       </div>
 

@@ -13,10 +13,10 @@ export default function ArticleCard({ article }) {
         </div>
         <div className="pill bg-brand-green/10 text-brand-green">{article.category || "Guide"}</div>
       </div>
-      <h3 className="font-bold text-white group-hover:text-brand-green transition mb-2 leading-snug text-sm">
+      <h3 className="font-bold text-white group-hover:text-brand-green transition mb-2 leading-snug text-sm sm:text-base">
         {article.title}
       </h3>
-      <p className="text-gray-400 text-xs leading-relaxed line-clamp-3">{article.excerpt}</p>
+      <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">{article.excerpt}</p>
       <div className="flex items-center justify-between mt-3">
         <p className="text-xs text-gray-500">
           {new Date(article.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
