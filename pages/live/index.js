@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout";
 import AdUnit from "../../components/AdUnit";
+import Link from "next/link";
 import { useState } from "react";
 
 const CONTINENTS = ["All", "North America", "Europe", "Asia", "Middle East", "South America", "Africa", "Oceania"];
@@ -83,6 +84,44 @@ const CAMS = [
 
 const CAM_TYPES = ["All Types", "City", "Landmark", "Beach", "Nature"];
 
+// Verified Unsplash images for key cams
+const CAM_IMAGES = {
+  "times-square": "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=75&auto=format&fit=crop",
+  "las-vegas": "https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=600&q=75&auto=format&fit=crop",
+  "sf-golden-gate": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=75&auto=format&fit=crop",
+  "niagara": "https://images.unsplash.com/photo-1564760290292-23341e4df6ec?w=600&q=75&auto=format&fit=crop",
+  "toronto": "https://images.unsplash.com/photo-1517090504586-fde19ea6066f?w=600&q=75&auto=format&fit=crop",
+  "paris-eiffel": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=75&auto=format&fit=crop",
+  "london-big-ben": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75&auto=format&fit=crop",
+  "rome-colosseum": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=75&auto=format&fit=crop",
+  "rome-trevi": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=600&q=75&auto=format&fit=crop",
+  "venice-canal": "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=75&auto=format&fit=crop",
+  "amsterdam-canal": "https://images.unsplash.com/photo-1534351590666-13e3e96b5702?w=600&q=75&auto=format&fit=crop",
+  "barcelona-sagrada": "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&q=75&auto=format&fit=crop",
+  "berlin-gate": "https://images.unsplash.com/photo-1559087285-4b6b8c4fce36?w=600&q=75&auto=format&fit=crop",
+  "prague-old": "https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=600&q=75&auto=format&fit=crop",
+  "athens-acropolis": "https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=75&auto=format&fit=crop",
+  "istanbul-hagia": "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=75&auto=format&fit=crop",
+  "tokyo-shibuya": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=75&auto=format&fit=crop",
+  "kyoto-geisha": "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=75&auto=format&fit=crop",
+  "hong-kong": "https://images.unsplash.com/photo-1506970845246-18f21d533b20?w=600&q=75&auto=format&fit=crop",
+  "shanghai-bund": "https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=600&q=75&auto=format&fit=crop",
+  "singapore-marina": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=75&auto=format&fit=crop",
+  "bali-beach": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=75&auto=format&fit=crop",
+  "mumbai-gateway": "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=600&q=75&auto=format&fit=crop",
+  "seoul-gangnam": "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=600&q=75&auto=format&fit=crop",
+  "dubai-burj": "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=75&auto=format&fit=crop",
+  "jerusalem-wall": "https://images.unsplash.com/photo-1552483849-2e6c81e09ee8?w=600&q=75&auto=format&fit=crop",
+  "rio-copacabana": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=75&auto=format&fit=crop",
+  "rio-christ": "https://images.unsplash.com/photo-1544989164-c4b5fef5e4bd?w=600&q=75&auto=format&fit=crop",
+  "cape-town": "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&q=75&auto=format&fit=crop",
+  "cairo-pyramids": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=600&q=75&auto=format&fit=crop",
+  "marrakech": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&q=75&auto=format&fit=crop",
+  "sydney-opera": "https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=600&q=75&auto=format&fit=crop",
+  "sydney-harbour": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=75&auto=format&fit=crop",
+  "honolulu": "https://images.unsplash.com/photo-1507876466758-e54659cda6df?w=600&q=75&auto=format&fit=crop",
+};
+
 function LiveBadge() {
   return (
     <span className="flex items-center gap-1 bg-red-600 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full">
@@ -93,12 +132,13 @@ function LiveBadge() {
 
 function CamCard({ cam }) {
   const [showEmbed, setShowEmbed] = useState(false);
+  const img = CAM_IMAGES[cam.id];
   const ytSearch = `https://www.youtube.com/results?search_query=${encodeURIComponent(cam.city + " " + cam.label + " live cam 24/7")}&sp=EgJAAQ%3D%3D`;
   const earthcam = `https://www.earthcam.com/search/?searchquery=${encodeURIComponent(cam.city)}`;
 
   return (
-    <div className="card p-0 overflow-hidden group hover:border-brand-green/40 transition flex flex-col">
-      <div className="relative bg-brand-bg h-36 flex items-center justify-center flex-shrink-0">
+    <div className="card p-0 overflow-hidden group hover:border-brand-green/40 transition-all flex flex-col">
+      <div className="relative bg-brand-surface h-40 flex-shrink-0 overflow-hidden">
         {showEmbed && cam.ytId ? (
           <iframe
             src={`https://www.youtube.com/embed/${cam.ytId}?autoplay=1&mute=1`}
@@ -107,19 +147,35 @@ function CamCard({ cam }) {
           />
         ) : (
           <>
-            <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(0deg,#00c853,#00c853 1px,transparent 1px,transparent 4px)" }} />
+            {img ? (
+              <img src={img} alt={`${cam.label} ${cam.city} live webcam`}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            ) : (
+              <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(0deg,#00c853,#00c853 1px,transparent 1px,transparent 4px)" }} />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            {/* CCTV corners */}
             <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-brand-green/50" />
             <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-brand-green/50" />
             <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-brand-green/50" />
             <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-brand-green/50" />
-            <div className="text-center z-10">
-              <div className="text-4xl mb-1">{cam.flag}</div>
-              <div className="text-gray-600 text-[10px] font-mono">{cam.id.slice(0,8).toUpperCase()}</div>
-            </div>
+            {!img && (
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <div className="text-center">
+                  <div className="text-4xl mb-1">{cam.flag}</div>
+                  <div className="text-gray-600 text-[10px] font-mono tracking-widest">{cam.id.slice(0,8).toUpperCase()}</div>
+                </div>
+              </div>
+            )}
+            {img && (
+              <div className="absolute bottom-2 left-3 z-10">
+                <span className="text-xl">{cam.flag}</span>
+              </div>
+            )}
           </>
         )}
-        <div className="absolute top-2 right-2 z-10"><LiveBadge /></div>
-        <div className="absolute bottom-2 left-2 z-10">
+        <div className="absolute top-2 left-2 z-10"><LiveBadge /></div>
+        <div className="absolute top-2 right-2 z-10">
           <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-brand-bg/80 text-gray-400 border border-brand-border">{cam.type}</span>
         </div>
       </div>
@@ -130,16 +186,16 @@ function CamCard({ cam }) {
           {cam.ytId ? (
             <button onClick={() => setShowEmbed(!showEmbed)}
               className="flex-1 text-center text-[11px] font-bold py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white transition">
-              {showEmbed ? "⏹ Stop" : "▶ Watch"}
+              {showEmbed ? "⏹ Stop" : "▶ Watch Live"}
             </button>
           ) : (
             <a href={ytSearch} target="_blank" rel="noopener noreferrer"
-              className="flex-1 text-center text-[11px] font-bold py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white transition">
-              ▶ Find Live
+              className="flex-1 text-center text-[11px] font-bold py-1.5 rounded-lg bg-red-600/90 hover:bg-red-600 text-white transition">
+              ▶ Find Stream
             </a>
           )}
           <a href={earthcam} target="_blank" rel="noopener noreferrer"
-            className="text-[11px] py-1.5 px-2 rounded-lg border border-brand-border text-gray-400 hover:border-brand-green hover:text-white transition">
+            className="text-[11px] py-1.5 px-2 rounded-lg border border-brand-border text-gray-400 hover:border-brand-green hover:text-white transition whitespace-nowrap">
             EarthCam
           </a>
         </div>
@@ -166,93 +222,95 @@ export default function LiveCams() {
       description={`Watch ${CAMS.length}+ live public webcams from cities around the world. Times Square, Eiffel Tower, Shibuya Crossing — free, 24/7.`}
       canonical="https://hiddencameras.tv/live"
     >
-      {/* Hero */}
-      <section className="text-center mb-8 scan-container rounded-2xl border border-brand-border bg-brand-card px-6 py-10">
-        <div className="inline-flex items-center gap-2 pill bg-red-600/20 text-red-400 mb-4">
-          <span className="live-dot w-2 h-2 rounded-full bg-red-400 inline-block" />
-          {CAMS.length} CAMERAS WORLDWIDE
-        </div>
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight tracking-tight">
-          Watch the World<br /><span className="text-brand-green">Live &amp; Free</span>
-        </h1>
-        <p className="text-gray-400 max-w-xl mx-auto text-base">
-          Public webcams from {CONTINENTS.length - 1} continents. Landmarks, beaches, cities — 24/7.
-        </p>
-      </section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
 
-      {/* Stats */}
-      <div className="grid grid-cols-4 gap-3 mb-6">
-        {[
-          { n: `${CAMS.length}+`, label: "Cameras" },
-          { n: "8", label: "Regions" },
-          { n: "40+", label: "Countries" },
-          { n: "24/7", label: "Live" },
-        ].map(s => (
-          <div key={s.label} className="card text-center py-3">
-            <div className="text-xl font-extrabold text-brand-green">{s.n}</div>
-            <div className="text-gray-500 text-[11px] mt-0.5">{s.label}</div>
+        {/* Hero */}
+        <section className="text-center mb-6 rounded-2xl border border-brand-border bg-brand-card px-5 py-8 sm:py-10">
+          <div className="inline-flex items-center gap-2 pill bg-red-600/20 text-red-400 mb-3">
+            <span className="live-dot w-2 h-2 rounded-full bg-red-400 inline-block" />
+            {CAMS.length}+ CAMERAS WORLDWIDE
           </div>
-        ))}
-      </div>
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-2 leading-tight tracking-tight">
+            Watch the World<br /><span className="text-brand-green">Live &amp; Free</span>
+          </h1>
+          <p className="text-gray-400 max-w-lg mx-auto text-sm sm:text-base">
+            Public webcams from 7 continents — landmarks, beaches, city centers. Updated 24/7, no login required.
+          </p>
+        </section>
 
-      <AdUnit />
+        {/* Stats */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-5">
+          {[
+            { n: `${CAMS.length}+`, label: "Cameras" },
+            { n: "7", label: "Continents" },
+            { n: "45+", label: "Countries" },
+            { n: "24/7", label: "Live" },
+          ].map(s => (
+            <div key={s.label} className="card text-center py-3">
+              <div className="text-xl font-extrabold text-brand-green">{s.n}</div>
+              <div className="text-gray-500 text-[11px] mt-0.5">{s.label}</div>
+            </div>
+          ))}
+        </div>
 
-      {/* Search */}
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search city, country, or landmark..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="w-full bg-brand-card border border-brand-border rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brand-green transition text-sm"
-        />
-      </div>
+        <AdUnit />
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-2 mb-3">
-        {CONTINENTS.map(c => (
-          <button key={c} onClick={() => setContinent(c)}
-            className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition ${continent === c ? "bg-brand-green text-black border-brand-green" : "border-brand-border text-gray-400 hover:border-brand-green hover:text-white"}`}>
-            {c}
-          </button>
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-2 mb-6">
-        {CAM_TYPES.map(t => (
-          <button key={t} onClick={() => setType(t)}
-            className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition ${type === t ? "bg-gray-700 text-white border-gray-600" : "border-brand-border text-gray-500 hover:border-gray-600 hover:text-gray-300"}`}>
-            {t}
-          </button>
-        ))}
-      </div>
+        {/* Search */}
+        <div className="mb-3">
+          <input
+            type="text"
+            placeholder="Search city, country, or landmark..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="input"
+          />
+        </div>
 
-      {/* Results count */}
-      <p className="text-gray-500 text-xs mb-4">{filtered.length} cameras found</p>
+        {/* Continent filters — horizontal scroll on mobile */}
+        <div className="flex gap-2 mb-2 overflow-x-auto pb-1 scrollbar-none">
+          {CONTINENTS.map(c => (
+            <button key={c} onClick={() => setContinent(c)}
+              className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition whitespace-nowrap shrink-0 ${continent === c ? "bg-brand-green text-black border-brand-green" : "border-brand-border text-gray-400 hover:border-brand-green hover:text-white"}`}>
+              {c}
+            </button>
+          ))}
+        </div>
+        <div className="flex gap-2 mb-5 overflow-x-auto pb-1 scrollbar-none">
+          {CAM_TYPES.map(t => (
+            <button key={t} onClick={() => setType(t)}
+              className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition whitespace-nowrap shrink-0 ${type === t ? "bg-brand-surface text-white border-brand-borderHover" : "border-brand-border text-gray-500 hover:border-brand-borderHover hover:text-gray-300"}`}>
+              {t}
+            </button>
+          ))}
+        </div>
 
-      {/* Grid */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
-        {filtered.map(cam => <CamCard key={cam.id} cam={cam} />)}
-        {filtered.length === 0 && (
-          <div className="col-span-4 text-center py-12 text-gray-500">No cameras match your search.</div>
-        )}
-      </div>
+        {/* Results count */}
+        <p className="text-gray-500 text-xs mb-3">{filtered.length} cameras found</p>
 
-      <AdUnit />
+        {/* Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
+          {filtered.map(cam => <CamCard key={cam.id} cam={cam} />)}
+          {filtered.length === 0 && (
+            <div className="col-span-4 text-center py-12 text-gray-500">No cameras match your search.</div>
+          )}
+        </div>
 
-      {/* Submit cam CTA */}
-      <div className="card border-brand-green/20 mb-8">
-        <div className="flex flex-col md:flex-row items-center gap-4">
-          <div className="flex-1">
+        <AdUnit />
+
+        {/* CTAs */}
+        <div className="grid sm:grid-cols-2 gap-4 mb-8">
+          <div className="card border-brand-green/20">
             <h3 className="text-white font-bold mb-1">Know a great public live cam?</h3>
-            <p className="text-gray-400 text-sm">Submit a camera and we&apos;ll add it to the directory. Must be a public, non-private feed.</p>
+            <p className="text-gray-400 text-sm mb-4">Submit a camera and we&apos;ll add it to the directory.</p>
+            <Link href="/submit-cam" className="btn-primary text-sm">Submit a Camera →</Link>
           </div>
-          <a href="/submit-cam" className="btn-primary whitespace-nowrap shrink-0">Submit a Camera →</a>
+          <div className="card border-yellow-500/10">
+            <h3 className="text-white font-bold mb-1">Need a camera for your home?</h3>
+            <p className="text-gray-400 text-sm mb-4">Expert reviews of Ring, Arlo, Wyze, Eufy & more.</p>
+            <Link href="/reviews" className="btn-primary text-sm">See Expert Reviews →</Link>
+          </div>
         </div>
-      </div>
 
-      <div className="card border-yellow-500/10 text-center py-6">
-        <p className="text-white font-bold mb-2">Want a hidden camera for your home?</p>
-        <a href="/reviews" className="btn-primary">See Expert Reviews →</a>
       </div>
     </Layout>
   );

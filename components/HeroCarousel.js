@@ -93,8 +93,7 @@ export default function HeroCarousel() {
   const slide = SLIDES[active];
 
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl border border-brand-border"
-      style={{ height: "520px" }}
+    <div className="relative w-full overflow-hidden rounded-2xl border border-brand-border h-[230px] sm:h-[360px] lg:h-[500px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -128,40 +127,47 @@ export default function HeroCarousel() {
       </div>
 
       {/* Content */}
-      <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 md:p-12">
+      <div className="absolute inset-0 z-20 flex flex-col justify-end p-4 sm:p-8 md:p-12">
         <div className="max-w-xl">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-3xl">{slide.flag}</span>
-            <span className="pill-gray text-xs">{slide.country}</span>
+          <div className="flex items-center gap-2 mb-1.5 sm:mb-3">
+            <span className="text-xl sm:text-3xl">{slide.flag}</span>
+            <span className="pill-gray text-[10px] sm:text-xs">{slide.country}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-1 leading-tight tracking-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-0.5 sm:mb-1 leading-tight tracking-tight">
             {slide.location}
           </h2>
-          <p className="text-lg text-gray-400 mb-6">{slide.city}</p>
-          <div className="flex items-center gap-3">
-            <Link href="/live"
-              className="btn-primary text-sm px-6 py-2.5">
-              ▶ Watch Live →
+          <p className="text-sm sm:text-lg text-gray-400 mb-3 sm:mb-6">{slide.city}</p>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link href="/live" className="btn-primary text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5">
+              ▶ Watch Live
             </Link>
-            <Link href="/live"
-              className="btn-outline text-sm px-5 py-2.5">
-              All {SLIDES.length} Cities
+            <Link href="/live" className="btn-outline text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5">
+              60+ Cities
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-6 right-8 z-20 flex items-center gap-2">
+      {/* Slide indicators — hidden on small mobile */}
+      <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-8 z-20 hidden sm:flex items-center gap-2">
         {SLIDES.map((s, i) => (
           <button key={s.id} onClick={() => { setActive(i); setPaused(true); }}
             className="group flex flex-col items-center gap-1 transition"
             aria-label={`View ${s.location} live camera`}>
-            <div className="w-8 h-8 rounded-lg overflow-hidden border-2 transition-all"
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg overflow-hidden border-2 transition-all"
               style={{ borderColor: i === active ? "#00e676" : "rgba(255,255,255,0.15)", opacity: i === active ? 1 : 0.5 }}>
               <img src={s.img} alt={`${s.location} thumbnail`} className="w-full h-full object-cover" loading="lazy" />
             </div>
           </button>
+        ))}
+      </div>
+
+      {/* Mobile dot indicators */}
+      <div className="absolute bottom-3 left-0 right-0 z-20 flex sm:hidden justify-center gap-1.5">
+        {SLIDES.map((_, i) => (
+          <button key={i} onClick={() => { setActive(i); setPaused(true); }}
+            className="w-1.5 h-1.5 rounded-full transition-all"
+            style={{ background: i === active ? "#00e676" : "rgba(255,255,255,0.3)" }} />
         ))}
       </div>
 

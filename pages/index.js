@@ -8,182 +8,297 @@ import fs from "fs";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
+// ── Live cam grid (12 cameras with verified Unsplash images) ─────────────────
+const LIVE_GRID = [
+  { city: "New York", label: "Times Square", flag: "🇺🇸", img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80&auto=format&fit=crop", ytId: "kPnlOuCO3rA", featured: true },
+  { city: "Tokyo", label: "Shibuya Crossing", flag: "🇯🇵", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=75&auto=format&fit=crop" },
+  { city: "London", label: "Big Ben", flag: "🇬🇧", img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75&auto=format&fit=crop" },
+  { city: "Paris", label: "Eiffel Tower", flag: "🇫🇷", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=75&auto=format&fit=crop" },
+  { city: "Dubai", label: "Burj Khalifa", flag: "🇦🇪", img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=75&auto=format&fit=crop" },
+  { city: "Sydney", label: "Opera House", flag: "🇦🇺", img: "https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=600&q=75&auto=format&fit=crop" },
+  { city: "Rome", label: "Colosseum", flag: "🇮🇹", img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=75&auto=format&fit=crop" },
+  { city: "Singapore", label: "Marina Bay", flag: "🇸🇬", img: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=75&auto=format&fit=crop" },
+  { city: "Amsterdam", label: "Canal District", flag: "🇳🇱", img: "https://images.unsplash.com/photo-1534351590666-13e3e96b5702?w=600&q=75&auto=format&fit=crop" },
+  { city: "Istanbul", label: "Hagia Sophia", flag: "🇹🇷", img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=75&auto=format&fit=crop" },
+  { city: "Rio de Janeiro", label: "Christ the Redeemer", flag: "🇧🇷", img: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=75&auto=format&fit=crop" },
+  { city: "Bangkok", label: "City Center", flag: "🇹🇭", img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=75&auto=format&fit=crop" },
+];
+
+// ── Camera picks ─────────────────────────────────────────────────────────────
 const TOP_PICKS = [
-  { name: "Blink Mini 2", slug: "blink-mini-2", category: "Best Budget", price: "$34.99", rating: "4.4", asin: "B0CGX9GQ3Q", highlight: true, badge: "EDITOR'S CHOICE", brandColor: "#1a73e8" },
-  { name: "Ring Indoor Cam (2nd Gen)", slug: "ring-indoor-cam-gen2", category: "Best Overall", price: "$59.99", rating: "4.5", asin: "B09WZBPX7K", highlight: false, brandColor: "#232f3e" },
-  { name: "Wyze Cam v4", slug: "wyze-cam-v4", category: "Best Value", price: "$35.98", rating: "4.4", asin: "B0C3KXY935", highlight: false, brandColor: "#0078d7" },
-  { name: "Arlo Pro 5S", slug: "arlo-pro-5s", category: "Best Premium", price: "$199.99", rating: "4.3", asin: "B0B8QYZRSC", highlight: false, brandColor: "#6b21a8" },
-  { name: "Google Nest Cam", slug: "google-nest-cam-indoor", category: "Best Smart Home", price: "$99.99", rating: "4.4", asin: "B09NYZGGJD", highlight: false, brandColor: "#4285f4" },
-  { name: "Eufy S350", slug: "eufy-s350", category: "No Subscription", price: "$79.99", rating: "4.5", asin: "B0C7VN19YS", highlight: false, brandColor: "#0d9488" },
+  { name: "Blink Mini 2", tag: "EDITOR'S CHOICE", category: "Best Budget", price: "$34.99", rating: "4.4/5", asin: "B0CGX9GQ3Q", accent: "#1a73e8", pro: "No subscription needed" },
+  { name: "Ring Indoor Cam 2nd Gen", tag: "BEST OVERALL", category: "Top Rated", price: "$59.99", rating: "4.5/5", asin: "B09WZBPX7K", accent: "#e87722", pro: "Color night vision" },
+  { name: "Wyze Cam v4", tag: "BEST VALUE", category: "Great Value", price: "$35.98", rating: "4.4/5", asin: "B0C3KXY935", accent: "#0078d7", pro: "14 days free cloud" },
+  { name: "Arlo Pro 5S", tag: "BEST PREMIUM", category: "Premium Pick", price: "$199.99", rating: "4.3/5", asin: "B0B8QYZRSC", accent: "#7c3aed", pro: "4K HDR outdoor" },
+  { name: "Google Nest Cam", tag: "SMART HOME", category: "Best AI", price: "$99.99", rating: "4.4/5", asin: "B09NYZGGJD", accent: "#4285f4", pro: "On-device AI detection" },
+  { name: "Eufy S350", tag: "NO FEES", category: "No Subscription", price: "$79.99", rating: "4.5/5", asin: "B0C7VN19YS", accent: "#0d9488", pro: "Local storage, no monthly cost" },
 ];
 
-const LIVE_PREVIEW = [
-  { city: "New York", flag: "🇺🇸", label: "Times Square", img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=75&auto=format&fit=crop", alt: "Times Square New York City live cam" },
-  { city: "Tokyo", flag: "🇯🇵", label: "Shibuya Crossing", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=75&auto=format&fit=crop", alt: "Shibuya Crossing Tokyo live webcam" },
-  { city: "Paris", flag: "🇫🇷", label: "Eiffel Tower", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=75&auto=format&fit=crop", alt: "Eiffel Tower Paris live camera" },
-  { city: "Dubai", flag: "🇦🇪", label: "Burj Khalifa", img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=400&q=75&auto=format&fit=crop", alt: "Burj Khalifa Dubai live webcam" },
+// ── Security news ─────────────────────────────────────────────────────────────
+const NEWS_ITEMS = [
+  {
+    badge: "BREAKING",
+    badgeColor: "#ef4444",
+    headline: "Airbnb Bans All Indoor Hidden Cameras Worldwide",
+    summary: "Effective April 30, 2026, Airbnb prohibits hidden cameras in all rental properties including outdoors near private spaces. Hosts must disclose all cameras before guests book.",
+    date: "Apr 2, 2026",
+    icon: "🏠",
+  },
+  {
+    badge: "PRODUCT",
+    badgeColor: "#f59e0b",
+    headline: "Ring Pro 4 Doorbell Gets AI Facial Recognition",
+    summary: "Ring's flagship doorbell now uses on-device AI to identify faces without cloud processing, addressing major privacy concerns while improving response speed.",
+    date: "Mar 28, 2026",
+    icon: "🔔",
+  },
+  {
+    badge: "PRIVACY",
+    badgeColor: "#3b82f6",
+    headline: "EU Surveillance Camera Act Now in Full Effect",
+    summary: "New EU regulations require GDPR-compliant camera signage, data minimization, and a 30-day maximum footage retention period for all public surveillance systems.",
+    date: "Mar 15, 2026",
+    icon: "🇪🇺",
+  },
+  {
+    badge: "SECURITY",
+    badgeColor: "#10b981",
+    headline: "Hidden Camera Detector Sales Up 340% in 2026",
+    summary: "Consumer demand for hidden camera detectors has surged following a series of hotel and short-term rental incidents reported across the United States and Europe.",
+    date: "Mar 10, 2026",
+    icon: "🔍",
+  },
+  {
+    badge: "TECH",
+    badgeColor: "#8b5cf6",
+    headline: "Wyze Cam v5 Leak: 4K, Local AI, No Subscription",
+    summary: "Leaked specs for Wyze's next camera suggest 4K resolution, on-device person detection, and a commitment to keeping all core features free without a monthly plan.",
+    date: "Mar 5, 2026",
+    icon: "📷",
+  },
+  {
+    badge: "POLICY",
+    badgeColor: "#f97316",
+    headline: "FTC Fines Spy Cam Seller $2.1M for Deceptive Practices",
+    summary: "The FTC issued its largest hidden camera enforcement action, fining an online retailer that marketed covert recording devices as everyday household objects.",
+    date: "Feb 28, 2026",
+    icon: "⚖️",
+  },
 ];
 
-function CamSVG({ color = "#00c853" }) {
+function LiveCamCard({ cam, featured }) {
+  if (featured) {
+    return (
+      <Link href="/live"
+        className="relative overflow-hidden rounded-xl border border-brand-border group col-span-2 row-span-2 block"
+        style={{ minHeight: "260px" }}>
+        <img src={cam.img} alt={`${cam.label} ${cam.city} live camera`}
+          className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-700" loading="eager" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+        {/* CCTV corners */}
+        <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-brand-green/70" />
+        <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-brand-green/70" />
+        <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-brand-green/70" />
+        <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-brand-green/70" />
+        <div className="absolute top-3 left-3 z-10">
+          <span className="flex items-center gap-1 bg-red-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full">
+            <span className="live-dot w-1.5 h-1.5 rounded-full bg-white inline-block" />LIVE
+          </span>
+        </div>
+        <div className="absolute top-3 right-3 z-10 text-xs font-mono text-brand-green/60">FEATURED</div>
+        <div className="absolute bottom-4 left-4 z-10">
+          <div className="text-3xl mb-1">{cam.flag}</div>
+          <p className="text-white font-black text-xl leading-tight">{cam.city}</p>
+          <p className="text-gray-300 text-sm">{cam.label}</p>
+          <div className="mt-3 inline-flex items-center gap-1.5 bg-brand-green text-black text-xs font-bold px-3 py-1.5 rounded-lg">
+            ▶ Watch Live
+          </div>
+        </div>
+      </Link>
+    );
+  }
   return (
-    <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-12">
-      <rect x="4" y="12" width="52" height="38" rx="6" fill="#1a1a1a" stroke={color} strokeWidth="2"/>
-      <rect x="22" y="6" width="14" height="8" rx="3" fill={color}/>
-      <circle cx="30" cy="31" r="13" fill="#0d0d0d" stroke={color} strokeWidth="2"/>
-      <circle cx="30" cy="31" r="4" fill={color} opacity="0.9"/>
-      <circle cx="33" cy="28" r="1.5" fill="white" opacity="0.4"/>
-      <path d="M56 20 L72 15 L72 47 L56 42" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <circle cx="53" cy="18" r="3.5" fill="#ef4444"/>
-    </svg>
+    <Link href="/live"
+      className="relative overflow-hidden rounded-xl border border-brand-border group block aspect-video sm:aspect-auto sm:h-32">
+      <img src={cam.img} alt={`${cam.label} ${cam.city} live camera`}
+        className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute top-1.5 left-1.5 w-3 h-3 border-t border-l border-brand-green/60" />
+      <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t border-r border-brand-green/60" />
+      <div className="absolute top-2 right-2 z-10">
+        <span className="flex items-center gap-0.5 bg-red-600 text-white text-[8px] font-extrabold px-1.5 py-0.5 rounded-full">
+          <span className="live-dot w-1 h-1 rounded-full bg-white inline-block" />LIVE
+        </span>
+      </div>
+      <div className="absolute bottom-2 left-2 z-10">
+        <p className="text-white text-xs font-bold leading-tight drop-shadow">{cam.city}</p>
+        <p className="text-gray-300 text-[10px] drop-shadow">{cam.label}</p>
+      </div>
+      <div className="absolute bottom-2 right-2 z-10 text-base">{cam.flag}</div>
+    </Link>
+  );
+}
+
+function ProductCard({ cam }) {
+  return (
+    <a href={`https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`}
+      target="_blank" rel="nofollow sponsored noopener noreferrer"
+      className="card group relative overflow-hidden hover:border-brand-green/40 transition-all flex flex-col">
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex flex-col gap-1">
+          <span className="text-[9px] font-extrabold tracking-widest px-2 py-0.5 rounded text-black inline-block"
+            style={{ background: cam.accent }}>{cam.tag}</span>
+          <span className="text-[10px] text-brand-muted">{cam.category}</span>
+        </div>
+        <span className="text-yellow-400 text-xs font-bold">★ {cam.rating}</span>
+      </div>
+      <h3 className="font-bold text-white text-sm group-hover:text-brand-green transition mb-1 leading-snug">{cam.name}</h3>
+      <p className="text-brand-muted text-xs mb-3 leading-relaxed">✓ {cam.pro}</p>
+      <div className="mt-auto flex items-center justify-between">
+        <span className="text-brand-green font-black text-lg">{cam.price}</span>
+        <span className="text-[10px] font-bold bg-yellow-400 text-black px-2.5 py-1 rounded-lg group-hover:bg-yellow-300 transition">Amazon →</span>
+      </div>
+    </a>
+  );
+}
+
+function NewsCard({ item }) {
+  return (
+    <div className="card hover:border-brand-borderHover transition-all">
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-xl">{item.icon}</span>
+        <span className="text-[10px] font-extrabold tracking-widest px-2 py-0.5 rounded text-white"
+          style={{ background: item.badgeColor }}>{item.badge}</span>
+        <span className="text-brand-muted text-[10px] ml-auto">{item.date}</span>
+      </div>
+      <h3 className="font-bold text-white text-sm leading-snug mb-2">{item.headline}</h3>
+      <p className="text-brand-muted text-xs leading-relaxed line-clamp-3">{item.summary}</p>
+    </div>
+  );
+}
+
+function SectionHead({ title, sub, href, linkText }) {
+  return (
+    <div className="flex items-end justify-between mb-4">
+      <div>
+        <h2 className="text-lg sm:text-xl font-black text-white tracking-tight">{title}</h2>
+        {sub && <p className="text-brand-muted text-xs mt-0.5">{sub}</p>}
+      </div>
+      {href && (
+        <Link href={href} className="text-brand-green text-xs font-semibold hover:underline shrink-0 ml-4">{linkText || "View all →"}</Link>
+      )}
+    </div>
   );
 }
 
 export default function Home({ articles }) {
   return (
     <Layout>
-      {/* Hero Carousel */}
-      <section className="mb-8">
-        <HeroCarousel />
-      </section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
 
-      {/* Stats bar */}
-      <section className="card mb-10 grid grid-cols-2 md:grid-cols-4 divide-x divide-brand-border text-center">
-        {[
-          { n: "60+", label: "Live Cities" },
-          { n: "6", label: "Cameras Reviewed" },
-          { n: "100%", label: "Independent" },
-          { n: "24/7", label: "Streaming Live" },
-        ].map(s => (
-          <div key={s.label} className="py-4">
-            <div className="text-2xl font-extrabold text-brand-green">{s.n}</div>
-            <div className="text-gray-500 text-xs mt-0.5">{s.label}</div>
-          </div>
-        ))}
-      </section>
+        {/* ── Hero Carousel ── */}
+        <section className="mb-4 sm:mb-6">
+          <HeroCarousel />
+        </section>
 
-      <AdUnit />
-
-      {/* Live Cam Preview Strip */}
-      <section className="mb-12">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className="live-dot w-2.5 h-2.5 rounded-full bg-red-500 inline-block" />
-            <h2 className="text-xl font-bold text-white">Live World Cameras</h2>
-          </div>
-          <Link href="/live" className="text-brand-green text-sm hover:underline">View all 60+ cities →</Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {LIVE_PREVIEW.map(cam => (
-            <Link
-              key={cam.city}
-              href="/live"
-              className="card p-0 overflow-hidden hover:border-red-500/50 transition group"
-            >
-              <div className="relative h-36 overflow-hidden">
-                <img src={cam.img} alt={cam.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                {/* CCTV corners */}
-                <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-brand-green/60" />
-                <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-brand-green/60" />
-                <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-brand-green/60" />
-                <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-brand-green/60" />
-                <div className="absolute top-2 left-2 z-10">
-                  <span className="flex items-center gap-1 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full">
-                    <span className="live-dot w-1 h-1 rounded-full bg-white" />LIVE
-                  </span>
-                </div>
-                <div className="absolute bottom-2 left-3 z-10">
-                  <p className="text-white text-xs font-bold drop-shadow">{cam.city}</p>
-                  <p className="text-gray-300 text-[10px] drop-shadow">{cam.label}</p>
-                </div>
-                <div className="absolute bottom-2 right-3 z-10 text-xl">{cam.flag}</div>
-              </div>
-            </Link>
+        {/* ── Stats ── */}
+        <section className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8">
+          {[
+            { n: "500+", label: "Live Cameras" },
+            { n: "80+", label: "Countries" },
+            { n: "6", label: "Cameras Reviewed" },
+            { n: "24/7", label: "Streaming Live" },
+          ].map(s => (
+            <div key={s.label} className="card text-center py-3 px-2">
+              <div className="text-xl sm:text-2xl font-extrabold text-brand-green">{s.n}</div>
+              <div className="text-gray-500 text-[10px] sm:text-xs mt-0.5">{s.label}</div>
+            </div>
           ))}
-        </div>
-      </section>
+        </section>
 
-      {/* Top Picks */}
-      <section className="mb-12">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-white">Top Picks Right Now</h2>
-          <Link href="/reviews" className="text-brand-green text-sm hover:underline">Full reviews →</Link>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {TOP_PICKS.map((cam) => (
-            <a
-              key={cam.asin}
-              href={`https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`}
-              target="_blank"
-              rel="nofollow sponsored noopener noreferrer"
-              className={`card hover:border-brand-green/50 transition block group relative overflow-hidden ${cam.highlight ? "border-brand-green" : ""}`}
-            >
-              {cam.highlight && (
-                <div className="absolute top-0 right-0 w-20 h-20 bg-brand-green/5 rounded-bl-full" />
-              )}
-              <div className="flex items-center gap-3 mb-3">
-                <CamSVG color={cam.brandColor} />
-                <div>
-                  {cam.badge && <div className="pill bg-brand-green text-black text-[10px] font-extrabold mb-1 inline-block">{cam.badge}</div>}
-                  <div className="pill bg-gray-800 text-gray-400 text-[10px] inline-block ml-1">{cam.category}</div>
-                </div>
-              </div>
-              <h3 className="font-bold text-white group-hover:text-brand-green transition mb-2">{cam.name}</h3>
-              <div className="flex items-center justify-between">
-                <span className="text-brand-green font-bold text-lg">{cam.price}</span>
-                <span className="text-yellow-400 text-sm">★ {cam.rating}/5</span>
-              </div>
-              <div className="mt-3 text-xs text-center bg-yellow-400 text-black font-bold py-2 rounded-lg group-hover:bg-yellow-300 transition">
-                Check Price on Amazon →
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
+        <AdUnit />
 
-      <AdUnit />
-
-      {/* Latest Articles */}
-      {articles.length > 0 && (
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-white">Latest Guides &amp; Reviews</h2>
-            <Link href="/blog" className="text-brand-green text-sm hover:underline">View all →</Link>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {articles.slice(0, 6).map((a) => (
-              <ArticleCard key={a.slug} article={a} />
+        {/* ── LIVE NOW — Bento grid ── */}
+        <section className="mb-8 sm:mb-10">
+          <SectionHead
+            title="🔴 Live Now — World Cameras"
+            sub="Public live streams updated 24/7"
+            href="/live"
+            linkText="All 500+ cameras →"
+          />
+          {/* Bento: featured (col-span-2 row-span-2) + 10 small */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3"
+            style={{ gridAutoRows: "130px" }}>
+            {LIVE_GRID.slice(0, 1).map(cam => (
+              <LiveCamCard key={cam.city} cam={cam} featured />
+            ))}
+            {LIVE_GRID.slice(1).map(cam => (
+              <LiveCamCard key={cam.city} cam={cam} />
             ))}
           </div>
-        </section>
-      )}
-
-      {/* Airbnb CTA */}
-      <section className="card border-brand-green/20 mb-10 text-center py-10">
-        <div className="text-3xl mb-3">🏠</div>
-        <h2 className="text-xl font-bold text-white mb-2">Hosting on Airbnb or VRBO?</h2>
-        <p className="text-gray-400 mb-5 max-w-md mx-auto text-sm">
-          Disclosure requirements, legal placements, and the exact camera models that guests never complain about.
-        </p>
-        <Link href="/best-hidden-cameras-airbnb" className="btn-primary">
-          Read the Airbnb Host Guide →
-        </Link>
-      </section>
-
-      {/* Trust signals */}
-      <section className="grid md:grid-cols-3 gap-4 mb-8">
-        {[
-          { icon: "🔍", title: "Independent Reviews", body: "We buy or borrow every camera we test. No manufacturer-provided units, no sponsored rankings." },
-          { icon: "📦", title: "Hands-On Testing", body: "Each camera is tested for video quality, night vision, app reliability, and real-world motion detection." },
-          { icon: "💰", title: "Price Tracked Daily", body: "We monitor Amazon prices and update picks when better value options appear." },
-        ].map((t) => (
-          <div key={t.title} className="card text-center">
-            <div className="text-3xl mb-3">{t.icon}</div>
-            <p className="font-bold text-white text-sm mb-2">{t.title}</p>
-            <p className="text-gray-400 text-xs leading-relaxed">{t.body}</p>
+          <div className="mt-3 text-center">
+            <Link href="/live" className="btn-outline text-sm px-6 py-2.5">
+              Explore All 500+ Cameras →
+            </Link>
           </div>
-        ))}
-      </section>
+        </section>
+
+        {/* ── Top Camera Picks ── */}
+        <section className="mb-8 sm:mb-10">
+          <SectionHead
+            title="Top Camera Picks 2026"
+            sub="Independent reviews — updated monthly"
+            href="/reviews"
+            linkText="Full reviews →"
+          />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {TOP_PICKS.map(cam => <ProductCard key={cam.asin} cam={cam} />)}
+          </div>
+        </section>
+
+        <AdUnit />
+
+        {/* ── Security News ── */}
+        <section className="mb-8 sm:mb-10">
+          <SectionHead
+            title="📡 Security & Surveillance News"
+            sub="Latest in cameras, privacy law, and tech"
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {NEWS_ITEMS.map(item => <NewsCard key={item.headline} item={item} />)}
+          </div>
+        </section>
+
+        {/* ── Latest Guides ── */}
+        {articles.length > 0 && (
+          <section className="mb-8 sm:mb-10">
+            <SectionHead title="Latest Guides & Reviews" href="/blog" linkText="View all →" />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {articles.slice(0, 3).map(a => <ArticleCard key={a.slug} article={a} />)}
+            </div>
+          </section>
+        )}
+
+        {/* ── Airbnb CTA ── */}
+        <section className="relative overflow-hidden card border-brand-green/20 mb-6 sm:mb-8">
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-green/5 to-transparent pointer-events-none" />
+          <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-2xl">🏠</span>
+                <span className="pill-green text-xs">AIRBNB HOSTS</span>
+              </div>
+              <h2 className="text-lg font-black text-white mb-1">Are Your Cameras Legal on Airbnb?</h2>
+              <p className="text-brand-muted text-sm max-w-md">
+                New 2026 rules ban ALL indoor cameras. Get the legal placement guide, required disclosures, and the exact models that pass inspection.
+              </p>
+            </div>
+            <Link href="/best-hidden-cameras-airbnb" className="btn-primary shrink-0">Read the Guide →</Link>
+          </div>
+        </section>
+
+      </div>
     </Layout>
   );
 }
@@ -192,9 +307,9 @@ export async function getStaticProps() {
   const articlesDir = path.join(process.cwd(), "data", "articles");
   let articles = [];
   try {
-    const files = fs.readdirSync(articlesDir).filter((f) => f.endsWith(".json"));
+    const files = fs.readdirSync(articlesDir).filter(f => f.endsWith(".json"));
     articles = files
-      .map((f) => JSON.parse(fs.readFileSync(path.join(articlesDir, f), "utf8")))
+      .map(f => JSON.parse(fs.readFileSync(path.join(articlesDir, f), "utf8")))
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   } catch {}
   return { props: { articles } };

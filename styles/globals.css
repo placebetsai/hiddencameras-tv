@@ -50,6 +50,17 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* News ticker */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-scroll {
+  animation: ticker 90s linear infinite;
+  will-change: transform;
+}
+.ticker-scroll:hover { animation-play-state: paused; }
+
 .live-dot { animation: blink 1.4s ease-in-out infinite; }
 .float-anim { animation: float 4s ease-in-out infinite; }
 .glow-anim { animation: glow 2s ease-in-out infinite; }
