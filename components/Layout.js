@@ -21,13 +21,18 @@ export default function Layout({ children, title, description, canonical }) {
         <meta property="og:site_name" content="HiddenCameras.tv" />
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
         <meta property="og:image" content="https://hiddencameras.tv/og-image.png" />
+        <meta property="og:image:secure_url" content="https://hiddencameras.tv/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:alt" content="HiddenCameras.tv — Live World Cams & Security Camera Reviews" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@hiddencameras4u" />
+        <meta name="twitter:creator" content="@hiddencameras4u" />
         <meta name="twitter:image" content="https://hiddencameras.tv/og-image.png" />
+        <meta name="twitter:image:alt" content="HiddenCameras.tv — Live World Cams & Security Camera Reviews" />
         <meta name="twitter:title" content={t} />
         <meta name="twitter:description" content={d} />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />

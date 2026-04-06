@@ -128,8 +128,12 @@ async function generate() {
   await sharp(Buffer.from(APPLE_SVG)).resize(512,512).png().toFile(path.join(pub,"icon-512.png"));
   console.log("✓ icon-512.png");
 
-  // OG image 1200x630
-  await sharp(Buffer.from(OG_SVG)).resize(1200,630).png().toFile(path.join(pub,"og-image.png"));
+  // OG image 1200x630 — flatten to RGB (no alpha) so Facebook/WhatsApp/iMessage don't choke
+  await sharp(Buffer.from(OG_SVG))
+    .resize(1200, 630)
+    .flatten({ background: { r: 10, g: 10, b: 10 } })
+    .png()
+    .toFile(path.join(pub, "og-image.png"));
   console.log("✓ og-image.png");
 
   console.log("All icons generated.");
