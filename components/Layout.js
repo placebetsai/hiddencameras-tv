@@ -73,10 +73,12 @@ export default function Layout({ children, title, description, canonical }) {
               <Link href="/detect-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Detect</Link>
               <Link href="/reviews" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Reviews</Link>
               <Link href="/blog" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Blog</Link>
+              <Link href="/my-cams" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">My Cams</Link>
             </div>
 
             <div className="hidden md:flex items-center gap-2">
-              <Link href="/submit-cam" className="btn-primary text-xs py-1.5 px-3">+ Submit Cam</Link>
+              <Link href="/submit-cam" className="btn-outline text-xs py-1.5 px-3">+ Submit Cam</Link>
+              <Link href="/my-cams" className="btn-primary text-xs py-1.5 px-3">My Cams →</Link>
             </div>
 
             {/* Mobile right side */}
@@ -105,6 +107,7 @@ export default function Layout({ children, title, description, canonical }) {
                 { href: "/detect-hidden-cameras", label: "🔍 Detect Hidden Cameras" },
                 { href: "/reviews", label: "Camera Reviews" },
                 { href: "/blog", label: "Blog & Guides" },
+                { href: "/my-cams", label: "📹 My Cams" },
                 { href: "/best-hidden-cameras-airbnb", label: "Airbnb Guide" },
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
@@ -114,8 +117,9 @@ export default function Layout({ children, title, description, canonical }) {
                   {label}
                 </Link>
               ))}
-              <div className="pt-2 mt-1 border-t border-brand-border">
-                <Link href="/submit-cam" onClick={() => setMenuOpen(false)} className="btn-primary w-full text-center text-xs py-2 block">+ Submit a Cam</Link>
+              <div className="pt-2 mt-1 border-t border-brand-border flex gap-2">
+                <Link href="/submit-cam" onClick={() => setMenuOpen(false)} className="btn-outline flex-1 text-center text-xs py-2">+ Submit Cam</Link>
+                <Link href="/my-cams" onClick={() => setMenuOpen(false)} className="btn-primary flex-1 text-center text-xs py-2">My Cams →</Link>
               </div>
             </div>
           )}
@@ -152,6 +156,7 @@ export default function Layout({ children, title, description, canonical }) {
               <p className="text-white font-semibold text-sm mb-3">Live Cams</p>
               <div className="flex flex-col gap-2 text-xs text-brand-muted">
                 <Link href="/live" className="hover:text-brand-green transition">World Cameras</Link>
+                <Link href="/my-cams" className="hover:text-brand-green transition">My Private Cams</Link>
                 <Link href="/submit-cam" className="hover:text-brand-green transition">Submit a Cam</Link>
               </div>
             </div>

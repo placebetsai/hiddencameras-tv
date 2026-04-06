@@ -281,6 +281,46 @@ export default function Home({ articles }) {
           </section>
         )}
 
+        {/* ── My Cams CTA ── */}
+        <section className="mb-8 sm:mb-10">
+          <div className="relative overflow-hidden rounded-2xl border border-brand-green/30 bg-gradient-to-br from-brand-green/10 via-brand-card to-brand-card p-6 sm:p-8">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/5 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="relative">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="live-dot w-2 h-2 rounded-full bg-brand-green inline-block" />
+                <span className="text-brand-green text-xs font-extrabold tracking-widest">FREE ACCOUNT</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 leading-tight">
+                Store &amp; Access Your Cams<br className="hidden sm:block" /> From Anywhere
+              </h2>
+              <p className="text-gray-400 text-sm sm:text-base mb-6 max-w-lg">
+                Save your home security, baby monitor, nanny cam, and pet cam links in one place. Access them on any device. Share privately or make them public.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                {[
+                  { icon: "🏠", label: "Home Security" },
+                  { icon: "👶", label: "Baby Monitor" },
+                  { icon: "👀", label: "Nanny Cam" },
+                  { icon: "🐾", label: "Pet Cam" },
+                ].map(f => (
+                  <div key={f.label} className="bg-brand-bg/60 border border-brand-border rounded-xl py-3 text-center">
+                    <div className="text-2xl mb-1">{f.icon}</div>
+                    <div className="text-xs text-gray-400 font-medium">{f.label}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/my-cams" className="btn-primary text-sm px-6 py-3 text-center">
+                  Create Free Account →
+                </Link>
+                <Link href="/my-cams" className="btn-ghost text-sm px-6 py-3 text-center text-gray-400">
+                  Already have an account? Sign in
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ── Airbnb CTA ── */}
         <section className="relative overflow-hidden card border-brand-green/20 mb-6 sm:mb-8">
           <div className="absolute inset-0 bg-gradient-to-r from-brand-green/5 to-transparent pointer-events-none" />
