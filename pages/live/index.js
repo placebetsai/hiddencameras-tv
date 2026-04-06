@@ -1,7 +1,8 @@
 import Layout from "../../components/Layout";
 import AdUnit from "../../components/AdUnit";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "../../lib/supabase";
 
 const CONTINENTS = ["All", "North America", "Europe", "Asia", "Middle East", "South America", "Africa", "Oceania"];
 
@@ -188,16 +189,23 @@ function CamCard({ cam }) {
               className="flex-1 text-center text-[11px] font-bold py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white transition">
               {showEmbed ? "⏹ Stop" : "▶ Watch Live"}
             </button>
+          ) : cam.streamUrl ? (
+            <a href={cam.streamUrl} target="_blank" rel="noopener noreferrer"
+              className="flex-1 text-center text-[11px] font-bold py-1.5 rounded-lg bg-red-600/90 hover:bg-red-600 text-white transition">
+              ▶ Watch Stream
+            </a>
           ) : (
             <a href={ytSearch} target="_blank" rel="noopener noreferrer"
               className="flex-1 text-center text-[11px] font-bold py-1.5 rounded-lg bg-red-600/90 hover:bg-red-600 text-white transition">
               ▶ Find Stream
             </a>
           )}
-          <a href={earthcam} target="_blank" rel="noopener noreferrer"
-            className="text-[11px] py-1.5 px-2 rounded-lg border border-brand-border text-gray-400 hover:border-brand-green hover:text-white transition whitespace-nowrap">
-            EarthCam
-          </a>
+          {!cam.streamUrl && (
+            <a href={earthcam} target="_blank" rel="noopener noreferrer"
+              className="text-[11px] py-1.5 px-2 rounded-lg border border-brand-border text-gray-400 hover:border-brand-green hover:text-white transition whitespace-nowrap">
+              EarthCam
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -208,8 +216,33 @@ export default function LiveCams() {
   const [continent, setContinent] = useState("All");
   const [type, setType] = useState("All Types");
   const [search, setSearch] = useState("");
+  const [submittedCams, setSubmittedCams] = useState([]);
 
-  const filtered = CAMS.filter(c => {
+  useEffect(() => {
+    supabase
+      .from("submitted_cams")
+      .select("*")
+      .eq("status", "approved")
+      .order("reviewed_at", { ascending: false })
+      .then(({ data }) => {
+        if (!data) return;
+        setSubmittedCams(data.map(c => ({
+          id: `sub-${c.id}`,
+          city: c.city,
+          country: c.country || "",
+          continent: c.continent || "Other",
+          label: c.label,
+          ytId: c.yt_id || null,
+          streamUrl: !c.yt_id ? c.stream_url : null,
+          flag: c.flag || "🌍",
+          type: c.cam_type || "City",
+        })));
+      });
+  }, []);
+
+  const allCams = [...CAMS, ...submittedCams];
+
+  const filtered = allCams.filter(c => {
     if (continent !== "All" && c.continent !== continent) return false;
     if (type !== "All Types" && c.type !== type) return false;
     if (search && !`${c.city} ${c.label} ${c.country}`.toLowerCase().includes(search.toLowerCase())) return false;
@@ -228,7 +261,7 @@ export default function LiveCams() {
         <section className="text-center mb-6 rounded-2xl border border-brand-border bg-brand-card px-5 py-8 sm:py-10">
           <div className="inline-flex items-center gap-2 pill bg-red-600/20 text-red-400 mb-3">
             <span className="live-dot w-2 h-2 rounded-full bg-red-400 inline-block" />
-            {CAMS.length}+ CAMERAS WORLDWIDE
+            {allCams.length}+ CAMERAS WORLDWIDE
           </div>
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-2 leading-tight tracking-tight">
             Watch the World<br /><span className="text-brand-green">Live &amp; Free</span>
@@ -241,7 +274,7 @@ export default function LiveCams() {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-5">
           {[
-            { n: `${CAMS.length}+`, label: "Cameras" },
+            { n: `${allCams.length}+`, label: "Cameras" },
             { n: "7", label: "Continents" },
             { n: "45+", label: "Countries" },
             { n: "24/7", label: "Live" },
