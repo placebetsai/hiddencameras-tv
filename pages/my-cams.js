@@ -51,8 +51,16 @@ export default function MyCams() {
   async function handleAuth(e) {
     e.preventDefault();
     setAuthError("");
-    const fn = authMode === "signin" ? supabase.auth.signInWithPassword : supabase.auth.signUp;
-    const { error } = await fn({ email: authForm.email, password: authForm.password });
+    let error, data;
+    if (authMode === "signin") {
+      ({ error, data } = await supabase.auth.signInWithPassword({ email: authForm.email, password: authForm.password }));
+    } else {
+      ({ error, data } = await supabase.auth.signUp({ email: authForm.email, password: authForm.password }));
+      if (!error && data?.user && !data.session) {
+        setAuthError("✅ Account created! Check your email to confirm before signing in.");
+        return;
+      }
+    }
     if (error) setAuthError(error.message);
   }
 
@@ -126,7 +134,7 @@ export default function MyCams() {
                 onChange={e => setAuthForm(f => ({ ...f, password: e.target.value }))}
                 className="input" />
             </div>
-            {authError && <p className="text-red-400 text-xs">{authError}</p>}
+            {authError && <p className={`text-xs ${authError.startsWith("✅") ? "text-brand-green" : "text-red-400"}`}>{authError}</p>}
             <button type="submit" className="btn-primary w-full py-3">
               {authMode === "signin" ? "Sign In" : "Create Free Account"}
             </button>
