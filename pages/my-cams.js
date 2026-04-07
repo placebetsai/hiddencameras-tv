@@ -78,13 +78,13 @@ export default function MyCams() {
   }
 
   if (!user) return (
-    <Layout title="Share Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
+    <Layout title="Submit Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
       <div className="max-w-md mx-auto px-4 py-16">
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-2xl bg-brand-green/10 border border-brand-green/30 flex items-center justify-center mx-auto mb-4">
             <CameraIcon size={36} />
           </div>
-          <h1 className="text-2xl font-bold text-white mb-2">Share Your Live Feed</h1>
+          <h1 className="text-2xl font-bold text-white mb-2">Submit Your Live Feed</h1>
           <p className="text-brand-muted text-sm">Have a live stream? Add it to the global directory. Keep it private or share it with the world.</p>
         </div>
 
@@ -137,22 +137,22 @@ export default function MyCams() {
   );
 
   return (
-    <Layout title="Upload Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
+    <Layout title="Submit Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-white">My Feeds</h1>
+            <h1 className="text-2xl font-bold text-white">Your Feeds</h1>
             <p className="text-brand-muted text-sm mt-1">{user.email}</p>
           </div>
           <div className="flex gap-2">
-            <button onClick={() => setShowForm(!showForm)} className="btn-primary">+ Upload Feed</button>
+            <button onClick={() => setShowForm(!showForm)} className="btn-primary">+ Submit Feed</button>
             <button onClick={() => supabase.auth.signOut()} className="btn-ghost text-xs">Sign Out</button>
           </div>
         </div>
 
         {showForm && (
           <div className="card mb-6 border-brand-green/20">
-            <h3 className="font-bold text-white mb-4">Upload New Feed</h3>
+            <h3 className="font-bold text-white mb-4">Submit New Feed</h3>
             <form onSubmit={handleSaveCam} className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>

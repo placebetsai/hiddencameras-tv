@@ -73,14 +73,14 @@ export default function Layout({ children, title, description, canonical }) {
               <Link href="/detect-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Detect</Link>
               <Link href="/reviews" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Reviews</Link>
               <Link href="/blog" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Blog</Link>
-              <Link href="/my-cams" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">Upload Feed</Link>
+              <Link href="/history-of-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">History</Link>
+              <Link href="/my-cams" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">Submit Your Feed</Link>
             </div>
 
             <div className="hidden md:flex items-center gap-2">
               <Link href="/about" className="nav-link px-2 py-1.5 rounded-lg text-xs hover:bg-brand-card">About</Link>
               <Link href="/contact" className="nav-link px-2 py-1.5 rounded-lg text-xs hover:bg-brand-card">Contact</Link>
-              <Link href="/submit-cam" className="btn-outline text-xs py-1.5 px-3">+ Submit Cam</Link>
-              <Link href="/my-cams" className="btn-primary text-xs py-1.5 px-3">Upload Feed →</Link>
+              <Link href="/my-cams" className="btn-primary text-xs py-1.5 px-3">Submit Your Feed →</Link>
             </div>
 
             {/* Mobile right side */}
@@ -109,7 +109,8 @@ export default function Layout({ children, title, description, canonical }) {
                 { href: "/detect-hidden-cameras", label: "🔍 Detect Hidden Cameras" },
                 { href: "/reviews", label: "Camera Reviews" },
                 { href: "/blog", label: "Blog & Guides" },
-                { href: "/my-cams", label: "📹 Upload Feed" },
+                { href: "/history-of-hidden-cameras", label: "📷 Camera History" },
+                { href: "/my-cams", label: "📹 Submit Your Feed" },
                 { href: "/best-hidden-cameras-airbnb", label: "Airbnb Guide" },
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
@@ -120,8 +121,7 @@ export default function Layout({ children, title, description, canonical }) {
                 </Link>
               ))}
               <div className="pt-2 mt-1 border-t border-brand-border flex gap-2">
-                <Link href="/submit-cam" onClick={() => setMenuOpen(false)} className="btn-outline flex-1 text-center text-xs py-2">+ Submit Cam</Link>
-                <Link href="/my-cams" onClick={() => setMenuOpen(false)} className="btn-primary flex-1 text-center text-xs py-2">Upload Feed →</Link>
+                <Link href="/my-cams" onClick={() => setMenuOpen(false)} className="btn-primary flex-1 text-center text-xs py-2">Submit Your Feed →</Link>
               </div>
             </div>
           )}
@@ -136,7 +136,7 @@ export default function Layout({ children, title, description, canonical }) {
       {/* Footer */}
       <footer className="border-t border-brand-border bg-brand-surface mt-10 md:mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-6 md:gap-8 mb-8">
             <div className="col-span-2">
               <Link href="/" className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-brand-green/10 border border-brand-green/30 flex items-center justify-center">
@@ -158,8 +158,8 @@ export default function Layout({ children, title, description, canonical }) {
               <p className="text-white font-semibold text-sm mb-3">Live Cams</p>
               <div className="flex flex-col gap-2 text-xs text-brand-muted">
                 <Link href="/live" className="hover:text-brand-green transition">World Cameras</Link>
-                <Link href="/my-cams" className="hover:text-brand-green transition">Upload Your Feed</Link>
-                <Link href="/submit-cam" className="hover:text-brand-green transition">Submit a Cam</Link>
+                <Link href="/history-of-hidden-cameras" className="hover:text-brand-green transition">Camera History</Link>
+                <Link href="/my-cams" className="hover:text-brand-green transition">Submit Your Feed</Link>
               </div>
             </div>
             <div>
@@ -177,6 +177,13 @@ export default function Layout({ children, title, description, canonical }) {
                 <Link href="/contact" className="hover:text-brand-green transition">Contact</Link>
                 <Link href="/privacy" className="hover:text-brand-green transition">Privacy Policy</Link>
                 <a href="mailto:info@hiddencameras.tv" className="hover:text-brand-green transition">info@hiddencameras.tv</a>
+              </div>
+            </div>
+            <div>
+              <p className="text-white font-semibold text-sm mb-3">More Sites</p>
+              <div className="flex flex-col gap-2 text-xs text-brand-muted">
+                <a href="https://ihatecollege.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">IHateCollege.com — College Data &amp; Alternatives</a>
+                <a href="https://spanishtvshows.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">SpanishTVShows.com — Stream Spanish Series</a>
               </div>
             </div>
           </div>

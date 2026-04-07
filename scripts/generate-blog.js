@@ -75,7 +75,7 @@ const TOPICS = [
 const AMAZON_PRODUCTS = [
   { asin: "B0CGX9GQ3Q", name: "Blink Mini 2", label: "Best Budget Pick" },
   { asin: "B09WZBPX7K", name: "Ring Indoor Cam 2nd Gen", label: "Best Overall" },
-  { asin: "B0C3KXY935", name: "Wyze Cam v4", label: "Best Value" },
+  { asin: "B0CJ9YX7DG", name: "Wyze Cam v4", label: "Best Value" },
   { asin: "B0B8QYZRSC", name: "Arlo Pro 5S", label: "Best Premium" },
   { asin: "B09NYZGGJD", name: "Google Nest Cam", label: "Best Smart Home" },
   { asin: "B0C7VN19YS", name: "Eufy Indoor Cam S350", label: "No Subscription" },

@@ -69,7 +69,7 @@ Requirements:
 - 800-1200 words of real, useful content
 - H2 and H3 headings (use <h2> and <h3> tags)
 - Include specific product mentions with Amazon ASINs where relevant (use shortcode [AMAZON:ASIN:Product Name] for buy links)
-  Common ASINs: B0CGX9GQ3Q (Blink Mini 2), B09WZBPX7K (Ring Indoor Cam), B0C3KXY935 (Wyze Cam v4), B0B8QYZRSC (Arlo Pro 5S), B09NYZGGJD (Google Nest Cam), B0C7VN19YS (Eufy S350)
+  Common ASINs: B0CGX9GQ3Q (Blink Mini 2), B09WZBPX7K (Ring Indoor Cam), B0CJ9YX7DG (Wyze Cam v4), B0B8QYZRSC (Arlo Pro 5S), B09NYZGGJD (Google Nest Cam), B0C7VN19YS (Eufy S350)
 - No fluff, no filler — real advice a homeowner would act on
 - Use <p>, <ul>, <li>, <strong>, <h2>, <h3> HTML tags only
 - End with a clear recommendation

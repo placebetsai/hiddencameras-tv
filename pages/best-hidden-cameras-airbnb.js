@@ -6,7 +6,7 @@ const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 const PICKS = [
   { rank: 1, name: "Blink Mini 2", price: "$34.99", asin: "B0CGX9GQ3Q", why: "Tiny form factor, plugs into any outlet, and guests rarely notice it. Ideal for common areas." },
   { rank: 2, name: "Ring Indoor Cam (2nd Gen)", price: "$59.99", asin: "B09WZBPX7K", why: "Privacy cover that guests can see you respect. Easy to disclose — built-in privacy shutter." },
-  { rank: 3, name: "Wyze Cam v4", price: "$35.98", asin: "B0C3KXY935", why: "Best price-to-quality ratio. Covers front door and living area on a budget." },
+  { rank: 3, name: "Wyze Cam v4", price: "$35.98", asin: "B0CJ9YX7DG", why: "Best price-to-quality ratio. Covers front door and living area on a budget." },
 ];
 
 export default function AirbnbPage() {

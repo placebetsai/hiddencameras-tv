@@ -37,6 +37,27 @@
   </url>
 
   <url>
+    <loc>https://hiddencameras.tv/history-of-hidden-cameras/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hiddencameras.tv/detect-hidden-cameras/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hiddencameras.tv/news/</loc>
+    <lastmod>2026-04-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://hiddencameras.tv/about/</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>monthly</changefreq>
