@@ -34,17 +34,19 @@ function CamEmbed({ url }) {
 }
 
 export default function MyCams() {
-  const [user, setUser]           = useState(null);
-  const [cams, setCams]           = useState([]);
-  const [loading, setLoading]     = useState(true);
-  const [showForm, setShowForm]   = useState(false);
-  const [saving, setSaving]       = useState(false);
-  const [saveError, setSaveError] = useState("");
-  const [authMode, setAuthMode]   = useState("signin");
-  const [authForm, setAuthForm]   = useState({ email: "", password: "" });
-  const [authError, setAuthError] = useState("");
+  const [user, setUser]               = useState(null);
+  const [cams, setCams]               = useState([]);
+  const [loading, setLoading]         = useState(true);
+  const [sessionChecked, setSessionChecked] = useState(false);
+  const [showForm, setShowForm]       = useState(false);
+  const [saving, setSaving]           = useState(false);
+  const [saveError, setSaveError]     = useState("");
+  const [authMode, setAuthMode]       = useState("signin");
+  const [authForm, setAuthForm]       = useState({ email: "", password: "" });
+  const [authError, setAuthError]     = useState("");
   const [authLoading, setAuthLoading] = useState(false);
-  const [watching, setWatching]   = useState(null);
+  const [authSuccess, setAuthSuccess] = useState("");
+  const [watching, setWatching]       = useState(null);
   const [form, setForm] = useState({ name: "", description: "", stream_url: "", cam_type: "home", is_public: false });
 
   // ── Auth state ────────────────────────────────────────────────────────────
@@ -52,12 +54,14 @@ export default function MyCams() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       const u = session?.user || null;
       setUser(u);
+      setSessionChecked(true);
       if (u) loadCams(u.id);
       else setLoading(false);
     });
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
       const u = session?.user || null;
       setUser(u);
+      setSessionChecked(true);
       if (u) loadCams(u.id);
       else { setCams([]); setLoading(false); }
     });
@@ -80,6 +84,7 @@ export default function MyCams() {
   async function handleAuth(e) {
     e.preventDefault();
     setAuthError("");
+    setAuthSuccess("");
     setAuthLoading(true);
     try {
       if (authMode === "signin") {
@@ -87,7 +92,16 @@ export default function MyCams() {
           email: authForm.email,
           password: authForm.password,
         });
-        if (error) setAuthError(error.message);
+        if (error) {
+          if (error.message.toLowerCase().includes("not confirmed")) {
+            setAuthError("Email not confirmed yet. Check your inbox and click the confirmation link first.");
+          } else if (error.message.toLowerCase().includes("invalid login")) {
+            setAuthError("Wrong email or password. Please try again.");
+          } else {
+            setAuthError(error.message);
+          }
+        }
+        // success: onAuthStateChange fires automatically and switches view
       } else {
         const { data, error } = await supabase.auth.signUp({
           email: authForm.email,
@@ -95,8 +109,13 @@ export default function MyCams() {
         });
         if (error) {
           setAuthError(error.message);
-        } else if (data?.user && !data.session) {
-          setAuthError("✅ Account created! Check your email inbox to confirm, then sign in.");
+        } else if (data?.session) {
+          // Email confirmation disabled — user is immediately logged in
+          // onAuthStateChange handles the rest
+        } else {
+          // Email confirmation required
+          setAuthSuccess("Account created! Check your email inbox for a confirmation link, then come back and sign in.");
+          setAuthMode("signin");
         }
       }
     } catch (err) {
@@ -135,6 +154,15 @@ export default function MyCams() {
     await supabase.from("private_cams").delete().eq("id", id);
     loadCams(user.id);
   }
+
+  // ── SESSION LOADING ───────────────────────────────────────────────────────
+  if (!sessionChecked) return (
+    <Layout title="Submit Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="text-brand-muted text-sm">Loading...</div>
+      </div>
+    </Layout>
+  );
 
   // ── NOT LOGGED IN ─────────────────────────────────────────────────────────
   if (!user) return (
@@ -188,10 +216,16 @@ export default function MyCams() {
                 className="input" />
             </div>
 
+            {authSuccess && (
+              <div className="bg-brand-green/10 border border-brand-green/30 rounded-xl px-4 py-3">
+                <p className="text-brand-green text-xs font-semibold mb-0.5">✅ Account created!</p>
+                <p className="text-brand-green/80 text-xs">{authSuccess}</p>
+              </div>
+            )}
             {authError && (
-              <p className={`text-xs px-3 py-2 rounded-lg ${authError.startsWith("✅") ? "bg-brand-green/10 text-brand-green" : "bg-red-500/10 text-red-400"}`}>
-                {authError}
-              </p>
+              <div className="bg-red-500/10 border border-red-500/30 rounded-xl px-4 py-3">
+                <p className="text-red-400 text-xs">{authError}</p>
+              </div>
             )}
 
             <button type="submit" disabled={authLoading} className="btn-primary w-full py-3">
