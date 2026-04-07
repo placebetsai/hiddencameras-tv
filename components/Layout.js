@@ -51,14 +51,14 @@ export default function Layout({ children, title, description, canonical }) {
       {/* Sticky header block: nav + ticker */}
       <div className="sticky top-0 z-50">
         <nav className="border-b border-brand-border" style={{ background: "rgba(8,11,13,0.97)", backdropFilter: "blur(20px)" }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-2.5 flex items-center justify-between gap-3">
 
             {/* Logo — always visible */}
-            <Link href="/" className="flex items-center gap-2 font-bold tracking-tight group shrink-0">
-              <div className="w-8 h-8 rounded-lg bg-brand-green/10 border border-brand-green/30 flex items-center justify-center group-hover:shadow-green-sm transition-all shrink-0">
-                <CameraIcon size={18} />
+            <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight group shrink-0">
+              <div className="w-9 h-9 md:w-9 md:h-9 rounded-lg bg-brand-green/10 border border-brand-green/30 flex items-center justify-center group-hover:shadow-green-sm transition-all shrink-0">
+                <CameraIcon className="w-5 h-5 md:w-5 md:h-5" size={22} />
               </div>
-              <span className="text-base leading-none">
+              <span className="text-lg md:text-base leading-none">
                 <span className="text-brand-green">Hidden</span><span className="text-white">Cameras</span><span className="text-brand-muted">.tv</span>
               </span>
             </Link>
@@ -85,11 +85,11 @@ export default function Layout({ children, title, description, canonical }) {
 
             {/* Mobile right side */}
             <div className="flex md:hidden items-center gap-2">
-              <Link href="/live" className="flex items-center gap-1 text-red-400 text-xs font-bold">
-                <span className="live-dot w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />LIVE
+              <Link href="/live" className="flex items-center gap-1.5 text-red-400 text-sm font-bold">
+                <span className="live-dot w-2 h-2 rounded-full bg-red-500 inline-block" />LIVE
               </Link>
-              <button onClick={() => setMenuOpen(!menuOpen)} className="text-brand-muted hover:text-white p-1.5 rounded-lg hover:bg-brand-card transition">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <button onClick={() => setMenuOpen(!menuOpen)} className="text-brand-muted hover:text-white p-2 rounded-lg hover:bg-brand-card transition">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                   {menuOpen
                     ? <><path d="M18 6L6 18"/><path d="M6 6l12 12"/></>
                     : <><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></>
