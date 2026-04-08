@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS private_cams (
 
 ALTER TABLE private_cams ENABLE ROW LEVEL SECURITY;
 
+-- Drop first so re-running this script never fails
 DROP POLICY IF EXISTS "Users can view own cams" ON private_cams;
 DROP POLICY IF EXISTS "Users can insert own cams" ON private_cams;
 DROP POLICY IF EXISTS "Users can update own cams" ON private_cams;
