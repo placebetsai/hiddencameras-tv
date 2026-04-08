@@ -89,10 +89,23 @@ Return ONLY a JSON object, no other text:
     messages: [{ role: "user", content: prompt }],
   });
 
-  const text = msg.content[0].text.trim();
+  let text = msg.content[0].text.trim();
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) throw new Error("No JSON in response");
-  return JSON.parse(match[0]);
+  let raw = match[0];
+  // Fix common JSON issues from Claude: unescaped newlines/tabs inside string values
+  raw = raw.replace(/(?<=:\s*"[^"]*)\n/g, "\\n").replace(/(?<=:\s*"[^"]*)\t/g, "\\t");
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    // Fallback: extract fields manually if JSON is broken
+    const title = (raw.match(/"title"\s*:\s*"([^"]+)"/) || [])[1] || "Untitled";
+    const excerpt = (raw.match(/"excerpt"\s*:\s*"([^"]+)"/) || [])[1] || "";
+    const category = (raw.match(/"category"\s*:\s*"([^"]+)"/) || [])[1] || "Guide";
+    const bodyMatch = raw.match(/"body"\s*:\s*"([\s\S]+?)"\s*[,}]/);
+    const body = bodyMatch ? bodyMatch[1].replace(/\\"/g, '"').replace(/\\n/g, "\n") : "<p>Article content unavailable.</p>";
+    return { title, excerpt, body, category };
+  }
 }
 
 // ─── Push article JSON to GitHub ─────────────────────────────────────────────
