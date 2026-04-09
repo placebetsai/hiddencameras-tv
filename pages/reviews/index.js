@@ -150,12 +150,12 @@ function CamSVG({ color = "#3b82f6" }) {
 export default function Reviews() {
   return (
     <Layout
-      title="Best Security Camera Reviews 2025 — HiddenCameras.tv"
-      description="In-depth reviews of the best security cameras of 2025. Ring, Arlo, Blink, Wyze, Google Nest, and Eufy tested and ranked."
+      title="Best Security Camera Reviews 2026 — HiddenCameras.tv"
+      description="In-depth reviews of the best security cameras of 2026. Ring, Arlo, Blink, Wyze, Google Nest, and Eufy tested and ranked."
       canonical="https://hiddencameras.tv/reviews"
     >
       <div className="mb-8">
-        <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">2025 REVIEWS</div>
+        <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">2026 REVIEWS</div>
         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 leading-tight">
           Security Camera Reviews
         </h1>
