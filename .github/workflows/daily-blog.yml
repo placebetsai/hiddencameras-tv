@@ -26,10 +26,14 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/generate-blog.js
 
+      - name: Regenerate sitemap
+        run: node scripts/generate-sitemap.js
+
       - name: Commit new article
         run: |
           git config user.name "hiddencameras-bot"
           git config user.email "bot@hiddencameras.tv"
           git add data/articles/
+          git add public/sitemap.xml
           git diff --staged --quiet || git commit -m "Add daily blog post $(date +%Y-%m-%d)"
           git push
