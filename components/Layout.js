@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import CameraIcon from "./CameraIcon";
 import NewsTicker from "./NewsTicker";
+import AdUnit from "./AdUnit";
 
 export default function Layout({ children, title, description, canonical }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -132,6 +133,11 @@ export default function Layout({ children, title, description, canonical }) {
       </div>
 
       <main>{children}</main>
+
+      {/* Sticky anchor ad — site-wide, highest RPM */}
+      <div className="fixed bottom-0 left-0 right-0 z-40" style={{ minHeight: "50px" }}>
+        <AdUnit />
+      </div>
 
       {/* Footer */}
       <footer className="border-t border-brand-border bg-brand-surface mt-10 md:mt-16">
