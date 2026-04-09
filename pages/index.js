@@ -148,17 +148,21 @@ function ProductCard({ cam }) {
       className="card group relative overflow-hidden hover:border-brand-green/40 transition-all flex flex-col">
       <div className="flex items-start justify-between mb-3">
         <div className="flex flex-col gap-1">
-          <span className="text-[9px] font-extrabold tracking-widest px-2 py-0.5 rounded text-black inline-block"
+          <span className="text-[10px] font-extrabold tracking-widest px-2.5 py-1 rounded text-black inline-block"
             style={{ background: cam.accent }}>{cam.tag}</span>
-          <span className="text-[10px] text-brand-muted">{cam.category}</span>
+          <span className="text-xs text-brand-muted">{cam.category}</span>
         </div>
-        <span className="text-yellow-400 text-xs font-bold">★ {cam.rating}</span>
+        <span className="text-yellow-400 text-sm font-bold">★ {cam.rating}</span>
       </div>
-      <h3 className="font-bold text-white text-sm group-hover:text-brand-green transition mb-1 leading-snug">{cam.name}</h3>
-      <p className="text-brand-muted text-xs mb-3 leading-relaxed">✓ {cam.pro}</p>
-      <div className="mt-auto flex items-center justify-between">
-        <span className="text-brand-green font-black text-lg">{cam.price}</span>
-        <span className="text-[10px] font-bold bg-yellow-400 text-black px-2.5 py-1 rounded-lg group-hover:bg-yellow-300 transition">Amazon →</span>
+      <h3 className="font-bold text-white text-base group-hover:text-brand-green transition mb-1 leading-snug">{cam.name}</h3>
+      <p className="text-brand-muted text-sm mb-2 leading-relaxed">✓ {cam.pro}</p>
+      <div className="mt-auto">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-brand-green font-black text-xl">{cam.price}</span>
+        </div>
+        <div className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg text-center transition group-hover:shadow-lg group-hover:shadow-yellow-400/20">
+          Buy on Amazon →
+        </div>
       </div>
     </a>
   );
