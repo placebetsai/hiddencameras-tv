@@ -31,7 +31,26 @@ export default function Article({ article }) {
             headline: article.title,
             description: article.excerpt,
             datePublished: article.date,
-            publisher: { "@type": "Organization", name: "HiddenCameras.tv", url: "https://hiddencameras.tv" },
+            dateModified: article.dateModified || article.date,
+            author: {
+              "@type": "Organization",
+              name: article.author || "HiddenCameras Editorial Team",
+              url: "https://hiddencameras.tv/about",
+            },
+            image: article.image || "https://hiddencameras.tv/og-default.png",
+            publisher: {
+              "@type": "Organization",
+              name: "HiddenCameras.tv",
+              url: "https://hiddencameras.tv",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://hiddencameras.tv/logo.png",
+              },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://hiddencameras.tv/blog/${article.slug}`,
+            },
           }),
         }}
       />

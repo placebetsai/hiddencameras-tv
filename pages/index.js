@@ -194,8 +194,53 @@ function SectionHead({ title, sub, href, linkText }) {
 }
 
 export default function Home({ articles }) {
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "HiddenCameras.tv",
+    url: "https://hiddencameras.tv",
+    description: "Expert reviews, buying guides, and live camera feeds for security cameras, hidden cameras, and surveillance equipment.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://hiddencameras.tv/blog?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Top Camera Picks 2026",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: TOP_PICKS.length,
+    itemListElement: TOP_PICKS.map((cam, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: cam.name,
+        description: cam.pro,
+        url: `https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`,
+        offers: {
+          "@type": "Offer",
+          price: cam.price.replace("$", ""),
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+        },
+      },
+    })),
+  };
+
   return (
     <Layout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
 
         {/* ── Hero Carousel ── */}
