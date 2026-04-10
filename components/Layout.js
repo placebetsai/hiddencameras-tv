@@ -186,10 +186,13 @@ export default function Layout({ children, title, description, canonical }) {
               </div>
             </div>
             <div>
-              <p className="text-white font-semibold text-sm mb-3">More Sites</p>
+              <p className="text-white font-semibold text-sm mb-3">Our Network</p>
               <div className="flex flex-col gap-2 text-xs text-brand-muted">
-                <a href="https://ihatecollege.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">IHateCollege.com — College Data &amp; Alternatives</a>
-                <a href="https://spanishtvshows.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">SpanishTVShows.com — Stream Spanish Series</a>
+                <a href="https://ihatecollege.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">IHateCollege.com</a>
+                <a href="https://spanishtvshows.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">SpanishTVShows.com</a>
+                <a href="https://shopkurt.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">ShopKurt.com</a>
+                <a href="https://placebets.ai" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">PlaceBets.ai</a>
+                <a href="https://fashionistas.ai" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">Fashionistas.ai</a>
               </div>
             </div>
           </div>
