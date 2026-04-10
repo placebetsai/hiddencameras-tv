@@ -135,7 +135,7 @@ export default function Layout({ children, title, description, canonical }) {
       <main>{children}</main>
 
       {/* Sticky anchor ad — site-wide, highest RPM */}
-      <div className="fixed bottom-0 left-0 right-0 z-40" style={{ minHeight: "50px" }}>
+      <div className="fixed bottom-0 left-0 right-0 z-40" style={{ minHeight: "0" }}>
         <AdUnit />
       </div>
 

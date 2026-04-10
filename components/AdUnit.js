@@ -5,7 +5,7 @@ export default function AdUnit({ slot = "6600722153", style = {} }) {
     try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch {}
   }, []);
   return (
-    <div className="text-center overflow-hidden" style={{ minHeight: "250px" }}>
+    <div className="text-center overflow-hidden" >
       <ins
         className="adsbygoogle"
         style={{ display: "block", ...style }}
