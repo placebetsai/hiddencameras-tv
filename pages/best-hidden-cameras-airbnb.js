@@ -12,7 +12,7 @@ const PICKS = [
 export default function AirbnbPage() {
   return (
     <Layout
-      title="Best Security Cameras for Airbnb Hosts (2025) — HiddenCameras.tv"
+      title="Best Security Cameras for Airbnb Hosts (2026) — HiddenCameras.tv"
       description="The best outdoor and indoor cameras for Airbnb hosts. Legal placement guide, Airbnb disclosure rules, and the exact models we recommend."
       canonical="https://hiddencameras.tv/best-hidden-cameras-airbnb"
     >
@@ -38,7 +38,7 @@ export default function AirbnbPage() {
 
       {/* Legal section — high trust signal */}
       <section className="card border-yellow-500/30 mb-8">
-        <h2 className="text-lg font-bold text-white mb-3">⚠️ Airbnb Camera Rules (2025)</h2>
+        <h2 className="text-lg font-bold text-white mb-3">⚠️ Airbnb Camera Rules (2026)</h2>
         <ul className="text-gray-300 text-sm space-y-2">
           <li>✅ <strong>Allowed:</strong> Outdoor cameras covering entrances, driveways, and exterior areas — must be disclosed in listing</li>
           <li>✅ <strong>Allowed:</strong> Indoor cameras in common areas (living room, kitchen) — must be disclosed and visible</li>
@@ -60,9 +60,9 @@ export default function AirbnbPage() {
                 href={`https://www.amazon.com/dp/${p.asin}?tag=${AMAZON_TAG}`}
                 target="_blank"
                 rel="nofollow sponsored noopener noreferrer"
-                className="inline-block bg-yellow-400 text-black text-xs font-bold px-3 py-1.5 rounded hover:bg-yellow-300 transition"
+                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
               >
-                {p.price} — Check on Amazon →
+                {p.price} — Buy on Amazon →
               </a>
             </div>
           </div>
