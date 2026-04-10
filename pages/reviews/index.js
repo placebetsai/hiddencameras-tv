@@ -148,12 +148,47 @@ function CamSVG({ color = "#3b82f6" }) {
 }
 
 export default function Reviews() {
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Best Security Camera Reviews 2026",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: CAMERAS.length,
+    itemListElement: CAMERAS.map((cam, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: cam.name,
+        description: cam.summary,
+        brand: { "@type": "Brand", name: cam.brand },
+        url: `https://hiddencameras.tv/reviews/${cam.slug}`,
+        offers: {
+          "@type": "Offer",
+          price: cam.price.replace("$", ""),
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: cam.rating,
+          bestRating: 5,
+          ratingCount: 5,
+        },
+      },
+    })),
+  };
+
   return (
     <Layout
       title="Best Security Camera Reviews 2026 — HiddenCameras.tv"
       description="In-depth reviews of the best security cameras of 2026. Ring, Arlo, Blink, Wyze, Google Nest, and Eufy tested and ranked."
       canonical="https://hiddencameras.tv/reviews"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <div className="mb-8">
         <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">2026 REVIEWS</div>
         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 leading-tight">
@@ -221,9 +256,9 @@ export default function Reviews() {
                   href={`https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`}
                   target="_blank"
                   rel="nofollow sponsored noopener noreferrer"
-                  className="inline-block bg-yellow-400 text-black text-sm font-bold px-5 py-2 rounded-lg hover:bg-yellow-300 transition"
+                  className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-base py-3.5 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
                 >
-                  {cam.price} — Check Price on Amazon →
+                  Buy on Amazon — {cam.price} →
                 </a>
               </div>
             </div>

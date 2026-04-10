@@ -209,9 +209,9 @@ export default function DetectHiddenCameras() {
                   <div className="flex items-center justify-between">
                     <span className="text-white font-bold text-lg">{d.price}</span>
                     <a href={`https://www.amazon.com/dp/${d.asin}?tag=${AMAZON_TAG}`}
-                      target="_blank" rel="noopener noreferrer sponsored"
-                      className="btn-primary text-sm">
-                      Check Price on Amazon →
+                      target="_blank" rel="nofollow sponsored noopener noreferrer"
+                      className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-5 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20 inline-block">
+                      Buy on Amazon — {d.price} →
                     </a>
                   </div>
                 </div>

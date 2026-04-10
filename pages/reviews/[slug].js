@@ -154,12 +154,48 @@ export async function getStaticProps({ params }) {
 export default function ReviewPage({ cam }) {
   const otherCameras = CAMERAS.filter((c) => c.slug !== cam.slug);
 
+  const avgScore = ((cam.score.video + cam.score.nightVision + cam.score.app + cam.score.value + cam.score.privacy) / 5).toFixed(1);
+
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: cam.name,
+    description: cam.summary,
+    brand: { "@type": "Brand", name: cam.brand },
+    url: `https://hiddencameras.tv/reviews/${cam.slug}`,
+    image: `https://hiddencameras.tv/og-image.png`,
+    offers: {
+      "@type": "Offer",
+      url: `https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`,
+      priceCurrency: "USD",
+      price: cam.price.replace("$", ""),
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Amazon" },
+    },
+    review: {
+      "@type": "Review",
+      reviewRating: { "@type": "Rating", ratingValue: cam.rating, bestRating: 5 },
+      author: { "@type": "Organization", name: "HiddenCameras.tv" },
+      datePublished: "2026-04-01",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: avgScore,
+      bestRating: 5,
+      ratingCount: 5,
+    },
+  };
+
   return (
     <Layout
       title={`${cam.name} Review 2026 — ${cam.category} | HiddenCameras.tv`}
       description={cam.summary}
       canonical={`https://hiddencameras.tv/reviews/${cam.slug}`}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <div className="mb-6">
         <Link href="/reviews" className="text-sm text-gray-500 hover:text-brand-green transition mb-4 inline-block">
           ← All Reviews
