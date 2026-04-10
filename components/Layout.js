@@ -185,7 +185,7 @@ export default function Layout({ children, title, description, canonical }) {
                 <a href="mailto:info@hiddencameras.tv" className="hover:text-brand-green transition">info@hiddencameras.tv</a>
               </div>
             </div>
-            <div>
+            <div className="sr-only">
               <p className="text-white font-semibold text-sm mb-3">Our Network</p>
               <div className="flex flex-col gap-2 text-xs text-brand-muted">
                 <a href="https://ihatecollege.com" target="_blank" rel="noopener noreferrer" className="hover:text-brand-green transition">IHateCollege.com</a>
