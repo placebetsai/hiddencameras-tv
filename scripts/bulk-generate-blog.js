@@ -5,11 +5,11 @@
  * Run: ANTHROPIC_API_KEY=... node scripts/bulk-generate-blog.js
  */
 
-const Anthropic = require("@anthropic-ai/sdk");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 const path = require("path");
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const AUTHORS = [
   { name: "Sarah Mitchell",  title: "Senior Security Analyst",       bio: "Sarah spent 8 years as a private investigator before turning to consumer tech writing. She tests every camera herself before recommending it.", initials: "SM" },
@@ -110,12 +110,8 @@ async function generateOne(meta) {
   // Pick 2 relevant products
   const prods = PRODUCTS.slice(0, 3).map(p => `[AMAZON:${p.asin}:${p.name} — ${p.label}]`).join(", ");
 
-  const msg = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
-    max_tokens: 2000,
-    messages: [{
-      role: "user",
-      content: `You are ${author.name}, ${author.title} at HiddenCameras.tv. Write a detailed, SEO-optimized blog article.
+  const geminiModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  const geminiResult = await geminiModel.generateContent(`You are ${author.name}, ${author.title} at HiddenCameras.tv. Write a detailed, SEO-optimized blog article.
 
 Article title: "${meta.title}"
 Category: ${meta.category}
@@ -131,11 +127,9 @@ Requirements:
 - End with a clear recommendation or takeaway
 
 Return ONLY valid JSON (no markdown):
-{"excerpt":"1-2 sentence SEO summary under 155 chars","body":"full HTML here"}`
-    }]
-  });
+{"excerpt":"1-2 sentence SEO summary under 155 chars","body":"full HTML here"}`);
 
-  const text = msg.content[0].text.trim();
+  const text = geminiResult.response.text().trim();
   const json = text.match(/\{[\s\S]*\}/)?.[0];
   if (!json) throw new Error(`No JSON for: ${meta.title}`);
 
@@ -159,7 +153,7 @@ Return ONLY valid JSON (no markdown):
 }
 
 async function run() {
-  if (!process.env.ANTHROPIC_API_KEY) { console.error("No ANTHROPIC_API_KEY"); process.exit(1); }
+  if (!process.env.GEMINI_API_KEY) { console.error("No GEMINI_API_KEY"); process.exit(1); }
 
   const BATCH = 5;
   for (let i = 0; i < ARTICLES.length; i += BATCH) {
