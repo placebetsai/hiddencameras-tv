@@ -105,6 +105,59 @@ export default function DetectHiddenCameras() {
       description="Step-by-step guide to finding hidden cameras in Airbnbs, hotels & rental properties. Best RF detectors & lens finders reviewed. Protect your privacy tonight."
       canonical="https://hiddencameras.tv/detect-hidden-cameras"
     >
+      {/* FAQPage Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "Can my iPhone detect hidden cameras?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Partially. iPhone front cameras have IR filters so they won't see IR LEDs, but the regular camera sometimes can. Better: use a dedicated lens detector or RF detector. Free apps are mostly ineffective.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do hidden cameras work without WiFi?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Many spy cameras record locally to a microSD card and transmit nothing. RF detectors won't catch these. Only physical inspection and lens detectors will find them.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What do I do if I find a hidden camera in an Airbnb?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Don't touch it. Photograph it in place showing context (what it's aimed at). Leave immediately. Report to Airbnb support (they now offer full refunds + relocation costs under 2026 policy). File a police report — recording someone in a private space without consent is a felony in most US states.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Are hidden camera detectors worth it?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "A $30 RF detector catches the vast majority of consumer-grade spy cams that transmit over WiFi or Bluetooth. Given that a single hidden camera incident can ruin a trip, it's cheap insurance. Serious travelers carry both an RF detector and a lens finder.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How common are hidden cameras in Airbnbs?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Airbnb's own data shows tens of thousands of reports annually. Independent surveys suggest 1 in 12 guests find something suspicious on arrival. The risk is real and concentrated in short-term rentals, not hotels.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
 
         {/* Hero */}
