@@ -9,14 +9,14 @@
  */
 
 require("dotenv").config();
-const Anthropic = require("@anthropic-ai/sdk");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = "placebetsai/hiddencameras-tv";
 const BRANCH       = "main";
 const AMAZON_TAG   = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
-const claude = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // ─── Article topics pool — rotated daily so we never repeat ──────────────────
 
@@ -83,13 +83,9 @@ Return ONLY a JSON object, no other text:
   "category": "${topic.category}"
 }`;
 
-  const msg = await claude.messages.create({
-    model: "claude-haiku-4-5-20251001",
-    max_tokens: 2500,
-    messages: [{ role: "user", content: prompt }],
-  });
-
-  let text = msg.content[0].text.trim();
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  const result = await model.generateContent(prompt);
+  let text = result.response.text().trim();
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) throw new Error("No JSON in response");
   let raw = match[0];
@@ -162,12 +158,9 @@ async function postTweet(article, slug) {
     const twitter = new TwitterApi({ appKey: X_API_KEY, appSecret: X_API_SECRET, accessToken: X_ACCESS_TOKEN, accessSecret: X_ACCESS_TOKEN_SECRET });
 
     const prompt = `Write a punchy 200-char tweet teaser for this article: "${article.title}". No hashtags. End with the link placeholder [LINK]. Return only the tweet text.`;
-    const msg = await claude.messages.create({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 100,
-      messages: [{ role: "user", content: prompt }],
-    });
-    const tweetText = msg.content[0].text.trim().replace("[LINK]", `https://hiddencameras.tv/blog/${slug}`);
+    const tweetModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const tweetResult = await tweetModel.generateContent(prompt);
+    const tweetText = tweetResult.response.text().trim().replace("[LINK]", `https://hiddencameras.tv/blog/${slug}`);
     const res = await twitter.v2.tweet(tweetText);
     console.log(`[twitter] Posted tweet: ${res.data.id}`);
   } catch (err) {
@@ -181,7 +174,7 @@ async function run() {
   const ts = () => new Date().toISOString().slice(0, 19).replace("T", " ");
   console.log(`\n[${ts()}] === Article Generator ===`);
 
-  if (!process.env.ANTHROPIC_API_KEY) { console.error("ANTHROPIC_API_KEY not set"); process.exit(1); }
+  if (!process.env.GEMINI_API_KEY) { console.error("GEMINI_API_KEY not set"); process.exit(1); }
   if (!GITHUB_TOKEN) { console.error("GITHUB_TOKEN not set"); process.exit(1); }
 
   const topic   = pickTopic();

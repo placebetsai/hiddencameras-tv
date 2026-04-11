@@ -8,7 +8,7 @@
  * Env:   ANTHROPIC_API_KEY
  */
 
-const Anthropic = require("@anthropic-ai/sdk");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const fs = require("fs");
 const path = require("path");
 
@@ -148,13 +148,13 @@ function pickTopic(existingSlugs) {
 }
 
 async function generateArticle() {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    console.error("[blog] ANTHROPIC_API_KEY not set");
+    console.error("[blog] GEMINI_API_KEY not set");
     process.exit(1);
   }
 
-  const client = new Anthropic({ apiKey });
+  const genAI = new GoogleGenerativeAI(apiKey);
 
   // Use editorial team byline
   const author = AUTHOR;
@@ -179,13 +179,8 @@ async function generateArticle() {
 
   console.log(`[blog] Generating: "${topic.title}" by ${AUTHOR.name}`);
 
-  const msg = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
-    max_tokens: 2000,
-    messages: [
-      {
-        role: "user",
-        content: `You are a writer for the HiddenCameras.tv editorial team. Write a detailed, expert blog article for this publication.
+  const geminiModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  const geminiResult = await geminiModel.generateContent(`You are a writer for the HiddenCameras.tv editorial team. Write a detailed, expert blog article for this publication.
 
 Article title: "${topic.title}"
 Category: ${topic.category}
@@ -206,12 +201,9 @@ Return ONLY valid JSON (no markdown code blocks):
 {
   "excerpt": "1-2 sentence summary for cards/SEO, under 160 chars",
   "body": "full HTML body content here"
-}`,
-      },
-    ],
-  });
+}`);
 
-  const text = msg.content[0].text.trim();
+  const text = geminiResult.response.text().trim();
   const json = text.match(/\{[\s\S]*\}/)?.[0];
   if (!json) throw new Error(`No JSON in Claude response: ${text.slice(0, 200)}`);
 
