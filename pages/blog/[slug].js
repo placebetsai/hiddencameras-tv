@@ -15,6 +15,32 @@ export default function Article({ article }) {
       `<a href="https://www.amazon.com/dp/${asin}?tag=${AMAZON_TAG}" target="_blank" rel="nofollow sponsored noopener noreferrer" class="inline-flex items-center gap-1 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded hover:bg-yellow-300 transition">${title} →</a>`
     );
 
+  // Split body into two halves at a paragraph boundary for mid-content ad
+  const splitBody = (body) => {
+    const processed = renderBody(body || "");
+    const paragraphs = processed.split(/<\/(?:p|h2|h3|ul|ol)>/i);
+    if (paragraphs.length < 4) return { first: processed, second: "" };
+    const midpoint = Math.floor(paragraphs.length / 2);
+    // Find the actual split position in the original string
+    let count = 0;
+    let splitIdx = 0;
+    const tagRegex = /<\/(?:p|h2|h3|ul|ol)>/gi;
+    let match;
+    while ((match = tagRegex.exec(processed)) !== null) {
+      count++;
+      if (count === midpoint) {
+        splitIdx = match.index + match[0].length;
+        break;
+      }
+    }
+    return {
+      first: processed.slice(0, splitIdx),
+      second: processed.slice(splitIdx),
+    };
+  };
+
+  const { first: bodyFirst, second: bodySecond } = splitBody(article.body);
+
   return (
     <Layout
       title={`${article.title} — HiddenCameras.tv`}
@@ -76,13 +102,27 @@ export default function Article({ article }) {
         </p>
       </div>
 
+      {/* Ad after intro */}
       <AdUnit />
 
+      {/* First half of article */}
       <article
         className="prose-dark max-w-none"
-        dangerouslySetInnerHTML={{ __html: renderBody(article.body || "") }}
+        dangerouslySetInnerHTML={{ __html: bodyFirst }}
       />
 
+      {/* Mid-content ad */}
+      {bodySecond && <AdUnit />}
+
+      {/* Second half of article */}
+      {bodySecond && (
+        <article
+          className="prose-dark max-w-none"
+          dangerouslySetInnerHTML={{ __html: bodySecond }}
+        />
+      )}
+
+      {/* Bottom ad */}
       <AdUnit />
 
       <div className="card border-brand-green/30 mt-10 text-center py-8">
