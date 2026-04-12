@@ -1,4 +1,7 @@
 import Layout from "../components/Layout";
+import ComparisonTable from "../components/ComparisonTable";
+import HomeSecurityCTA from "../components/HomeSecurityCTA";
+import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
@@ -34,6 +37,8 @@ export default function AirbnbPage() {
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Security Cameras for Airbnb Hosts</h1>
       <p className="text-gray-400 mb-8 max-w-2xl">What&apos;s legal, what to disclose, and the exact cameras that protect your property without violating Airbnb&apos;s policies.</p>
 
+      <AffiliateDisclosure />
+
       <AdUnit />
 
       {/* Legal section — high trust signal */}
@@ -46,6 +51,17 @@ export default function AirbnbPage() {
           <li>❌ <strong>Banned:</strong> Any camera not disclosed in the listing description</li>
         </ul>
       </section>
+
+      <ComparisonTable
+        title="Airbnb Camera Comparison"
+        products={PICKS.map(p => ({
+          name: p.name,
+          rating: 4.4,
+          feature: p.why.split(".")[0] + ".",
+          price: p.price,
+          asin: p.asin,
+        }))}
+      />
 
       {/* Top picks */}
       <h2 className="text-xl font-bold text-white mb-5">Our Top Picks for Airbnb Hosts</h2>
@@ -82,6 +98,8 @@ export default function AirbnbPage() {
         <h2>Do Guests Care?</h2>
         <p>Studies show 73% of guests are fine with disclosed cameras in common areas. The complaints come from undisclosed cameras — which can result in permanent account suspension and legal liability.</p>
       </section>
+
+      <HomeSecurityCTA />
     </Layout>
   );
 }

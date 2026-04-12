@@ -1,5 +1,8 @@
 import Layout from "../../components/Layout";
 import AdUnit from "../../components/AdUnit";
+import ComparisonTable from "../../components/ComparisonTable";
+import HomeSecurityCTA from "../../components/HomeSecurityCTA";
+import AffiliateDisclosure from "../../components/AffiliateDisclosure";
 import Link from "next/link";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
@@ -199,7 +202,21 @@ export default function Reviews() {
         </p>
       </div>
 
+      <AffiliateDisclosure />
+
       <AdUnit />
+
+      {/* Quick comparison table */}
+      <ComparisonTable
+        title="Quick Comparison: Best Security Cameras 2026"
+        products={CAMERAS.map(c => ({
+          name: c.name,
+          rating: c.rating,
+          feature: c.summary.split(".")[0] + ".",
+          price: c.price,
+          asin: c.asin,
+        }))}
+      />
 
       <div className="grid gap-6 mb-10">
         {CAMERAS.map((cam) => (
@@ -267,6 +284,8 @@ export default function Reviews() {
       </div>
 
       <AdUnit />
+
+      <HomeSecurityCTA />
 
       <div className="card border-brand-green/20 text-center py-8">
         <p className="text-white font-bold mb-2">Need help choosing?</p>

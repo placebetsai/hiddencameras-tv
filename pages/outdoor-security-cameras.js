@@ -1,4 +1,7 @@
 import Layout from "../components/Layout";
+import ComparisonTable from "../components/ComparisonTable";
+import HomeSecurityCTA from "../components/HomeSecurityCTA";
+import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
 import Link from "next/link";
 
@@ -19,7 +22,21 @@ export default function Page() {
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Outdoor Security Cameras</h1>
       <p className="text-gray-400 mb-8 max-w-2xl">Weatherproof outdoor cameras with night vision, motion zones, and smart alerts. Protect your home exterior.</p>
 
+      <AffiliateDisclosure />
+
       <AdUnit />
+
+      <ComparisonTable
+        title="Quick Comparison"
+        products={PICKS.map(p => ({
+          name: p.n,
+          rating: 4.4,
+          feature: p.w.split('.')[0] + '.',
+          price: p.p,
+          asin: p.a,
+        }))}
+      />
+
       <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
       <div className="space-y-4 mb-10">
         {PICKS.map((p) => (
@@ -35,6 +52,8 @@ export default function Page() {
       </div>
 
       <AdUnit />
+
+      <HomeSecurityCTA />
 
       <p className="text-xs text-gray-600 mt-8">As an Amazon Associate, HiddenCameras.tv earns from qualifying purchases. <Link href="/privacy" className="underline">Privacy Policy</Link></p>
     </Layout>

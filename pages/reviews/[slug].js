@@ -1,5 +1,7 @@
 import Layout from "../../components/Layout";
 import AdUnit from "../../components/AdUnit";
+import AffiliateDisclosure from "../../components/AffiliateDisclosure";
+import HomeSecurityCTA from "../../components/HomeSecurityCTA";
 import Link from "next/link";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
@@ -215,14 +217,18 @@ export default function ReviewPage({ cam }) {
         <p className="text-gray-400 text-lg leading-relaxed max-w-2xl">{cam.summary}</p>
       </div>
 
+      <AffiliateDisclosure />
+
+      {/* Above-the-fold Buy Now CTA */}
       <a
         href={`https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`}
         target="_blank"
         rel="nofollow sponsored noopener noreferrer"
-        className="inline-block bg-yellow-400 text-black text-sm font-bold px-6 py-3 rounded-lg hover:bg-yellow-300 transition mb-8"
+        className="block w-full text-center bg-yellow-400 text-black font-bold py-4 rounded-xl hover:bg-yellow-300 transition mb-4 text-lg shadow-lg hover:shadow-yellow-400/30"
       >
-        {cam.price} — Check Price on Amazon →
+        Buy {cam.name} on Amazon — {cam.price} →
       </a>
+      <p className="text-gray-600 text-xs text-center mb-8">Free shipping with Amazon Prime. Price as of April 2026.</p>
 
       <AdUnit />
 
@@ -234,6 +240,20 @@ export default function ReviewPage({ cam }) {
             <p key={i}>{p}</p>
           ))}
         </div>
+      </div>
+
+      {/* Mid-article CTA */}
+      <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5 mb-8 text-center">
+        <p className="text-white font-bold mb-1">Ready to buy the {cam.name}?</p>
+        <p className="text-gray-400 text-sm mb-4">Over {cam.rating * 1000}+ positive reviews on Amazon. Free returns on most orders.</p>
+        <a
+          href={`https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`}
+          target="_blank"
+          rel="nofollow sponsored noopener noreferrer"
+          className="inline-block bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl hover:bg-yellow-300 transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
+        >
+          Check Price on Amazon →
+        </a>
       </div>
 
       {/* Scores */}
@@ -282,6 +302,8 @@ export default function ReviewPage({ cam }) {
       </a>
 
       <AdUnit />
+
+      <HomeSecurityCTA />
 
       {/* Other cameras */}
       <div className="mt-10">

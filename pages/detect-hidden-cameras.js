@@ -1,8 +1,61 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
 import AdUnit from "../components/AdUnit";
+import HomeSecurityCTA from "../components/HomeSecurityCTA";
+import AffiliateDisclosure from "../components/AffiliateDisclosure";
 
 const AMAZON_TAG = "hiddencamerastv-20";
+
+const COUNTER_SURVEILLANCE = [
+  {
+    name: "JMDHKK Anti-Spy RF Detector & Camera Finder",
+    price: "$29.99",
+    asin: "B07MFWKM6R",
+    desc: "All-in-one RF signal detector and hidden camera lens finder. Detects WiFi cams, GPS trackers, and listening devices. The #1 bestseller on Amazon.",
+    badge: "BESTSELLER",
+    badgeColor: "bg-yellow-400 text-black",
+  },
+  {
+    name: "Wired & Wireless Camera Lens Detector",
+    price: "$39.99",
+    asin: "B08QJ8YZNS",
+    desc: "Professional-grade infrared lens detector that finds cameras even when powered off. Red LED viewfinder shows camera lenses as bright dots in dark rooms.",
+    badge: "PRO GRADE",
+    badgeColor: "bg-purple-500 text-white",
+  },
+  {
+    name: "GQ EMF Meter & RF Detector",
+    price: "$89.99",
+    asin: "B078T2R64H",
+    desc: "Advanced electromagnetic field meter that detects hidden electronic devices, wiring, and transmitters behind walls. Used by professional sweep teams.",
+    badge: "ADVANCED",
+    badgeColor: "bg-blue-500 text-white",
+  },
+  {
+    name: "Faraday Bag for Phones & Key Fobs",
+    price: "$15.99",
+    asin: "B01A7MACL2",
+    desc: "Military-grade signal blocking bag. Blocks WiFi, Bluetooth, GPS, RFID, and cell signals. Protects against phone tracking and remote camera/mic activation.",
+    badge: "PRIVACY ESSENTIAL",
+    badgeColor: "bg-teal-500 text-white",
+  },
+  {
+    name: "Bug Detector & Anti-Surveillance Sweeper Kit",
+    price: "$49.99",
+    asin: "B09DN27X5N",
+    desc: "Complete counter-surveillance kit with RF detector, lens finder, and magnetic field scanner. Rechargeable USB-C, covers 1-8GHz frequency range.",
+    badge: "BEST KIT",
+    badgeColor: "bg-brand-green text-black",
+  },
+  {
+    name: "Privacy Camera Cover Slides (3-Pack)",
+    price: "$6.99",
+    asin: "B0BQKH6BYK",
+    desc: "Ultra-thin 0.7mm webcam covers for laptops, tablets, and phones. Physical slide to block the camera when not in use. No residue adhesive.",
+    badge: "UNDER $10",
+    badgeColor: "bg-orange-500 text-white",
+  },
+];
 
 const DETECTORS = [
   {
@@ -175,6 +228,8 @@ export default function DetectHiddenCameras() {
           </p>
         </div>
 
+        <AffiliateDisclosure />
+
         {/* Warning box */}
         <div className="rounded-2xl border border-red-500/30 bg-red-500/5 p-5 mb-8 flex gap-4">
           <div className="text-2xl shrink-0">⚠️</div>
@@ -273,6 +328,39 @@ export default function DetectHiddenCameras() {
           </div>
           <p className="text-gray-600 text-xs mt-3">* As an Amazon Associate we earn from qualifying purchases. Prices accurate as of April 2026.</p>
         </section>
+
+        {/* Counter-surveillance products */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-black text-white mb-2">Counter-Surveillance Gear</h2>
+          <p className="text-gray-400 text-sm mb-6">
+            Beyond detectors, these products protect your privacy at home, in hotels, and while traveling. Every frequent traveler should carry at least an RF detector and a Faraday bag.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {COUNTER_SURVEILLANCE.map(product => (
+              <div key={product.asin} className="card p-4 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={`pill text-[10px] font-black ${product.badgeColor}`}>{product.badge}</span>
+                    <span className="text-brand-green font-bold text-sm">{product.price}</span>
+                  </div>
+                  <h3 className="text-white font-semibold text-sm mb-1">{product.name}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed mb-3">{product.desc}</p>
+                </div>
+                <a
+                  href={`https://www.amazon.com/dp/${product.asin}?tag=${AMAZON_TAG}`}
+                  target="_blank"
+                  rel="nofollow sponsored noopener noreferrer"
+                  className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-xs py-2.5 px-4 rounded-lg transition"
+                >
+                  Check Price on Amazon →
+                </a>
+              </div>
+            ))}
+          </div>
+          <p className="text-gray-600 text-xs mt-3">* As an Amazon Associate we earn from qualifying purchases.</p>
+        </section>
+
+        <HomeSecurityCTA />
 
         {/* FAQ */}
         <section className="mb-12">
