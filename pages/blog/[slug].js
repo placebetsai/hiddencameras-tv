@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout";
 import AdUnit from "../../components/AdUnit";
+import AffiliateDisclosure from "../../components/AffiliateDisclosure";
 import Link from "next/link";
 import path from "path";
 import fs from "fs";
@@ -101,6 +102,8 @@ export default function Article({ article }) {
           {Math.ceil((article.body || "").split(" ").length / 200)} min read
         </p>
       </div>
+
+      <AffiliateDisclosure />
 
       {/* Ad after intro */}
       <AdUnit />

@@ -1,5 +1,8 @@
 import Layout from "../components/Layout";
 import AdUnit from "../components/AdUnit";
+import ComparisonTable from "../components/ComparisonTable";
+import HomeSecurityCTA from "../components/HomeSecurityCTA";
+import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import Link from "next/link";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
@@ -19,7 +22,21 @@ export default function Page() {
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Video Doorbell Cameras</h1>
       <p className="text-gray-400 mb-8 max-w-2xl">See who's at your door from anywhere. Top video doorbells with motion detection, two-way talk, and package alerts.</p>
 
+      <AffiliateDisclosure />
+
       <AdUnit />
+
+      <ComparisonTable
+        title="Video Doorbell Comparison Table"
+        products={PICKS.map(p => ({
+          name: p.n,
+          rating: 4.3,
+          feature: p.w.split(".")[0] + ".",
+          price: p.p,
+          asin: p.a,
+        }))}
+      />
+
       <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
       <div className="space-y-4 mb-10">
         {PICKS.map((p) => (
@@ -35,6 +52,8 @@ export default function Page() {
       </div>
 
       <AdUnit />
+
+      <HomeSecurityCTA />
 
       <p className="text-xs text-gray-600 mt-8">As an Amazon Associate, HiddenCameras.tv earns from qualifying purchases. <Link href="/privacy" className="underline">Privacy Policy</Link></p>
     </Layout>
