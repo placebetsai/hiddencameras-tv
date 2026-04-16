@@ -1,24 +1,9 @@
 import Layout from "../components/Layout";
-import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Open mailto as fallback — no backend required
-    const subject = encodeURIComponent(`HiddenCameras.tv Inquiry from ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-    window.location.href = `mailto:info@hiddencameras.tv?subject=${subject}&body=${body}`;
-    setSubmitted(true);
-  };
+  const router = useRouter();
+  const sent = router.query.sent === "true";
 
   return (
     <Layout
@@ -35,16 +20,24 @@ export default function Contact() {
           </a>.
         </p>
 
-        {submitted ? (
+        {sent ? (
           <div className="card text-center py-10">
             <p className="text-brand-green text-lg font-bold mb-2">Thank you for reaching out!</p>
             <p className="text-gray-400 text-sm">
-              Your email client should have opened with your message. If it did not, please email us directly at{" "}
-              <a href="mailto:info@hiddencameras.tv" className="text-brand-green hover:underline">info@hiddencameras.tv</a>.
+              Your message has been sent successfully. We typically respond within 1-2 business days.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="card space-y-5">
+          <form
+            action="https://formsubmit.co/info@hiddencameras.tv"
+            method="POST"
+            className="card space-y-5"
+          >
+            {/* FormSubmit.co hidden config fields */}
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="https://hiddencameras.tv/contact?sent=true" />
+            <input type="hidden" name="_subject" value="HiddenCameras.tv Contact Form" />
+
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                 Name <span className="text-red-400">*</span>
@@ -54,8 +47,6 @@ export default function Contact() {
                 id="name"
                 name="name"
                 required
-                value={form.name}
-                onChange={handleChange}
                 placeholder="Your name"
                 className="w-full bg-brand-bg border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-brand-green transition"
               />
@@ -70,8 +61,6 @@ export default function Contact() {
                 id="email"
                 name="email"
                 required
-                value={form.email}
-                onChange={handleChange}
                 placeholder="you@example.com"
                 className="w-full bg-brand-bg border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-brand-green transition"
               />
@@ -86,8 +75,6 @@ export default function Contact() {
                 name="message"
                 required
                 rows={5}
-                value={form.message}
-                onChange={handleChange}
                 placeholder="How can we help you?"
                 className="w-full bg-brand-bg border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-brand-green transition resize-y"
               />
