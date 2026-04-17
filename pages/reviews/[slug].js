@@ -52,7 +52,7 @@ const CAMERAS = [
     rating: 4.4,
     asin: "B0CJ9YX7DG",
     badge: "BEST VALUE",
-    badgeColor: "bg-blue-500 text-white",
+    badgeColor: "bg-green-500 text-white",
     tags: ["Indoor/Outdoor", "2K QHD", "Free Storage"],
     summary: "2K resolution, color night vision, indoor/outdoor use, and 14 days of free cloud storage. Impossible to beat at this price.",
     pros: ["14 days free cloud storage", "2K QHD resolution", "Weather resistant", "Affordable"],

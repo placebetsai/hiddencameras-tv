@@ -29,7 +29,7 @@ const COUNTER_SURVEILLANCE = [
     asin: "B078T2R64H",
     desc: "Advanced electromagnetic field meter that detects hidden electronic devices, wiring, and transmitters behind walls. Used by professional sweep teams.",
     badge: "ADVANCED",
-    badgeColor: "bg-blue-500 text-white",
+    badgeColor: "bg-green-500 text-white",
   },
   {
     name: "Faraday Bag for Phones & Key Fobs",
@@ -66,7 +66,7 @@ const DETECTORS = [
     asin: "B07MFWKM6R",
     rating: 4.4,
     reviews: "12,800+",
-    accent: "#3b82f6",
+    accent: "#22c55e",
     pros: ["Detects RF, GSM, GPS signals", "LED + audio alert", "Pocket-sized", "Works on WiFi cams too"],
     cons: ["Won't find wired cameras", "False positives near cell towers"],
     verdict: "The go-to for Airbnb sweeps. Catches 95% of consumer-grade spy cams."

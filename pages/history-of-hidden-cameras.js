@@ -30,7 +30,7 @@ const TIMELINE = [
   {
     year: "1948–1960",
     era: "Candid Camera Era",
-    color: "#3b82f6",
+    color: "#22c55e",
     events: [
       {
         title: "Candid Camera: Hidden Cameras Enter Pop Culture",
@@ -98,14 +98,14 @@ const TIMELINE = [
       },
       {
         title: "Internet Changes Distribution Forever",
-        body: "The first live webcam went online in 1991 at Cambridge University — a camera pointed at a coffee pot so researchers could check if coffee was ready without walking downstairs. By the late 1990s, live streaming webcams were pointed at beaches, city streets, and wildlife preserves. The concept of a live public camera viewable from anywhere on Earth was established. Sites like <a href=\"https://hiddencameras.tv/live\" style=\"color:#3b82f6\">HiddenCameras.tv's live cam directory</a> are the direct descendants of this era.",
+        body: "The first live webcam went online in 1991 at Cambridge University — a camera pointed at a coffee pot so researchers could check if coffee was ready without walking downstairs. By the late 1990s, live streaming webcams were pointed at beaches, city streets, and wildlife preserves. The concept of a live public camera viewable from anywhere on Earth was established. Sites like <a href=\"https://hiddencameras.tv/live\" style=\"color:#22c55e\">HiddenCameras.tv's live cam directory</a> are the direct descendants of this era.",
       },
     ],
   },
   {
     year: "2000s",
     era: "Digital & IP Cameras",
-    color: "#3b82f6",
+    color: "#22c55e",
     events: [
       {
         title: "9/11 and the Surveillance State",
@@ -136,7 +136,7 @@ const TIMELINE = [
       },
       {
         title: "Airbnb and the Hidden Camera Crisis",
-        body: "As short-term rentals boomed, so did reports of hidden cameras in rental properties. High-profile cases in Ireland, Australia, and the United States revealed hosts hiding cameras in bathrooms, bedrooms, and smoke detectors. Airbnb banned indoor cameras entirely in 2023 after years of controversy. This created an entirely new market for camera detection tools — and a booming how-to industry for guests who want to <a href=\"https://hiddencameras.tv/detect-hidden-cameras\" style=\"color:#3b82f6\">detect hidden cameras</a> before unpacking.",
+        body: "As short-term rentals boomed, so did reports of hidden cameras in rental properties. High-profile cases in Ireland, Australia, and the United States revealed hosts hiding cameras in bathrooms, bedrooms, and smoke detectors. Airbnb banned indoor cameras entirely in 2023 after years of controversy. This created an entirely new market for camera detection tools — and a booming how-to industry for guests who want to <a href=\"https://hiddencameras.tv/detect-hidden-cameras\" style=\"color:#22c55e\">detect hidden cameras</a> before unpacking.",
       },
     ],
   },
@@ -155,11 +155,11 @@ const TIMELINE = [
       },
       {
         title: "Consumer Cameras Reach 4K and Beyond",
-        body: "Modern consumer cameras like the <a href=\"https://hiddencameras.tv/reviews\" style=\"color:#3b82f6\">Eufy S350 shoot 4K video</a> with dual lenses, 8x optical zoom, and local storage — no subscription required. Battery life on wire-free cameras like the Arlo Pro 5S lasts up to six months. What required a government-level budget in the 1960s is now a $79 purchase with next-day shipping. The democratization of surveillance technology has cut both ways: anyone can protect their home, and anyone can invade someone else's privacy.",
+        body: "Modern consumer cameras like the <a href=\"https://hiddencameras.tv/reviews\" style=\"color:#22c55e\">Eufy S350 shoot 4K video</a> with dual lenses, 8x optical zoom, and local storage — no subscription required. Battery life on wire-free cameras like the Arlo Pro 5S lasts up to six months. What required a government-level budget in the 1960s is now a $79 purchase with next-day shipping. The democratization of surveillance technology has cut both ways: anyone can protect their home, and anyone can invade someone else's privacy.",
       },
       {
         title: "The Right to Record vs. The Right to Privacy",
-        body: "The fundamental tension of this era is not technological — it's legal and ethical. Most U.S. states allow recording in public spaces with no notice. Recording private spaces without consent is a felony in most jurisdictions. The gap between what cameras can do and what the law clearly permits has never been wider. See our full guide to <a href=\"https://hiddencameras.tv/detect-hidden-cameras\" style=\"color:#3b82f6\">hidden camera detection</a> and know your rights before you sweep a room.",
+        body: "The fundamental tension of this era is not technological — it's legal and ethical. Most U.S. states allow recording in public spaces with no notice. Recording private spaces without consent is a felony in most jurisdictions. The gap between what cameras can do and what the law clearly permits has never been wider. See our full guide to <a href=\"https://hiddencameras.tv/detect-hidden-cameras\" style=\"color:#22c55e\">hidden camera detection</a> and know your rights before you sweep a room.",
       },
     ],
   },

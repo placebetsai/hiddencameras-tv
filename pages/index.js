@@ -54,7 +54,7 @@ const NEWS_ITEMS = [
   },
   {
     badge: "PRIVACY",
-    badgeColor: "#3b82f6",
+    badgeColor: "#22c55e",
     headline: "EU Surveillance Camera Act Now in Full Effect",
     summary: "New EU regulations require GDPR-compliant camera signage, data minimization, and a 30-day maximum footage retention period for all public surveillance systems.",
     date: "Mar 15, 2026",

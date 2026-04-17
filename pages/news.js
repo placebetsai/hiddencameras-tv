@@ -36,7 +36,7 @@ Ring was careful to position the feature as opt-in and locally-processed to pree
   {
     id: "eu-privacy",
     category: "LAW",
-    accent: "#3b82f6",
+    accent: "#22c55e",
     date: "March 15, 2026",
     title: "EU Surveillance Camera Privacy Act Takes Full Effect June 1, 2026",
     summary: "The European Union's comprehensive camera surveillance framework — two years in the making — requires all new cameras sold in EU markets to include on-device encryption, mandatory data retention limits, and user consent logging.",
@@ -134,7 +134,7 @@ For consumers, the appeal is simple: footage isn't processed on camera company s
   {
     id: "fcc",
     category: "REGULATION",
-    accent: "#3b82f6",
+    accent: "#22c55e",
     date: "January 5, 2026",
     title: "New FCC Rules Require Security Cameras to Meet Minimum Encryption Standards",
     summary: "The FCC's new IoT Security Labeling Program requires all cameras sold in the US to display a 'Cyber Trust Mark' label — certifying minimum encryption, automatic software updates, and no hardcoded default passwords.",

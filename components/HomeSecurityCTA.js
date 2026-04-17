@@ -2,7 +2,7 @@ const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
 export default function HomeSecurityCTA() {
   return (
-    <div className="rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/5 to-brand-card p-6 mb-8">
+    <div className="rounded-2xl border border-green-500/20 bg-gradient-to-br from-green-500/5 to-brand-card p-6 mb-8">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-2xl">🛡️</span>
         <h3 className="text-lg font-bold text-white">Want Complete Home Security?</h3>
@@ -15,13 +15,13 @@ export default function HomeSecurityCTA() {
           href="https://simplisafe.com/?utm_source=hiddencamerastv"
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
-          className="card hover:border-blue-500/40 transition p-4 flex items-start gap-3"
+          className="card hover:border-green-500/40 transition p-4 flex items-start gap-3"
         >
-          <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-lg font-bold shrink-0">S</div>
+          <div className="w-10 h-10 rounded-lg bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400 text-lg font-bold shrink-0">S</div>
           <div>
             <p className="text-white font-semibold text-sm">SimpliSafe</p>
             <p className="text-gray-500 text-xs mt-0.5">No contract. DIY install in 30 min. Camera, sensors, 24/7 monitoring from $0.50/day.</p>
-            <span className="text-blue-400 text-xs font-semibold mt-1 inline-block">Learn More →</span>
+            <span className="text-green-400 text-xs font-semibold mt-1 inline-block">Learn More →</span>
           </div>
         </a>
         <a
