@@ -247,6 +247,11 @@ export default function Home({ articles }) {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
 
+        {/* ── H1 for SEO ── */}
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight mb-4 sm:mb-5">
+          Live World Cameras & Security Camera Reviews
+        </h1>
+
         {/* ── Hero Carousel ── */}
         <section className="mb-4 sm:mb-6">
           <HeroCarousel />

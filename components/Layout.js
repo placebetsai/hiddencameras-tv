@@ -7,7 +7,7 @@ import AdUnit from "./AdUnit";
 
 export default function Layout({ children, title, description, canonical }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const t = title || "HiddenCameras.tv — Live World Cams & Security Camera Reviews";
+  const t = title || "HiddenCameras.tv — Live Cams & Security Reviews";
   const d = description || "Watch 500+ live public cameras worldwide. Expert reviews of Ring, Arlo, Blink, Wyze & Nest. Surveillance news 24/7.";
   const url = canonical || "https://hiddencameras.tv";
 
