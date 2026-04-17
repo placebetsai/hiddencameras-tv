@@ -18,7 +18,6 @@ const HEADLINES = [
 ];
 
 export default function NewsTicker() {
-  const items = [...HEADLINES, ...HEADLINES];
   return (
     <div className="bg-[#0a0e12] border-b border-brand-border" style={{ minHeight: "34px" }}>
       {/* Desktop: single row */}
@@ -36,15 +35,27 @@ export default function NewsTicker() {
           {/* Right fade */}
           <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
             style={{ background: "linear-gradient(to left, #0a0e12 30%, transparent)" }} />
-          <div className="ticker-scroll absolute inset-y-0 left-0 flex items-center">
-            {items.map((h, i) => (
-              <a key={i} href={h.url}
-                className="text-gray-300 text-xs whitespace-nowrap hover:text-brand-green transition-colors duration-150 group flex-shrink-0">
-                <span className="text-red-500 mr-1.5 text-[10px]">●</span>
-                <span className="group-hover:underline underline-offset-2">{h.text}</span>
-                <span className="text-brand-border mx-5">·</span>
-              </a>
-            ))}
+          <div className="ticker-wrap absolute inset-y-0 left-0 right-0 flex items-center">
+            <div className="ticker-scroll flex items-center shrink-0">
+              {HEADLINES.map((h, i) => (
+                <a key={i} href={h.url}
+                  className="text-gray-300 text-xs whitespace-nowrap hover:text-brand-green transition-colors duration-150 group flex-shrink-0">
+                  <span className="text-red-500 mr-1.5 text-[10px]">●</span>
+                  <span className="group-hover:underline underline-offset-2">{h.text}</span>
+                  <span className="text-brand-border mx-5">·</span>
+                </a>
+              ))}
+            </div>
+            <div className="ticker-scroll flex items-center shrink-0" aria-hidden="true">
+              {HEADLINES.map((h, i) => (
+                <a key={`dup-${i}`} href={h.url} tabIndex={-1}
+                  className="text-gray-300 text-xs whitespace-nowrap hover:text-brand-green transition-colors duration-150 group flex-shrink-0">
+                  <span className="text-red-500 mr-1.5 text-[10px]">●</span>
+                  <span className="group-hover:underline underline-offset-2">{h.text}</span>
+                  <span className="text-brand-border mx-5">·</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
         {/* More News link */}
@@ -66,14 +77,25 @@ export default function NewsTicker() {
         <div className="overflow-hidden relative" style={{ height: "26px" }}>
           <div className="absolute right-0 top-0 bottom-0 w-8 z-10 pointer-events-none"
             style={{ background: "linear-gradient(to left, #0a0e12, transparent)" }} />
-          <div className="ticker-scroll absolute inset-y-0 left-0 flex items-center">
-            {items.map((h, i) => (
-              <a key={i} href={h.url}
-                className="text-gray-300 text-[12px] font-medium whitespace-nowrap px-3 hover:text-brand-green transition-colors">
-                {h.text}
-                <span className="text-brand-border mx-3">·</span>
-              </a>
-            ))}
+          <div className="ticker-wrap absolute inset-y-0 left-0 right-0 flex items-center">
+            <div className="ticker-scroll flex items-center shrink-0">
+              {HEADLINES.map((h, i) => (
+                <a key={i} href={h.url}
+                  className="text-gray-300 text-[12px] font-medium whitespace-nowrap px-3 hover:text-brand-green transition-colors">
+                  {h.text}
+                  <span className="text-brand-border mx-3">·</span>
+                </a>
+              ))}
+            </div>
+            <div className="ticker-scroll flex items-center shrink-0" aria-hidden="true">
+              {HEADLINES.map((h, i) => (
+                <a key={`dup-${i}`} href={h.url} tabIndex={-1}
+                  className="text-gray-300 text-[12px] font-medium whitespace-nowrap px-3 hover:text-brand-green transition-colors">
+                  {h.text}
+                  <span className="text-brand-border mx-3">·</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
