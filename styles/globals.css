@@ -60,11 +60,11 @@ body {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.ticker-scroll {
+.ticker-wrap {
   animation: ticker 90s linear infinite;
   will-change: transform;
 }
-.ticker-scroll:hover { animation-play-state: paused; }
+.ticker-wrap:hover { animation-play-state: paused; }
 
 .live-dot { animation: blink 1.4s ease-in-out infinite; }
 .float-anim { animation: float 4s ease-in-out infinite; }
