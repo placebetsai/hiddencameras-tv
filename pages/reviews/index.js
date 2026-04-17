@@ -51,7 +51,7 @@ const CAMERAS = [
     rating: 4.4,
     asin: "B0CJ9YX7DG",
     badge: "BEST VALUE",
-    badgeColor: "bg-blue-500 text-white",
+    badgeColor: "bg-green-500 text-white",
     tags: ["Indoor/Outdoor", "2K QHD", "Free Storage"],
     summary: "2K resolution, color night vision, indoor/outdoor use, and 14 days of free cloud storage. Impossible to beat at this price.",
     pros: ["14 days free cloud storage", "2K QHD resolution", "Weather resistant", "Affordable"],
@@ -135,7 +135,7 @@ function ScoreBar({ label, score }) {
   );
 }
 
-function CamSVG({ color = "#3b82f6" }) {
+function CamSVG({ color = "#22c55e" }) {
   return (
     <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       <rect x="4" y="12" width="52" height="38" rx="6" fill="#1a1a1a" stroke={color} strokeWidth="2"/>
