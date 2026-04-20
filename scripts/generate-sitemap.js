@@ -62,7 +62,10 @@ function getArticles() {
       .filter(f => f.endsWith(".json"))
       .map(f => {
         const a = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
-        return { slug: a.slug, date: a.date };
+        // Use the FILENAME (without .json) as the slug — this matches what
+        // pages/blog/[slug].js emits via getStaticPaths. The `slug` field
+        // inside the JSON often strips the date suffix and causes 404s.
+        return { slug: f.replace(/\.json$/, ""), date: a.date };
       });
   } catch { return []; }
 }
