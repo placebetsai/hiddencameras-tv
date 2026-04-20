@@ -42,7 +42,7 @@ body {
   to { transform: translateX(-50%); }
 }
 .ticker-wrap {
-  animation: ticker 90s linear infinite;
+  animation: ticker 35s linear infinite;
   will-change: transform;
 }
 .ticker-wrap:hover { animation-play-state: paused; }
