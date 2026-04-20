@@ -73,6 +73,7 @@ export default function Layout({ children, title, description, canonical }) {
               <Link href="/news" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">News</Link>
               <Link href="/detect-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Detect</Link>
               <Link href="/reviews" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Reviews</Link>
+              <Link href="/shop" className="nav-link px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">Shop</Link>
               <Link href="/blog" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Blog</Link>
               <Link href="/history-of-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">History</Link>
               <Link href="/my-cams" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">Submit Your Feed</Link>

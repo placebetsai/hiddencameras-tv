@@ -20,6 +20,7 @@ const STATIC_PAGES = [
   { url: "/detect-hidden-cameras/", priority: "0.8", changefreq: "monthly" },
   { url: "/hidden-camera-laws/", priority: "0.8", changefreq: "monthly" },
   { url: "/news/", priority: "0.7", changefreq: "daily" },
+  { url: "/shop/", priority: "0.9", changefreq: "daily" },
   // Category pages
   { url: "/nanny-cam/", priority: "0.8", changefreq: "weekly" },
   { url: "/doorbell-cameras/", priority: "0.8", changefreq: "weekly" },
