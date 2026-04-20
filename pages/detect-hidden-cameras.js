@@ -66,7 +66,7 @@ const DETECTORS = [
     asin: "B07MFWKM6R",
     rating: 4.4,
     reviews: "12,800+",
-    accent: "#22c55e",
+    accent: "#f59e0b",
     pros: ["Detects RF, GSM, GPS signals", "LED + audio alert", "Pocket-sized", "Works on WiFi cams too"],
     cons: ["Won't find wired cameras", "False positives near cell towers"],
     verdict: "The go-to for Airbnb sweeps. Catches 95% of consumer-grade spy cams."

@@ -135,7 +135,7 @@ function ScoreBar({ label, score }) {
   );
 }
 
-function CamSVG({ color = "#22c55e" }) {
+function CamSVG({ color = "#f59e0b" }) {
   return (
     <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       <rect x="4" y="12" width="52" height="38" rx="6" fill="#1a1a1a" stroke={color} strokeWidth="2"/>

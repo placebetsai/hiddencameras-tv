@@ -7,7 +7,7 @@
 * { box-sizing: border-box; }
 
 html {
-  background: #0f1115;
+  background: #0b1220;
   color: #e2e8f0;
   scroll-behavior: smooth;
   font-size: 16px;
@@ -58,7 +58,7 @@ body {
 
 /* Shimmer skeleton */
 .shimmer {
-  background: linear-gradient(90deg, #111827 25%, #1c2030 50%, #111827 75%);
+  background: linear-gradient(90deg, #142036 25%, #1c2030 50%, #142036 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -70,21 +70,21 @@ body {
   /* Buttons */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 font-bold text-sm transition-all duration-200;
-    background: #22c55e;
+    background: #f59e0b;
     color: #fff;
     border-radius: 8px;
     padding: 12px 24px;
   }
   .btn-primary:hover {
-    background: #16a34a;
+    background: #d97706;
   }
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2 border border-brand-border text-brand-text px-5 py-2.5 text-sm font-medium transition-all duration-200;
     border-radius: 8px;
   }
   .btn-outline:hover {
-    border-color: #22c55e4d;
-    background: #111827;
+    border-color: #f59e0b4d;
+    background: #142036;
   }
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 text-brand-muted px-4 py-2 rounded-lg text-sm hover:text-brand-text hover:bg-brand-card transition-all duration-200;
@@ -92,23 +92,23 @@ body {
 
   /* Cards */
   .card {
-    background: #111827;
-    border: 1px solid #1f2937;
+    background: #142036;
+    border: 1px solid #1f2a44;
     border-radius: 12px;
     @apply p-5 transition-all duration-200;
   }
   .card-hover {
-    background: #111827;
-    border: 1px solid #1f2937;
+    background: #142036;
+    border: 1px solid #1f2a44;
     border-radius: 12px;
     @apply p-5 transition-all duration-200 cursor-pointer;
   }
   .card-hover:hover {
-    border-color: #22c55e4d;
+    border-color: #f59e0b4d;
   }
   .card-green {
-    background: #111827;
-    border: 1px solid rgba(34, 197, 94, 0.2);
+    background: #142036;
+    border: 1px solid rgba(245,158,11, 0.2);
     border-radius: 12px;
     @apply p-5 transition-all duration-200;
   }
@@ -136,8 +136,8 @@ body {
     border-radius: 12px;
   }
   .input:focus {
-    border-color: rgba(34, 197, 94, 0.6);
-    box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3);
+    border-color: rgba(245,158,11, 0.6);
+    box-shadow: 0 0 0 1px rgba(245,158,11, 0.3);
   }
   .label {
     @apply block text-sm font-medium text-brand-muted mb-1.5;
