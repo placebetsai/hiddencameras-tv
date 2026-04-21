@@ -8,6 +8,7 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 
 const SHOP = "https://fashionistas.ai";
+const CATALOG = "https://js0hy0-ux.myshopify.com";
 const COLLECTION = "security-cameras";
 
 const SUBSECTIONS = [
@@ -130,7 +131,7 @@ export default function Shop({ subsections, totalCount, lastUpdated }) {
 export async function getStaticProps() {
   let products = [];
   try {
-    const r = await fetch(`${SHOP}/collections/${COLLECTION}/products.json?limit=250`);
+    const r = await fetch(`${CATALOG}/collections/${COLLECTION}/products.json?limit=250`);
     if (r.ok) {
       const d = await r.json();
       products = d.products || [];
