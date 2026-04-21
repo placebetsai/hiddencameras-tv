@@ -156,6 +156,8 @@ export async function getStaticProps() {
       totalCount: products.length,
       lastUpdated: new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC",
     },
-    revalidate: 3600,  // refresh hourly
+    // ISR (revalidate) is INCOMPATIBLE with `output: "export"` in next.config.js.
+    // The catalog refreshes when the daily-fashion-refresh cron triggers a CF
+    // Pages deploy hook (HC_DEPLOY_HOOK_URL), not via runtime revalidation.
   };
 }
