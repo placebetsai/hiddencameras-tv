@@ -16,6 +16,8 @@ const STATIC_PAGES = [
   { url: "/live/", priority: "0.8", changefreq: "hourly" },
   { url: "/best-hidden-cameras-airbnb/", priority: "0.8", changefreq: "weekly" },
   { url: "/best-hidden-cameras/", priority: "0.8", changefreq: "weekly" },
+  { url: "/best-hidden-cameras-2026/", priority: "0.9", changefreq: "weekly" },
+  { url: "/israel-joffe/", priority: "0.5", changefreq: "monthly" },
   { url: "/history-of-hidden-cameras/", priority: "0.8", changefreq: "monthly" },
   { url: "/detect-hidden-cameras/", priority: "0.8", changefreq: "monthly" },
   { url: "/hidden-camera-laws/", priority: "0.8", changefreq: "monthly" },
@@ -56,6 +58,24 @@ const REVIEW_SLUGS = [
   "arlo-pro-5s", "google-nest-cam-indoor", "eufy-s350",
 ];
 
+function getCitySlugs() {
+  // Pull slugs directly from pages/live/[city].js so the sitemap stays in sync
+  // whenever cities are added. Regex over the CITIES array (source of truth).
+  try {
+    const src = fs.readFileSync(
+      path.join(__dirname, "../pages/live/[city].js"),
+      "utf8"
+    );
+    const slugs = [];
+    const re = /slug:\s*"([a-z0-9-]+)"/g;
+    let m;
+    while ((m = re.exec(src)) !== null) slugs.push(m[1]);
+    return Array.from(new Set(slugs));
+  } catch {
+    return [];
+  }
+}
+
 function getArticles() {
   const dir = path.join(__dirname, "../data/articles");
   try {
@@ -74,6 +94,7 @@ function getArticles() {
 function buildSitemap() {
   const now = new Date().toISOString().split("T")[0];
   const articles = getArticles();
+  const cities = getCitySlugs();
 
   const urls = [
     ...STATIC_PAGES.map(p => `
@@ -89,6 +110,13 @@ function buildSitemap() {
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>`),
+    ...cities.map(slug => `
+  <url>
+    <loc>${BASE}/live/${slug}/</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>`),
     ...articles.map(a => `
   <url>
@@ -107,4 +135,4 @@ ${urls.join("\n")}
 
 const out = path.join(__dirname, "../public/sitemap.xml");
 fs.writeFileSync(out, buildSitemap());
-console.log(`[sitemap] Written: ${out} (${getArticles().length} articles)`);
+console.log(`[sitemap] Written: ${out} (${getArticles().length} articles, ${getCitySlugs().length} cities)`);
