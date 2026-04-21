@@ -2,7 +2,7 @@ import Link from "next/link";
 import CameraIcon from "./CameraIcon";
 
 export default function ArticleCard({ article }) {
-  const readTime = Math.max(1, Math.ceil(((article.body || "").split(" ").length) / 200));
+  const readTime = article.readTime || Math.max(1, Math.ceil(((article.body || "").split(" ").length) / 200));
   return (
     <Link href={`/blog/${article.slug}/`} className="card hover:border-brand-green/50 transition block group relative overflow-hidden">
       {/* subtle corner accent */}

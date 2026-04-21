@@ -413,7 +413,18 @@ export async function getStaticProps() {
   try {
     const files = fs.readdirSync(articlesDir).filter(f => f.endsWith(".json"));
     articles = files
-      .map(f => JSON.parse(fs.readFileSync(path.join(articlesDir, f), "utf8")))
+      .map((f) => {
+        const article = JSON.parse(fs.readFileSync(path.join(articlesDir, f), "utf8"));
+        const bodyText = String(article.body || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+        return {
+          slug: article.slug,
+          title: article.title,
+          date: article.date,
+          category: article.category || "Guide",
+          excerpt: article.excerpt || bodyText.slice(0, 180),
+          readTime: Math.max(1, Math.ceil(bodyText.split(" ").filter(Boolean).length / 200)),
+        };
+      })
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   } catch {}
   return { props: { articles } };
