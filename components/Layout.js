@@ -128,33 +128,32 @@ export default function Layout({ children, title, description, canonical }) {
                   Cameras
                   <span className="text-[10px] opacity-70">▾</span>
                 </button>
-                {camerasOpen && (
-                  <div
-                    className="absolute left-0 top-full mt-1 w-[520px] p-4 rounded-lg border border-brand-border shadow-xl grid grid-cols-2 gap-x-4 gap-y-1"
-                    style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
-                  >
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest text-brand-muted mb-2">Categories</p>
-                      <div className="flex flex-col">
-                        {CAMERA_CATEGORIES.map(({ href, label }) => (
-                          <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
-                            {label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-widest text-brand-muted mb-2">Best Of 2026</p>
-                      <div className="flex flex-col">
-                        {BEST_OF_2026.map(({ href, label }) => (
-                          <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
-                            {label}
-                          </Link>
-                        ))}
-                      </div>
+                <div
+                  className={`absolute left-0 top-full mt-1 w-[520px] p-4 rounded-lg border border-brand-border shadow-xl grid grid-cols-2 gap-x-4 gap-y-1 transition-opacity ${camerasOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+                  style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
+                  aria-hidden={!camerasOpen}
+                >
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-brand-muted mb-2">Categories</p>
+                    <div className="flex flex-col">
+                      {CAMERA_CATEGORIES.map(({ href, label }) => (
+                        <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
+                          {label}
+                        </Link>
+                      ))}
                     </div>
                   </div>
-                )}
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-brand-muted mb-2">Best Of 2026</p>
+                    <div className="flex flex-col">
+                      {BEST_OF_2026.map(({ href, label }) => (
+                        <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
+                          {label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Compare dropdown */}
@@ -173,18 +172,17 @@ export default function Layout({ children, title, description, canonical }) {
                   Compare
                   <span className="text-[10px] opacity-70">▾</span>
                 </button>
-                {compareOpen && (
-                  <div
-                    className="absolute left-0 top-full mt-1 w-[240px] p-3 rounded-lg border border-brand-border shadow-xl flex flex-col"
-                    style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
-                  >
-                    {COMPARE_LINKS.map(({ href, label }) => (
-                      <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
-                        {label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                <div
+                  className={`absolute left-0 top-full mt-1 w-[240px] p-3 rounded-lg border border-brand-border shadow-xl flex flex-col transition-opacity ${compareOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+                  style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
+                  aria-hidden={!compareOpen}
+                >
+                  {COMPARE_LINKS.map(({ href, label }) => (
+                    <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
+                      {label}
+                    </Link>
+                  ))}
+                </div>
               </div>
 
               <Link href="/detect-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Detect</Link>
