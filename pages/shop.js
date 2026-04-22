@@ -91,7 +91,7 @@ function ProductCard({ p }) {
           {compareAt && (
             <span className="text-brand-muted text-xs line-through">${compareAt}</span>
           )}
-          <span className="ml-auto text-[10px] text-brand-muted uppercase tracking-wider">Open on Fashionistas →</span>
+          <span className="ml-auto text-[10px] text-brand-muted uppercase tracking-wider">View product →</span>
         </div>
       </div>
     </a>
@@ -189,7 +189,7 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
   return (
     <Layout
       title="Shop Security Cameras 2026 | HiddenCameras.tv"
-      description={`Shop ${visibleCount}+ live security cameras: hidden, indoor, outdoor, doorbell, dash, and nanny cameras. Updated daily, fast US shipping via our partner Fashionistas.ai.`}
+      description={`Shop ${visibleCount}+ live security cameras: hidden, indoor, outdoor, doorbell, dash, and nanny cameras. Updated daily with fast US shipping.`}
       canonical="https://hiddencameras.tv/shop"
     >
       <script
@@ -206,17 +206,8 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
           Security Camera Catalog
         </h1>
         <p className="text-gray-400 mt-3 max-w-2xl">
-          Trending cameras across 6 categories — every item ships from a US warehouse
-          via our partner store{" "}
-          <a
-            href={getShopHref()}
-            target="_blank"
-            rel="noopener nofollow"
-            className="text-brand-green underline hover:text-brand-greenDark"
-          >
-            Fashionistas.ai
-          </a>
-          . Tap any product to view details and check out. Inventory is synced live;
+          Trending cameras across 6 categories — every item ships from a US warehouse.
+          Tap any product to view details and check out. Inventory is synced live;
           sold-out items are hidden automatically.
         </p>
         <div className="mt-8 grid max-w-3xl grid-cols-3 gap-3">
@@ -347,7 +338,7 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
       <div className="card p-6 mt-12 text-center">
         <p className="text-brand-text mb-2 font-bold">Don't see what you need?</p>
         <p className="text-brand-muted text-sm mb-4">
-          Browse the full Fashionistas catalog or contact us for sourcing requests.
+          Browse the full catalog or contact us for sourcing requests.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           <a
@@ -406,9 +397,9 @@ export async function getStaticProps() {
     products = live;
     if (products.length === 0) {
       state = "empty";
-      message = `All tagged camera products are missing on Fashionistas.ai right now (dropped ${dropped.length} dead links).`;
+      message = `All tagged camera products are out of stock right now (dropped ${dropped.length} dead links).`;
     } else if (dropped.length > 0) {
-      message = `Filtered ${dropped.length} product(s) whose Fashionistas.ai pages are not live.`;
+      message = `Filtered ${dropped.length} product(s) that are not available right now.`;
     }
   }
 

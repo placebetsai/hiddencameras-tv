@@ -19,7 +19,7 @@ export default function Page() {
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">WIRE-FREE</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Wireless Security Cameras</h1>
-      <p className="text-gray-400 mb-8 max-w-2xl">WiFi and battery-powered cameras with no wires. Easy install, smart alerts, and cloud or local storage. Every pick below ships from our partner store Fashionistas.ai.</p>
+      <p className="text-gray-400 mb-8 max-w-2xl">WiFi and battery-powered cameras with no wires. Easy install, smart alerts, and cloud or local storage. Every pick below ships from a US warehouse with fast delivery.</p>
 
       <AffiliateDisclosure />
 
@@ -32,7 +32,7 @@ export default function Page() {
 
       <HomeSecurityCTA />
 
-      <p className="text-xs text-gray-600 mt-8">Product cards link to Fashionistas.ai (our partner store) and open in a new tab. <Link href="/privacy" className="underline">Privacy Policy</Link></p>
+      <p className="text-xs text-gray-600 mt-8">Product cards open in a new tab. <Link href="/privacy" className="underline">Privacy Policy</Link></p>
     </Layout>
   );
 }

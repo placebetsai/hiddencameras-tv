@@ -1,9 +1,17 @@
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Contact() {
   const router = useRouter();
-  const sent = router.query.sent === "true";
+  const [sentFromLocation, setSentFromLocation] = useState(false);
+  const sent = router.query.sent === "true" || router.asPath.includes("sent=true") || sentFromLocation;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setSentFromLocation(new URLSearchParams(window.location.search).get("sent") === "true");
+    }
+  }, []);
 
   return (
     <Layout
@@ -11,7 +19,7 @@ export default function Contact() {
       description="Get in touch with the HiddenCameras.tv editorial team. Questions, tips, corrections, or partnership inquiries welcome."
       canonical="https://hiddencameras.tv/contact"
     >
-      <div className="max-w-xl mx-auto py-12">
+      <div className="max-w-xl mx-auto px-4 py-10 sm:py-12">
         <h1 className="text-3xl font-black text-white mb-4 text-center">Contact Us</h1>
         <p className="text-gray-400 mb-8 text-center">
           Have a question, tip, correction, or partnership inquiry? We would love to hear from you. Fill out the form below or email us directly at{" "}
@@ -48,6 +56,7 @@ export default function Contact() {
                 name="name"
                 required
                 placeholder="Your name"
+                autoComplete="name"
                 className="w-full bg-brand-bg border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-brand-green transition"
               />
             </div>
@@ -62,6 +71,7 @@ export default function Contact() {
                 name="email"
                 required
                 placeholder="you@example.com"
+                autoComplete="email"
                 className="w-full bg-brand-bg border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-brand-green transition"
               />
             </div>
