@@ -21,6 +21,31 @@ const SUBSECTIONS = [
   { tag: "nanny",    title: "Nanny Cameras",    blurb: "Baby and pet monitors with two-way audio." },
 ];
 
+function productText(product) {
+  return [
+    product?.title,
+    ...(product?.tags || []),
+    product?.product_type,
+    product?.body_html,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function getSectionTag(product) {
+  const text = productText(product);
+
+  if (/(doorbell)/.test(text)) return "doorbell";
+  if (/(dashcam|dash camera|carplay)/.test(text)) return "dash";
+  if (/(outdoor|solar|bullet camera|ip65|ip66)/.test(text)) return "outdoor";
+  if (/(hidden|pinhole|pen hd)/.test(text)) return "hidden";
+  if (/(nanny|baby monitor|pet monitor|pet \+ baby|baby camera)/.test(text)) return "nanny";
+  if (/(indoor|pan-tilt|ptz|security camera)/.test(text)) return "indoor";
+
+  return null;
+}
+
 function ProductCard({ p }) {
   const v = p.variants[0] || {};
   const price = v.price || "?";
@@ -71,14 +96,13 @@ function getCollectionHref() {
 }
 
 function getFullCatalogHref() {
-  return `${CATALOG}/collections/all`;
+  return `${SHOP}/products?ref=${REF}`;
 }
 
 export default function Shop({ subsections, lastUpdated, state, message, featuredFallbacks }) {
   const populatedSections = subsections.filter((section) => section.products.length > 0);
   const hasProducts = populatedSections.length > 0;
-  const thinSections = populatedSections.filter((section) => section.products.length < THIN_SECTION_COUNT);
-  const showCatalogNotice = state !== "ready" || thinSections.length > 0;
+  const showCatalogNotice = state !== "ready";
   const visibleCount = populatedSections.reduce((sum, section) => sum + section.products.length, 0);
 
   const itemListProducts = populatedSections.flatMap((section) => section.products);
@@ -305,10 +329,9 @@ export async function getStaticProps() {
     message = "The live camera feed is up, but none of the tagged products in this collection are available right now.";
   }
 
-  // group by tag
   const subsections = SUBSECTIONS.map(s => ({
     ...s,
-    products: products.filter(p => (p.tags || []).includes(s.tag) || (p.tags || []).includes(`${s.tag}-cameras`)),
+    products: products.filter(p => getSectionTag(p) === s.tag),
   }));
 
   return {
