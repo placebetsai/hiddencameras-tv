@@ -1,15 +1,52 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import CameraIcon from "./CameraIcon";
 import NewsTicker from "./NewsTicker";
 import AdUnit from "./AdUnit";
 
+const CAMERA_CATEGORIES = [
+  { href: "/nanny-cam", label: "Nanny Cams" },
+  { href: "/doorbell-cameras", label: "Doorbell Cameras" },
+  { href: "/outdoor-security-cameras", label: "Outdoor Security Cameras" },
+  { href: "/indoor-security-cameras", label: "Indoor Security Cameras" },
+  { href: "/pet-cameras", label: "Pet Cameras" },
+  { href: "/trail-cameras", label: "Trail Cameras" },
+  { href: "/body-cameras", label: "Body Cameras" },
+  { href: "/car-cameras", label: "Car & Dash Cameras" },
+  { href: "/mini-spy-cameras", label: "Mini Spy Cameras" },
+  { href: "/spy-cameras", label: "Spy Cameras" },
+  { href: "/wireless-security-cameras", label: "Wireless Security Cameras" },
+];
+
+const BEST_OF_2026 = [
+  { href: "/best-hidden-cameras-2026", label: "Best Hidden Cameras 2026" },
+  { href: "/best-nanny-cam-2026", label: "Best Nanny Cam 2026" },
+  { href: "/best-doorbell-camera-2026", label: "Best Doorbell Camera 2026" },
+  { href: "/best-outdoor-security-camera-2026", label: "Best Outdoor Security Camera 2026" },
+  { href: "/best-hidden-camera-detector", label: "Best Hidden Camera Detector" },
+  { href: "/best-pet-camera-2026", label: "Best Pet Camera 2026" },
+  { href: "/best-car-dash-cam-2026", label: "Best Car Dash Cam 2026" },
+  { href: "/best-hidden-cameras-airbnb", label: "Best Hidden Cameras for Airbnb" },
+];
+
+const COMPARE_LINKS = [
+  { href: "/ring-vs-blink", label: "Ring vs Blink" },
+  { href: "/ring-vs-arlo", label: "Ring vs Arlo" },
+  { href: "/wyze-vs-blink", label: "Wyze vs Blink" },
+  { href: "/nest-cam-vs-arlo", label: "Nest Cam vs Arlo" },
+];
+
 export default function Layout({ children, title, description, canonical }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [camerasOpen, setCamerasOpen] = useState(false);
+  const [compareOpen, setCompareOpen] = useState(false);
+  const router = useRouter();
   const t = title || "HiddenCameras.tv — Live Cams & Security Reviews";
   const d = description || "Watch 500+ live public cameras worldwide. Expert reviews of Ring, Arlo, Blink, Wyze & Nest. Surveillance news 24/7.";
   const url = canonical || "https://hiddencameras.tv";
+  const isContactRoute = router.pathname === "/contact";
 
   return (
     <>
@@ -50,8 +87,11 @@ export default function Layout({ children, title, description, canonical }) {
       </Head>
 
       {/* Sticky header block: nav + ticker */}
-      <div className="sticky top-0 z-50">
-        <nav className="border-b border-brand-border" style={{ background: "rgba(8,11,13,0.97)", backdropFilter: "blur(20px)" }}>
+      <div className={isContactRoute ? "relative z-50" : "sticky top-0 z-50"}>
+        <nav
+          className="border-b border-brand-border"
+          style={{ background: isContactRoute ? "rgba(8,11,13,1)" : "rgba(8,11,13,0.97)", backdropFilter: isContactRoute ? "none" : "blur(20px)" }}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-2.5 flex items-center justify-between gap-3">
 
             {/* Logo — always visible */}
@@ -71,11 +111,86 @@ export default function Layout({ children, title, description, canonical }) {
                 <span className="live-dot w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />Live Cams
               </Link>
               <Link href="/news" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">News</Link>
+
+              {/* Cameras dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setCamerasOpen(true)}
+                onMouseLeave={() => setCamerasOpen(false)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setCamerasOpen((o) => !o)}
+                  aria-expanded={camerasOpen}
+                  aria-haspopup="true"
+                  className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm flex items-center gap-1"
+                >
+                  Cameras
+                  <span className="text-[10px] opacity-70">▾</span>
+                </button>
+                {camerasOpen && (
+                  <div
+                    className="absolute left-0 top-full mt-1 w-[520px] p-4 rounded-lg border border-brand-border shadow-xl grid grid-cols-2 gap-x-4 gap-y-1"
+                    style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
+                  >
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-brand-muted mb-2">Categories</p>
+                      <div className="flex flex-col">
+                        {CAMERA_CATEGORIES.map(({ href, label }) => (
+                          <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
+                            {label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-brand-muted mb-2">Best Of 2026</p>
+                      <div className="flex flex-col">
+                        {BEST_OF_2026.map(({ href, label }) => (
+                          <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
+                            {label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Compare dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setCompareOpen(true)}
+                onMouseLeave={() => setCompareOpen(false)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setCompareOpen((o) => !o)}
+                  aria-expanded={compareOpen}
+                  aria-haspopup="true"
+                  className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm flex items-center gap-1"
+                >
+                  Compare
+                  <span className="text-[10px] opacity-70">▾</span>
+                </button>
+                {compareOpen && (
+                  <div
+                    className="absolute left-0 top-full mt-1 w-[240px] p-3 rounded-lg border border-brand-border shadow-xl flex flex-col"
+                    style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
+                  >
+                    {COMPARE_LINKS.map(({ href, label }) => (
+                      <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <Link href="/detect-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Detect</Link>
               <Link href="/reviews" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Reviews</Link>
               <Link href="/shop" className="nav-link px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">Shop</Link>
               <Link href="/blog" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Blog</Link>
-              <Link href="/history-of-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">History</Link>
               <Link href="/my-cams" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">Submit Your Feed</Link>
             </div>
 
@@ -103,25 +218,61 @@ export default function Layout({ children, title, description, canonical }) {
 
           {/* Mobile menu */}
           {menuOpen && (
-            <div className="md:hidden border-t border-brand-border bg-brand-bg px-4 py-3 flex flex-col gap-1">
+            <div className="md:hidden border-t border-brand-border bg-brand-bg px-4 py-3 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
               {[
                 { href: "/", label: "Home" },
-                { href: "/live", label: "🔴 Live World Cams" },
-                { href: "/news", label: "📰 Surveillance News" },
-                { href: "/detect-hidden-cameras", label: "🔍 Detect Hidden Cameras" },
+                { href: "/live", label: "Live World Cams" },
+                { href: "/news", label: "Surveillance News" },
+                { href: "/detect-hidden-cameras", label: "Detect Hidden Cameras" },
                 { href: "/reviews", label: "Camera Reviews" },
+                { href: "/shop", label: "Shop Cameras" },
                 { href: "/blog", label: "Blog & Guides" },
-                { href: "/history-of-hidden-cameras", label: "📷 Camera History" },
-                { href: "/my-cams", label: "📹 Submit Your Feed" },
-                { href: "/best-hidden-cameras-airbnb", label: "Airbnb Guide" },
-                { href: "/about", label: "About" },
-                { href: "/contact", label: "Contact" },
+                { href: "/history-of-hidden-cameras", label: "Camera History" },
+                { href: "/my-cams", label: "Submit Your Feed" },
               ].map(({ href, label }) => (
                 <Link key={href} href={href} onClick={() => setMenuOpen(false)}
                   className="text-brand-muted hover:text-white hover:bg-brand-card px-3 py-2.5 rounded-lg text-sm transition font-medium">
                   {label}
                 </Link>
               ))}
+
+              <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">Cameras</p>
+              {CAMERA_CATEGORIES.map(({ href, label }) => (
+                <Link key={href} href={href} onClick={() => setMenuOpen(false)}
+                  className="text-brand-muted hover:text-white hover:bg-brand-card px-3 py-2 rounded-lg text-sm transition">
+                  {label}
+                </Link>
+              ))}
+
+              <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">Best Of 2026</p>
+              {BEST_OF_2026.map(({ href, label }) => (
+                <Link key={href} href={href} onClick={() => setMenuOpen(false)}
+                  className="text-brand-muted hover:text-white hover:bg-brand-card px-3 py-2 rounded-lg text-sm transition">
+                  {label}
+                </Link>
+              ))}
+
+              <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">Compare</p>
+              {COMPARE_LINKS.map(({ href, label }) => (
+                <Link key={href} href={href} onClick={() => setMenuOpen(false)}
+                  className="text-brand-muted hover:text-white hover:bg-brand-card px-3 py-2 rounded-lg text-sm transition">
+                  {label}
+                </Link>
+              ))}
+
+              <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">More</p>
+              {[
+                { href: "/hidden-camera-laws", label: "Hidden Camera Laws" },
+                { href: "/israel-joffe", label: "About Israel Joffe" },
+                { href: "/about", label: "About" },
+                { href: "/contact", label: "Contact" },
+              ].map(({ href, label }) => (
+                <Link key={href} href={href} onClick={() => setMenuOpen(false)}
+                  className="text-brand-muted hover:text-white hover:bg-brand-card px-3 py-2 rounded-lg text-sm transition">
+                  {label}
+                </Link>
+              ))}
+
               <div className="pt-2 mt-1 border-t border-brand-border flex gap-2">
                 <Link href="/my-cams" onClick={() => setMenuOpen(false)} className="btn-primary flex-1 text-center text-xs py-2">Submit Your Feed →</Link>
               </div>
@@ -130,15 +281,17 @@ export default function Layout({ children, title, description, canonical }) {
         </nav>
 
         {/* News Ticker */}
-        <NewsTicker />
+        {!isContactRoute && <NewsTicker />}
       </div>
 
       <main>{children}</main>
 
       {/* Sticky anchor ad — site-wide, highest RPM */}
-      <div className="fixed bottom-0 left-0 right-0 z-40" style={{ minHeight: "0" }}>
-        <AdUnit />
-      </div>
+      {!isContactRoute && (
+        <div className="fixed bottom-0 left-0 right-0 z-40" style={{ minHeight: "0" }}>
+          <AdUnit />
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="border-t border-brand-border bg-brand-surface mt-10 md:mt-16">
@@ -181,7 +334,9 @@ export default function Layout({ children, title, description, canonical }) {
               <p className="text-white font-semibold text-sm mb-3">Company</p>
               <div className="flex flex-col gap-2 text-xs text-brand-muted">
                 <Link href="/about" className="hover:text-brand-green transition">About</Link>
+                <Link href="/israel-joffe" className="hover:text-brand-green transition">About Israel Joffe</Link>
                 <Link href="/contact" className="hover:text-brand-green transition">Contact</Link>
+                <Link href="/hidden-camera-laws" className="hover:text-brand-green transition">Hidden Camera Laws</Link>
                 <Link href="/privacy" className="hover:text-brand-green transition">Privacy Policy</Link>
                 <a href="mailto:info@hiddencameras.tv" className="hover:text-brand-green transition">info@hiddencameras.tv</a>
               </div>
