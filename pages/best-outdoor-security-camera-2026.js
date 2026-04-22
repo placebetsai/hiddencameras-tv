@@ -1,12 +1,11 @@
 import Layout from "../components/Layout";
-import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import { EditorPickGrid } from "../components/EditorPickCard";
+import { ROUNDUPS } from "../lib/fashionistasProducts";
 
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
-
-const PICKS = [{"r":1,"n":"Arlo Pro 5S","p":"$249.99","a":"B0C6H5DLKW","w":"Best overall outdoor cam. 2K HDR, color night vision, 12x zoom, 6-month battery, IP65, HomeKit support."},{"r":2,"n":"Wyze Cam v4","p":"$35.98","a":"B0CJ9YX7DG","w":"Best value outdoor cam. 2K, IP65, color night vision, microSD storage, Starlight CMOS sensor."},{"r":3,"n":"Ring Floodlight Cam Wired Plus","p":"$199.99","a":"B09DRKR4MJ","w":"Best floodlight camera. 2000-lumen LED floods, 1080p HDR, siren, two-way talk, Alexa integration."},{"r":4,"n":"eufy SoloCam S340","p":"$119.99","a":"B0C6GR22X1","w":"Best no-subscription outdoor cam. 3K resolution, solar powered, 8GB local storage, forever free."},{"r":5,"n":"Blink Outdoor 4","p":"$99.99","a":"B0CSVQ3CGZ","w":"Best budget outdoor cam. 2-year battery, 1080p, person detection, weather resistant, tiny form factor."}];
+const PICKS = ROUNDUPS["best-outdoor-security-camera-2026"];
 
 export default function Page() {
   return (
@@ -22,7 +21,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@graph": [
               {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Q1: What does an \"IP rating\" mean for an outdoor camera, and why is it important?","acceptedAnswer":{"@type":"Answer","text":"A1: An IP (Ingress Protection) rating is a two-digit code that indicates how well an electrical enclosure protects against solids (like dust) and liquids (like water). The first digit refers to protection against solid objects (0-6, with 6 being dust-tight), and the second digit refers to protection against liquids (0-9, with higher numbers indicating more resistance). For outdoor cameras, an IP65 rating is generally considered the minimum acceptable standard, meaning it's dust-tight and protected against low-pressure water jets from any direction. It's crucial because it tells you the camera's ability to withstand rain, snow, dust, and other environmental factors, directly impacting its durability and reliability over time."}},{"@type":"Question","name":"Q2: Do I need a subscription for my outdoor security camera?","acceptedAnswer":{"@type":"Answer","text":"A2: It depends on the camera model and your desired features. Many cameras offer basic functionality like live viewing and motion alerts without a subscription. However, most brands reserve premium features, such as cloud video storage, advanced AI-powered person/vehicle detection, longer video clip recording, and professional monitoring, for paid subscription plans. Some cameras, like the eufy SoloCam S340 or those with a microSD card slot, offer robust local storage options that allow you to avoid subscription fees entirely for reviewing recorded footage. Always check the specific camera's features and subscription requirements before purchasing."}},{"@type":"Question","name":"Q3: What's the difference between infrared (IR) night vision and color night vision?","acceptedAnswer":{"@type":"Answer","text":"A3: Infrared (IR) night vision uses invisible IR LEDs to illuminate the scene, capturing footage in black and white. While effective for seeing in the dark, it lacks color detail, which can make identification more challenging. Color night vision, on the other hand, provides full-color video even in very low-light conditions. This is achieved either through highly sensitive \"starlight\" sensors that capture ambient light or by using an integrated spotlight or floodlight on the camera to illuminate the area. Color night vision significantly improves the ability to identify details like clothing colors, vehicle models, or other distinguishing features."}},{"@type":"Question","name":"Q4: How important is Wi-Fi connectivity for an outdoor camera, and what if my Wi-Fi signal is weak outdoors?","acceptedAnswer":{"@type":"Answer","text":"A4: Wi-Fi connectivity is extremely important for most smart outdoor cameras, as it's how they transmit video, receive commands, and send alerts. A strong, stable Wi-Fi signal ensures reliable performance, quick live stream access, and consistent motion alerts. If your outdoor Wi-Fi signal is weak, you might experience dropped connections, delayed alerts, or inability to access live footage. Solutions include: *   Wi-Fi Extenders/Mesh Systems: These boost your Wi-Fi signal to reach further outdoors. *   Relocating Your Router: Moving your router closer to the outdoor camera's location. *   Dual-Band Cameras: Cameras that support both 2.4 GHz and 5 GHz Wi-Fi (like Arlo Pro 5S) can sometimes offer better performance, as 5 GHz is faster but has a shorter range, while 2.4 GHz has a longer range but can be more congested. *   Cellular Cameras: For areas with no Wi-Fi, cellular cameras use a mobile network, though they typically require a separate data plan."}},{"@type":"Question","name":"Q5: Can outdoor security cameras deter crime?","acceptedAnswer":{"@type":"Answer","text":"A5: Yes, outdoor security cameras can be a significant deterrent to crime. Their visible presence often makes potential intruders think twice, as they know they are being monitored and recorded. Many modern cameras also include features like bright spotlights (e.g., Ring Floodlight Cam), loud sirens, and two-way audio (allowing you to verbally warn off intruders) that actively deter suspicious activity. Even if a crime occurs, the recorded footage provides crucial evidence for law enforcement, increasing the chances of identifying and apprehending suspects."}}]},
-              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Arlo Pro 5S","offers":{"@type":"Offer","price":"249.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0C6H5DLKW?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Wyze Cam v4","offers":{"@type":"Offer","price":"35.98","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CJ9YX7DG?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Ring Floodlight Cam Wired Plus","offers":{"@type":"Offer","price":"199.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09DRKR4MJ?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"eufy SoloCam S340","offers":{"@type":"Offer","price":"119.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0C6GR22X1?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Blink Outdoor 4","offers":{"@type":"Offer","price":"99.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CSVQ3CGZ?tag=hiddencamerastv-20"}}}]}
+              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"4K 8MP Dual-Lens Outdoor PTZ IP Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/ffd44bafc4fb41de8364954ef7578850.webp?v=1733831231","offers":{"@type":"Offer","price":"21.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/wifi-surveillance-camera-4k-8mp-dual-lens-wireless-outdoor-security-ptz-ip-cameras-ai-human-detect-cctv-camera-4x-digital-zoom?ref=hiddencameras"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Solar-Powered Outdoor WiFi Camera with Night Vision","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/cc532fe94fda8e1846699ae909b1_import.webp?v=1776700557","offers":{"@type":"Offer","price":"39.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/solar-powered-outdoor-wifi-camera-with-night-vision?ref=hiddencameras"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"1080p IP66 Outdoor WiFi Bullet Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/9c1a00b04a4ab270d65f34493fae_import.webp?v=1776700550","offers":{"@type":"Offer","price":"54.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/1080p-ip66-outdoor-wifi-bullet-camera?ref=hiddencameras"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"IP65 Outdoor WiFi Camera V380 Pro","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/25d7661a4daab3d111e99415baa8_import.webp?v=1776700543","offers":{"@type":"Offer","price":"34.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/ip65-outdoor-wifi-camera-v380-pro?ref=hiddencameras"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Solar-Powered Outdoor WiFi Camera with Night Vision","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/cc532fe94fda8e1846699ae909b1_import.webp?v=1776700557","offers":{"@type":"Offer","price":"39.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/solar-powered-outdoor-wifi-camera-with-night-vision?ref=hiddencameras"}}}]}
             ]
           }),
         }}
@@ -36,37 +35,8 @@ export default function Page() {
 
       <AdUnit />
 
-      <ComparisonTable
-        title="Quick Comparison"
-        products={PICKS.map(p => ({
-          name: p.n,
-          rating: 4.4,
-          feature: p.w.split(".")[0] + ".",
-          price: p.p,
-          asin: p.a,
-        }))}
-      />
-
-      <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
-      <div className="space-y-4 mb-10">
-        {PICKS.map((p) => (
-          <div key={p.a} className="card flex gap-4 items-start">
-            <div className="text-3xl font-extrabold text-brand-green/30 leading-none pt-1">#{p.r}</div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white mb-1">{p.n} <span className="text-gray-500 text-sm font-normal">{p.p}</span></h3>
-              <p className="text-gray-400 text-sm mb-3">{p.w}</p>
-              <a
-                href={`https://www.amazon.com/dp/${p.a}?tag=${AMAZON_TAG}`}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
-              >
-                Buy on Amazon — {p.p} &rarr;
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl font-bold text-white mb-5">Our Editor Picks</h2>
+      <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
 

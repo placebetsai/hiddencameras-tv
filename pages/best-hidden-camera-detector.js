@@ -1,12 +1,11 @@
 import Layout from "../components/Layout";
-import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import { EditorPickGrid } from "../components/EditorPickCard";
+import { ROUNDUPS } from "../lib/fashionistasProducts";
 
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
-
-const PICKS = [{"r":1,"n":"JMDHKK Anti-Spy RF Detector","p":"$29.99","a":"B07MFWKM6R","w":"Best overall detector. Finds WiFi cams, GPS trackers, and listening devices. LED and audio alerts. Amazon #1 bestseller."},{"r":2,"n":"Lens Detector Pro (Infrared)","p":"$39.99","a":"B08QJ8YZNS","w":"Best lens finder. Finds camera lenses even when powered off using infrared LED reflection. Professional grade."},{"r":3,"n":"GQ EMF Meter & RF Detector","p":"$89.99","a":"B078T2R64H","w":"Best professional tool. Detects hidden electronics behind walls. Used by counter-surveillance sweep teams."},{"r":4,"n":"Bug Detector Sweeper Kit","p":"$49.99","a":"B09DN27X5N","w":"Best complete kit. RF detector, lens finder, magnetic scanner all-in-one. USB-C rechargeable, 1-8GHz range."},{"r":5,"n":"Faraday Signal Blocking Bag","p":"$15.99","a":"B01A7MACL2","w":"Best privacy accessory. Military-grade signal blocking for phones and key fobs. Prevents remote camera activation."}];
+const PICKS = ROUNDUPS["best-hidden-camera-detector"];
 
 export default function Page() {
   return (
@@ -22,7 +21,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@graph": [
               {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can hidden camera detectors find wired cameras?","acceptedAnswer":{"@type":"Answer","text":"A: Yes, but it depends on the type of detector. RF (Radio Frequency) detectors are designed to find wireless transmissions, so they will not detect wired cameras that don't transmit signals. However, optical lens finders (which use IR LEDs and a viewfinder) are highly effective at finding wired cameras because they detect the reflection from the camera's lens, regardless of whether the camera is on, off, or transmitting. Many modern multi-purpose detectors combine both RF and optical detection for comprehensive coverage."}},{"@type":"Question","name":"Are hidden camera detector apps effective?","acceptedAnswer":{"@type":"Answer","text":"A: Hidden camera detector apps have limited effectiveness compared to dedicated hardware. Apps like Fing are good for scanning Wi-Fi networks to identify connected devices, which can help detect Wi-Fi cameras. However, apps that claim to find cameras using your phone's magnetic field sensor are often prone to false positives and lack the sensitivity for small cameras. Apps that try to mimic optical lens detection using your phone's flashlight are significantly less effective than dedicated devices. They are best used as a quick, preliminary check but are not a substitute for specialized hardware."}},{"@type":"Question","name":"How often should I check for hidden cameras?","acceptedAnswer":{"@type":"Answer","text":"A: It's recommended to check for hidden cameras every time you enter a new private or semi-private space where you have privacy expectations. This includes hotel rooms, Airbnbs, rental properties, changing rooms, and even unfamiliar restrooms. For your own home or office, you might want to perform a sweep if you notice anything suspicious, suspect a breach of privacy, or simply for peace of mind on a semi-regular basis (e.g., quarterly or annually)."}},{"@type":"Question","name":"What's the difference between an RF detector and a lens finder?","acceptedAnswer":{"@type":"Answer","text":"A: An RF (Radio Frequency) detector works by scanning for wireless signals emitted by electronic devices. It's designed to find active wireless cameras, listening devices, or GPS trackers that are transmitting data via Wi-Fi, Bluetooth, cellular, or other radio frequencies. A lens finder (or optical detector), on the other hand, uses an array of bright LEDs (often infrared or red) to illuminate an area. When this light hits a camera lens, it creates a distinct, bright pinpoint reflection that can be seen through a specialized viewfinder. Lens finders are effective for finding all types of cameras—wired, wireless, on, or off—as long as the lens is exposed to the light."}},{"@type":"Question","name":"What should I do if I find a hidden camera?","acceptedAnswer":{"@type":"Answer","text":"A: If you discover a hidden camera, do not touch or tamper with it. 1.  Document: Immediately take photos and videos of the camera in its discovered location, showing its surroundings. 2.  Notify: *   If in a rental/hotel: Contact the property owner, manager, or hotel staff immediately. *   If in a public place: Inform the management of the establishment. *   If in a private home (e.g., your own or a friend's): Contact local law enforcement. 3.  Law Enforcement: In most cases, especially if you believe illegal surveillance has occurred, contact local police. They can investigate, collect the device as evidence, and advise you on legal recourse. 4.  Do Not Confront: Avoid confronting the individual who might have placed the camera, as this could escalate the situation or destroy evidence. 5.  Seek Legal Advice: Consider consulting with an attorney to understand your rights and options. Protecting"}}]},
-              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"JMDHKK Anti-Spy RF Detector","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B07MFWKM6R?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Lens Detector Pro (Infrared)","offers":{"@type":"Offer","price":"39.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B08QJ8YZNS?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"GQ EMF Meter & RF Detector","offers":{"@type":"Offer","price":"89.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B078T2R64H?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Bug Detector Sweeper Kit","offers":{"@type":"Offer","price":"49.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09DN27X5N?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Faraday Signal Blocking Bag","offers":{"@type":"Offer","price":"15.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B01A7MACL2?tag=hiddencamerastv-20"}}}]}
+              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Anti-Spy Hidden Camera Signal Detector","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/2266994295197.jpg?v=1739756658","offers":{"@type":"Offer","price":"25.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/anti-spy-hidden-camera-signal-detector?ref=hiddencameras"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Anti-Spy Hidden Camera Signal Detector","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/2266994295197.jpg?v=1739756658","offers":{"@type":"Offer","price":"25.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/anti-spy-hidden-camera-signal-detector?ref=hiddencameras"}}}]}
             ]
           }),
         }}
@@ -36,37 +35,8 @@ export default function Page() {
 
       <AdUnit />
 
-      <ComparisonTable
-        title="Quick Comparison"
-        products={PICKS.map(p => ({
-          name: p.n,
-          rating: 4.4,
-          feature: p.w.split(".")[0] + ".",
-          price: p.p,
-          asin: p.a,
-        }))}
-      />
-
-      <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
-      <div className="space-y-4 mb-10">
-        {PICKS.map((p) => (
-          <div key={p.a} className="card flex gap-4 items-start">
-            <div className="text-3xl font-extrabold text-brand-green/30 leading-none pt-1">#{p.r}</div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white mb-1">{p.n} <span className="text-gray-500 text-sm font-normal">{p.p}</span></h3>
-              <p className="text-gray-400 text-sm mb-3">{p.w}</p>
-              <a
-                href={`https://www.amazon.com/dp/${p.a}?tag=${AMAZON_TAG}`}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
-              >
-                Buy on Amazon — {p.p} &rarr;
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl font-bold text-white mb-5">Our Editor Picks</h2>
+      <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
 

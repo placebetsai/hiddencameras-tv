@@ -1,12 +1,11 @@
 import Layout from "../components/Layout";
-import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import { EditorPickGrid } from "../components/EditorPickCard";
+import { ROUNDUPS } from "../lib/fashionistasProducts";
 
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
-
-const PICKS = [{"r":1,"n":"Wyze Cam v4","p":"$35.98","a":"B0CJ9YX7DG","w":"Best overall nanny cam. 2K color night vision, two-way audio, sound detection, microSD local storage. Incredible value."},{"r":2,"n":"Nanit Pro","p":"$299.99","a":"B07XRTGL4R","w":"Best premium nanny cam. Breathing monitoring with Nanit band, sleep analytics, HD bird-eye view streaming."},{"r":3,"n":"Infant Optics DXR-8 PRO","p":"$179.99","a":"B00ECHYTBI","w":"Best hack-proof option. Dedicated encrypted FHSS signal, no WiFi needed, 5-inch HD display included."},{"r":4,"n":"Blink Mini 2","p":"$34.99","a":"B0CGX9GQ3Q","w":"Best budget nanny cam. Set up in minutes, 1080p, motion alerts, two-way audio, Alexa compatible."},{"r":5,"n":"eufy Baby Monitor","p":"$159.99","a":"B0CHVFG8B2","w":"Best cry detection AI. 5-inch display, sleep tracking, no subscription fees ever, lullaby playback."}];
+const PICKS = ROUNDUPS["best-nanny-cam-2026"];
 
 export default function Page() {
   return (
@@ -22,7 +21,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@graph": [
               {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"1. Are nanny cams legal?","acceptedAnswer":{"@type":"Answer","text":"Yes, nanny cams are generally legal for video recording in common areas of your home where there is no reasonable expectation of privacy (e.g., living room, kitchen, playroom). However, laws regarding audio recording vary significantly by state. Many states require \"two-party consent\" for audio recording, meaning everyone involved in the conversation must agree to be recorded. It is illegal to place cameras in private areas like bathrooms or a nanny's private bedroom. Always research your specific state and local laws, and ideally, consult a legal professional to ensure compliance."}},{"@type":"Question","name":"2. Do I have to tell my nanny about the camera?","acceptedAnswer":{"@type":"Answer","text":"Legally, in many states, you might not be required to disclose video surveillance in common areas. However, for audio recording, especially in \"two-party consent\" states, you must inform your nanny and obtain their consent. Ethically, it is almost always recommended to be transparent with your caregiver about the presence of cameras. Disclosure fosters trust, promotes a healthier working relationship, and helps avoid potential legal issues. Many parents choose to include a clause about surveillance in their nanny contract."}},{"@type":"Question","name":"3. Where should I place a nanny cam?","acceptedAnswer":{"@type":"Answer","text":"Strategic placement is key for effective monitoring. Place nanny cams in common areas where childcare activities primarily occur, such as the living room, playroom, kitchen, or nursery. Aim for a spot that provides a wide, unobstructed view of the main activity zones. Consider high shelves, corners, or disguised options that blend into the environment. Avoid placing cameras in bathrooms or private bedrooms, as this is illegal and a violation of privacy. Ensure the camera has a clear line of sight and good lighting for optimal video quality, and is within range of your Wi-Fi if it's a connected device."}},{"@type":"Question","name":"4. Can nanny cams be hacked?","acceptedAnswer":{"@type":"Answer","text":"Any Wi-Fi-connected device, including nanny cams, carries a theoretical risk of being hacked, though reputable brands employ robust security measures. To minimize risk: *   Choose reputable brands: They invest in strong encryption and regular security updates. *   Use strong, unique passwords: For your camera's app and your Wi-Fi network. *   Enable two-factor authentication (2FA): If available for your camera's app. *   Keep firmware updated: Install updates promptly to patch vulnerabilities. *   Secure your Wi-Fi network:"}}]},
-              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Wyze Cam v4","offers":{"@type":"Offer","price":"35.98","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CJ9YX7DG?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Nanit Pro","offers":{"@type":"Offer","price":"299.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B07XRTGL4R?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Infant Optics DXR-8 PRO","offers":{"@type":"Offer","price":"179.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B00ECHYTBI?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Blink Mini 2","offers":{"@type":"Offer","price":"34.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CGX9GQ3Q?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"eufy Baby Monitor","offers":{"@type":"Offer","price":"159.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CHVFG8B2?tag=hiddencamerastv-20"}}}]}
+              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Amcrest 1080p Nanny + Pet WiFi Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/2864e26446f7b0ee460f2ed39a88_import.webp?v=1776700606","offers":{"@type":"Offer","price":"69.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/amcrest-1080p-nanny-pet-wifi-camera?ref=hiddencameras"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"2K Pan-Tilt Pet + Baby Camera with Smart Tracking","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/88e9158a41d48aaabb05efcc5bae_import.webp?v=1776700536","offers":{"@type":"Offer","price":"79.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/2k-pan-tilt-pet-baby-camera-with-smart-tracking?ref=hiddencameras"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"1080p Pan-Tilt-Zoom Indoor Pet/Baby Monitor","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/1cf02a014b8ca066842f08540aea_import.webp?v=1776700530","offers":{"@type":"Offer","price":"49.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/1080p-pan-tilt-zoom-indoor-pet-baby-monitor?ref=hiddencameras"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Mini Wireless WiFi Nanny Cam - Palm-Size","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/20201553475987c99b7da96f6b22_import.webp?v=1776700615","offers":{"@type":"Offer","price":"34.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/mini-wireless-wifi-nanny-cam-palm-size?ref=hiddencameras"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Dice-Style Hidden Nanny Cam 1080p","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/1058b59d4d83976d2d391f5ce4e9_import.webp?v=1776700623","offers":{"@type":"Offer","price":"44.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/dice-style-hidden-nanny-cam-1080p?ref=hiddencameras"}}},{"@type":"ListItem","position":6,"item":{"@type":"Product","name":"Mini Hidden Nanny Cam 1080p","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/f87678c148429c744b40c5316309_import.webp?v=1776700515","offers":{"@type":"Offer","price":"44.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/mini-hidden-nanny-cam-1080p?ref=hiddencameras"}}}]}
             ]
           }),
         }}
@@ -36,37 +35,8 @@ export default function Page() {
 
       <AdUnit />
 
-      <ComparisonTable
-        title="Quick Comparison"
-        products={PICKS.map(p => ({
-          name: p.n,
-          rating: 4.4,
-          feature: p.w.split(".")[0] + ".",
-          price: p.p,
-          asin: p.a,
-        }))}
-      />
-
-      <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
-      <div className="space-y-4 mb-10">
-        {PICKS.map((p) => (
-          <div key={p.a} className="card flex gap-4 items-start">
-            <div className="text-3xl font-extrabold text-brand-green/30 leading-none pt-1">#{p.r}</div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white mb-1">{p.n} <span className="text-gray-500 text-sm font-normal">{p.p}</span></h3>
-              <p className="text-gray-400 text-sm mb-3">{p.w}</p>
-              <a
-                href={`https://www.amazon.com/dp/${p.a}?tag=${AMAZON_TAG}`}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
-              >
-                Buy on Amazon — {p.p} &rarr;
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl font-bold text-white mb-5">Our Editor Picks</h2>
+      <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
 

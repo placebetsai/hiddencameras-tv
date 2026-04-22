@@ -1,16 +1,11 @@
 import Layout from "../components/Layout";
-import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import { EditorPickGrid } from "../components/EditorPickCard";
+import { ROUNDUPS } from "../lib/fashionistasProducts";
 
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
-
-const PICKS = [
-  { r: 1, n: "Blink Mini 2", p: "$29.99", a: "B0CGX9GQ3Q", rating: 3.5, w: "Best budget hidden camera. Compact 1080p with motion alerts, two-way audio, and Alexa integration. Needs Blink subscription for cloud recording." },
-  { r: 2, n: "Wyze Cam v4", p: "$35.98", a: "B0CJ9YX7DG", rating: 4.0, w: "Best overall value. Stunning color night vision, 2K QHD, local SD card storage included. Past security breaches are a concern for some buyers." },
-  { r: 3, n: "Ring Indoor Cam 2nd Gen", p: "$49.99", a: "B0B6GJBKRK", rating: 3.5, w: "Best for Ring ecosystem. Easy setup, 1080p, privacy shutter, and seamless Alexa integration. Requires Ring Protect subscription and raises some privacy concerns." },
-];
+const PICKS = ROUNDUPS["best-hidden-cameras-2026"];
 
 export default function Page() {
   return (
@@ -62,33 +57,7 @@ export default function Page() {
                   },
                 ],
               },
-              {
-                "@type": "ItemList",
-                itemListElement: PICKS.map((p) => ({
-                  "@type": "ListItem",
-                  position: p.r,
-                  item: {
-                    "@type": "Product",
-                    name: p.n,
-                    review: {
-                      "@type": "Review",
-                      reviewRating: {
-                        "@type": "Rating",
-                        ratingValue: p.rating,
-                        bestRating: 5,
-                      },
-                      author: { "@type": "Organization", name: "HiddenCameras.tv" },
-                    },
-                    offers: {
-                      "@type": "Offer",
-                      price: p.p.replace("$", ""),
-                      priceCurrency: "USD",
-                      availability: "https://schema.org/InStock",
-                      url: `https://www.amazon.com/dp/${p.a}?tag=${AMAZON_TAG}`,
-                    },
-                  },
-                })),
-              },
+              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"4K Mini WiFi Pinhole Hidden Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/93a5ffe849d2bc14650bf077d71f_import.webp?v=1776700498","offers":{"@type":"Offer","price":"54.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/4k-mini-wifi-pinhole-hidden-camera?ref=hiddencameras"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Mini Hidden Nanny Cam 1080p","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/f87678c148429c744b40c5316309_import.webp?v=1776700515","offers":{"@type":"Offer","price":"44.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/mini-hidden-nanny-cam-1080p?ref=hiddencameras"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Pocket Pen HD Hidden Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/73ddcaa94451a2829137b4c3e919_import.webp?v=1776700507","offers":{"@type":"Offer","price":"49.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/pocket-pen-hd-hidden-camera?ref=hiddencameras"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Dice-Style Hidden Nanny Cam 1080p","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/1058b59d4d83976d2d391f5ce4e9_import.webp?v=1776700623","offers":{"@type":"Offer","price":"44.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/dice-style-hidden-nanny-cam-1080p?ref=hiddencameras"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Night Vision 1080p Portable Mini Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/product-image-590255746.jpg?v=1734006412","offers":{"@type":"Offer","price":"18.67","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/night-vision-1080p-resolution-portable-mini-camera-1025333310?ref=hiddencameras"}}},{"@type":"ListItem","position":6,"item":{"@type":"Product","name":"Wireless 1080p Indoor Security Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/ce4a354e401f9f52a0a205019565_import.webp?v=1776700523","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/wireless-1080p-indoor-security-camera?ref=hiddencameras"}}}]},
             ],
           }),
         }}
@@ -106,41 +75,8 @@ export default function Page() {
 
       <AdUnit />
 
-      <ComparisonTable
-        title="Quick Comparison"
-        products={PICKS.map((p) => ({
-          name: p.n,
-          rating: p.rating,
-          feature: p.w.split(".")[0] + ".",
-          price: p.p,
-          asin: p.a,
-        }))}
-      />
-
-      <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
-      <div className="space-y-4 mb-10">
-        {PICKS.map((p) => (
-          <div key={p.a} className="card flex gap-4 items-start">
-            <div className="text-3xl font-extrabold text-brand-green/30 leading-none pt-1">#{p.r}</div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white mb-1">
-                {p.n}{" "}
-                <span className="text-gray-500 text-sm font-normal">{p.p}</span>
-                <span className="text-yellow-400 text-sm font-normal ml-2">{"★".repeat(Math.floor(p.rating))}{p.rating % 1 ? "½" : ""}/5</span>
-              </h3>
-              <p className="text-gray-400 text-sm mb-3">{p.w}</p>
-              <a
-                href={`https://www.amazon.com/dp/${p.a}?tag=${AMAZON_TAG}`}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
-              >
-                Buy on Amazon &mdash; {p.p} &rarr;
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl font-bold text-white mb-5">Our Editor Picks</h2>
+      <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
 

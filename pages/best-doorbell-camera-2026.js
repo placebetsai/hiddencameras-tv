@@ -1,12 +1,11 @@
 import Layout from "../components/Layout";
-import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import { EditorPickGrid } from "../components/EditorPickCard";
+import { ROUNDUPS } from "../lib/fashionistasProducts";
 
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
-
-const PICKS = [{"r":1,"n":"Ring Video Doorbell 4","p":"$219.99","a":"B09WZBPX7K","w":"Best overall doorbell. Pre-roll video, 1080p HDR, quick replies, removable battery, Alexa integration."},{"r":2,"n":"Google Nest Doorbell (Wired)","p":"$179.99","a":"B09FCLPLWX","w":"Best for 24/7 recording. On-device AI, familiar face detection, Google Home integration, HDR video."},{"r":3,"n":"Blink Video Doorbell","p":"$49.99","a":"B08SG2Q29T","w":"Best budget doorbell. 1080p, day and night video, two-way audio, works with Alexa, 2-year battery."},{"r":4,"n":"eufy Video Doorbell S220","p":"$99.99","a":"B0BFLRRZJR","w":"Best no-subscription doorbell. 2K resolution, local storage on HomeBase, AI detection, no monthly fees."},{"r":5,"n":"Arlo Essential Doorbell","p":"$149.99","a":"B08HRNG8CR","w":"Best wide-angle doorbell. 180-degree diagonal view, HDR, direct WiFi, no hub required."}];
+const PICKS = ROUNDUPS["best-doorbell-camera-2026"];
 
 export default function Page() {
   return (
@@ -22,7 +21,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@graph": [
               {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"1. Do I need a subscription for a doorbell camera?","acceptedAnswer":{"@type":"Answer","text":"It depends on the model and the features you want. Most doorbell cameras offer basic functionality like live viewing and two-way talk for free. However, a subscription is typically required for cloud video recording history (allowing you to review past events), advanced AI detection (person, package, vehicle alerts), and sometimes 24/7 continuous recording. Brands like eufy offer local storage options that eliminate the need for a subscription for video history."}},{"@type":"Question","name":"2. How difficult is it to install a doorbell camera?","acceptedAnswer":{"@type":"Answer","text":"Installation difficulty varies. Battery-powered doorbells are generally the easiest to install, often requiring just a screwdriver and a few minutes, as they don't need existing wiring. Wired doorbells require connecting to your home's existing doorbell wiring (usually 16-24 VAC), which might involve some basic electrical knowledge. If you're uncomfortable with electrical work, it's best to consult a professional."}},{"@type":"Question","name":"3. Can doorbell cameras record 24/7?","acceptedAnswer":{"@type":"Answer","text":"Generally, only wired doorbell cameras with a continuous power supply can offer 24/7 continuous recording. This feature usually requires a paid subscription (e.g., Google Nest Doorbell with Nest Aware). Battery-powered doorbells conserve power by only recording clips when motion is detected or the doorbell is pressed."}},{"@type":"Question","name":"4. What's the difference between a wired and battery doorbell camera?","acceptedAnswer":{"@type":"Answer","text":"The main difference is their power source and resulting capabilities. *   Wired doorbells connect to your home's existing doorbell wiring, providing continuous power. This allows for features like 24/7 recording, instant alerts, and faster response times. They require an existing wired setup. *   Battery doorbells run on rechargeable batteries, offering wire-free installation flexibility. They are easier to install but require periodic recharging and typically only record event-triggered clips to conserve battery life."}},{"@type":"Question","name":"5. Are doorbell cameras secure from hacking?","acceptedAnswer":{"@type":"Answer","text":"Reputable doorbell camera brands implement strong security measures, but no system is entirely impervious. To enhance security: *   Use strong, unique passwords: Avoid common passwords and enable two-factor authentication (2FA) if available. *   Keep software updated: Manufacturers regularly release updates to patch vulnerabilities. *   Secure your Wi-Fi network: Use a strong Wi-Fi password and WPA2/WPA3 encryption. *   Be cautious with sharing: Limit access to your camera feed to trusted individuals only. *   Choose reputable brands: Stick to well-known manufacturers with a track record of security. By following these best practices, you can significantly reduce the risk of unauthorized access to your doorbell camera."}},{"@type":"Question","name":"Conclusion","acceptedAnswer":{"@type":"Answer","text":"In 2026, a doorbell camera is more than just a gadget; it's an essential component of a smart, secure home. From deterring package thieves to screening visitors and simply staying connected to your front door, the benefits are undeniable. Our top picks, ranging from the versatile Ring Video Doorbell 4 to the premium Google Nest Doorbell (Wired) and the budget-friendly Blink, offer a diverse array of features to suit every need and budget. Whether you prioritize crystal-clear 2K video without subscription fees, unparalleled battery life for wire-free convenience, or advanced radar-based motion detection for a head-to-toe view, there's a perfect doorbell camera waiting for you. By carefully considering the factors outlined in our buying guide—video quality, power source, storage options, and subscription costs—you can confidently choose a device that brings security, convenience, and ultimate peace of mind to your home for years to come. Invest wisely, and enjoy the enhanced security and control that a modern video doorbell provides."}}]},
-              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Ring Video Doorbell 4","offers":{"@type":"Offer","price":"219.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09WZBPX7K?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Google Nest Doorbell (Wired)","offers":{"@type":"Offer","price":"179.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09FCLPLWX?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Blink Video Doorbell","offers":{"@type":"Offer","price":"49.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B08SG2Q29T?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"eufy Video Doorbell S220","offers":{"@type":"Offer","price":"99.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0BFLRRZJR?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Arlo Essential Doorbell","offers":{"@type":"Offer","price":"149.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B08HRNG8CR?tag=hiddencamerastv-20"}}}]}
+              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Smart Wireless Video Doorbell with Night Vision","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/b52820bc443d8be8777cda304f45_import.webp?v=1776700581","offers":{"@type":"Offer","price":"59.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/smart-wireless-video-doorbell-with-night-vision?ref=hiddencameras"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Smart WiFi Video Doorbell M7 with Remote Monitoring","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/c5e1ea364c7daba35dd2d67f393e_import.webp?v=1776700575","offers":{"@type":"Offer","price":"44.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/smart-wifi-video-doorbell-m7-with-remote-monitoring?ref=hiddencameras"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Battery-Powered WiFi Video Doorbell","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/825cd4634a6383eb81a190c7d84e_import.webp?v=1776700566","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/battery-powered-wifi-video-doorbell?ref=hiddencameras"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Wireless WiFi Video Doorbell with Music Bell","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/getpubthumb_08aad9d8-fd8f-466f-8030-9ca1b7c1b359.jpg?v=1734006418","offers":{"@type":"Offer","price":"51.59","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/wireless-wifi-video-doorbell-with-music-bell-full-hd-resolution-two-1508265658?ref=hiddencameras"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Smart Wireless Video Doorbell with Night Vision","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/b52820bc443d8be8777cda304f45_import.webp?v=1776700581","offers":{"@type":"Offer","price":"59.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/smart-wireless-video-doorbell-with-night-vision?ref=hiddencameras"}}}]}
             ]
           }),
         }}
@@ -36,37 +35,8 @@ export default function Page() {
 
       <AdUnit />
 
-      <ComparisonTable
-        title="Quick Comparison"
-        products={PICKS.map(p => ({
-          name: p.n,
-          rating: 4.4,
-          feature: p.w.split(".")[0] + ".",
-          price: p.p,
-          asin: p.a,
-        }))}
-      />
-
-      <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
-      <div className="space-y-4 mb-10">
-        {PICKS.map((p) => (
-          <div key={p.a} className="card flex gap-4 items-start">
-            <div className="text-3xl font-extrabold text-brand-green/30 leading-none pt-1">#{p.r}</div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white mb-1">{p.n} <span className="text-gray-500 text-sm font-normal">{p.p}</span></h3>
-              <p className="text-gray-400 text-sm mb-3">{p.w}</p>
-              <a
-                href={`https://www.amazon.com/dp/${p.a}?tag=${AMAZON_TAG}`}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
-              >
-                Buy on Amazon — {p.p} &rarr;
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl font-bold text-white mb-5">Our Editor Picks</h2>
+      <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
 

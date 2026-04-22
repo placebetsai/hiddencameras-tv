@@ -1,12 +1,11 @@
 import Layout from "../components/Layout";
-import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import { EditorPickGrid } from "../components/EditorPickCard";
+import { ROUNDUPS } from "../lib/fashionistasProducts";
 
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
-
-const PICKS = [{"r":1,"n":"Furbo 360 Dog Camera","p":"$199.99","a":"B08Z7L3LRY","w":"Best overall pet camera. 360-degree view, treat tossing, bark alerts, color night vision, 1080p streaming."},{"r":2,"n":"Wyze Cam v4","p":"$35.98","a":"B0CJ9YX7DG","w":"Best budget pet camera. 2K, color night vision, sound detection, two-way audio, microSD local storage."},{"r":3,"n":"Petcube Bites 2 Lite","p":"$149.99","a":"B09BMKRR2C","w":"Best treat dispenser. Flings treats up to 6 feet, 1080p, two-way audio, vet chat included."},{"r":4,"n":"Blink Mini 2","p":"$34.99","a":"B0CGX9GQ3Q","w":"Best simple pet cam. 1080p, built-in spotlight, two-way audio, Alexa compatible, motion alerts."},{"r":5,"n":"eufy Indoor Cam S350","p":"$59.99","a":"B0C6GR22X1","w":"Best pan and tilt for pets. 4K with 8x zoom, 360-degree tracking, dual cameras, no subscription needed."}];
+const PICKS = ROUNDUPS["best-pet-camera-2026"];
 
 export default function Page() {
   return (
@@ -22,7 +21,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@graph": [
               {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"1. Are pet cameras worth it?","acceptedAnswer":{"@type":"Answer","text":"Absolutely! Pet cameras offer immense peace of mind by allowing you to check in on your pets, ensure their safety, and monitor their behavior when you're away. They can help alleviate separation anxiety for both pets and owners, allow for remote interaction (like talking or treat tossing), and even provide valuable insights into your pet's habits or potential health issues. For many, the ability to see and interact with their furry family members from anywhere makes them an invaluable investment."}},{"@type":"Question","name":"2. Do pet cameras require a subscription?","acceptedAnswer":{"@type":"Answer","text":"It depends on the camera and the features you want. Most pet cameras offer basic functionalities like live streaming, two-way audio, and motion alerts for free, without a subscription. However, many brands offer optional subscription plans (often called \"cloud plans\" or \"premium services\") that unlock advanced features. These typically include cloud video recording history (e.g., 7, 30, or 90 days), AI-powered pet detection, person detection, activity zones, and longer video clip durations. While not strictly necessary, a subscription can significantly enhance the camera's utility and provide greater peace of mind."}},{"@type":"Question","name":"3. Can I talk to my pet through the camera?","acceptedAnswer":{"@type":"Answer","text":"Yes, nearly all modern pet cameras come equipped with two-way audio functionality. This means they have a built-in microphone to pick up sounds from your home (like your pet's barks or meows) and a speaker that allows you to talk to your pet from your smartphone app. The quality of the audio can vary between models, with some offering clearer and more natural-sounding communication than others. This feature is excellent for offering comfort, giving commands, or simply saying hello."}},{"@type":"Question","name":"4. What's the difference between a pet camera and a security camera?","acceptedAnswer":{"@type":"Answer","text":"While many security cameras can technically be used to monitor pets, dedicated pet cameras often offer specialized features tailored to animal companions. These include: *   Treat Dispensers: Unique to pet cameras, allowing remote reward and interaction. *   Interactive Toys: Like laser pointers, often found in cat-specific cameras. *   Pet-Specific AI: Advanced detection that can differentiate between pet and human movement, or even identify specific pet behaviors (e.g., barking, chewing). *   Design and Durability: Sometimes designed to be pet-proof or blend more naturally into a pet-friendly home. *   Audio Quality: Often optimized for clearer communication with pets. While a good indoor security camera can do the job for basic monitoring, a pet camera provides a more engaging and tailored experience for both you and your furry friend."}},{"@type":"Question","name":"5. How do pet cameras store footage?","acceptedAnswer":{"@type":"Answer","text":"Pet cameras typically offer a combination of storage options: *   Local Storage: Many cameras include a microSD card slot, allowing you to insert a memory card to store recorded video directly on the device. This is often a free option and can be set for continuous recording or event-triggered clips. *   Cloud Storage: This is the most common option for remote access. Footage is uploaded to a secure cloud server and can be accessed via the camera's smartphone app from anywhere. Cloud storage usually requires a subscription fee, which can vary in terms of video history duration (e.g., 7, 30, or 90 days) and features. Some cameras may also offer integrations with Network Attached Storage (NAS) or HomeKit Secure Video for more advanced users. The best storage option for you depends on your budget, privacy concerns, and how much footage you need to retain."}}]},
-              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Furbo 360 Dog Camera","offers":{"@type":"Offer","price":"199.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B08Z7L3LRY?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Wyze Cam v4","offers":{"@type":"Offer","price":"35.98","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CJ9YX7DG?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Petcube Bites 2 Lite","offers":{"@type":"Offer","price":"149.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09BMKRR2C?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Blink Mini 2","offers":{"@type":"Offer","price":"34.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CGX9GQ3Q?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"eufy Indoor Cam S350","offers":{"@type":"Offer","price":"59.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0C6GR22X1?tag=hiddencamerastv-20"}}}]}
+              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"2K Pan-Tilt Pet + Baby Camera with Smart Tracking","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/88e9158a41d48aaabb05efcc5bae_import.webp?v=1776700536","offers":{"@type":"Offer","price":"79.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/2k-pan-tilt-pet-baby-camera-with-smart-tracking?ref=hiddencameras"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"1080p Pan-Tilt-Zoom Indoor Pet/Baby Monitor","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/1cf02a014b8ca066842f08540aea_import.webp?v=1776700530","offers":{"@type":"Offer","price":"49.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/1080p-pan-tilt-zoom-indoor-pet-baby-monitor?ref=hiddencameras"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Amcrest 1080p Nanny + Pet WiFi Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/2864e26446f7b0ee460f2ed39a88_import.webp?v=1776700606","offers":{"@type":"Offer","price":"69.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/amcrest-1080p-nanny-pet-wifi-camera?ref=hiddencameras"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Wireless 1080p Indoor Security Camera","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/ce4a354e401f9f52a0a205019565_import.webp?v=1776700523","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/wireless-1080p-indoor-security-camera?ref=hiddencameras"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Mini Wireless WiFi Nanny Cam - Palm-Size","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/20201553475987c99b7da96f6b22_import.webp?v=1776700615","offers":{"@type":"Offer","price":"34.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/mini-wireless-wifi-nanny-cam-palm-size?ref=hiddencameras"}}}]}
             ]
           }),
         }}
@@ -36,37 +35,8 @@ export default function Page() {
 
       <AdUnit />
 
-      <ComparisonTable
-        title="Quick Comparison"
-        products={PICKS.map(p => ({
-          name: p.n,
-          rating: 4.4,
-          feature: p.w.split(".")[0] + ".",
-          price: p.p,
-          asin: p.a,
-        }))}
-      />
-
-      <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
-      <div className="space-y-4 mb-10">
-        {PICKS.map((p) => (
-          <div key={p.a} className="card flex gap-4 items-start">
-            <div className="text-3xl font-extrabold text-brand-green/30 leading-none pt-1">#{p.r}</div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white mb-1">{p.n} <span className="text-gray-500 text-sm font-normal">{p.p}</span></h3>
-              <p className="text-gray-400 text-sm mb-3">{p.w}</p>
-              <a
-                href={`https://www.amazon.com/dp/${p.a}?tag=${AMAZON_TAG}`}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
-              >
-                Buy on Amazon — {p.p} &rarr;
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl font-bold text-white mb-5">Our Editor Picks</h2>
+      <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
 

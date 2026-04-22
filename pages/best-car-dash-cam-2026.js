@@ -1,12 +1,11 @@
 import Layout from "../components/Layout";
-import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import { EditorPickGrid } from "../components/EditorPickCard";
+import { ROUNDUPS } from "../lib/fashionistasProducts";
 
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
-
-const PICKS = [{"r":1,"n":"Viofo A229 Pro","p":"$219.99","a":"B0CGDY82R6","w":"Best overall dash cam. True 4K HDR, Sony STARVIS 2 sensor, buffered parking mode, GPS built-in."},{"r":2,"n":"Viofo A119 Mini 2","p":"$89.99","a":"B0B5FLQBHG","w":"Best budget dash cam. 2K QHD, compact design, voice control, parking mode, 5GHz WiFi transfer."},{"r":3,"n":"Vantrue N4 Pro","p":"$299.99","a":"B0BDK2MX2H","w":"Best 3-channel dash cam. Front, rear, and cabin recording, 4K front, infrared cabin, voice control."},{"r":4,"n":"Garmin Dash Cam Mini 2","p":"$129.99","a":"B09WYN3J16","w":"Best compact dash cam. Key-fob sized, 1080p, voice control, incident detection, cloud storage."},{"r":5,"n":"Nextbase 622GW","p":"$349.99","a":"B08LN4P8LZ","w":"Best premium dash cam. 4K, what3words integration, emergency SOS, Alexa built-in, image stabilization."}];
+const PICKS = ROUNDUPS["best-car-dash-cam-2026"];
 
 export default function Page() {
   return (
@@ -22,7 +21,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@graph": [
               {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Q1: Are dash cams legal to use in my car?","acceptedAnswer":{"@type":"Answer","text":"Yes, dash cams are generally legal to use in most countries and regions, including the US, Canada, UK, and Australia, for personal use. However, laws regarding mounting location (ensuring it doesn't obstruct your view), privacy (especially when recording public spaces or individuals), and sharing footage can vary. Always check local regulations in your specific area."}},{"@type":"Question","name":"Q2: How do dash cams get power?","acceptedAnswer":{"@type":"Answer","text":"Most dash cams are powered via a 12V cigarette lighter adapter while the car is running. For parking mode functionality, they typically require a hardwire kit that connects directly to your car's fuse box, providing continuous power even when the ignition is off, usually with built-in voltage protection to prevent battery drain."}},{"@type":"Question","name":"Q3: How long do dash cam recordings last on the memory card?","acceptedAnswer":{"@type":"Answer","text":"The duration of recordings depends on several factors: the dash cam's resolution, the number of channels (front, rear, interior), and the capacity of your microSD card. For example, a 64GB card might hold 4-6 hours of 1080p front-only footage, while a 256GB card could hold significantly more 4K or multi-channel footage. Thanks to loop recording, the camera continuously records, overwriting the oldest files unless they are locked as an incident."}},{"@type":"Question","name":"Q4: Should I get a front-only or dual-channel dash cam?","acceptedAnswer":{"@type":"Answer","text":"For basic protection against front-end collisions or general road incidents, a front-only dash cam is sufficient and more affordable. However, for comprehensive coverage, a dual-channel (front and rear) or even triple-channel (front, rear, and interior) dash cam is highly recommended. This protects against rear-end collisions, hit-and-runs in parking lots, and provides evidence for ride-share drivers or those concerned about interior incidents."}},{"@type":"Question","name":"Q5: Do dash cams record when the car is off?","acceptedAnswer":{"@type":"Answer","text":"Yes, many modern dash cams offer a \"parking mode\" feature that allows them to record when the car is off. This typically requires the dash cam to be hardwired into the vehicle's fuse box to draw continuous power. Parking modes can include motion detection, impact detection, time-lapse recording, or buffered recording, providing surveillance against vandalism, hit-and-runs, or theft attempts while your car is parked. Choosing the right dash cam is an investment in your safety and peace of mind on the road. The models highlighted in this guide represent the best of what 2026 has to offer, combining advanced technology with robust reliability. Whether you prioritize crystal-clear 4K video, comprehensive multi-channel coverage, discreet design, or cutting-edge emergency features, there's a perfect dash cam waiting to protect you on every journey. Drive confidently, knowing you have a silent witness by your side."}}]},
-              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Viofo A229 Pro","offers":{"@type":"Offer","price":"219.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CGDY82R6?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Viofo A119 Mini 2","offers":{"@type":"Offer","price":"89.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0B5FLQBHG?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Vantrue N4 Pro","offers":{"@type":"Offer","price":"299.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0BDK2MX2H?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Garmin Dash Cam Mini 2","offers":{"@type":"Offer","price":"129.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09WYN3J16?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":5,"item":{"@type":"Product","name":"Nextbase 622GW","offers":{"@type":"Offer","price":"349.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B08LN4P8LZ?tag=hiddencamerastv-20"}}}]}
+              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"1080p Touch-Screen Dashcam with CarPlay","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/6a9cd49646faa07ab88321c1cea8_import.webp?v=1776700600","offers":{"@type":"Offer","price":"64.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/1080p-touch-screen-dashcam-with-carplay?ref=hiddencameras"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"4-Inch IPS Dual-Channel Starlight Night-Vision Dashcam","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/1aa432b74625901c07802f039c0b_import.webp?v=1776700594","offers":{"@type":"Offer","price":"44.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/4-inch-ips-dual-channel-starlight-night-vision-dashcam?ref=hiddencameras"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Dual-Lens B6T Dashcam 12MP, 170 Degree View","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/01327f884d96beac832ef6523189_import.webp?v=1776700587","offers":{"@type":"Offer","price":"39.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/dual-lens-b6t-dashcam-12mp-170-view?ref=hiddencameras"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"2.4 Inch Full HD 1080p Dash Cam with Front and Rear","image":"https://cdn.shopify.com/s/files/1/0908/9830/1233/files/a5b11e36-2506-4b80-a1e4-3caf942cb948.jpg?v=1740583181","offers":{"@type":"Offer","price":"39.00","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://fashionistas.ai/products/2-4-inch-full-hd-1080p-dash-cam-car-dvr-front-camera-or-rear-camera-night-vision-g-sensor?ref=hiddencameras"}}}]}
             ]
           }),
         }}
@@ -36,37 +35,8 @@ export default function Page() {
 
       <AdUnit />
 
-      <ComparisonTable
-        title="Quick Comparison"
-        products={PICKS.map(p => ({
-          name: p.n,
-          rating: 4.4,
-          feature: p.w.split(".")[0] + ".",
-          price: p.p,
-          asin: p.a,
-        }))}
-      />
-
-      <h2 className="text-xl font-bold text-white mb-5">Our Top Picks</h2>
-      <div className="space-y-4 mb-10">
-        {PICKS.map((p) => (
-          <div key={p.a} className="card flex gap-4 items-start">
-            <div className="text-3xl font-extrabold text-brand-green/30 leading-none pt-1">#{p.r}</div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white mb-1">{p.n} <span className="text-gray-500 text-sm font-normal">{p.p}</span></h3>
-              <p className="text-gray-400 text-sm mb-3">{p.w}</p>
-              <a
-                href={`https://www.amazon.com/dp/${p.a}?tag=${AMAZON_TAG}`}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
-              >
-                Buy on Amazon — {p.p} &rarr;
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl font-bold text-white mb-5">Our Editor Picks</h2>
+      <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
 

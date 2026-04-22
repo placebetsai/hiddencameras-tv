@@ -1,16 +1,11 @@
 import Layout from "../components/Layout";
-import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import { EditorPickGrid } from "../components/EditorPickCard";
+import { ROUNDUPS } from "../lib/fashionistasProducts";
 
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
-
-const PICKS = [
-  { rank: 1, name: "Blink Mini 2", price: "$34.99", asin: "B0CGX9GQ3Q", why: "Tiny form factor, plugs into any outlet, and guests rarely notice it. Ideal for common areas." },
-  { rank: 2, name: "Ring Indoor Cam (2nd Gen)", price: "$59.99", asin: "B09WZBPX7K", why: "Privacy cover that guests can see you respect. Easy to disclose — built-in privacy shutter." },
-  { rank: 3, name: "Wyze Cam v4", price: "$35.98", asin: "B0CJ9YX7DG", why: "Best price-to-quality ratio. Covers front door and living area on a budget." },
-];
+const PICKS = ROUNDUPS["best-hidden-cameras-airbnb"];
 
 export default function AirbnbPage() {
   return (
@@ -52,38 +47,9 @@ export default function AirbnbPage() {
         </ul>
       </section>
 
-      <ComparisonTable
-        title="Airbnb Camera Comparison"
-        products={PICKS.map(p => ({
-          name: p.name,
-          rating: 4.4,
-          feature: p.why.split(".")[0] + ".",
-          price: p.price,
-          asin: p.asin,
-        }))}
-      />
-
       {/* Top picks */}
-      <h2 className="text-xl font-bold text-white mb-5">Our Top Picks for Airbnb Hosts</h2>
-      <div className="space-y-4 mb-10">
-        {PICKS.map((p) => (
-          <div key={p.asin} className="card flex gap-4 items-start">
-            <div className="text-3xl font-extrabold text-brand-green/30 leading-none pt-1">#{p.rank}</div>
-            <div className="flex-1">
-              <h3 className="font-bold text-white mb-1">{p.name}</h3>
-              <p className="text-gray-400 text-sm mb-3">{p.why}</p>
-              <a
-                href={`https://www.amazon.com/dp/${p.asin}?tag=${AMAZON_TAG}`}
-                target="_blank"
-                rel="nofollow sponsored noopener noreferrer"
-                className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
-              >
-                {p.price} — Buy on Amazon →
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h2 className="text-xl font-bold text-white mb-5">Our Editor Picks</h2>
+      <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
 
