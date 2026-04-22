@@ -46,37 +46,50 @@ function getSectionTag(product) {
   return null;
 }
 
+function shopifyImage(url, width = 700) {
+  if (!url) return url;
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}width=${width}`;
+}
+
 function ProductCard({ p }) {
   const v = p.variants[0] || {};
   const price = v.price || "?";
   const compareAt = v.compare_at_price && parseFloat(v.compare_at_price) > parseFloat(price) ? v.compare_at_price : null;
-  const img = (p.images || [])[0]?.src;
+  const img = shopifyImage((p.images || [])[0]?.src, 700);
   const url = `${SHOP}/products/${p.handle}?ref=${REF}`;
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener nofollow"
-      className="card group relative overflow-hidden hover:border-brand-green/40 transition-all flex flex-col"
+      className="card group relative overflow-hidden hover:border-brand-green/40 hover:-translate-y-1 transition-all flex flex-col shadow-[0_18px_40px_-24px_rgba(0,0,0,0.9)]"
     >
       {img && (
-        <div className="aspect-square bg-brand-bg overflow-hidden">
+        <div className="aspect-square bg-brand-bg overflow-hidden relative">
           <img
             src={img}
             alt={p.title}
             loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
+          <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3">
+            <span className="rounded-full border border-white/15 bg-black/60 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur">
+              {(getSectionTag(p) || "camera").replace("-", " ")}
+            </span>
+            <span className="rounded-full border border-white/15 bg-black/60 px-3 py-1 text-xs font-black text-brand-green backdrop-blur">
+              ${price}
+            </span>
+          </div>
         </div>
       )}
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="text-white text-sm font-bold leading-tight mb-2 line-clamp-2">{p.title}</h3>
+        <h3 className="text-white text-base font-black leading-tight mb-2 line-clamp-2">{p.title}</h3>
         <div className="mt-auto flex items-baseline gap-2">
-          <span className="text-brand-green font-black text-lg">${price}</span>
           {compareAt && (
             <span className="text-brand-muted text-xs line-through">${compareAt}</span>
           )}
-          <span className="ml-auto text-[10px] text-brand-muted uppercase tracking-wider">View →</span>
+          <span className="ml-auto text-[10px] text-brand-muted uppercase tracking-wider">Open on Fashionistas →</span>
         </div>
       </div>
     </a>
@@ -161,8 +174,22 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
           . Tap any product to view details and check out. Inventory is synced live;
           sold-out items are hidden automatically.
         </p>
-        <p className="text-xs text-brand-muted mt-2">
-          {visibleCount} visible live items · last refreshed {lastUpdated}
+        <div className="mt-8 grid max-w-3xl grid-cols-3 gap-3">
+          <div className="card p-4">
+            <div className="text-2xl font-black text-white">{visibleCount}</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-brand-muted">visible items</div>
+          </div>
+          <div className="card p-4">
+            <div className="text-2xl font-black text-white">{populatedSections.length}</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-brand-muted">live lanes</div>
+          </div>
+          <div className="card p-4">
+            <div className="text-2xl font-black text-white">{state === "ready" ? "Live" : "Check"}</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-brand-muted">catalog status</div>
+          </div>
+        </div>
+        <p className="text-xs text-brand-muted mt-4">
+          last refreshed {lastUpdated}
         </p>
       </div>
 
