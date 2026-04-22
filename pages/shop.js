@@ -58,40 +58,35 @@ function ProductCard({ p }) {
   const v = p.variants[0] || {};
   const price = v.price || "?";
   const compareAt = v.compare_at_price && parseFloat(v.compare_at_price) > parseFloat(price) ? v.compare_at_price : null;
-  const img = shopifyImage((p.images || [])[0]?.src, 700);
+  const img = shopifyImage((p.images || [])[0]?.src, 400);
   const url = `${SHOP}/products/${p.handle}?ref=${REF}`;
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener nofollow"
-      className="card group relative overflow-hidden hover:border-brand-green/40 hover:-translate-y-1 transition-all flex flex-col shadow-[0_18px_40px_-24px_rgba(0,0,0,0.9)]"
+      className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.04] hover:border-brand-green/40 hover:-translate-y-0.5 transition-all flex flex-col"
     >
-      {img && (
+      {img ? (
         <div className="aspect-square bg-brand-bg overflow-hidden relative">
           <img
             src={img}
             alt={p.title}
             loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover hover:scale-[1.04] transition-transform duration-500"
           />
-          <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3">
-            <span className="rounded-full border border-white/15 bg-black/60 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur">
-              {(getSectionTag(p) || "camera").replace("-", " ")}
-            </span>
-            <span className="rounded-full border border-white/15 bg-black/60 px-3 py-1 text-xs font-black text-brand-green backdrop-blur">
-              ${price}
-            </span>
-          </div>
+          <span className="absolute top-2 right-2 rounded-full bg-black/70 px-2 py-0.5 text-[11px] font-black text-brand-green backdrop-blur">
+            ${price}
+          </span>
         </div>
-      )}
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="text-white text-base font-black leading-tight mb-2 line-clamp-2">{p.title}</h3>
+      ) : null}
+      <div className="p-3 flex flex-col flex-1">
+        <h3 className="text-white text-[13px] font-bold leading-tight mb-1.5 line-clamp-2 min-h-[2.4rem]">{p.title}</h3>
         <div className="mt-auto flex items-baseline gap-2">
           {compareAt && (
-            <span className="text-brand-muted text-xs line-through">${compareAt}</span>
+            <span className="text-brand-muted text-[11px] line-through">${compareAt}</span>
           )}
-          <span className="ml-auto text-[10px] text-brand-muted uppercase tracking-wider">View product →</span>
+          <span className="ml-auto text-[10px] text-brand-muted uppercase tracking-wider">{(getSectionTag(p) || "camera").replace("-", " ")}</span>
         </div>
       </div>
     </a>
@@ -290,7 +285,7 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
               This category is thin right now, so we are only showing the live item we could verify.
             </p>
           )}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {s.products.map(p => <ProductCard key={p.id} p={p} />)}
           </div>
         </section>
