@@ -1,4 +1,35 @@
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
+// ASIN -> Fashionistas.ai product handle map.
+// Articles still pass legacy ASINs via props; we transparently route them to
+// the closest-matching live product. Unknown ASINs fall back to the generic
+// indoor camera so the link is always valid.
+const ASIN_TO_HANDLE = {
+  // Indoor cams
+  B0CGX9GQ3Q: "wireless-1080p-indoor-security-camera", // Blink Mini 2
+  B09WZBPX7K: "wireless-1080p-indoor-security-camera", // Ring Indoor Cam 2nd Gen
+  B0C7VN19YS: "amcrest-1080p-nanny-pet-wifi-camera",   // Eufy Indoor S350
+  B07XTQJ6SH: "amcrest-1080p-nanny-pet-wifi-camera",   // Eufy Indoor 2K
+  B0CJ9YX7DG: "mini-wireless-wifi-nanny-cam-palm-size", // Wyze Cam v4
+  // Outdoor cams
+  B08C5XKWG6: "1080p-ip66-outdoor-wifi-bullet-camera",  // Arlo Pro 4
+  // Smart/doorbell/premium
+  B0B8QYZRSC: "smart-wireless-video-doorbell-with-night-vision",
+  B09NYZGGJD: "smart-wifi-video-doorbell-m7-with-remote-monitoring",
+  // Detection / counter-surveillance gear -> closest adjacent product
+  B07MFWKM6R: "4k-mini-wifi-pinhole-hidden-camera",
+  B08QJ8YZNS: "4k-mini-wifi-pinhole-hidden-camera",
+  B078T2R64H: "pocket-pen-hd-hidden-camera",
+  B01A7MACL2: "dice-style-hidden-nanny-cam-1080p",
+  B09DN27X5N: "pocket-pen-hd-hidden-camera",
+  B0BQKH6BYK: "mini-wireless-wifi-nanny-cam-palm-size",
+};
+
+const DEFAULT_HANDLE = "wireless-1080p-indoor-security-camera";
+
+function productHref(p) {
+  const handle =
+    p.handle || ASIN_TO_HANDLE[p.asin] || ASIN_TO_HANDLE[p.a] || DEFAULT_HANDLE;
+  return `https://fashionistas.ai/products/${handle}?ref=hiddencameras`;
+}
 
 function Stars({ rating }) {
   return (
@@ -54,12 +85,12 @@ export default function ComparisonTable({ products, title }) {
                 </td>
                 <td className="px-3 py-3 text-center">
                   <a
-                    href={`https://www.amazon.com/dp/${p.asin || p.a}?tag=${AMAZON_TAG}`}
+                    href={productHref(p)}
                     target="_blank"
-                    rel="nofollow sponsored noopener noreferrer"
+                    rel="nofollow noopener noreferrer"
                     className="inline-block bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-xs py-2 px-3 rounded-lg transition whitespace-nowrap"
                   >
-                    Buy Now
+                    View Product →
                   </a>
                 </td>
               </tr>
@@ -67,7 +98,7 @@ export default function ComparisonTable({ products, title }) {
           </tbody>
         </table>
       </div>
-      <p className="text-gray-600 text-xs mt-2">Prices may vary. As an Amazon Associate we earn from qualifying purchases.</p>
+      <p className="text-gray-600 text-xs mt-2">Prices may vary. Products ship from our partner store.</p>
     </div>
   );
 }
