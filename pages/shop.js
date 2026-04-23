@@ -280,11 +280,6 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
             <span className="text-xs text-brand-muted">{s.products.length === 1 ? "1 live item" : `${s.products.length} live items`}</span>
           </div>
           <p className="text-sm text-gray-400 mb-6 max-w-2xl">{s.blurb}</p>
-          {s.products.length < THIN_SECTION_COUNT && (
-            <p className="mb-5 text-sm leading-6 text-amber-200">
-              This category is thin right now, so we are only showing the live item we could verify.
-            </p>
-          )}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {s.products.map(p => <ProductCard key={p.id} p={p} />)}
           </div>
