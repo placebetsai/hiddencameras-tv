@@ -32,7 +32,7 @@ export default function NewsTicker() {
             style={{ background: "linear-gradient(to right, #0a0e12, transparent)" }} />
           <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
             style={{ background: "linear-gradient(to left, #0a0e12 30%, transparent)" }} />
-          <div className="ticker-wrap absolute inset-y-0 left-0 right-0 flex items-center">
+          <div className="ticker-wrap flex items-center h-full" style={{ width: "max-content" }}>
             <div className="ticker-scroll flex items-center shrink-0">
               {headlines.map((h, i) => (
                 <a key={i} href={h.url} target="_blank" rel="noopener noreferrer"
