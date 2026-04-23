@@ -191,6 +191,21 @@ export default function Layout({ children, title, description, canonical }) {
             </div>
 
             <div className="hidden lg:flex items-center gap-2">
+              <form
+                role="search"
+                className="flex items-center bg-white/5 border border-brand-border rounded-full pl-3 focus-within:border-brand-green/40"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const q = e.currentTarget.q.value.trim();
+                  if (!q) return;
+                  window.open(`https://www.google.com/search?q=${encodeURIComponent("site:hiddencameras.tv " + q)}`, "_blank", "noopener");
+                }}
+              >
+                <input name="q" type="search" placeholder="Search…" aria-label="Search site" autoComplete="off" className="bg-transparent outline-none text-white text-xs w-28 py-1.5 placeholder-brand-muted" />
+                <button type="submit" aria-label="Search" className="w-7 h-7 flex items-center justify-center rounded-full bg-brand-green/20 hover:bg-brand-green text-brand-green hover:text-black transition-colors">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                </button>
+              </form>
               <Link href="/my-cams" className="btn-primary text-xs py-1.5 px-3">Submit Feed →</Link>
             </div>
 
