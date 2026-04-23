@@ -42,14 +42,17 @@ body {
   to { transform: translateX(-50%); }
 }
 .ticker-wrap {
-  animation: ticker 14s linear infinite;
+  animation: ticker 45s linear infinite;
   will-change: transform;
+  width: max-content;
+  right: auto;
 }
 .ticker-wrap:hover { animation-play-state: paused; }
 .ticker-scroll-mobile {
-  animation: ticker 11s linear infinite;
+  animation: ticker 24s linear infinite;
   will-change: transform;
   white-space: nowrap;
+  width: max-content;
 }
 
 .fade-up { animation: fadeUp 0.5s ease-out forwards; }
