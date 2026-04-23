@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/generate-icons.js && node scripts/generate-sitemap.js && next build",
+    "build": "node scripts/generate-icons.js && node scripts/generate-sitemap.js && node scripts/generate-news.js && next build",
     "start": "next start",
     "gen:articles": "node scripts/generate-articles.js",
     "gen:tweets": "node scripts/post-twitter.js"

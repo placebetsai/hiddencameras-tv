@@ -1,53 +1,23 @@
-// Server component — fetches live news from Google News RSS hourly.
-// Was previously hardcoded with invented headlines. Now pulls real stories
-// about hidden cameras, security cameras, and surveillance from live sources.
+"use client";
+import { useEffect, useState } from "react";
 
-export const revalidate = 3600; // rebuild hourly
-
-const FALLBACK = [
+// Fetches news.json (built at deploy time by scripts/generate-news.js).
+// Shows fallback until fetch completes so SSG output has content.
+const FALLBACK_HEADLINES = [
   { text: "Hidden cameras, surveillance, and home security coverage", url: "/news" },
 ];
 
-function decodeEntities(s) {
-  return (s || "")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&apos;/g, "'")
-    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)));
-}
+export default function NewsTicker() {
+  const [headlines, setHeadlines] = useState(FALLBACK_HEADLINES);
 
-async function fetchNews() {
-  const query = encodeURIComponent(
-    '"hidden camera" OR "security camera" OR "surveillance camera" OR "doorbell camera" OR "nanny cam"',
-  );
-  const url = `https://news.google.com/rss/search?q=${query}&hl=en-US&gl=US&ceid=US:en`;
-  try {
-    const res = await fetch(url, { next: { revalidate: 3600 } });
-    if (!res.ok) return FALLBACK;
-    const xml = await res.text();
-    const items = [];
-    const itemBlocks = xml.split("<item>").slice(1);
-    for (const block of itemBlocks) {
-      const tm = block.match(/<title>(?:<!\[CDATA\[)?([^<\]]+)(?:\]\]>)?<\/title>/);
-      const lm = block.match(/<link>([^<]+)<\/link>/);
-      if (!tm || !lm) continue;
-      let title = decodeEntities(tm[1]).replace(/\s+-\s+[^-]+$/, "").trim();
-      if (title.length > 110) title = title.slice(0, 107) + "…";
-      if (title.length < 10) continue;
-      items.push({ text: title, url: lm[1].trim() });
-      if (items.length >= 20) break;
-    }
-    return items.length ? items : FALLBACK;
-  } catch {
-    return FALLBACK;
-  }
-}
-
-export default async function NewsTicker() {
-  const headlines = await fetchNews();
+  useEffect(() => {
+    fetch("/news.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data?.items?.length) setHeadlines(data.items);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="bg-[#0a0e12] border-b border-brand-border" style={{ minHeight: "34px" }}>
