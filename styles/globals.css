@@ -42,10 +42,15 @@ body {
   to { transform: translateX(-50%); }
 }
 .ticker-wrap {
-  animation: ticker 18s linear infinite;
+  animation: ticker 30s linear infinite;
   will-change: transform;
 }
 .ticker-wrap:hover { animation-play-state: paused; }
+.ticker-scroll-mobile {
+  animation: ticker 22s linear infinite;
+  will-change: transform;
+  white-space: nowrap;
+}
 
 .fade-up { animation: fadeUp 0.5s ease-out forwards; }
 
