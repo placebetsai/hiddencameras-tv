@@ -32,27 +32,17 @@ export default function NewsTicker() {
             style={{ background: "linear-gradient(to right, #0a0e12, transparent)" }} />
           <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
             style={{ background: "linear-gradient(to left, #0a0e12 30%, transparent)" }} />
-          <div className="ticker-wrap flex items-center h-full" style={{ width: "max-content" }}>
-            <div className="ticker-scroll flex items-center shrink-0">
-              {headlines.map((h, i) => (
-                <a key={i} href={h.url} target="_blank" rel="noopener noreferrer"
-                  className="text-gray-300 text-xs whitespace-nowrap hover:text-brand-green transition-colors duration-150 group flex-shrink-0">
-                  <span className="text-red-500 mr-1.5 text-[10px]">●</span>
-                  <span className="group-hover:underline underline-offset-2">{h.text}</span>
-                  <span className="text-brand-border mx-5">·</span>
-                </a>
-              ))}
-            </div>
-            <div className="ticker-scroll flex items-center shrink-0" aria-hidden="true">
-              {headlines.map((h, i) => (
-                <a key={`dup-${i}`} href={h.url} tabIndex={-1} target="_blank" rel="noopener noreferrer"
-                  className="text-gray-300 text-xs whitespace-nowrap hover:text-brand-green transition-colors duration-150 group flex-shrink-0">
-                  <span className="text-red-500 mr-1.5 text-[10px]">●</span>
-                  <span className="group-hover:underline underline-offset-2">{h.text}</span>
-                  <span className="text-brand-border mx-5">·</span>
-                </a>
-              ))}
-            </div>
+          <div className="ticker-track" style={{ display: "flex", alignItems: "center", height: "100%", width: "max-content" }}>
+            {[...headlines, ...headlines].map((h, i) => (
+              <a key={i} href={h.url} target="_blank" rel="noopener noreferrer"
+                aria-hidden={i >= headlines.length ? "true" : undefined}
+                tabIndex={i >= headlines.length ? -1 : undefined}
+                className="text-gray-300 text-xs whitespace-nowrap hover:text-brand-green transition-colors duration-150 group flex-shrink-0">
+                <span className="text-red-500 mr-1.5 text-[10px]">●</span>
+                <span className="group-hover:underline underline-offset-2">{h.text}</span>
+                <span className="text-brand-border mx-5">·</span>
+              </a>
+            ))}
           </div>
         </div>
       </div>
