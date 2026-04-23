@@ -212,7 +212,7 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
           </div>
           <div className="card p-4">
             <div className="text-2xl font-black text-white">{populatedSections.length}</div>
-            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-brand-muted">live lanes</div>
+            <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-brand-muted">categories</div>
           </div>
           <div className="card p-4">
             <div className="text-2xl font-black text-white">{state === "ready" ? "Live" : "Check"}</div>
