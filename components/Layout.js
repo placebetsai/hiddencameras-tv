@@ -127,7 +127,7 @@ export default function Layout({ children, title, description, canonical }) {
                   <span className="text-[10px] opacity-70">▾</span>
                 </button>
                 <div
-                  className={`absolute left-0 top-full mt-1 w-[520px] p-4 rounded-lg border border-brand-border shadow-xl grid grid-cols-2 gap-x-4 gap-y-1 transition-opacity ${camerasOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+                  className={`absolute left-0 top-full w-[520px] pt-2 px-4 pb-4 rounded-lg border border-brand-border shadow-xl grid grid-cols-2 gap-x-4 gap-y-1 transition-opacity ${camerasOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
                   style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
                   aria-hidden={!camerasOpen}
                 >
@@ -171,7 +171,7 @@ export default function Layout({ children, title, description, canonical }) {
                   <span className="text-[10px] opacity-70">▾</span>
                 </button>
                 <div
-                  className={`absolute left-0 top-full mt-1 w-[240px] p-3 rounded-lg border border-brand-border shadow-xl flex flex-col transition-opacity ${compareOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+                  className={`absolute left-0 top-full w-[240px] pt-2 px-3 pb-3 rounded-lg border border-brand-border shadow-xl flex flex-col transition-opacity ${compareOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
                   style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
                   aria-hidden={!compareOpen}
                 >
