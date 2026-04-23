@@ -105,12 +105,10 @@ export default function Layout({ children, title, description, canonical }) {
             </Link>
 
             {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-0.5">
-              <Link href="/" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Home</Link>
-              <Link href="/live" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card flex items-center gap-1.5 text-red-400 hover:text-red-300 text-sm">
-                <span className="live-dot w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />Live Cams
+            <div className="hidden lg:flex items-center gap-0.5">
+              <Link href="/live" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card flex items-center gap-1.5 text-red-400 hover:text-red-300 text-sm">
+                <span className="live-dot w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />Live
               </Link>
-              <Link href="/news" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">News</Link>
 
               {/* Cameras dropdown */}
               <div
@@ -185,21 +183,18 @@ export default function Layout({ children, title, description, canonical }) {
                 </div>
               </div>
 
-              <Link href="/detect-hidden-cameras" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Detect</Link>
-              <Link href="/reviews" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Reviews</Link>
+              <Link href="/news" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm">News</Link>
+              <Link href="/reviews" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm">Reviews</Link>
+              <Link href="/blog" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm">Blog</Link>
               <Link href="/shop" className="nav-link px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">Shop</Link>
-              <Link href="/blog" className="nav-link px-3 py-1.5 rounded-lg hover:bg-brand-card text-sm">Blog</Link>
-              <Link href="/my-cams" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">Submit Your Feed</Link>
             </div>
 
-            <div className="hidden md:flex items-center gap-2">
-              <Link href="/about" className="nav-link px-2 py-1.5 rounded-lg text-xs hover:bg-brand-card">About</Link>
-              <Link href="/contact" className="nav-link px-2 py-1.5 rounded-lg text-xs hover:bg-brand-card">Contact</Link>
-              <Link href="/my-cams" className="btn-primary text-xs py-1.5 px-3">Submit Your Feed →</Link>
+            <div className="hidden lg:flex items-center gap-2">
+              <Link href="/my-cams" className="btn-primary text-xs py-1.5 px-3">Submit Feed →</Link>
             </div>
 
             {/* Mobile right side */}
-            <div className="flex md:hidden items-center gap-2">
+            <div className="flex lg:hidden items-center gap-2">
               <Link href="/live" className="flex items-center gap-1.5 text-red-400 text-sm font-bold">
                 <span className="live-dot w-2 h-2 rounded-full bg-red-500 inline-block" />LIVE
               </Link>
@@ -216,7 +211,7 @@ export default function Layout({ children, title, description, canonical }) {
 
           {/* Mobile menu */}
           {menuOpen && (
-            <div className="md:hidden border-t border-brand-border bg-brand-bg px-4 py-3 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+            <div className="lg:hidden border-t border-brand-border bg-brand-bg px-4 py-3 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
               {[
                 { href: "/", label: "Home" },
                 { href: "/live", label: "Live World Cams" },
