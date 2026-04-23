@@ -105,7 +105,8 @@ export default function Layout({ children, title, description, canonical }) {
             </Link>
 
             {/* Desktop nav */}
-            <div className="hidden lg:flex items-center gap-0.5">
+            <div className="hidden lg:flex items-center gap-0.5 ml-4">
+              <Link href="/" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm">Home</Link>
               <Link href="/live" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card flex items-center gap-1.5 text-red-400 hover:text-red-300 text-sm">
                 <span className="live-dot w-1.5 h-1.5 rounded-full bg-red-500 inline-block" />Live
               </Link>
