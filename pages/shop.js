@@ -280,7 +280,7 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
             <span className="text-xs text-brand-muted">{s.products.length === 1 ? "1 live item" : `${s.products.length} live items`}</span>
           </div>
           <p className="text-sm text-gray-400 mb-6 max-w-2xl">{s.blurb}</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {s.products.map(p => <ProductCard key={p.id} p={p} />)}
           </div>
         </section>
