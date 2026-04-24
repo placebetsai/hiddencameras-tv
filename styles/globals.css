@@ -50,7 +50,7 @@ body {
   animation-play-state: paused;
 }
 .ticker-scroll-mobile {
-  animation: ticker 20s linear infinite;
+  animation: ticker 12s linear infinite;
   will-change: transform;
   white-space: nowrap;
   width: max-content;
