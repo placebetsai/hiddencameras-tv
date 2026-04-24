@@ -42,8 +42,12 @@ body {
   to { transform: translateX(-50%); }
 }
 .ticker-track {
-  animation: ticker 52s linear infinite;
+  animation: ticker 60s linear infinite;
   will-change: transform;
+}
+.ticker-track:hover,
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
 }
 .ticker-scroll-mobile {
   animation: ticker 20s linear infinite;
