@@ -6,18 +6,36 @@ import CameraIcon from "./CameraIcon";
 import NewsTicker from "./NewsTicker";
 import AdUnit from "./AdUnit";
 
-const CAMERA_CATEGORIES = [
-  { href: "/nanny-cam", label: "Nanny Cams" },
-  { href: "/doorbell-cameras", label: "Doorbell Cameras" },
-  { href: "/outdoor-security-cameras", label: "Outdoor Security Cameras" },
-  { href: "/indoor-security-cameras", label: "Indoor Security Cameras" },
-  { href: "/pet-cameras", label: "Pet Cameras" },
-  { href: "/trail-cameras", label: "Trail Cameras" },
-  { href: "/body-cameras", label: "Body Cameras" },
-  { href: "/car-cameras", label: "Car & Dash Cameras" },
-  { href: "/mini-spy-cameras", label: "Mini Spy Cameras" },
-  { href: "/spy-cameras", label: "Spy Cameras" },
-  { href: "/wireless-security-cameras", label: "Wireless Security Cameras" },
+const CAMERA_GROUPS = [
+  {
+    title: "Home Monitoring",
+    links: [
+      { href: "/nanny-cam", label: "Nanny Cams" },
+      { href: "/indoor-security-cameras", label: "Indoor Cameras" },
+      { href: "/pet-cameras", label: "Pet Cameras" },
+      { href: "/wireless-security-cameras", label: "Wireless Cameras" },
+    ],
+  },
+  {
+    title: "Perimeter & Entry",
+    links: [
+      { href: "/doorbell-cameras", label: "Doorbell Cameras" },
+      { href: "/outdoor-security-cameras", label: "Outdoor Cameras" },
+      { href: "/trail-cameras", label: "Trail Cameras" },
+    ],
+  },
+  {
+    title: "Hidden & Specialty",
+    links: [
+      { href: "/spy-cameras", label: "Spy Cameras" },
+      { href: "/mini-spy-cameras", label: "Mini Spy Cameras" },
+      { href: "/hidden-cameras", label: "Hidden Cameras" },
+      { href: "/hidden-camera-detectors", label: "Hidden Camera Detectors" },
+      { href: "/wifi-hidden-cameras", label: "WiFi Hidden Cameras" },
+      { href: "/body-cameras", label: "Body Cameras" },
+      { href: "/car-cameras", label: "Car & Dash Cameras" },
+    ],
+  },
 ];
 
 const BEST_OF_2026 = [
@@ -38,7 +56,7 @@ const COMPARE_LINKS = [
   { href: "/nest-cam-vs-arlo", label: "Nest Cam vs Arlo" },
 ];
 
-export default function Layout({ children, title, description, canonical }) {
+export default function Layout({ children, title, description, canonical, robots }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [camerasOpen, setCamerasOpen] = useState(false);
   const [compareOpen, setCompareOpen] = useState(false);
@@ -46,6 +64,7 @@ export default function Layout({ children, title, description, canonical }) {
   const t = title || "HiddenCameras.tv — Live Cams & Security Reviews";
   const d = description || "Watch 500+ live public cameras worldwide. Expert reviews of Ring, Arlo, Blink, Wyze & Nest. Surveillance news 24/7.";
   const url = canonical || "https://hiddencameras.tv";
+  const robotsContent = robots || "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
   const isContactRoute = router.pathname === "/contact";
 
   return (
@@ -76,7 +95,7 @@ export default function Layout({ children, title, description, canonical }) {
         <meta name="twitter:description" content={d} />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="robots" content={robotsContent} />
         <meta name="theme-color" content="#f59e0b" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -128,17 +147,24 @@ export default function Layout({ children, title, description, canonical }) {
                   <span className="text-[10px] opacity-70">▾</span>
                 </button>
                 <div
-                  className={`absolute left-0 top-full w-[520px] pt-2 px-4 pb-4 rounded-lg border border-brand-border shadow-xl grid grid-cols-2 gap-x-4 gap-y-1 transition-opacity ${camerasOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+                  className={`absolute left-0 top-full w-[760px] max-w-[92vw] pt-2 px-4 pb-4 rounded-lg border border-brand-border shadow-xl grid grid-cols-[1.3fr_1fr] gap-x-4 gap-y-1 transition-opacity ${camerasOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
                   style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
                   aria-hidden={!camerasOpen}
                 >
                   <div>
-                    <p className="text-[10px] uppercase tracking-widest text-brand-muted mb-2">Categories</p>
-                    <div className="flex flex-col">
-                      {CAMERA_CATEGORIES.map(({ href, label }) => (
-                        <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
-                          {label}
-                        </Link>
+                    <p className="text-[10px] uppercase tracking-widest text-brand-muted mb-2">Camera Types</p>
+                    <div className="grid grid-cols-3 gap-4">
+                      {CAMERA_GROUPS.map((group) => (
+                        <div key={group.title}>
+                          <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-brand-green">{group.title}</p>
+                          <div className="flex flex-col">
+                            {group.links.map(({ href, label }) => (
+                              <Link key={href} href={href} className="text-sm text-brand-text hover:text-brand-green hover:bg-brand-card px-2 py-1 rounded transition">
+                                {label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -214,6 +240,9 @@ export default function Layout({ children, title, description, canonical }) {
               <Link href="/live" className="flex items-center gap-1.5 text-red-400 text-sm font-bold">
                 <span className="live-dot w-2 h-2 rounded-full bg-red-500 inline-block" />LIVE
               </Link>
+              <Link href="/shop" className="px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-green hover:bg-brand-green/10 transition">
+                Shop
+              </Link>
               <button onClick={() => setMenuOpen(!menuOpen)} className="text-brand-muted hover:text-white p-2 rounded-lg hover:bg-brand-card transition">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                   {menuOpen
@@ -234,7 +263,7 @@ export default function Layout({ children, title, description, canonical }) {
                 { href: "/news", label: "Surveillance News" },
                 { href: "/detect-hidden-cameras", label: "Detect Hidden Cameras" },
                 { href: "/reviews", label: "Camera Reviews" },
-                { href: "/shop", label: "Shop Cameras" },
+                { href: "/shop", label: "Shop" },
                 { href: "/blog", label: "Blog & Guides" },
                 { href: "/history-of-hidden-cameras", label: "Camera History" },
                 { href: "/my-cams", label: "Submit Your Feed" },
@@ -245,12 +274,17 @@ export default function Layout({ children, title, description, canonical }) {
                 </Link>
               ))}
 
-              <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">Cameras</p>
-              {CAMERA_CATEGORIES.map(({ href, label }) => (
-                <Link key={href} href={href} onClick={() => setMenuOpen(false)}
-                  className="text-brand-muted hover:text-white hover:bg-brand-card px-3 py-2 rounded-lg text-sm transition">
-                  {label}
-                </Link>
+              <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">Camera Types</p>
+              {CAMERA_GROUPS.map((group) => (
+                <div key={group.title} className="mt-1">
+                  <p className="px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-brand-green">{group.title}</p>
+                  {group.links.map(({ href, label }) => (
+                    <Link key={href} href={href} onClick={() => setMenuOpen(false)}
+                      className="text-brand-muted hover:text-white hover:bg-brand-card px-3 py-2 rounded-lg text-sm transition">
+                      {label}
+                    </Link>
+                  ))}
+                </div>
               ))}
 
               <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">Best Of 2026</p>
