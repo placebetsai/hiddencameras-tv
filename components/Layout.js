@@ -329,13 +329,6 @@ export default function Layout({ children, title, description, canonical, robots
 
       <main>{children}</main>
 
-      {/* Sticky anchor ad — site-wide, highest RPM */}
-      {!isContactRoute && (
-        <div className="fixed bottom-0 left-0 right-0 z-40" style={{ minHeight: "0" }}>
-          <AdUnit />
-        </div>
-      )}
-
       {/* Footer */}
       <footer className="border-t border-brand-border bg-brand-surface mt-10 md:mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
@@ -381,6 +374,7 @@ export default function Layout({ children, title, description, canonical, robots
                 <Link href="/contact" className="hover:text-brand-green transition">Contact</Link>
                 <Link href="/hidden-camera-laws" className="hover:text-brand-green transition">Hidden Camera Laws</Link>
                 <Link href="/privacy" className="hover:text-brand-green transition">Privacy Policy</Link>
+                <Link href="/terms" className="hover:text-brand-green transition">Terms of Use</Link>
                 <a href="mailto:info@hiddencameras.tv" className="hover:text-brand-green transition">info@hiddencameras.tv</a>
               </div>
             </div>
@@ -397,7 +391,7 @@ export default function Layout({ children, title, description, canonical, robots
           </div>
           <div className="border-t border-brand-border pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted">
             <p>© {new Date().getFullYear()} HiddenCameras.tv · Amazon Associate: we earn commissions on qualifying purchases.</p>
-            <p>All live cameras are publicly accessible streams. We do not host or store video footage.</p>
+            <p>Educational security content only. All live cameras are publicly accessible streams. We do not host or store video footage.</p>
           </div>
         </div>
       </footer>

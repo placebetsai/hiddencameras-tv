@@ -105,17 +105,11 @@ export default function Article({ article }) {
 
       <AffiliateDisclosure />
 
-      {/* Ad after intro */}
-      <AdUnit />
-
       {/* First half of article */}
       <article
         className="prose-dark max-w-none"
         dangerouslySetInnerHTML={{ __html: bodyFirst }}
       />
-
-      {/* Mid-content ad */}
-      {bodySecond && <AdUnit />}
 
       {/* Second half of article */}
       {bodySecond && (
@@ -125,7 +119,6 @@ export default function Article({ article }) {
         />
       )}
 
-      {/* Bottom ad */}
       <AdUnit />
 
       <div className="card border-brand-green/30 mt-10 text-center py-8">

@@ -1,5 +1,4 @@
 import Layout from "../components/Layout";
-import AdUnit from "../components/AdUnit";
 import Link from "next/link";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
@@ -19,9 +18,13 @@ export default function Page() {
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Hidden Camera Laws by State (2026)</h1>
       <p className="text-gray-400 mb-8 max-w-2xl">Complete guide to hidden camera and surveillance laws in all 50 US states. What's legal, recording consent rules, and penalties.</p>
 
-      <AdUnit />
-
-      <AdUnit />
+      <div className="card border-yellow-500/20 mb-8">
+        <p className="text-gray-300 text-sm leading-relaxed">
+          This legal guide is informational only and is not legal advice. Laws change and
+          local rules can differ. Confirm current requirements with an attorney or official
+          state source before installing or using any recording device.
+        </p>
+      </div>
 
       <p className="text-xs text-gray-600 mt-8">As an Amazon Associate, HiddenCameras.tv earns from qualifying purchases. <Link href="/privacy" className="underline">Privacy Policy</Link></p>
     </Layout>

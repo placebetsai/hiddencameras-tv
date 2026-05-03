@@ -71,6 +71,8 @@ export default function About() {
             { icon: "📦", title: "We Buy the Cameras", body: "Every camera in our reviews is purchased at retail or borrowed from real users — never sent by manufacturers for review." },
             { icon: "🧪", title: "Real-World Testing", body: "We test in actual homes and offices, not controlled lab environments. Night vision, motion alerts, app reliability — all tested over weeks, not hours." },
             { icon: "💰", title: "No Pay-to-Play", body: "Our rankings are never for sale. Affiliate links help fund the site, but they never influence our scores or recommendations." },
+            { icon: "📝", title: "Editorial Review", body: "Guides are reviewed for legality, safety, product claims, and whether they help readers protect privacy rather than invade it." },
+            { icon: "⚖️", title: "Safety First", body: "We do not endorse illegal recording, voyeurism, harassment, or monitoring people where they expect privacy." },
           ].map(item => (
             <div key={item.title} className="card">
               <div className="text-3xl mb-3">{item.icon}</div>

@@ -51,9 +51,9 @@ const STATIC_PAGES = [
   { url: "/best-pet-camera-2026/", priority: "0.8", changefreq: "monthly" },
   { url: "/best-car-dash-cam-2026/", priority: "0.8", changefreq: "monthly" },
   { url: "/about/", priority: "0.6", changefreq: "monthly" },
-  { url: "/submit-cam/", priority: "0.5", changefreq: "monthly" },
   { url: "/contact/", priority: "0.4", changefreq: "monthly" },
   { url: "/privacy/", priority: "0.3", changefreq: "monthly" },
+  { url: "/terms/", priority: "0.3", changefreq: "monthly" },
 ];
 
 const REVIEW_SLUGS = [
