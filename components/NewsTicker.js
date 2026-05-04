@@ -55,8 +55,10 @@ export default function NewsTicker() {
         </div>
         <div className="flex-1 overflow-hidden px-3">
           <div className="ticker-scroll-mobile flex items-center">
-            {headlines.map((h, i) => (
+            {[...headlines, ...headlines].map((h, i) => (
               <a key={i} href={h.url} target="_blank" rel="noopener noreferrer"
+                aria-hidden={i >= headlines.length ? "true" : undefined}
+                tabIndex={i >= headlines.length ? -1 : undefined}
                 className="text-gray-300 text-[11px] whitespace-nowrap mr-8 flex-shrink-0">
                 <span className="text-red-500 mr-1">●</span>
                 {h.text}
