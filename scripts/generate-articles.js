@@ -11,6 +11,43 @@
 require("dotenv").config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
+// Sentinel (RunPod Qwen3-30B free tier) — falls back to Gemini if env vars missing
+const RUNPOD_ENDPOINT_ID = process.env.SENTINEL_ENDPOINT_ID;
+const RUNPOD_API_KEY = process.env.RUNPOD_API_KEY;
+const USE_SENTINEL = !!(RUNPOD_ENDPOINT_ID && RUNPOD_API_KEY);
+async function askSentinel(prompt) {
+  const baseUrl = `https://api.runpod.ai/v2/${RUNPOD_ENDPOINT_ID}`;
+  const headers = { "Authorization": `Bearer ${RUNPOD_API_KEY}`, "Content-Type": "application/json" };
+  const body = { input: { openai_route: "/v1/chat/completions", openai_input: { model: "qwen/qwen3-30b-a3b", messages: [{ role: "user", content: prompt }], max_tokens: 4000, temperature: 0.3 } } };
+  const submit = await fetch(`${baseUrl}/run`, { method: "POST", headers, body: JSON.stringify(body) });
+  if (!submit.ok) throw new Error(`Sentinel /run HTTP ${submit.status}: ${(await submit.text()).slice(0, 300)}`);
+  const { id: jobId } = await submit.json();
+  if (!jobId) throw new Error(`Sentinel: no job id`);
+  let json;
+  for (let i = 0; i < 60; i++) {
+    await new Promise((r) => setTimeout(r, 5000));
+    const status = await fetch(`${baseUrl}/status/${jobId}`, { headers });
+    if (!status.ok) continue;
+    json = await status.json();
+    if (json.status === "COMPLETED") break;
+    if (json.status === "FAILED" || json.status === "CANCELLED") throw new Error(`Sentinel ${json.status}: ${JSON.stringify(json).slice(0, 300)}`);
+  }
+  if (!json || json.status !== "COMPLETED") throw new Error(`Sentinel timeout, last=${json && json.status}`);
+  const out = json.output;
+  let content = Array.isArray(out) ? out[0]?.choices?.[0]?.message?.content : out?.choices?.[0]?.message?.content;
+  if (!content) throw new Error(`Sentinel: empty content`);
+  if (content.includes("<think>") && content.includes("</think>")) content = content.slice(content.lastIndexOf("</think>") + 8).trim();
+  return content;
+}
+async function llmGenerate(prompt) {
+  if (USE_SENTINEL) {
+    return await askSentinel(prompt);
+  }
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  const result = await model.generateContent(prompt);
+  return result.response.text();
+}
+
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = "placebetsai/hiddencameras-tv";
 const BRANCH       = "main";
@@ -83,9 +120,7 @@ Return ONLY a JSON object, no other text:
   "category": "${topic.category}"
 }`;
 
-  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-  const result = await model.generateContent(prompt);
-  let text = result.response.text().trim();
+  let text = (await llmGenerate(prompt)).trim();
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) throw new Error("No JSON in response");
   let raw = match[0];
@@ -158,9 +193,7 @@ async function postTweet(article, slug) {
     const twitter = new TwitterApi({ appKey: X_API_KEY, appSecret: X_API_SECRET, accessToken: X_ACCESS_TOKEN, accessSecret: X_ACCESS_TOKEN_SECRET });
 
     const prompt = `Write a punchy 200-char tweet teaser for this article: "${article.title}". No hashtags. End with the link placeholder [LINK]. Return only the tweet text.`;
-    const tweetModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-    const tweetResult = await tweetModel.generateContent(prompt);
-    const tweetText = tweetResult.response.text().trim().replace("[LINK]", `https://hiddencameras.tv/blog/${slug}`);
+    const tweetText = (await llmGenerate(prompt)).trim().replace("[LINK]", `https://hiddencameras.tv/blog/${slug}`);
     const res = await twitter.v2.tweet(tweetText);
     console.log(`[twitter] Posted tweet: ${res.data.id}`);
   } catch (err) {
