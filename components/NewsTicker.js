@@ -48,14 +48,14 @@ export default function NewsTicker() {
       </div>
 
       {/* Mobile */}
-      <div className="sm:hidden flex items-center h-[34px]">
+      <div className="sm:hidden flex items-center h-[34px] overflow-hidden">
         <div className="shrink-0 flex items-center gap-1 bg-red-600 px-2 h-full">
           <span className="live-dot w-1 h-1 rounded-full bg-white inline-block" />
           <span className="text-white text-[9px] font-extrabold tracking-wider">CAM</span>
         </div>
-        <div className="flex-1 overflow-hidden px-3">
+        <div className="flex-1 overflow-hidden px-3 relative h-full flex items-center">
           <div className="ticker-scroll-mobile flex items-center">
-            {[...headlines, ...headlines].map((h, i) => (
+            {[...headlines, ...headlines, ...headlines].map((h, i) => (
               <a key={i} href={h.url} target="_blank" rel="noopener noreferrer"
                 aria-hidden={i >= headlines.length ? "true" : undefined}
                 tabIndex={i >= headlines.length ? -1 : undefined}
