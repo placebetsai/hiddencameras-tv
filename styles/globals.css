@@ -36,30 +36,6 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* News ticker */
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-@keyframes ticker-mobile {
-  from { transform: translateX(0); }
-  to { transform: translateX(-33.333%); }
-}
-.ticker-track {
-  animation: ticker 44s linear infinite;
-  will-change: transform;
-}
-.ticker-track:hover,
-.ticker-wrap:hover .ticker-track {
-  animation-play-state: paused;
-}
-.ticker-scroll-mobile {
-  animation: ticker-mobile 36s linear infinite;
-  will-change: transform;
-  white-space: nowrap;
-  width: max-content;
-}
-
 .fade-up { animation: fadeUp 0.5s ease-out forwards; }
 
 /* Disabled — kept as no-ops so class references don't break */
