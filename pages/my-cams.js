@@ -157,7 +157,7 @@ export default function MyCams() {
 
   // ── SESSION LOADING ───────────────────────────────────────────────────────
   if (!sessionChecked) return (
-    <Layout title="Submit Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
+    <Layout title="Submit Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams" robots="noindex, nofollow, noarchive, nosnippet">
       <div className="flex items-center justify-center min-h-[50vh]">
         <div className="text-brand-muted text-sm">Loading...</div>
       </div>
@@ -166,7 +166,7 @@ export default function MyCams() {
 
   // ── NOT LOGGED IN ─────────────────────────────────────────────────────────
   if (!user) return (
-    <Layout title="Submit Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
+    <Layout title="Submit Your Feed — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams" robots="noindex, nofollow, noarchive, nosnippet">
       <div className="max-w-md mx-auto px-4 py-12">
         <div className="text-center mb-8">
           <div className="w-16 h-16 rounded-2xl bg-brand-green/10 border border-brand-green/30 flex items-center justify-center mx-auto mb-4">
@@ -239,7 +239,7 @@ export default function MyCams() {
 
   // ── LOGGED IN ─────────────────────────────────────────────────────────────
   return (
-    <Layout title="My Feeds — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams">
+    <Layout title="My Feeds — HiddenCameras.tv" canonical="https://hiddencameras.tv/my-cams" robots="noindex, nofollow, noarchive, nosnippet">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
 
         {/* Header */}

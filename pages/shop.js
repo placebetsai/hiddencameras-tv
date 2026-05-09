@@ -184,7 +184,7 @@ export default function Shop({ subsections, lastUpdated, state, message, feature
   return (
     <Layout
       title="Shop Security Cameras 2026 | HiddenCameras.tv"
-      description={`Shop ${visibleCount}+ live security cameras: hidden, indoor, outdoor, doorbell, dash, and nanny cameras. Updated daily with fast US shipping.`}
+      description="Shop live security cameras: hidden, indoor, outdoor, doorbell, dash, and nanny cameras. Updated daily with fast US shipping."
       canonical="https://hiddencameras.tv/shop"
     >
       <script

@@ -49,6 +49,7 @@ export default function SubmitCam() {
       title="Submit a Live Public Cam — HiddenCameras.tv"
       description="Know a great public live webcam? Submit it to our global directory."
       canonical="https://hiddencameras.tv/submit-cam"
+      robots="noindex, nofollow, noarchive, nosnippet"
     >
       <div className="max-w-xl mx-auto px-4 py-8">
         <div className="flex items-center gap-3 mb-6">
