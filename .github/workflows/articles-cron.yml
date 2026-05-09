@@ -1,0 +1,44 @@
+name: Article generation (replaces Render cron)
+
+# Runs 3x/day (12 / 17 / 22 UTC) — matches the Render cron schedule that was failing.
+# Generates SEO articles via Anthropic/Gemini, commits them, triggers a Pages redeploy.
+# Free GH Actions tier covers this easily.
+
+on:
+  schedule:
+    - cron: "0 12 * * *"
+    - cron: "0 17 * * *"
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm ci || npm install --legacy-peer-deps
+      - name: Generate articles
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY:    ${{ secrets.GEMINI_API_KEY }}
+          SENTINEL_ENDPOINT_ID: ${{ secrets.SENTINEL_ENDPOINT_ID }}
+          RUNPOD_API_KEY:    ${{ secrets.RUNPOD_API_KEY }}
+          NEXT_PUBLIC_AMAZON_TAG: ${{ secrets.NEXT_PUBLIC_AMAZON_TAG }}
+        run: node scripts/generate-articles.js
+      - name: Commit + push generated articles
+        run: |
+          git config user.name "ihatecollege-bot"
+          git config user.email "bot@ihatecollege.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No new articles — nothing to commit."
+          else
+            git commit -m "auto: generated articles ($(date -u +%Y-%m-%dT%H:%M))"
+            git push
+          fi
