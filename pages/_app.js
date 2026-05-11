@@ -2,14 +2,20 @@ import Script from "next/script";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
+  const enableAdUnits = process.env.NEXT_PUBLIC_ENABLE_AD_UNITS === "true";
+
   return (
     <>
-      {/* Google AdSense */}
+      <Script id="adsense-npa" strategy="beforeInteractive">
+        {`window.adsbygoogle = window.adsbygoogle || []; window.adsbygoogle.requestNonPersonalizedAds = 1;`}
+      </Script>
+
+      {/* Keep the publisher tag detectable, but only request ad slots when explicitly enabled. */}
       <Script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7215975042937417"
         crossOrigin="anonymous"
-        strategy="afterInteractive"
+        strategy={enableAdUnits ? "afterInteractive" : "lazyOnload"}
       />
 
       {/*
