@@ -166,3 +166,380 @@ body {
     @apply text-brand-green;
   }
 }
+
+/* ================================================================
+   HIDDENCAMERAS.TV — CINEMATIC SURVEILLANCE ANIMATION LAYER 2026
+   Night-vision green, scanlines, CCTV aesthetic, amber alerts
+   ================================================================ */
+
+/* ---- Design tokens ---- */
+:root {
+  --hc-amber: #f59e0b;
+  --hc-green: #00e87a;
+  --hc-red: #ef4444;
+  --hc-dark: #0b1220;
+  --hc-surface: #111a2e;
+  --hc-card: #142036;
+  --hc-border: #1f2a44;
+}
+
+/* ---- Global animated background ---- */
+@keyframes hc-nebula {
+  0%, 100% { transform: translate3d(0,0,0) scale(1); }
+  33%       { transform: translate3d(1.5%,-1%,0) scale(1.02); }
+  66%       { transform: translate3d(-1%,1.5%,0) scale(.98); }
+}
+@keyframes hc-scanline {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100px; }
+}
+@keyframes hc-grid-drift {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 48px 0, 0 48px; }
+}
+@keyframes hc-pulse-ring {
+  0%   { transform: scale(1); opacity: .8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+@keyframes hc-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: .3; }
+}
+@keyframes hc-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes hc-sweep-x {
+  0%   { transform: translateX(-115%); }
+  100% { transform: translateX(115%); }
+}
+@keyframes hc-gradient-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes hc-glow-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(0,232,122,.2), 0 0 32px rgba(0,232,122,.06); }
+  50%       { box-shadow: 0 0 28px rgba(0,232,122,.45), 0 0 64px rgba(0,232,122,.18); }
+}
+@keyframes hc-radar {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes hc-signal-bar {
+  0%, 100% { height: 6px; }
+  50%       { height: 20px; }
+}
+@keyframes hc-fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hc-counter {
+  from { opacity: 0; transform: scale(.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes hc-crosshair-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Site background ---- */
+.hc-site-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.hc-site-orb-1 {
+  position: absolute;
+  width: min(700px, 90vw);
+  height: min(700px, 90vw);
+  border-radius: 50%;
+  top: -15%; left: -10%;
+  background: radial-gradient(circle, rgba(245,158,11,.14), rgba(245,158,11,.06), transparent 72%);
+  will-change: transform;
+  animation: hc-nebula 22s ease-in-out infinite alternate;
+}
+.hc-site-orb-2 {
+  position: absolute;
+  width: min(600px, 80vw);
+  height: min(600px, 80vw);
+  border-radius: 50%;
+  bottom: 0; right: -12%;
+  background: radial-gradient(circle, rgba(0,232,122,.10), rgba(0,232,122,.04), transparent 72%);
+  will-change: transform;
+  animation: hc-nebula 28s ease-in-out infinite alternate-reverse;
+}
+.hc-site-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(245,158,11,.025) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(0deg,  rgba(245,158,11,.02) 0 1px, transparent 1px 48px);
+  mask-image: linear-gradient(to bottom, black 20%, transparent 60%);
+  animation: hc-grid-drift 18s linear infinite;
+}
+
+/* ---- Hero section ---- */
+.hc-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hc-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(11,18,32,.55) 0%, rgba(11,18,32,.85) 55%, rgba(11,18,32,1) 100%),
+    linear-gradient(90deg, rgba(11,18,32,.9) 0%, transparent 50%, rgba(11,18,32,.6) 100%);
+  z-index: 1;
+}
+.hc-hero-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,.08) 3px,
+    rgba(0,0,0,.08) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+  opacity: .6;
+}
+.hc-hero-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,232,122,.04) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(0deg,  rgba(0,232,122,.03) 0 1px, transparent 1px 60px);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 90%);
+  animation: hc-grid-drift 20s linear infinite;
+  z-index: 2;
+}
+.hc-hero-content { position: relative; z-index: 3; }
+
+/* ---- Camera lens / radar decoration ---- */
+.hc-lens {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hc-lens::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,232,122,.3);
+  animation: hc-radar 8s linear infinite;
+}
+.hc-lens::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,232,122,.15);
+  animation: hc-radar 12s linear infinite reverse;
+}
+.hc-pulse-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--hc-red);
+  animation: hc-blink 1.2s ease-in-out infinite;
+}
+.hc-pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--hc-red);
+  animation: hc-pulse-ring 1.5s ease-out infinite;
+}
+
+/* ---- Signal bars ---- */
+.hc-signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 20px;
+}
+.hc-signal-bars span {
+  width: 3px;
+  border-radius: 1px;
+  background: var(--hc-green);
+  animation: hc-signal-bar 1.2s ease-in-out infinite;
+}
+.hc-signal-bars span:nth-child(2) { animation-delay: .15s; }
+.hc-signal-bars span:nth-child(3) { animation-delay: .3s; }
+.hc-signal-bars span:nth-child(4) { animation-delay: .45s; }
+
+/* ---- Cards ---- */
+.hc-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--hc-border);
+  background: var(--hc-card);
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1), border-color .25s, box-shadow .25s;
+}
+.hc-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(245,158,11,.05), transparent 55%, rgba(0,232,122,.03));
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.hc-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(245,158,11,.09), transparent 70%);
+  transform: translateX(-115%);
+  transition: transform .6s cubic-bezier(.25,.46,.45,.94);
+  pointer-events: none;
+}
+.hc-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(245,158,11,.4);
+  box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(245,158,11,.2), 0 0 40px rgba(245,158,11,.08);
+}
+.hc-card:hover::before { opacity: 1; }
+.hc-card:hover::after  { transform: translateX(115%); }
+
+/* ---- CCTV corner brackets (used on camera cards) ---- */
+.hc-corners::before, .hc-corners::after {
+  content: "";
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: rgba(0,232,122,.6);
+  border-style: solid;
+}
+.hc-corners::before { top: 6px; left: 6px; border-width: 2px 0 0 2px; }
+.hc-corners::after  { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; }
+
+/* ---- Brand logo pill ---- */
+.hc-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hc-border);
+  background: var(--hc-surface);
+  font-size: .8rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  letter-spacing: .04em;
+  transition: border-color .2s, background .2s, transform .2s;
+  cursor: default;
+}
+.hc-brand-pill:hover {
+  border-color: rgba(245,158,11,.4);
+  background: rgba(245,158,11,.06);
+  transform: translateY(-2px);
+}
+
+/* ---- Alert badge ---- */
+.hc-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .65rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  animation: hc-glow-pulse 2.5s ease-in-out infinite;
+}
+.hc-alert-live {
+  background: rgba(239,68,68,.18);
+  color: #f87171;
+  border: 1px solid rgba(239,68,68,.35);
+}
+.hc-alert-new {
+  background: rgba(0,232,122,.12);
+  color: #00e87a;
+  border: 1px solid rgba(0,232,122,.3);
+}
+
+/* ---- Gradient text ---- */
+.hc-gradient-text {
+  background: linear-gradient(135deg, #fff 30%, #f59e0b 58%, #00e87a);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hc-gradient-flow 6s ease-in-out infinite;
+}
+.hc-amber-text {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hc-gradient-flow 4s ease-in-out infinite;
+}
+
+/* ---- Stat card ---- */
+.hc-stat {
+  text-align: center;
+  padding: 20px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--hc-border);
+  background: var(--hc-surface);
+  animation: hc-counter .5s ease-out both;
+}
+.hc-stat-value {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -.03em;
+  color: var(--hc-amber);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hc-stat-label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+/* ---- Fade-in-up for stagger ---- */
+.hc-fade-up {
+  animation: hc-fadeInUp .5s ease-out both;
+}
+.hc-fade-up:nth-child(1) { animation-delay: .05s; }
+.hc-fade-up:nth-child(2) { animation-delay: .1s; }
+.hc-fade-up:nth-child(3) { animation-delay: .15s; }
+.hc-fade-up:nth-child(4) { animation-delay: .2s; }
+.hc-fade-up:nth-child(5) { animation-delay: .25s; }
+.hc-fade-up:nth-child(6) { animation-delay: .3s; }
+
+/* ---- Section divider ---- */
+.hc-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,158,11,.3), rgba(0,232,122,.2), transparent);
+  margin: 3rem 0;
+  animation: hc-gradient-flow 5s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  .hc-site-orb-1, .hc-site-orb-2 { opacity: .6; }
+  .hc-stat-value { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
