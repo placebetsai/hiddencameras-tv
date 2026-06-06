@@ -2,173 +2,398 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const FALLBACK_HEADLINES = [
-  { id: "fallback-1", text: "Hidden cameras, surveillance, and home security coverage", url: "/news" },
-  { id: "fallback-2", text: "Security camera reviews, privacy guides, and live camera updates", url: "/reviews" },
-  { id: "fallback-3", text: "Learn where cameras are legal, useful, and worth the money", url: "/hidden-camera-laws" },
+const HC_KEYWORDS = [
+  "Ring", "Arlo", "Wyze", "Blink", "Nest", "Eufy", "Reolink", "Hikvision",
+  "Airbnb", "FBI", "FTC", "GDPR", "4K", "AI", "privacy", "surveillance",
+  "hidden camera", "doorbell", "dash cam", "nanny cam",
+];
+
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function highlightTitle(title) {
+  const t = String(title || "");
+  if (!t) return t;
+  const sorted = [...HC_KEYWORDS].sort((a, b) => b.length - a.length);
+  const pattern = new RegExp(`(${sorted.map(escapeRegExp).join("|")})`, "gi");
+  const parts = t.split(pattern);
+  return parts.map((part, idx) => {
+    if (!part) return null;
+    const isKw = sorted.some((k) => k.toLowerCase() === part.toLowerCase());
+    return isKw ? <span key={idx} className="kw">{part}</span> : <span key={idx}>{part}</span>;
+  });
+}
+
+const FALLBACKS = [
+  { title: "Ring Pro 4 debuts AI facial recognition without cloud processing", url: "/news" },
+  { title: "Airbnb bans all indoor hidden cameras worldwide effective April 2026", url: "/news" },
+  { title: "EU Surveillance Camera Act now in full effect — 30-day footage limits", url: "/news" },
+  { title: "FTC fines spy cam seller $2.1M for marketing covert devices as household objects", url: "/news" },
+  { title: "Wyze Cam v5 leak: 4K, local AI, no subscription fees", url: "/news" },
+  { title: "Hidden camera detector sales up 340% in 2026 after hotel incidents", url: "/news" },
 ];
 
 export default function NewsTicker() {
-  const [mounted, setMounted] = useState(false);
-  const [headlines, setHeadlines] = useState(FALLBACK_HEADLINES);
+  const [items, setItems] = useState([]);
+  const [ready, setReady] = useState(false);
+  const [runKey, setRunKey] = useState(0);
   const [pausedMobile, setPausedMobile] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    fetch("/news.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        const items = (data?.items || [])
-          .map((item, index) => ({
-            id: item.id || item.url || `news-${index}`,
-            text: item.text || item.title,
-            url: item.url || "/news",
+    let alive = true;
+
+    async function load() {
+      try {
+        // Try API route first, fall back to static news.json
+        let data = null;
+        try {
+          const r = await fetch("/api/news", { cache: "no-store" });
+          if (r.ok) data = await r.json();
+        } catch {}
+        if (!data) {
+          const r = await fetch("/news.json");
+          if (r.ok) data = await r.json();
+        }
+        if (!alive) return;
+
+        const raw = Array.isArray(data)
+          ? data
+          : (data?.items || data?.headlines || []);
+
+        const list = raw
+          .map((item) => ({
+            title: item.title || item.text || item.headline || "",
+            url: item.url || item.link || "/news",
           }))
-          .filter((item) => item.text);
-        if (items.length) setHeadlines(items);
-      })
-      .catch(() => {});
+          .filter((i) => i.title)
+          .slice(0, 20);
+
+        setItems(list.length ? list : FALLBACKS);
+
+        setReady(false);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (!alive) return;
+            setRunKey((k) => k + 1);
+            setReady(true);
+          });
+        });
+      } catch {
+        if (!alive) return;
+        setItems(FALLBACKS);
+        setReady(false);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (!alive) return;
+            setRunKey((k) => k + 1);
+            setReady(true);
+          });
+        });
+      }
+    }
+
+    load();
+    const t = setInterval(load, 30 * 60 * 1000);
+    return () => { alive = false; clearInterval(t); };
   }, []);
 
-  const trackItems = useMemo(() => [...headlines, ...headlines], [headlines]);
-
-  if (!mounted) return null;
+  const contentItems = useMemo(() => items.slice(0, 20), [items]);
+  const hasItems = contentItems.length > 0;
 
   return (
-    <div className="hc-ticker" aria-label="Hidden camera and security news">
-      <div className="hc-ticker__label" aria-hidden="true">
-        <span className="hc-ticker__dot" />
-        <span className="hc-ticker__label-full">CAM NEWS</span>
-        <span className="hc-ticker__label-short">CAM</span>
-      </div>
-      <div className="hc-ticker__viewport" onClick={() => setPausedMobile((p) => !p)}>
-        <div className={`hc-ticker__track ${pausedMobile ? "is-paused" : ""}`}>
-          {trackItems.map((item, index) => (
-            <a
-              key={`${item.id}-${index}`}
-              href={item.url}
-              target={item.url.startsWith("http") ? "_blank" : undefined}
-              rel={item.url.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="hc-ticker__item"
-              aria-hidden={index >= headlines.length ? "true" : undefined}
-              tabIndex={index >= headlines.length ? -1 : undefined}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <span className="hc-ticker__bullet" aria-hidden="true">●</span>
-              <span className="hc-ticker__text">{item.text}</span>
-              <span className="hc-ticker__sep" aria-hidden="true">•</span>
-            </a>
-          ))}
+    <div className="tickerRoot" aria-label="Security and surveillance news headlines">
+
+      {/* DESKTOP ROW */}
+      <div className="desktopRow">
+        <span className="label">🔴 SECURITY:</span>
+        <div className="viewport">
+          {!hasItems ? (
+            <div className="idle">&nbsp;</div>
+          ) : (
+            <div key={runKey} className={`track ${ready ? "run desktopSpeed" : ""}`}>
+              <div className="content">
+                {contentItems.map((it, i) => (
+                  <a key={`${it.url}-${i}`} href={it.url}
+                    target={it.url.startsWith("http") ? "_blank" : undefined}
+                    rel={it.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="item" title={it.title}>
+                    <span className="dot">●</span>
+                    <span className="text">{highlightTitle(it.title)}</span>
+                  </a>
+                ))}
+              </div>
+              <div className="content" aria-hidden="true">
+                {contentItems.map((it, i) => (
+                  <a key={`${it.url}-dup-${i}`} href={it.url}
+                    target={it.url.startsWith("http") ? "_blank" : undefined}
+                    rel={it.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="item" tabIndex={-1} title={it.title}>
+                    <span className="dot">●</span>
+                    <span className="text">{highlightTitle(it.title)}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
+      {/* MOBILE ROW */}
+      <div className="mobileRow">
+        <div className="mobileLabel">
+          <span className="mobileDot">●</span>
+          <span className="mobileText">Security News</span>
+          <span className="tapHint">{pausedMobile ? "Paused" : "Tap to pause"}</span>
+        </div>
+        <div className="viewport"
+          role="button"
+          aria-label="Tap to pause or resume headlines"
+          onClick={() => setPausedMobile((p) => !p)}>
+          {!hasItems ? (
+            <div className="idle">&nbsp;</div>
+          ) : (
+            <div key={`m-${runKey}`}
+              className={`track ${ready ? "run mobileSpeed" : ""} ${pausedMobile ? "paused" : ""}`}>
+              <div className="content">
+                {contentItems.map((it, i) => (
+                  <a key={`${it.url}-m-${i}`} href={it.url}
+                    target={it.url.startsWith("http") ? "_blank" : undefined}
+                    rel={it.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="item" title={it.title}
+                    onClick={(e) => e.stopPropagation()}>
+                    <span className="dot">●</span>
+                    <span className="text">{highlightTitle(it.title)}</span>
+                  </a>
+                ))}
+              </div>
+              <div className="content" aria-hidden="true">
+                {contentItems.map((it, i) => (
+                  <a key={`${it.url}-m-dup-${i}`} href={it.url}
+                    target={it.url.startsWith("http") ? "_blank" : undefined}
+                    rel={it.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="item" tabIndex={-1} title={it.title}
+                    onClick={(e) => e.stopPropagation()}>
+                    <span className="dot">●</span>
+                    <span className="text">{highlightTitle(it.title)}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* LINK ROW */}
+      <div className="tickerLinkRow">
+        <a className="tickerLink" href="/news">Latest security news →</a>
+      </div>
+
       <style jsx>{`
-        .hc-ticker {
-          display: flex;
-          align-items: stretch;
+        .tickerRoot {
           width: 100%;
-          min-height: 34px;
-          background: #0a0e12;
-          border-bottom: 1px solid #1f2937;
-          overflow: hidden;
+          background: rgba(8,11,13,0.95);
+          border-bottom: 1px solid #1f2a44;
+          backdrop-filter: blur(10px);
+          position: relative;
+          z-index: 5;
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
         }
-        .hc-ticker__label {
-          flex-shrink: 0;
+
+        /* DESKTOP */
+        .desktopRow {
           display: flex;
           align-items: center;
-          gap: 7px;
-          padding: 0 12px;
-          background: #dc2626;
-          color: #fff;
-          font-size: 10px;
+          height: 40px;
+          padding: 0 16px;
+          gap: 12px;
+        }
+        .label {
+          flex: 0 0 auto;
           font-weight: 900;
-          letter-spacing: 1.8px;
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #ef4444;
+          white-space: nowrap;
           line-height: 1;
         }
-        .hc-ticker__dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 999px;
-          background: #fff;
-          flex-shrink: 0;
+
+        /* MOBILE */
+        .mobileRow {
+          display: none;
+          padding: 10px 12px 12px;
         }
-        .hc-ticker__label-short { display: none; }
-        .hc-ticker__viewport {
-          flex: 1;
-          min-width: 0;
+        .mobileLabel {
+          display: flex;
+          align-items: baseline;
+          gap: 8px;
+          margin-bottom: 6px;
+        }
+        .mobileDot {
+          color: #ef4444;
+          font-size: 14px;
+          line-height: 1;
+        }
+        .mobileText {
+          font-weight: 900;
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #ef4444;
+        }
+        .tapHint {
+          margin-left: auto;
+          font-size: 11px;
+          font-weight: 800;
+          color: rgba(255,255,255,.45);
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+        }
+
+        /* VIEWPORT */
+        .viewport {
+          flex: 1 1 auto;
           overflow: hidden;
-          cursor: pointer;
-          mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 44px), transparent);
-          -webkit-mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 44px), transparent);
-        }
-        .hc-ticker__track {
-          display: inline-flex;
+          height: 40px;
+          display: flex;
           align-items: center;
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+          position: relative;
+        }
+        .viewport::before,
+        .viewport::after {
+          content: "";
+          position: absolute;
+          top: 0; bottom: 0;
+          width: 44px;
+          pointer-events: none;
+          z-index: 3;
+        }
+        .viewport::before {
+          left: 0;
+          background: linear-gradient(to right, rgba(8,11,13,.95), transparent);
+        }
+        .viewport::after {
+          right: 0;
+          background: linear-gradient(to left, rgba(8,11,13,.95), transparent);
+        }
+
+        .idle {
+          color: rgba(255,255,255,.4);
+          font-weight: 600;
+          font-size: 13px;
+          white-space: nowrap;
+        }
+
+        /* TRACK */
+        .track {
+          display: inline-flex;
           width: max-content;
           white-space: nowrap;
-          min-height: 34px;
-          animation: hc-scroll 58s linear infinite;
+          transform: translate3d(0, 0, 0);
+          -webkit-transform: translate3d(0, 0, 0);
           will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
-        .hc-ticker__track.is-paused,
-        .hc-ticker__viewport:hover .hc-ticker__track {
+        .content {
+          display: inline-flex;
+          width: max-content;
+          align-items: center;
+          white-space: nowrap;
+        }
+
+        /* SPEEDS — same as SpanishTVShows engine */
+        .run.desktopSpeed {
+          animation: move 86s linear infinite;
+          -webkit-animation: move 86s linear infinite;
+        }
+        .run.mobileSpeed {
+          animation: move 55s linear infinite;
+          -webkit-animation: move 55s linear infinite;
+        }
+        .desktopRow .viewport:hover .run.desktopSpeed {
           animation-play-state: paused;
+          -webkit-animation-play-state: paused;
         }
-        .hc-ticker__item {
+        .paused {
+          animation-play-state: paused !important;
+          -webkit-animation-play-state: paused !important;
+        }
+
+        /* ITEMS */
+        .item {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 0 18px;
-          color: #d1d5db;
-          font-size: 12px;
-          font-weight: 600;
+          font-weight: 700;
+          font-size: 13px;
+          color: rgba(226,232,240,.9);
           text-decoration: none;
-          flex-shrink: 0;
+          margin-right: 24px;
+          line-height: 1.2;
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+          white-space: nowrap;
         }
-        .hc-ticker__item:hover { color: #22c55e; }
-        .hc-ticker__bullet {
+        .item:hover { color: #f59e0b; }
+        .dot {
           color: #ef4444;
-          font-size: 10px;
+          margin-right: 10px;
+          flex: 0 0 auto;
+          font-size: 9px;
         }
-        .hc-ticker__sep {
-          color: #374151;
+        .text {
+          max-width: 75vw;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          display: inline-block;
+        }
+        :global(.kw) {
+          color: #f59e0b;
           font-weight: 900;
-          margin-left: 6px;
         }
-        @keyframes hc-scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+
+        /* LINK ROW */
+        .tickerLinkRow {
+          padding: 5px 16px 8px;
+          display: flex;
+          justify-content: flex-start;
         }
+        .tickerLink {
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,.45);
+          text-decoration: none;
+        }
+        .tickerLink:hover { color: #f59e0b; }
+
+        @-webkit-keyframes move {
+          0%   { -webkit-transform: translate3d(0, 0, 0); }
+          100% { -webkit-transform: translate3d(-50%, 0, 0); }
+        }
+        @keyframes move {
+          0%   { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        @media (max-width: 768px) {
+          .desktopRow { display: none; }
+          .mobileRow { display: block; }
+          .viewport { height: 34px; }
+          .item { font-size: 14px; font-weight: 700; }
+          .text { max-width: 85vw; }
+          .viewport::before, .viewport::after { width: 28px; }
+          .tickerLinkRow { padding: 5px 12px 8px; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
-          .hc-ticker__track { animation: none; }
-        }
-        @media (max-width: 640px) {
-          .hc-ticker { min-height: 34px; }
-          .hc-ticker__label {
-            padding: 0 9px;
-            gap: 5px;
-            font-size: 9px;
-            letter-spacing: 1.2px;
-          }
-          .hc-ticker__dot {
-            width: 5px;
-            height: 5px;
-          }
-          .hc-ticker__label-full { display: none; }
-          .hc-ticker__label-short { display: inline; }
-          .hc-ticker__viewport {
-            mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 24px), transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 24px), transparent);
-          }
-          .hc-ticker__track {
-            min-height: 34px;
-            animation-duration: 42s;
-          }
-          .hc-ticker__item {
-            font-size: 11px;
-            padding: 0 12px;
-            gap: 6px;
-          }
+          .track { animation: none !important; }
         }
       `}</style>
     </div>
