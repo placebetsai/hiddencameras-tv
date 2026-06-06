@@ -41,7 +41,11 @@ async function askSentinel(prompt) {
 }
 async function llmGenerate(prompt) {
   if (USE_SENTINEL) {
-    return await askSentinel(prompt);
+    try {
+      return await askSentinel(prompt);
+    } catch (err) {
+      console.warn(`[sentinel] failed (${err.message}) — falling back to Gemini`);
+    }
   }
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
   const result = await model.generateContent(prompt);
