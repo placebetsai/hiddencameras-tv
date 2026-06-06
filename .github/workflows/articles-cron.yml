@@ -25,6 +25,7 @@ jobs:
       - run: npm ci || npm install --legacy-peer-deps
       - name: Generate articles
         env:
+          GITHUB_TOKEN:      ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY:    ${{ secrets.GEMINI_API_KEY }}
           SENTINEL_ENDPOINT_ID: ${{ secrets.SENTINEL_ENDPOINT_ID }}
