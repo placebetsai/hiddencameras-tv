@@ -1,5 +1,9 @@
 import Script from "next/script";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "../styles/globals.css";
+
+const inter = Inter({ subsets: ["latin"], display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", weight: ["400", "600"] });
 
 export default function App({ Component, pageProps }) {
   const enableAdUnits = process.env.NEXT_PUBLIC_ENABLE_AD_UNITS === "true";
@@ -34,7 +38,9 @@ export default function App({ Component, pageProps }) {
         </Script>
       */}
 
-      <Component {...pageProps} />
+      <main className={`${inter.className}`}>
+        <Component {...pageProps} />
+      </main>
     </>
   );
 }
