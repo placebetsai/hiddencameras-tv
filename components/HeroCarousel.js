@@ -171,10 +171,10 @@ export default function HeroCarousel() {
         ))}
       </div>
 
-      {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-border z-20">
-        <div className="h-full bg-brand-green transition-none"
-          style={{ width: `${((active + 1) / SLIDES.length) * 100}%`, transition: paused ? "none" : "width 5s linear" }} />
+      {/* Progress bar — use scaleX instead of width to avoid layout recalculation */}
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-border z-20 overflow-hidden">
+        <div className="h-full w-full bg-brand-green origin-left"
+          style={{ transform: `scaleX(${(active + 1) / SLIDES.length})`, transition: paused ? "none" : "transform 5s linear" }} />
       </div>
     </div>
   );
