@@ -148,7 +148,7 @@ export default function Layout({ children, title, description, canonical, robots
                 </button>
                 <div
                   className={`absolute left-0 top-full w-[760px] max-w-[92vw] pt-2 px-4 pb-4 rounded-lg border border-brand-border shadow-xl grid grid-cols-[1.3fr_1fr] gap-x-4 gap-y-1 transition-opacity ${camerasOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-                  style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
+                  style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)", zIndex: 9999 }}
                   aria-hidden={!camerasOpen}
                 >
                   <div>
@@ -199,7 +199,7 @@ export default function Layout({ children, title, description, canonical, robots
                 </button>
                 <div
                   className={`absolute left-0 top-full w-[240px] pt-2 px-3 pb-3 rounded-lg border border-brand-border shadow-xl flex flex-col transition-opacity ${compareOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-                  style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)" }}
+                  style={{ background: "rgba(8,11,13,0.99)", backdropFilter: "blur(20px)", zIndex: 9999 }}
                   aria-hidden={!compareOpen}
                 >
                   {COMPARE_LINKS.map(({ href, label }) => (
