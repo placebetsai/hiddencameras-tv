@@ -24,7 +24,7 @@ async function askSentinel(prompt) {
   const { id: jobId } = await submit.json();
   if (!jobId) throw new Error(`Sentinel: no job id`);
   let json;
-  for (let i = 0; i < 60; i++) {
+  for (let i = 0; i < 6; i++) {
     await new Promise((r) => setTimeout(r, 5000));
     const status = await fetch(`${baseUrl}/status/${jobId}`, { headers });
     if (!status.ok) continue;
