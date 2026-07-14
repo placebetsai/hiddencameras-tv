@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 /**
  * generate-articles.js
- * Generates 1 SEO article per run using Claude, pushes JSON to GitHub,
+ * Generates 1 SEO article per run using Sentinel/Gemini, pushes JSON to GitHub,
  * which triggers a Cloudflare Pages rebuild automatically.
  *
- * Schedule: 3x/day via Render cron (8am, 1pm, 6pm ET)
- * Cost: ~$0.003/article with Claude Haiku
+ * Schedule: 3x/day via GitHub Actions (8am, 1pm, 6pm ET)
  */
 
 require("dotenv").config();
@@ -94,7 +93,7 @@ function slugify(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-// ─── Generate article with Claude ────────────────────────────────────────────
+// ─── Generate article with Sentinel/Gemini ───────────────────────────────────
 
 async function generateArticle(topic) {
   console.log(`[gen] Generating: "${topic.title}"`);
@@ -127,9 +126,7 @@ Return ONLY a JSON object, no other text:
   let text = (await llmGenerate(prompt)).trim();
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) throw new Error("No JSON in response");
-  let raw = match[0];
-  // Fix common JSON issues from Claude: unescaped newlines/tabs inside string values
-  raw = raw.replace(/(?<=:\s*"[^"]*)\n/g, "\\n").replace(/(?<=:\s*"[^"]*)\t/g, "\\t");
+  const raw = match[0];
   try {
     return JSON.parse(raw);
   } catch (e) {
