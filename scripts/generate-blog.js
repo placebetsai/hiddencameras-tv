@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 /**
  * generate-blog.js — daily AI blog post generator for HiddenCameras.tv
- * Uses Claude Haiku to write realistic surveillance / security camera articles.
+ * Uses Anthropic first, then Gemini, to write realistic surveillance / security camera articles.
  * Saves to data/articles/[slug].json for the Next.js static build to pick up.
  *
  * Usage: node scripts/generate-blog.js
- * Env:   ANTHROPIC_API_KEY
+ * Env:   ANTHROPIC_API_KEY or GEMINI_API_KEY
  */
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -147,14 +147,55 @@ function pickTopic(existingSlugs) {
   return shuffled[0]; // fallback: just pick one
 }
 
+async function askAnthropic(prompt) {
+  const key = process.env.ANTHROPIC_API_KEY;
+  if (!key) return "";
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": key,
+      "anthropic-version": "2023-06-01",
+    },
+    body: JSON.stringify({
+      model: "claude-3-5-haiku-20241022",
+      max_tokens: 3000,
+      temperature: 0.35,
+      messages: [{ role: "user", content: prompt }],
+    }),
+  });
+  if (!res.ok) throw new Error(`Anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
+  const data = await res.json();
+  return (data.content || []).map((part) => part.text || "").join("\n").trim();
+}
+
+async function askGemini(prompt) {
+  const key = process.env.GEMINI_API_KEY;
+  if (!key) return "";
+  const genAI = new GoogleGenerativeAI(key);
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+  const result = await model.generateContent(prompt);
+  return result.response.text().trim();
+}
+
+async function generateText(prompt) {
+  if (process.env.ANTHROPIC_API_KEY) {
+    try {
+      return await askAnthropic(prompt);
+    } catch (err) {
+      console.warn(`[blog] Anthropic failed (${err.message}) — falling back to Gemini`);
+    }
+  }
+  const text = await askGemini(prompt);
+  if (!text) throw new Error("No LLM provider configured");
+  return text;
+}
+
 async function generateArticle() {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    console.error("[blog] GEMINI_API_KEY not set");
+  if (!process.env.ANTHROPIC_API_KEY && !process.env.GEMINI_API_KEY) {
+    console.error("[blog] No LLM provider configured");
     process.exit(1);
   }
-
-  const genAI = new GoogleGenerativeAI(apiKey);
 
   // Use editorial team byline
   const author = AUTHOR;
@@ -179,8 +220,7 @@ async function generateArticle() {
 
   console.log(`[blog] Generating: "${topic.title}" by ${AUTHOR.name}`);
 
-  const geminiModel = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-  const geminiResult = await geminiModel.generateContent(`You are a writer for the HiddenCameras.tv editorial team. Write a detailed, expert blog article for this publication.
+  const text = await generateText(`You are a writer for the HiddenCameras.tv editorial team. Write a detailed, expert blog article for this publication.
 
 Article title: "${topic.title}"
 Category: ${topic.category}
@@ -203,9 +243,8 @@ Return ONLY valid JSON (no markdown code blocks):
   "body": "full HTML body content here"
 }`);
 
-  const text = geminiResult.response.text().trim();
   const json = text.match(/\{[\s\S]*\}/)?.[0];
-  if (!json) throw new Error(`No JSON in Claude response: ${text.slice(0, 200)}`);
+  if (!json) throw new Error(`No JSON in LLM response: ${text.slice(0, 200)}`);
 
   const { excerpt, body } = JSON.parse(json);
 

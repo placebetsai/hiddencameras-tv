@@ -10,10 +10,11 @@
 require("dotenv").config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Sentinel (RunPod Qwen3-30B free tier) — falls back to Gemini if env vars missing
+// Sentinel (RunPod Qwen3-30B free tier) -> Anthropic -> Gemini.
 const RUNPOD_ENDPOINT_ID = process.env.SENTINEL_ENDPOINT_ID;
 const RUNPOD_API_KEY = process.env.RUNPOD_API_KEY;
 const USE_SENTINEL = !!(RUNPOD_ENDPOINT_ID && RUNPOD_API_KEY);
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 async function askSentinel(prompt) {
   const baseUrl = `https://api.runpod.ai/v2/${RUNPOD_ENDPOINT_ID}`;
   const headers = { "Authorization": `Bearer ${RUNPOD_API_KEY}`, "Content-Type": "application/json" };
@@ -23,7 +24,7 @@ async function askSentinel(prompt) {
   const { id: jobId } = await submit.json();
   if (!jobId) throw new Error(`Sentinel: no job id`);
   let json;
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 18; i++) {
     await new Promise((r) => setTimeout(r, 5000));
     const status = await fetch(`${baseUrl}/status/${jobId}`, { headers });
     if (!status.ok) continue;
@@ -38,14 +39,44 @@ async function askSentinel(prompt) {
   if (content.includes("<think>") && content.includes("</think>")) content = content.slice(content.lastIndexOf("</think>") + 8).trim();
   return content;
 }
+
+async function askAnthropic(prompt) {
+  if (!ANTHROPIC_API_KEY) return "";
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+    },
+    body: JSON.stringify({
+      model: "claude-3-5-haiku-20241022",
+      max_tokens: 4000,
+      temperature: 0.3,
+      messages: [{ role: "user", content: prompt }],
+    }),
+  });
+  if (!res.ok) throw new Error(`Anthropic HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
+  const data = await res.json();
+  return (data.content || []).map((part) => part.text || "").join("\n").trim();
+}
+
 async function llmGenerate(prompt) {
   if (USE_SENTINEL) {
     try {
       return await askSentinel(prompt);
     } catch (err) {
-      console.warn(`[sentinel] failed (${err.message}) — falling back to Gemini`);
+      console.warn(`[sentinel] failed (${err.message}) — falling back to Anthropic/Gemini`);
     }
   }
+  if (ANTHROPIC_API_KEY) {
+    try {
+      return await askAnthropic(prompt);
+    } catch (err) {
+      console.warn(`[anthropic] failed (${err.message}) — falling back to Gemini`);
+    }
+  }
+  if (!genAI) throw new Error("No working LLM provider configured");
   const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
   const result = await model.generateContent(prompt);
   return result.response.text();
@@ -56,7 +87,7 @@ const GITHUB_REPO  = "placebetsai/hiddencameras-tv";
 const BRANCH       = "main";
 const AMAZON_TAG   = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = process.env.GEMINI_API_KEY ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY) : null;
 
 // ─── Article topics pool — rotated daily so we never repeat ──────────────────
 
@@ -208,7 +239,7 @@ async function run() {
   const ts = () => new Date().toISOString().slice(0, 19).replace("T", " ");
   console.log(`\n[${ts()}] === Article Generator ===`);
 
-  if (!process.env.GEMINI_API_KEY) { console.error("GEMINI_API_KEY not set"); process.exit(1); }
+  if (!USE_SENTINEL && !ANTHROPIC_API_KEY && !process.env.GEMINI_API_KEY) { console.error("No LLM provider configured"); process.exit(1); }
   if (!GITHUB_TOKEN) { console.error("GITHUB_TOKEN not set"); process.exit(1); }
 
   const topic   = pickTopic();
