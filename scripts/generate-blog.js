@@ -191,6 +191,27 @@ async function generateText(prompt) {
   return text;
 }
 
+function deterministicBlogArticle(topic, reason) {
+  const primary = String(topic.keywords || "security camera").split(",")[0]?.trim() || "security camera";
+  return {
+    excerpt: `${topic.title}: practical security camera guidance from the HiddenCameras editorial team.`,
+    body: `
+<p><strong>${topic.title}</strong> comes down to matching the camera to the risk, the room, and the way you actually review footage.</p>
+<h2>Start with the job</h2>
+<p>A ${primary} should solve a specific problem: checking an entry, watching packages, monitoring pets, documenting a driveway, or adding evidence after an incident.</p>
+<h2>Features that matter</h2>
+<ul>
+  <li><strong>Resolution:</strong> 1080p works indoors; 2K or 4K is better for distance and detail.</li>
+  <li><strong>Storage:</strong> Local storage can reduce monthly fees, while cloud storage is simpler for remote viewing.</li>
+  <li><strong>Power:</strong> Wired is best for reliability; battery is best for renters and flexible placement.</li>
+  <li><strong>Privacy:</strong> Avoid bedrooms, bathrooms, and private spaces unless disclosure and consent are clear.</li>
+</ul>
+<h2>Practical takeaway</h2>
+<p>Choose the simplest setup that covers the area, sends useful alerts, and keeps recordings accessible. A cheaper camera placed correctly usually beats an expensive camera pointed at the wrong angle.</p>
+<p><em>Editorial fallback note: this post used the local HiddenCameras template because all configured AI providers were unavailable during the cron run (${String(reason || "provider unavailable").slice(0, 160)}).</em></p>`,
+  };
+}
+
 async function generateArticle() {
   if (!process.env.ANTHROPIC_API_KEY && !process.env.GEMINI_API_KEY) {
     console.error("[blog] No LLM provider configured");
@@ -220,7 +241,9 @@ async function generateArticle() {
 
   console.log(`[blog] Generating: "${topic.title}" by ${AUTHOR.name}`);
 
-  const text = await generateText(`You are a writer for the HiddenCameras.tv editorial team. Write a detailed, expert blog article for this publication.
+  let text;
+  try {
+    text = await generateText(`You are a writer for the HiddenCameras.tv editorial team. Write a detailed, expert blog article for this publication.
 
 Article title: "${topic.title}"
 Category: ${topic.category}
@@ -242,6 +265,11 @@ Return ONLY valid JSON (no markdown code blocks):
   "excerpt": "1-2 sentence summary for cards/SEO, under 160 chars",
   "body": "full HTML body content here"
 }`);
+  } catch (err) {
+    console.warn(`[blog] LLM unavailable — using deterministic fallback: ${err.message}`);
+    const fallback = deterministicBlogArticle(topic, err.message);
+    text = JSON.stringify(fallback);
+  }
 
   const json = text.match(/\{[\s\S]*\}/)?.[0];
   if (!json) throw new Error(`No JSON in LLM response: ${text.slice(0, 200)}`);

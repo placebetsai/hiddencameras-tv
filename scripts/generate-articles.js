@@ -82,6 +82,37 @@ async function llmGenerate(prompt) {
   return result.response.text();
 }
 
+function deterministicArticle(topic, reason) {
+  const title = topic.title;
+  const keywords = String(topic.keywords || "security camera").split(",").map((s) => s.trim()).filter(Boolean);
+  const primary = keywords[0] || "security camera";
+  const secondary = keywords[1] || "home security";
+  const body = `
+<p><strong>${title}</strong> is a practical question for anyone trying to improve home security without wasting money on gear that does not fit the job.</p>
+<h2>What matters first</h2>
+<p>Start with placement, storage, power, and privacy. A ${primary} only helps if it covers the right area, records reliably, and can be reviewed quickly when something happens.</p>
+<h2>How to compare options</h2>
+<ul>
+  <li><strong>Video quality:</strong> 1080p is the baseline. Choose 2K or 4K when faces, plates, or long driveways matter.</li>
+  <li><strong>Storage:</strong> Local storage avoids monthly fees, while cloud storage is easier to access remotely.</li>
+  <li><strong>Power:</strong> Wired cameras are more reliable. Battery cameras are easier for renters and temporary installs.</li>
+  <li><strong>Alerts:</strong> Person detection and activity zones reduce false notifications.</li>
+</ul>
+<h2>Best use cases</h2>
+<p>For ${secondary}, prioritize entrances, walkways, garages, and rooms where packages, pets, children, or valuables are commonly present. Avoid private spaces unless everyone who should know has been told.</p>
+<h2>Common mistakes</h2>
+<p>Do not point cameras where glare ruins the image. Do not rely on WiFi at the edge of the property without testing signal strength. Do not buy a camera before confirming whether the app, storage plan, and mounting method fit your home.</p>
+<h2>Bottom line</h2>
+<p>The best choice is the camera you can keep powered, connected, and legally placed. If you want fewer subscriptions, choose a model with local storage. If you want easier remote access, cloud plans may be worth the cost.</p>
+<p><em>Editorial fallback note: this article used the local HiddenCameras publishing template because all configured AI providers were unavailable during the scheduled cron run (${String(reason || "provider unavailable").slice(0, 160)}).</em></p>`;
+  return {
+    title,
+    excerpt: `${title}: practical buying and setup advice for safer, more reliable home surveillance.`,
+    body,
+    category: topic.category,
+  };
+}
+
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO  = "placebetsai/hiddencameras-tv";
 const BRANCH       = "main";
@@ -154,9 +185,15 @@ Return ONLY a JSON object, no other text:
   "category": "${topic.category}"
 }`;
 
-  let text = (await llmGenerate(prompt)).trim();
+  let text;
+  try {
+    text = (await llmGenerate(prompt)).trim();
+  } catch (err) {
+    console.warn(`[gen] LLM unavailable — using deterministic article fallback: ${err.message}`);
+    return deterministicArticle(topic, err.message);
+  }
   const match = text.match(/\{[\s\S]*\}/);
-  if (!match) throw new Error("No JSON in response");
+  if (!match) return deterministicArticle(topic, `No JSON in response: ${text.slice(0, 120)}`);
   const raw = match[0];
   try {
     return JSON.parse(raw);
