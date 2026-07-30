@@ -62,7 +62,7 @@ export default function Layout({ children, title, description, canonical, robots
   const [compareOpen, setCompareOpen] = useState(false);
   const router = useRouter();
   const t = title || "HiddenCameras.tv — Live Cams & Security Reviews";
-  const d = description || "Watch 500+ live public cameras worldwide. Expert reviews of Ring, Arlo, Blink, Wyze & Nest. Surveillance news 24/7.";
+  const d = description || "Watch 60+ live public cameras worldwide. Expert reviews of Ring, Arlo, Blink, Wyze & Nest. Surveillance news 24/7.";
   const url = canonical || "https://hiddencameras.tv";
   const robotsContent = robots || "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
   const isContactRoute = router.pathname === "/contact";
@@ -347,7 +347,7 @@ export default function Layout({ children, title, description, canonical, robots
               </p>
               <div className="flex items-center gap-1.5 text-xs text-brand-muted">
                 <span className="live-dot w-1.5 h-1.5 rounded-full bg-brand-green inline-block" />
-                500+ cameras streaming live 24/7
+                60+ cameras streaming live 24/7
               </div>
             </div>
             <div>
@@ -384,7 +384,6 @@ export default function Layout({ children, title, description, canonical, robots
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-brand-muted">
               <a href="https://scooter.exchange" target="_blank" rel="noopener" className="hover:text-brand-green transition">scooter.exchange</a>
               <a href="https://diamonds.forsale" target="_blank" rel="noopener" className="hover:text-brand-green transition">diamonds.forsale</a>
-              <a href="https://fashionistas.ai" target="_blank" rel="noopener" className="hover:text-brand-green transition">fashionistas.ai</a>
               <a href="https://placebets.ai" target="_blank" rel="noopener" className="hover:text-brand-green transition">placebets.ai</a>
               <a href="https://spanishtvshows.com" target="_blank" rel="noopener" className="hover:text-brand-green transition">spanishtvshows.com</a>
               <a href="https://ihatecollege.com" target="_blank" rel="noopener" className="hover:text-brand-green transition">ihatecollege.com</a>

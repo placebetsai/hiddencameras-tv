@@ -23,16 +23,16 @@ export default function HomeSecurityCTA() {
           </div>
         </a>
         <a
-          href="https://fashionistas.ai/products/solar-powered-outdoor-wifi-camera-with-night-vision?ref=hiddencameras"
+          href="https://www.amazon.com/dp/B0CJ9YX7DG?tag=hiddencamerastv-20"
           target="_blank"
-          rel="nofollow noopener noreferrer"
+          rel="nofollow sponsored noopener noreferrer"
           className="card hover:border-yellow-500/40 transition p-4 flex items-start gap-3"
         >
           <div className="w-10 h-10 rounded-lg bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 text-lg font-bold shrink-0">O</div>
           <div>
             <p className="text-white font-semibold text-sm">Solar Outdoor WiFi Camera</p>
             <p className="text-gray-500 text-xs mt-0.5">Weatherproof outdoor camera with night vision and solar panel. No wiring, no monthly fees — perfect companion to any alarm system.</p>
-            <span className="text-yellow-400 text-xs font-semibold mt-1 inline-block">View Product →</span>
+            <span className="text-yellow-400 text-xs font-semibold mt-1 inline-block">Buy on Amazon →</span>
           </div>
         </a>
       </div>

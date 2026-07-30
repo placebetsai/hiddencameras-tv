@@ -1,34 +1,34 @@
-// ASIN -> Fashionistas.ai product handle map.
-// Articles still pass legacy ASINs via props; we transparently route them to
-// the closest-matching live product. Unknown ASINs fall back to the generic
-// indoor camera so the link is always valid.
-const ASIN_TO_HANDLE = {
-  // Indoor cams
-  B0CGX9GQ3Q: "wireless-1080p-indoor-security-camera", // Blink Mini 2
-  B09WZBPX7K: "wireless-1080p-indoor-security-camera", // Ring Indoor Cam 2nd Gen
-  B0C7VN19YS: "amcrest-1080p-nanny-pet-wifi-camera",   // Eufy Indoor S350
-  B07XTQJ6SH: "amcrest-1080p-nanny-pet-wifi-camera",   // Eufy Indoor 2K
-  B0CJ9YX7DG: "mini-wireless-wifi-nanny-cam-palm-size", // Wyze Cam v4
-  // Outdoor cams
-  B08C5XKWG6: "1080p-ip66-outdoor-wifi-bullet-camera",  // Arlo Pro 4
-  // Smart/doorbell/premium
-  B0B8QYZRSC: "smart-wireless-video-doorbell-with-night-vision",
-  B09NYZGGJD: "smart-wifi-video-doorbell-m7-with-remote-monitoring",
-  // Detection / counter-surveillance gear -> closest adjacent product
-  B07MFWKM6R: "4k-mini-wifi-pinhole-hidden-camera",
-  B08QJ8YZNS: "4k-mini-wifi-pinhole-hidden-camera",
-  B078T2R64H: "pocket-pen-hd-hidden-camera",
-  B01A7MACL2: "dice-style-hidden-nanny-cam-1080p",
-  B09DN27X5N: "pocket-pen-hd-hidden-camera",
-  B0BQKH6BYK: "mini-wireless-wifi-nanny-cam-palm-size",
+const AMAZON_TAG = "hiddencamerastv-20";
+
+const HANDLE_TO_ASIN = {
+  "wireless-1080p-indoor-security-camera": "B0CGX9GQ3Q",
+  "amcrest-1080p-nanny-pet-wifi-camera": "B0C7VN19YS",
+  "mini-wireless-wifi-nanny-cam-palm-size": "B0CJ9YX7DG",
+  "1080p-ip66-outdoor-wifi-bullet-camera": "B08C5XKWG6",
+  "smart-wireless-video-doorbell-with-night-vision": "B0B8QYZRSC",
+  "smart-wifi-video-doorbell-m7-with-remote-monitoring": "B09NYZGGJD",
+  "4k-mini-wifi-pinhole-hidden-camera": "B07MFWKM6R",
+  "pocket-pen-hd-hidden-camera": "B078T2R64H",
+  "dice-style-hidden-nanny-cam-1080p": "B01A7MACL2",
+  "solar-powered-outdoor-wifi-camera-with-night-vision": "B0CJ9YX7DG",
+  "ip65-outdoor-wifi-camera-v380-pro": "B08C5XKWG6",
+  "battery-powered-wifi-video-doorbell": "B0B8QYZRSC",
+  "dual-lens-b6t-dashcam-12mp-170-view": "B0CGX9GQ3Q",
+  "4-inch-ips-dual-channel-starlight-night-vision-dashcam": "B0CGX9GQ3Q",
+  "1080p-touch-screen-dashcam-with-carplay": "B0CGX9GQ3Q",
+  "anti-spy-hidden-camera-signal-detector": "B07MFWKM6R",
+  "night-vision-1080p-resolution-portable-mini-camera-1025333310": "B0CGX9GQ3Q",
+  "mini-hidden-nanny-cam-1080p": "B0CGX9GQ3Q",
+  "2k-pan-tilt-pet-baby-camera-with-smart-tracking": "B0C7VN19YS",
+  "1080p-pan-tilt-zoom-indoor-pet-baby-monitor": "B0C7VN19YS",
 };
 
-const DEFAULT_HANDLE = "wireless-1080p-indoor-security-camera";
-
 function productHref(p) {
-  const handle =
-    p.handle || ASIN_TO_HANDLE[p.asin] || ASIN_TO_HANDLE[p.a] || DEFAULT_HANDLE;
-  return `https://fashionistas.ai/products/${handle}?ref=hiddencameras`;
+  const asin = p.asin || p.a || HANDLE_TO_ASIN[p.handle] || null;
+  if (asin) {
+    return `https://www.amazon.com/dp/${asin}?tag=${AMAZON_TAG}`;
+  }
+  return `https://www.amazon.com/s?k=${encodeURIComponent(p.name || p.n || "security camera")}&tag=${AMAZON_TAG}`;
 }
 
 function Stars({ rating }) {
@@ -90,7 +90,7 @@ export default function ComparisonTable({ products, title }) {
                     rel="nofollow noopener noreferrer"
                     className="inline-block bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-xs py-2 px-3 rounded-lg transition whitespace-nowrap"
                   >
-                    View Product →
+                    Buy on Amazon →
                   </a>
                 </td>
               </tr>
@@ -98,7 +98,7 @@ export default function ComparisonTable({ products, title }) {
           </tbody>
         </table>
       </div>
-      <p className="text-gray-600 text-xs mt-2">Prices may vary. Products ship from our partner store.</p>
+      <p className="text-gray-600 text-xs mt-2">Prices may vary. As an Amazon Associate, we earn from qualifying purchases.</p>
     </div>
   );
 }

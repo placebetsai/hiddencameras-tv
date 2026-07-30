@@ -34,13 +34,15 @@ const BRANDS = [
 ];
 
 // ── Top picks ─────────────────────────────────────────────────────────────────
+const AMAZON_TAG = "hiddencamerastv-20";
+
 const TOP_PICKS = [
-  { name: "Smart Wireless Video Doorbell", tag: "EDITOR'S PICK", category: "Best Doorbell", price: "$59.99", rating: "4.5", handle: "smart-wireless-video-doorbell-with-night-vision", accent: "#1a73e8", pro: "Night vision, wireless chime included", icon: "🔔" },
-  { name: "Amcrest 1080p Nanny Cam", tag: "BEST OVERALL", category: "Top Rated", price: "$69.99", rating: "4.5", handle: "amcrest-1080p-nanny-pet-wifi-camera", accent: "#e87722", pro: "Two-way audio, baby & pet monitor", icon: "👶" },
-  { name: "Dice-Style Covert Nanny Cam", tag: "BEST HIDDEN", category: "Covert Pick", price: "$44.99", rating: "4.4", handle: "dice-style-hidden-nanny-cam-1080p", accent: "#0078d7", pro: "Disguised design, 1080p, no subscription", icon: "🎲" },
-  { name: "1080p Dashcam with CarPlay", tag: "BEST DASHCAM", category: "Dash Pick", price: "$64.99", rating: "4.3", handle: "1080p-touch-screen-dashcam-with-carplay", accent: "#7c3aed", pro: "CarPlay, G-sensor, loop recording", icon: "🚗" },
-  { name: "Mini Palm-Size WiFi Nanny Cam", tag: "SMALLEST", category: "Portable", price: "$34.99", rating: "4.4", handle: "mini-wireless-wifi-nanny-cam-palm-size", accent: "#4285f4", pro: "Palm-size, WiFi, two-way audio", icon: "📦" },
-  { name: "Smart WiFi Doorbell M7", tag: "BEST VALUE", category: "Budget Pick", price: "$44.99", rating: "4.5", handle: "smart-wifi-video-doorbell-m7-with-remote-monitoring", accent: "#0d9488", pro: "Remote monitoring, instant alerts", icon: "🔐" },
+  { name: "Smart Wireless Video Doorbell", tag: "EDITOR'S PICK", category: "Best Doorbell", price: "$59.99", rating: "4.5", asin: "B0B8QYZRSC", accent: "#1a73e8", pro: "Night vision, wireless chime included", icon: "🔔" },
+  { name: "Amcrest 1080p Nanny Cam", tag: "BEST OVERALL", category: "Top Rated", price: "$69.99", rating: "4.5", asin: "B0C7VN19YS", accent: "#e87722", pro: "Two-way audio, baby & pet monitor", icon: "👶" },
+  { name: "Dice-Style Covert Nanny Cam", tag: "BEST HIDDEN", category: "Covert Pick", price: "$44.99", rating: "4.4", asin: "B01A7MACL2", accent: "#0078d7", pro: "Disguised design, 1080p, no subscription", icon: "🎲" },
+  { name: "1080p Dashcam with CarPlay", tag: "BEST DASHCAM", category: "Dash Pick", price: "$64.99", rating: "4.3", asin: "B0CGX9GQ3Q", accent: "#7c3aed", pro: "CarPlay, G-sensor, loop recording", icon: "🚗" },
+  { name: "Mini Palm-Size WiFi Nanny Cam", tag: "SMALLEST", category: "Portable", price: "$34.99", rating: "4.4", asin: "B0CJ9YX7DG", accent: "#4285f4", pro: "Palm-size, WiFi, two-way audio", icon: "📦" },
+  { name: "Smart WiFi Doorbell M7", tag: "BEST VALUE", category: "Budget Pick", price: "$44.99", rating: "4.5", asin: "B09NYZGGJD", accent: "#0d9488", pro: "Remote monitoring, instant alerts", icon: "🔐" },
 ];
 
 // ── News ─────────────────────────────────────────────────────────────────────
@@ -127,9 +129,10 @@ function LiveCamCard({ cam, featured }) {
 }
 
 function ProductCard({ cam }) {
+  const href = `https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`;
   return (
-    <a href={`https://fashionistas.ai/products/${cam.handle}?ref=hiddencameras`}
-      target="_blank" rel="nofollow noopener noreferrer"
+    <a href={href}
+      target="_blank" rel="nofollow sponsored noopener noreferrer"
       className="hc-card p-5 flex flex-col group">
       {/* Icon + tag */}
       <div className="flex items-start justify-between mb-4">
@@ -156,8 +159,8 @@ function ProductCard({ cam }) {
           <span className="text-brand-green font-black text-2xl">{cam.price}</span>
           <span className="text-[10px] text-gray-600 font-mono">Free shipping</span>
         </div>
-        <div className="w-full bg-brand-green hover:bg-brand-greenDark text-black font-black text-sm py-3 px-4 rounded-xl text-center transition-all group-hover:shadow-lg group-hover:shadow-brand-green/20 group-hover:-translate-y-0.5">
-          View Product →
+        <div className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-black text-sm py-3 px-4 rounded-xl text-center transition-all group-hover:shadow-lg group-hover:shadow-yellow-400/20 group-hover:-translate-y-0.5">
+          Buy on Amazon →
         </div>
       </div>
     </a>
@@ -237,7 +240,7 @@ export default function Home({ articles }) {
             <div className="hc-signal-bars">
               <span /><span /><span /><span />
             </div>
-            <span className="text-brand-green/60 font-mono text-[10px] tracking-widest">500+ STREAMS ACTIVE</span>
+            <span className="text-brand-green/60 font-mono text-[10px] tracking-widest">60+ STREAMS ACTIVE</span>
           </div>
 
           {/* H1 */}
@@ -248,7 +251,7 @@ export default function Home({ articles }) {
           </h1>
 
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-            500+ live public cameras streaming 24/7. Expert reviews of Ring, Arlo, Wyze, Blink & Nest.
+            60+ live public cameras streaming 24/7. Expert reviews of Ring, Arlo, Wyze, Blink & Nest.
             Find, detect, and protect — all in one place.
           </p>
 
@@ -268,8 +271,8 @@ export default function Home({ articles }) {
           {/* Stats bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
             {[
-              { n: "500+", label: "Live Cameras" },
-              { n: "80+", label: "Countries" },
+              { n: "60+", label: "Live Cameras" },
+              { n: "30+", label: "Countries" },
               { n: "300+", label: "Reviews" },
               { n: "24/7", label: "Streaming" },
             ].map((s, i) => (
@@ -339,7 +342,7 @@ export default function Home({ articles }) {
               <h2 className="text-2xl md:text-3xl font-black text-white">World Live Cameras</h2>
               <p className="text-gray-500 text-sm mt-1">Public live streams updated 24/7 — no login required</p>
             </div>
-            <Link href="/live" className="text-brand-green text-sm font-bold hover:underline whitespace-nowrap">All 500+ cameras →</Link>
+            <Link href="/live" className="text-brand-green text-sm font-bold hover:underline whitespace-nowrap">All 60+ cameras →</Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" style={{ gridAutoRows: "130px" }}>
             {LIVE_GRID.slice(0, 1).map(cam => <LiveCamCard key={cam.city} cam={cam} featured />)}
@@ -347,7 +350,7 @@ export default function Home({ articles }) {
           </div>
           <div className="mt-5 text-center">
             <Link href="/live" className="btn-outline text-sm px-8 py-3">
-              Explore All Cameras — 80+ Countries →
+              Explore All Cameras — 30+ Countries →
             </Link>
           </div>
         </section>
@@ -526,7 +529,7 @@ export default function Home({ articles }) {
                 <Link href="/my-cams" className="btn-primary px-7 py-3">Upload Your Feed →</Link>
               </div>
               <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0">
-                {[{ n: "80+", l: "Countries" }, { n: "500+", l: "Live Feeds" }, { n: "24/7", l: "Always On" }, { n: "Free", l: "Forever" }].map(s => (
+                {[{ n: "30+", l: "Countries" }, { n: "60+", l: "Live Feeds" }, { n: "24/7", l: "Always On" }, { n: "Free", l: "Forever" }].map(s => (
                   <div key={s.l} className="hc-stat">
                     <div className="hc-stat-value">{s.n}</div>
                     <div className="hc-stat-label">{s.l}</div>

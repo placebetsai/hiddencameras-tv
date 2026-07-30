@@ -1,4 +1,4 @@
-// EditorPickCard — premium editorial card for Fashionistas camera roundups.
+// EditorPickCard — premium editorial card for camera roundups.
 // Tailwind-compatible with HC's dark/red aesthetic. Used by every best-of /
 // category page that replaced its Amazon listicle.
 //
@@ -6,11 +6,39 @@
 
 import Link from "next/link";
 
-const FASHIONISTAS = "https://fashionistas.ai";
-const REF = "hiddencameras";
+const AMAZON_TAG = "hiddencamerastv-20";
+
+const HANDLE_TO_ASIN = {
+  "4k-mini-wifi-pinhole-hidden-camera": "B07MFWKM6R",
+  "pocket-pen-hd-hidden-camera": "B078T2R64H",
+  "mini-hidden-nanny-cam-1080p": "B0CGX9GQ3Q",
+  "night-vision-1080p-resolution-portable-mini-camera-1025333310": "B0CGX9GQ3Q",
+  "dice-style-hidden-nanny-cam-1080p": "B01A7MACL2",
+  "wireless-1080p-indoor-security-camera": "B0CGX9GQ3Q",
+  "amcrest-1080p-nanny-pet-wifi-camera": "B0C7VN19YS",
+  "2k-pan-tilt-pet-baby-camera-with-smart-tracking": "B0C7VN19YS",
+  "1080p-pan-tilt-zoom-indoor-pet-baby-monitor": "B0C7VN19YS",
+  "mini-wireless-wifi-nanny-cam-palm-size": "B0CJ9YX7DG",
+  "smart-wireless-video-doorbell-with-night-vision": "B0B8QYZRSC",
+  "smart-wifi-video-doorbell-m7-with-remote-monitoring": "B09NYZGGJD",
+  "battery-powered-wifi-video-doorbell": "B0B8QYZRSC",
+  "wireless-wifi-video-doorbell-with-music-bell-full-hd-resolution-two-1508265658": "B0B8QYZRSC",
+  "solar-powered-outdoor-wifi-camera-with-night-vision": "B0CJ9YX7DG",
+  "1080p-ip66-outdoor-wifi-bullet-camera": "B08C5XKWG6",
+  "ip65-outdoor-wifi-camera-v380-pro": "B08C5XKWG6",
+  "wifi-surveillance-camera-4k-8mp-dual-lens-wireless-outdoor-security-ptz-ip-cameras-ai-human-detect-cctv-camera-4x-digital-zoom": "B08C5XKWG6",
+  "1080p-touch-screen-dashcam-with-carplay": "B0CGX9GQ3Q",
+  "4-inch-ips-dual-channel-starlight-night-vision-dashcam": "B0CGX9GQ3Q",
+  "dual-lens-b6t-dashcam-12mp-170-view": "B0CGX9GQ3Q",
+  "2-4-inch-full-hd-1080p-dash-cam-car-dvr-front-camera-or-rear-camera-night-vision-g-sensor": "B0CGX9GQ3Q",
+  "anti-spy-hidden-camera-signal-detector": "B07MFWKM6R",
+};
 
 export default function EditorPickCard({ p }) {
-  const href = `${FASHIONISTAS}/products/${p.handle}?ref=${REF}`;
+  const asin = HANDLE_TO_ASIN[p.handle] || null;
+  const href = asin
+    ? `https://www.amazon.com/dp/${asin}?tag=${AMAZON_TAG}`
+    : `https://www.amazon.com/s?k=${encodeURIComponent(p.title || "security camera")}&tag=${AMAZON_TAG}`;
   return (
     <article className="card relative overflow-hidden flex flex-col group hover:border-brand-green/40 transition-all">
       <span className="editor-badge">
@@ -35,9 +63,9 @@ export default function EditorPickCard({ p }) {
             href={href}
             target="_blank"
             rel="noopener nofollow"
-            className="ml-auto bg-brand-green hover:bg-brand-greenDark text-black font-bold text-xs py-2 px-3 rounded-md transition"
+            className="ml-auto bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-xs py-2 px-3 rounded-md transition"
           >
-            Shop Now &rarr;
+            Buy on Amazon &rarr;
           </a>
         </div>
       </div>
