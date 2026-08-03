@@ -207,8 +207,7 @@ function deterministicBlogArticle(topic, reason) {
   <li><strong>Privacy:</strong> Avoid bedrooms, bathrooms, and private spaces unless disclosure and consent are clear.</li>
 </ul>
 <h2>Practical takeaway</h2>
-<p>Choose the simplest setup that covers the area, sends useful alerts, and keeps recordings accessible. A cheaper camera placed correctly usually beats an expensive camera pointed at the wrong angle.</p>
-<p><em>Editorial fallback note: this post used the local HiddenCameras template because all configured AI providers were unavailable during the cron run (${String(reason || "provider unavailable").slice(0, 160)}).</em></p>`,
+<p>Choose the simplest setup that covers the area, sends useful alerts, and keeps recordings accessible. A cheaper camera placed correctly usually beats an expensive camera pointed at the wrong angle.</p>`,
   };
 }
 

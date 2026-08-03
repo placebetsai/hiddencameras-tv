@@ -9,46 +9,25 @@ const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
 // Author bios — E-E-A-T signals for AdSense review
 const AUTHORS = {
-  "Marcus Chen": {
-    initials: "MC",
+  "HiddenCameras Editorial": {
+    initials: "HC",
     color: "#f59e0b",
-    title: "Senior Security Analyst",
-    bio: "Marcus has spent 12 years installing and reviewing residential security systems across the Northeast. He holds a Certified Security Project Manager (CSPM) credential and has personally tested over 300 security cameras since 2014.",
-    articles: "180+ articles",
+    title: "Editorial Team",
+    bio: "The HiddenCameras editorial team reviews and tests security cameras, analyzes surveillance laws, and creates practical guides for homeowners and renters. Every product recommendation is based on hands-on testing or verified specifications.",
+    articles: "100+ articles",
   },
-  "Sarah Adler": {
-    initials: "SA",
-    color: "#10b981",
-    title: "Privacy & Security Writer",
-    bio: "Sarah covers the intersection of privacy law and home technology. Before joining HiddenCameras.tv, she spent 6 years as a digital rights researcher and has written for major security publications on surveillance law and consumer privacy.",
-    articles: "95+ articles",
-  },
-  "Jake Rivera": {
-    initials: "JR",
-    color: "#6366f1",
-    title: "Home Security Journalist",
-    bio: "Jake has been reviewing home security technology since 2015, with hands-on testing experience covering dash cams, doorbell cameras, and hidden surveillance detectors. He runs practical field tests for every product recommendation.",
-    articles: "140+ articles",
-  },
-  "Tara Neilson": {
-    initials: "TN",
-    color: "#ec4899",
-    title: "Smart Home & Security Editor",
-    bio: "Tara specializes in smart home security integration, including how cameras work within larger home automation systems. She has a background in electrical engineering and has been covering the smart home space since 2018.",
-    articles: "75+ articles",
-  },
-  "David Park": {
-    initials: "DP",
-    color: "#ef4444",
-    title: "Security Technology Consultant",
-    bio: "David spent 8 years in law enforcement before transitioning to security technology consulting. He advises businesses and homeowners on legal camera placement, evidence preservation, and privacy compliance, and brings that expertise to every article.",
-    articles: "60+ articles",
+  "Israel Joffe": {
+    initials: "IJ",
+    color: "#f59e0b",
+    title: "Founder & Editor",
+    bio: "Israel is the founder of HiddenCameras.tv and a technology writer focused on privacy, security, and consumer electronics. He oversees editorial standards and product testing methodology across the site.",
+    articles: "Founder",
   },
 };
 
 function AuthorCard({ article }) {
-  const name = article.author || "Marcus Chen";
-  const author = AUTHORS[name] || AUTHORS["Marcus Chen"];
+  const name = article.author || "HiddenCameras Editorial";
+  const author = AUTHORS[name] || AUTHORS["HiddenCameras Editorial"];
   const reviewDate = article.dateModified || article.date;
 
   return (

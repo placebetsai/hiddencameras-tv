@@ -104,7 +104,7 @@ function deterministicArticle(topic, reason) {
 <p>Do not point cameras where glare ruins the image. Do not rely on WiFi at the edge of the property without testing signal strength. Do not buy a camera before confirming whether the app, storage plan, and mounting method fit your home.</p>
 <h2>Bottom line</h2>
 <p>The best choice is the camera you can keep powered, connected, and legally placed. If you want fewer subscriptions, choose a model with local storage. If you want easier remote access, cloud plans may be worth the cost.</p>
-<p><em>Editorial fallback note: this article used the local HiddenCameras publishing template because all configured AI providers were unavailable during the scheduled cron run (${String(reason || "provider unavailable").slice(0, 160)}).</em></p>`;
+`;
   return {
     title,
     excerpt: `${title}: practical buying and setup advice for safer, more reliable home surveillance.`,
