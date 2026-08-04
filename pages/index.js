@@ -457,6 +457,69 @@ export default function Home({ articles }) {
           </div>
         </section>
 
+        {/* ===== DEALS SECTION ===== */}
+        <section className="mb-14">
+          <div className="relative overflow-hidden rounded-2xl border border-yellow-500/20 hc-card p-0">
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(245,158,11,.06) 0%, transparent 60%, rgba(239,68,68,.04) 100%)" }} />
+            <div className="relative p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-14 h-14 rounded-2xl bg-yellow-500/15 border border-yellow-500/30 flex items-center justify-center text-3xl">🏷</div>
+                  <span className="hc-alert" style={{ background: "rgba(245,158,11,0.15)", color: "#f59e0b" }}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-500 inline-block" />DEALS
+                  </span>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Today&apos;s Best Camera Deals</h2>
+                <p className="text-gray-400 text-base leading-relaxed mb-5 max-w-lg">
+                  We track every price drop across Ring, Arlo, Wyze, Reolink, and Blink. Updated daily — never pay full price.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {["Ring — $50 off", "Wyze — Lowest price", "Arlo — 20% off", "Reolink — Launch discount"].map(f => (
+                    <span key={f} className="text-xs text-gray-300 bg-brand-bg border border-brand-border rounded-full px-3 py-1.5 font-medium">{f}</span>
+                  ))}
+                </div>
+                <Link href="/deals" className="btn-primary px-8 py-3" style={{ background: "#f59e0b", color: "#000" }}>
+                  View All Deals →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== COMPARE CAMERAS ===== */}
+        <section className="mb-14">
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[.22em] text-brand-green mb-1">Head to Head</p>
+              <h2 className="text-2xl md:text-3xl font-black text-white">Compare Cameras</h2>
+              <p className="text-gray-500 text-sm mt-1">We tested every brand head-to-head for 3 weeks each</p>
+            </div>
+            <Link href="/compare" className="text-brand-green text-sm font-bold hover:underline whitespace-nowrap">All comparisons →</Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              { href: "/compare/ring-vs-arlo", b1: "Ring", b2: "Arlo", icon1: "🔔", icon2: "📡", verdict: "Tie" },
+              { href: "/compare/wyze-vs-blink", b1: "Wyze", b2: "Blink", icon1: "👁", icon2: "⚡", verdict: "Wyze wins" },
+              { href: "/compare/wyze-vs-ring", b1: "Wyze", b2: "Ring", icon1: "👁", icon2: "🔔", verdict: "Wyze wins" },
+              { href: "/compare/reolink-vs-ring", b1: "Reolink", b2: "Ring", icon1: "📷", icon2: "🔔", verdict: "Reolink wins" },
+            ].map((item, i) => (
+              <Link key={item.href} href={item.href}
+                className="hc-card p-5 flex flex-col items-center text-center group hc-fade-up hover:border-brand-green/30 transition-all"
+                style={{ animationDelay: `${i * 0.08}s` }}>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-3xl">{item.icon1}</span>
+                  <span className="text-gray-600 font-black text-sm">VS</span>
+                  <span className="text-3xl">{item.icon2}</span>
+                </div>
+                <p className="font-black text-white text-sm mb-1 group-hover:text-brand-green transition-colors">{item.b1} vs {item.b2}</p>
+                <span className="text-[10px] font-bold text-brand-green px-2 py-0.5 rounded-full bg-brand-green/10">{item.verdict}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <div className="hc-divider" />
+
         {/* ===== BEST OF 2026 LINKS ===== */}
         <section className="mb-14">
           <div className="mb-6">

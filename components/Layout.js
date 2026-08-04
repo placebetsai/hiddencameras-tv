@@ -50,10 +50,14 @@ const BEST_OF_2026 = [
 ];
 
 const COMPARE_LINKS = [
-  { href: "/ring-vs-blink", label: "Ring vs Blink" },
-  { href: "/ring-vs-arlo", label: "Ring vs Arlo" },
-  { href: "/wyze-vs-blink", label: "Wyze vs Blink" },
-  { href: "/nest-cam-vs-arlo", label: "Nest Cam vs Arlo" },
+  { href: "/compare/ring-vs-arlo", label: "Ring vs Arlo" },
+  { href: "/compare/wyze-vs-blink", label: "Wyze vs Blink" },
+  { href: "/compare/ring-vs-nest", label: "Ring vs Nest" },
+  { href: "/compare/wyze-vs-ring", label: "Wyze vs Ring" },
+  { href: "/compare/arlo-vs-blink", label: "Arlo vs Blink" },
+  { href: "/compare/wyze-vs-eufy", label: "Wyze vs Eufy" },
+  { href: "/compare/reolink-vs-ring", label: "Reolink vs Ring" },
+  { href: "/compare/nest-cam-vs-arlo", label: "Nest vs Arlo" },
 ];
 
 export default function Layout({ children, title, description, canonical, robots }) {
@@ -211,6 +215,10 @@ export default function Layout({ children, title, description, canonical, robots
                 </div>
               </div>
 
+              <Link href="/deals" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm text-yellow-400 hover:text-yellow-300 flex items-center gap-1">
+                <span className="text-[10px]">🏷</span>Deals
+              </Link>
+              <Link href="/compare" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm">Compare</Link>
               <Link href="/news" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm">News</Link>
               <Link href="/reviews" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm">Reviews</Link>
               <Link href="/blog" className="nav-link px-2.5 py-1.5 rounded-lg hover:bg-brand-card text-sm">Blog</Link>
@@ -261,6 +269,8 @@ export default function Layout({ children, title, description, canonical, robots
               {[
                 { href: "/", label: "Home" },
                 { href: "/live", label: "Live World Cams" },
+                { href: "/deals", label: "🏷 Deals & Promo Codes" },
+                { href: "/compare", label: "⚖️ Compare Cameras" },
                 { href: "/news", label: "Surveillance News" },
                 { href: "/detect-hidden-cameras", label: "Detect Hidden Cameras" },
                 { href: "/reviews", label: "Camera Reviews" },
@@ -297,12 +307,16 @@ export default function Layout({ children, title, description, canonical, robots
               ))}
 
               <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">Compare</p>
-              {COMPARE_LINKS.map(({ href, label }) => (
+              {COMPARE_LINKS.slice(0, 4).map(({ href, label }) => (
                 <Link key={href} href={href} onClick={() => setMenuOpen(false)}
                   className="text-brand-muted hover:text-white hover:bg-brand-card px-3 py-2 rounded-lg text-sm transition">
                   {label}
                 </Link>
               ))}
+              <Link href="/compare" onClick={() => setMenuOpen(false)}
+                className="text-brand-green hover:text-white hover:bg-brand-card px-3 py-2 rounded-lg text-sm transition font-bold">
+                View All Comparisons →
+              </Link>
 
               <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">More</p>
               {[
@@ -363,6 +377,8 @@ export default function Layout({ children, title, description, canonical, robots
               <p className="text-white font-semibold text-sm mb-3">Reviews</p>
               <div className="flex flex-col gap-2 text-xs text-brand-muted">
                 <Link href="/reviews" className="hover:text-brand-green transition">All Reviews</Link>
+                <Link href="/compare" className="hover:text-brand-green transition">Camera Comparisons</Link>
+                <Link href="/deals" className="hover:text-brand-green transition">Deals & Promo Codes</Link>
                 <Link href="/best-hidden-cameras-airbnb" className="hover:text-brand-green transition">Airbnb Guide</Link>
                 <Link href="/blog" className="hover:text-brand-green transition">Blog & Guides</Link>
               </div>
