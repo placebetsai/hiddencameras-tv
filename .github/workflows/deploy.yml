@@ -31,5 +31,5 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: 7eb89b01e9c3bec41ee24db8ecbe77f8
+          accountId: 426614a274a471e18476b5d752b1fff2
           command: pages deploy .vercel/output/static --project-name=hiddencameras-tv --branch=main

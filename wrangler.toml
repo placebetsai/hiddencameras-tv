@@ -6,3 +6,7 @@ pages_build_output_dir = ".vercel/output/static"
 [vars]
 NEXT_PUBLIC_AMAZON_TAG = "hiddencamerastv-20"
 NEXT_PUBLIC_ENABLE_AD_UNITS = "true"
+
+# Account: hiddencameras79@gmail.com (ID: 426614a274a471e18476b5d752b1fff2)
+# Custom domain: hiddencameras.tv (zone: 5cd13106bacafa3c3e45dbdbcb2577fd)
+# Pages subdomain: hiddencameras-tv-2q3.pages.dev
