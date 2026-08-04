@@ -383,12 +383,11 @@ export default function Layout({ children, title, description, canonical, robots
           <div className="border-t border-brand-border pt-5 mb-5">
             <p className="text-white font-semibold text-xs uppercase tracking-widest mb-3">Across the network</p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-brand-muted">
-              <a href="https://scooter.exchange" target="_blank" rel="noopener" className="hover:text-brand-green transition">scooter.exchange</a>
-              <a href="https://diamonds.forsale" target="_blank" rel="noopener" className="hover:text-brand-green transition">diamonds.forsale</a>
-              <a href="https://placebets.ai" target="_blank" rel="noopener" className="hover:text-brand-green transition">placebets.ai</a>
-              <a href="https://spanishtvshows.com" target="_blank" rel="noopener" className="hover:text-brand-green transition">spanishtvshows.com</a>
-              <a href="https://ihatecollege.com" target="_blank" rel="noopener" className="hover:text-brand-green transition">ihatecollege.com</a>
-              <a href="https://wuwonline.com" target="_blank" rel="noopener" className="hover:text-brand-green transition">wuwonline.com</a>
+              <a href="https://placebets.ai" target="_blank" rel="noopener" className="hover:text-brand-green transition">Sports betting — placebets.ai</a>
+              <a href="https://marketpicks.ai" target="_blank" rel="noopener" className="hover:text-brand-green transition">AI stock predictions — marketpicks.ai</a>
+              <a href="https://ihatecollege.com" target="_blank" rel="noopener" className="hover:text-brand-green transition">College debt data — ihatecollege.com</a>
+              <a href="https://spanishtvshows.com" target="_blank" rel="noopener" className="hover:text-brand-green transition">Spanish TV shows — spanishtvshows.com</a>
+              <a href="https://wuwonline.com" target="_blank" rel="noopener" className="hover:text-brand-green transition">Wrestling training — wuwonline.com</a>
             </div>
           </div>
           <div className="border-t border-brand-border pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted">

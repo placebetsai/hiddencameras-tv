@@ -71,10 +71,10 @@ function AuthorCard({ article }) {
 }
 
 export default function Article({ article }) {
-  if (!article) return null;
+  if (!article || !article.title) return null;
 
   const authorName = article.author || "Marcus Chen";
-  const author = AUTHORS[authorName] || AUTHORS["Marcus Chen"];
+  const author = AUTHORS[authorName] || AUTHORS["HiddenCameras Editorial"];
 
   const renderBody = (body) =>
     body.replace(/\[AMAZON:([A-Z0-9]+):([^\]]+)\]/g, (_, asin, title) =>
@@ -225,7 +225,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   try {
     const filePath = path.join(process.cwd(), "data", "articles", `${params.slug}.json`);
-    const article = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    const raw = fs.readFileSync(filePath, "utf8");
+    const article = JSON.parse(raw);
+    if (!article || !article.title) return { notFound: true };
     return { props: { article } };
   } catch {
     return { notFound: true };
