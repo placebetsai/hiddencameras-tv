@@ -21,7 +21,7 @@
     "twitter-api-v2": "^1.17.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.14.0",
+    "@cloudflare/next-on-pages": "^1.13.0",
     "autoprefixer": "10.4.14",
     "postcss": "8.4.24",
     "tailwindcss": "3.3.3",
