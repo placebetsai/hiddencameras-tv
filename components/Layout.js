@@ -95,6 +95,7 @@ export default function Layout({ children, title, description, canonical, robots
         <meta name="twitter:description" content={d} />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+        <meta name="keywords" content="hidden cameras, security cameras, nanny cam, spy camera, hidden camera detector, home security, Ring vs Blink, best security cameras 2026, hidden cameras for Airbnb, wireless security camera" />
         <meta name="robots" content={robotsContent} />
         <meta name="theme-color" content="#f59e0b" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

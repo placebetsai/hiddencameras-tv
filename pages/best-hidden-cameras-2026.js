@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import EmailCapture from "../components/EmailCapture";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 
@@ -146,6 +147,10 @@ export default function Page() {
         <h3>Do I need a subscription for these cameras?</h3>
         <p>The Wyze Cam v4 works fully without a subscription using local microSD storage. The Blink Mini 2 and Ring Indoor Cam both require paid subscriptions ($3-4/month) for video recording and advanced features. Without subscriptions, those two cameras only offer live viewing.</p>
       </section>
+
+      <div className="my-8">
+        <EmailCapture />
+      </div>
 
       <HomeSecurityCTA />
     </Layout>

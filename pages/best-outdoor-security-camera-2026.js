@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
+import EmailCapture from "../components/EmailCapture";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 
@@ -153,6 +154,10 @@ export default function Page() {
         <h3>Q5: Can outdoor security cameras deter crime?</h3>
         <p>A5: Yes, outdoor security cameras can be a significant deterrent to crime. Their visible presence often makes potential intruders think twice, as they know they are being monitored and recorded. Many modern cameras also include features like bright spotlights (e.g., Ring Floodlight Cam), loud sirens, and two-way audio (allowing you to verbally warn off intruders) that actively deter suspicious activity. Even if a crime occurs, the recorded footage provides crucial evidence for law enforcement, increasing the chances of identifying and apprehending suspects.</p>
       </section>
+
+      <div className="my-8">
+        <EmailCapture />
+      </div>
 
       <HomeSecurityCTA />
     </Layout>
