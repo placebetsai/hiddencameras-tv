@@ -1,0 +1,19 @@
+# HiddenCameras.tv
+
+> Watch 500+ live public cameras worldwide. Expert reviews of Ring, Arlo, Blink, Wyze & Nest security cameras.
+
+HiddenCameras.tv is a directory of live public webcams and a buyer's guide for home security cameras. Coverage includes beach cams, city cams, wildlife cams, and detailed reviews of consumer security camera brands.
+
+## Key Pages
+- [Live Cameras Directory](https://hiddencameras.tv/cameras)
+- [Security Camera Reviews](https://hiddencameras.tv/reviews)
+- [Ring Reviews](https://hiddencameras.tv/ring)
+- [Arlo Reviews](https://hiddencameras.tv/arlo)
+- [Blink Reviews](https://hiddencameras.tv/blink)
+- [Wyze Reviews](https://hiddencameras.tv/wyze)
+- [Nest Reviews](https://hiddencameras.tv/nest)
+- [Buyer's Guide](https://hiddencameras.tv/guide)
+- [About](https://hiddencameras.tv/about)
+
+## Affiliate Disclosure
+Amazon Associates affiliate: hiddencamerastv-20. We earn commissions on qualifying purchases.

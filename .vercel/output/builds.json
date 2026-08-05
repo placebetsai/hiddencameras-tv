@@ -3,7 +3,7 @@
   "target": "preview",
   "argv": [
     "/usr/bin/node",
-    "/home/israeljoffe/.npm/_npx/69f9afb961c37556/node_modules/.bin/vc",
+    "/home/israeljoffe/hiddencameras-tv/node_modules/.bin/vercel",
     "build"
   ],
   "cliVersion": "58.5.1",
@@ -13,7 +13,7 @@
   "builds": [
     {
       "require": "@vercel/next",
-      "requirePath": "/home/israeljoffe/.npm/_npx/69f9afb961c37556/node_modules/@vercel/next/dist/index",
+      "requirePath": "/home/israeljoffe/hiddencameras-tv/node_modules/@vercel/next/dist/index",
       "apiVersion": 2,
       "src": "package.json",
       "use": "@vercel/next",
