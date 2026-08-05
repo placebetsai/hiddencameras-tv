@@ -2,23 +2,9 @@
   "version": 3,
   "routes": [
     {
-      "src": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+))/$",
+      "src": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$",
       "headers": {
         "Location": "/$1"
-      },
-      "status": 308,
-      "missing": [
-        {
-          "type": "header",
-          "key": "x-nextjs-data"
-        }
-      ],
-      "continue": true
-    },
-    {
-      "src": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+))$",
-      "headers": {
-        "Location": "/$1/"
       },
       "status": 308,
       "continue": true
@@ -92,7 +78,7 @@
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|Bz_1netkqEhiSlprVgPkm)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|kzqEl\\-ceCYjr1DXiFYWxo)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
@@ -142,6 +128,10 @@
     },
     "500.html": {
       "path": "500",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "blog.html": {
+      "path": "blog",
       "contentType": "text/html; charset=utf-8"
     },
     "blog/7-mistakes-to-avoid-when-buying-a-security-camera-2026-03-26.html": {
@@ -676,8 +666,28 @@
       "path": "blog/wyze-vs-eufy-the-best-budget-security-camera-showdown-2026-02-08",
       "contentType": "text/html; charset=utf-8"
     },
-    "blog.html": {
-      "path": "blog",
+    "reviews/blink-mini-2.html": {
+      "path": "reviews/blink-mini-2",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "reviews/ring-indoor-cam-gen2.html": {
+      "path": "reviews/ring-indoor-cam-gen2",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "reviews/wyze-cam-v4.html": {
+      "path": "reviews/wyze-cam-v4",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "reviews/arlo-pro-5s.html": {
+      "path": "reviews/arlo-pro-5s",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "reviews/google-nest-cam-indoor.html": {
+      "path": "reviews/google-nest-cam-indoor",
+      "contentType": "text/html; charset=utf-8"
+    },
+    "reviews/eufy-s350.html": {
+      "path": "reviews/eufy-s350",
       "contentType": "text/html; charset=utf-8"
     },
     "live/new-york-city.html": {
@@ -710,30 +720,6 @@
     },
     "live/singapore.html": {
       "path": "live/singapore",
-      "contentType": "text/html; charset=utf-8"
-    },
-    "reviews/blink-mini-2.html": {
-      "path": "reviews/blink-mini-2",
-      "contentType": "text/html; charset=utf-8"
-    },
-    "reviews/ring-indoor-cam-gen2.html": {
-      "path": "reviews/ring-indoor-cam-gen2",
-      "contentType": "text/html; charset=utf-8"
-    },
-    "reviews/wyze-cam-v4.html": {
-      "path": "reviews/wyze-cam-v4",
-      "contentType": "text/html; charset=utf-8"
-    },
-    "reviews/arlo-pro-5s.html": {
-      "path": "reviews/arlo-pro-5s",
-      "contentType": "text/html; charset=utf-8"
-    },
-    "reviews/google-nest-cam-indoor.html": {
-      "path": "reviews/google-nest-cam-indoor",
-      "contentType": "text/html; charset=utf-8"
-    },
-    "reviews/eufy-s350.html": {
-      "path": "reviews/eufy-s350",
       "contentType": "text/html; charset=utf-8"
     },
     "index.html": {

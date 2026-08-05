@@ -1,12 +1,1 @@
-{
-  "version": 1,
-  "description": "Fixed root routing for index.html",
-  "include": ["/*"],
-  "exclude": ["/_next/static/*"],
-  "routes": [
-    {
-      "src": "^/$",
-      "dest": "/index.html"
-    }
-  ]
-}
+{"version":1,"description":"Built with @cloudflare/next-on-pages@1.13.0.","include":["/*"],"exclude":["/_next/static/*"]}
