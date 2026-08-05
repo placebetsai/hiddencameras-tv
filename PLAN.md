@@ -17,8 +17,8 @@ This broke the Next.js build because `path` and `fs` are already imported at the
 - All 199 pages generate correctly
 - Code is production-ready
 
-## DEPLOYMENT STATUS ⚠️
-**Live site still broken** — GitHub Actions reports successful deployment but site returns "Not Found" (text/plain).
+## DEPLOYMENT STATUS ⚠️⚠️⚠️ 
+**Live site BROKEN** — GitHub Actions reports successful deployment (files uploaded, worker compiled) but site still returns "Not Found" (text/plain HTTP 200).
 
 ### What happened:
 1. GitHub Actions workflow runs successfully (exit code 0)
@@ -78,9 +78,29 @@ curl -I https://hiddencameras.tv | head -3
 ## FILES CHANGED
 - `pages/index.js` — removed lines 612-613 (duplicate requires)
 
-## COMMIT
-- 48f649706 (HEAD) — Add article: How to Secure Your Front Door
-- Previous commit had the MiMo issue, now fixed locally
+## COMMIT HISTORY
+- 434f013b9 (HEAD) — Add deployment issue documentation (PLAN.md)
+- 48f649706 — Add article: How to Secure Your Front Door
+- Previous commits had MiMo duplicate requires issue — **NOW FIXED**
+
+## TESTING COMPLETED ✅
+- [x] Local build: `npm run build` — SUCCEEDS
+- [x] Local adapter: `npx @cloudflare/next-on-pages` — SUCCEEDS, creates 453+ static files
+- [x] Output verification: `.vercel/output/static/index.html` exists (139KB)
+- [x] Build validation: All 199 pages generate, no errors
+- [ ] Live deployment: Still broken, needs investigation
+
+## EXACT ISSUE
+**Production deployment (hiddencameras.tv) returns:**
+- HTTP 200 ✓
+- Content-Type: text/plain ✗ (should be text/html)
+- Body: "Not Found" (9 bytes)
+- Header: `x-matched-path: /` (routing hit root path)
+
+**Analysis:** Cloudflare Pages project exists and routes requests, but has no content or routing is misconfigured. Pages project may need:
+1. Fresh deployment push (Files haven't updated since August 5 18:39 UTC)
+2. Pages project recreate (if corrupted state)
+3. Routing rules fix (_routes.json issue)
 
 ## TOKEN INFO
 - Account: `426614a274a471e18476b5d752b1fff2` (hiddencameras79)
