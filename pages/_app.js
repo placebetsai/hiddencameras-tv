@@ -1,6 +1,7 @@
 import Script from "next/script";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "../styles/globals.css";
+import ChatBot from "../components/ChatBot";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", weight: ["400", "600"] });
@@ -38,6 +39,7 @@ export default function App({ Component, pageProps }) {
       <main className={`${inter.className}`}>
         <Component {...pageProps} />
       </main>
+      <ChatBot />
     </>
   );
 }
