@@ -22,7 +22,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build
-        run: npx @cloudflare/next-on-pages
+        run: npm run build
         env:
           NEXT_PUBLIC_AMAZON_TAG: ${{ secrets.NEXT_PUBLIC_AMAZON_TAG || 'hiddencamerastv-20' }}
           NEXT_PUBLIC_ENABLE_AD_UNITS: "true"
@@ -33,4 +33,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: 426614a274a471e18476b5d752b1fff2
-          command: pages deploy .vercel/output/static --project-name=hiddencameras --branch=main
+          command: pages deploy out --project-name=hiddencameras --branch=main
