@@ -1,4 +1,5 @@
 import Script from "next/script";
+import Head from "next/head";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "../styles/globals.css";
 import ChatBot from "../components/ChatBot";
@@ -6,9 +7,24 @@ import ChatBot from "../components/ChatBot";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", weight: ["400", "600"] });
 
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "HiddenCameras.tv",
+  url: "https://hiddencameras.tv",
+  logo: "https://hiddencameras.tv/og-default.png",
+  description: "Security camera reviews, hidden camera guides, and home surveillance tips."
+};
+
 export default function App({ Component, pageProps }) {
   return (
     <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
+      </Head>
       <Script id="adsense-npa" strategy="beforeInteractive">
         {`window.adsbygoogle = window.adsbygoogle || []; window.adsbygoogle.requestNonPersonalizedAds = 1;`}
       </Script>
