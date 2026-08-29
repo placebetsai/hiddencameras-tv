@@ -85,7 +85,7 @@ const DETECTORS = [
     verdict: "Use this alongside an RF detector. Finds cameras with no wireless signal at all."
   },
   {
-    name: "BOBLOV Hidden Camera Detector",
+    name: "BOBLOV <a href="https://www.amazon.com/s?k=hidden+camera+detector&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">detector</a>",
     rank: 3,
     badge: "BEST VALUE",
     price: "$22.99",

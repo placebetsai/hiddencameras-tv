@@ -85,12 +85,12 @@ const TIMELINE = [
   },
   {
     year: "1990s",
-    era: "The Nanny Cam Decade",
+    era: "The <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> Decade",
     color: "#f59e0b",
     events: [
       {
-        title: "The Louise Woodward Case Sparks Nanny Cam Sales",
-        body: "In 1997, British au pair Louise Woodward was convicted in the death of 8-month-old Matthew Eappen in Massachusetts. The case became a global media event and directly drove a massive surge in sales of concealed home cameras — quickly branded \"nanny cams.\" Within months of the verdict, consumer electronics stores were stocking clocks, teddy bears, and smoke detectors with built-in cameras. The nanny cam industry was born overnight.",
+        title: "The Louise Woodward Case Sparks <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> Sales",
+        body: "In 1997, British au pair Louise Woodward was convicted in the death of 8-month-old Matthew Eappen in Massachusetts. The case became a global media event and directly drove a massive surge in sales of concealed home cameras — quickly branded \"nanny cams.\" Within months of the verdict, consumer electronics stores were stocking clocks, teddy bears, and smoke detectors with built-in cameras. The <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> industry was born overnight.",
       },
       {
         title: "UK's National CCTV Explosion",
@@ -127,7 +127,7 @@ const TIMELINE = [
     color: "#8b5cf6",
     events: [
       {
-        title: "Ring Doorbell: Security Camera Meets Social Network (2013)",
+        title: "<a href="https://www.amazon.com/dp/B09WZBPX8K?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Ring</a>: Security Camera Meets Social Network (2013)",
         body: "Jamie Siminoff founded Ring in 2013 after being frustrated he couldn't see who was at his door while in his garage workshop. The video doorbell was simple but revolutionary — it combined a security camera with a smartphone app and, later, a neighborhood social network (Neighbors). Amazon acquired Ring for over $1 billion in 2018. Ring didn't just sell cameras; it sold the idea that your entire neighborhood could share surveillance footage with each other.",
       },
       {
@@ -155,7 +155,7 @@ const TIMELINE = [
       },
       {
         title: "Consumer Cameras Reach 4K and Beyond",
-        body: "Modern consumer cameras like the <a href=\"https://hiddencameras.tv/reviews\" style=\"color:#f59e0b\">Eufy S350 shoot 4K video</a> with dual lenses, 8x optical zoom, and local storage — no subscription required. Battery life on wire-free cameras like the Arlo Pro 5S lasts up to six months. What required a government-level budget in the 1960s is now a $79 purchase with next-day shipping. The democratization of surveillance technology has cut both ways: anyone can protect their home, and anyone can invade someone else's privacy.",
+        body: "Modern consumer cameras like the <a href=\"https://hiddencameras.tv/reviews\" style=\"color:#f59e0b\">Eufy S350 shoot 4K video</a> with dual lenses, 8x optical zoom, and local storage — no subscription required. Battery life on wire-free cameras like the <a href="https://www.amazon.com/dp/B0B8GVC8QH?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Arlo</a> 5S lasts up to six months. What required a government-level budget in the 1960s is now a $79 purchase with next-day shipping. The democratization of surveillance technology has cut both ways: anyone can protect their home, and anyone can invade someone else's privacy.",
       },
       {
         title: "The Right to Record vs. The Right to Privacy",
@@ -318,7 +318,7 @@ export default function HistoryPage() {
         <div className="prose-dark">
           <p>The next decade of surveillance technology will be defined by <strong>AI inference at the edge</strong> — cameras that process and understand video locally, without sending footage to the cloud. This solves privacy concerns (your footage stays on your device) while enabling capabilities that cloud systems can&apos;t match: sub-100ms response times, offline operation, and on-device facial recognition.</p>
           <p>Simultaneously, <strong>legal frameworks are racing to catch up</strong>. The EU&apos;s AI Act restricts real-time biometric surveillance in public spaces. Several U.S. states have passed biometric privacy laws. The fundamental question — who owns the footage when a camera captures a public street — still has no universal answer.</p>
-          <p>For consumers, the immediate future is continued price compression and capability expansion. What the Arlo Pro 5S does for $199 today will cost $39 in five years. The real competition is shifting from hardware to software — who has the best AI detection model, the best app experience, and the most trustworthy data policy.</p>
+          <p>For consumers, the immediate future is continued price compression and capability expansion. What the <a href="https://www.amazon.com/dp/B0B8GVC8QH?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Arlo</a> 5S does for $199 today will cost $39 in five years. The real competition is shifting from hardware to software — who has the best AI detection model, the best app experience, and the most trustworthy data policy.</p>
           <p>For more, read our <Link href="/blog" className="text-brand-green hover:underline">security camera guides and buying advice</Link>, or dive into the <Link href="/news" className="text-brand-green hover:underline">latest surveillance news</Link>.</p>
         </div>
       </div>

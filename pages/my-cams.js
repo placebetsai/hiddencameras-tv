@@ -7,7 +7,7 @@ import { supabase } from "../lib/supabase";
 const CAM_TYPES = [
   { value: "home",     label: "Home Security", icon: "🏠" },
   { value: "baby",     label: "Baby Monitor",  icon: "👶" },
-  { value: "nanny",    label: "Nanny Cam",     icon: "👀" },
+  { value: "nanny",    label: "<a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a>",     icon: "👀" },
   { value: "pet",      label: "Pet Cam",       icon: "🐾" },
   { value: "business", label: "Business",      icon: "🏢" },
   { value: "other",    label: "Other",         icon: "📷" },

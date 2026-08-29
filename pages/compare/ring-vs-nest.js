@@ -7,9 +7,9 @@ import AdUnit from "../../components/AdUnit";
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
 const PICKS = [
-  {"r":1,"n":"Ring Video Doorbell 4","p":"$149.99","a":"B09WZBPX7K","w":"Best Ring doorbell. 1080p HD, pre-roll video, night vision, two-way audio, Alexa native, Ring Protect optional."},
+  {"r":1,"n":"Ring Video Doorbell 4","p":"$149.99","a":"B09WZBPX7K","w":"Best <a href="https://www.amazon.com/dp/B09WZBPX8K?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Ring</a>. 1080p HD, pre-roll video, night vision, two-way audio, Alexa native, Ring Protect optional."},
   {"r":2,"n":"Google Nest Cam (Indoor, Wired)","p":"$99.99","a":"B09FCLPLWX","w":"Best Nest cam. On-device AI, familiar face detection, 24/7 recording with Nest Aware, Google Home native."},
-  {"r":3,"n":"Ring Video Doorbell Pro 2","p":"$179.99","a":"B09YN7FL68","w":"Premium Ring doorbell. 1536p HD+, 3D motion detection, bird's eye view, hardwired, Alexa."},
+  {"r":3,"n":"Ring Video Doorbell Pro 2","p":"$179.99","a":"B09YN7FL68","w":"Premium <a href="https://www.amazon.com/dp/B09WZBPX8K?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Ring</a>. 1536p HD+, 3D motion detection, bird's eye view, hardwired, Alexa."},
   {"r":4,"n":"Google Nest Doorbell (Wired)","p":"$179.99","a":"B09D3GYSQH","w":"Best Nest doorbell. 24/7 recording, on-device AI, HDR, package and familiar face detection."}
 ];
 

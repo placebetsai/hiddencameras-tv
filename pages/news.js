@@ -25,7 +25,7 @@ Guests who discover any interior camera should report it immediately through the
     date: "March 28, 2026",
     title: "Ring Unveils AI Facial Recognition Doorbell — Launching Q3 2026",
     summary: "Amazon's Ring division announced its most controversial product yet: a doorbell camera with on-device facial recognition that can alert homeowners when unfamiliar faces approach, storing a 'Known Visitors' database locally.",
-    body: `The Ring Doorbell Pro AI, announced at Amazon's spring hardware event, uses a custom neural processing unit to run facial recognition entirely on-device — no cloud uploads, no subscription required for the feature.
+    body: `The <a href="https://www.amazon.com/dp/B09WZBPX8K?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Ring</a> Pro AI, announced at Amazon's spring hardware event, uses a custom neural processing unit to run facial recognition entirely on-device — no cloud uploads, no subscription required for the feature.
 
 The camera will distinguish between known household members, frequent visitors, and strangers, sending differentiated alerts. Privacy advocates immediately raised concerns about potential misuse and 'stranger profiling.'
 
@@ -122,7 +122,7 @@ Hikvision, majority-owned by the Chinese government, has been on the FCC's 'cove
     accent: "#f59e0b",
     date: "January 18, 2026",
     title: "Apple HomeKit Secure Video Expands to 24 New Camera Brands",
-    summary: "Apple's end-to-end encrypted video storage platform now supports 24 additional camera manufacturers, including Eufy, TP-Link Tapo, and Reolink — making HomeKit Secure Video the largest privacy-focused camera ecosystem.",
+    summary: "Apple's end-to-end encrypted video storage platform now supports 24 additional camera manufacturers, including Eufy, TP-Link Tapo, and <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a> — making HomeKit Secure Video the largest privacy-focused camera ecosystem.",
     body: `Apple's HomeKit Secure Video (HKSV) analyzes footage locally on the home hub (HomePod mini or Apple TV) and only uploads encrypted clips to iCloud when motion events are detected. Even Apple cannot access the footage.
 
 The 24 new brands were certified through Apple's Made for HomeKit program, which requires manufacturers to meet strict data handling requirements. Combined with existing partners (Logitech, Arlo, Eufy, Eve), HKSV now covers cameras in 60M+ Apple homes.

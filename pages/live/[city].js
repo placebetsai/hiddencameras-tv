@@ -60,7 +60,7 @@ const CITIES = [
     ],
     security: { crime: "Moderate", surveillance: "Very High", police: "Metropolitan Police" },
     asin: "B08C5XKWG6",
-    productName: "Arlo Pro 4 Spotlight Camera",
+    productName: "<a href="https://www.amazon.com/dp/B0B8GVC8QH?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Arlo</a> 4 Spotlight Camera",
   },
   {
     slug: "paris",
@@ -78,7 +78,7 @@ const CITIES = [
     ],
     security: { crime: "Moderate", surveillance: "High", police: "Police Nationale" },
     asin: "B0CJ9YX7DG",
-    productName: "Wyze Cam v4",
+    productName: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v4",
   },
   {
     slug: "dubai",
@@ -306,7 +306,7 @@ export default function CityPage({ city, related }) {
             {/* Product rec */}
             <div className="card border-brand-green/20">
               <p className="text-gray-500 text-[10px] uppercase tracking-wider font-bold mb-2">Visiting {city.name}?</p>
-              <h3 className="text-white font-bold text-sm mb-1">Carry a hidden camera detector</h3>
+              <h3 className="text-white font-bold text-sm mb-1">Carry a <a href="https://www.amazon.com/s?k=hidden+camera+detector&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">detector</a></h3>
               <p className="text-gray-500 text-xs mb-3">Sweep your hotel room in 5 minutes. Catches 95% of spy cams.</p>
               <p className="text-brand-green font-bold text-sm mb-2">{city.productName}</p>
               <a href={`https://www.amazon.com/dp/${city.asin}?tag=${AMAZON_TAG}`}

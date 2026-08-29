@@ -7,8 +7,8 @@ import AdUnit from "../../components/AdUnit";
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
 const PICKS = [
-  {"r":1,"n":"Wyze Cam v4","p":"$29.99","a":"B0CWFPB81X","w":"Best Wyze camera. 2K QHD, color night vision, local microSD storage, no subscription required, IP65 weather resistant."},
-  {"r":2,"n":"Ring Video Doorbell 4","p":"$149.99","a":"B09WZBPX7K","w":"Best Ring doorbell. 1080p HD, pre-roll video, night vision, two-way audio, Alexa native, Ring Protect optional."},
+  {"r":1,"n":"<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v4","p":"$29.99","a":"B0CWFPB81X","w":"Best Wyze camera. 2K QHD, color night vision, local microSD storage, no subscription required, IP65 weather resistant."},
+  {"r":2,"n":"Ring Video Doorbell 4","p":"$149.99","a":"B09WZBPX7K","w":"Best <a href="https://www.amazon.com/dp/B09WZBPX8K?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Ring</a>. 1080p HD, pre-roll video, night vision, two-way audio, Alexa native, Ring Protect optional."},
   {"r":3,"n":"Wyze Video Doorbell v2","p":"$33.99","a":"B0C6XJZQFK","w":"Budget doorbell king. 2K QHD, color night vision, local storage, two-way audio, no subscription needed."},
   {"r":4,"n":"Ring Indoor Cam (2nd Gen)","p":"$44.99","a":"B09WGM878B","w":"Best Ring indoor cam. 1080p HD, privacy cover, two-way audio, Alexa integration, motion zones."}
 ];
@@ -27,7 +27,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@graph": [
               {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Wyze really as good as Ring?","acceptedAnswer":{"@type":"Answer","text":"Wyze matches or exceeds Ring in video quality (2K vs 1080p), local storage options, and subscription value. Ring wins in ecosystem maturity, professional monitoring, and Alexa integration depth. For pure camera value, Wyze is the better buy."}},{"@type":"Question","name":"Can I use Wyze cameras with Alexa?","acceptedAnswer":{"@type":"Answer","text":"Yes, Wyze cameras work with Alexa for live view, motion announcements, and basic voice commands. However, Ring offers deeper Alexa integration with Routines, Echo Show optimization, and full ecosystem support."}},{"@type":"Question","name":"Which brand has cheaper subscriptions?","acceptedAnswer":{"@type":"Answer","text":"Wyze is significantly cheaper. Cam Plus starts at ~$1.99/month per camera vs Ring Protect Basic at $4.99/month. Wyze also offers usable cameras without any subscription via local microSD storage."}},{"@type":"Question","name":"Which is better for a multi-camera setup?","acceptedAnswer":{"@type":"Answer","text":"Wyze wins for budget multi-camera setups due to lower camera prices and cheaper subscriptions. Ring wins if you want professional monitoring and a polished ecosystem with doorbells, alarms, and lighting."}}]},
-              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Wyze Cam v4","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CWFPB81X?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Ring Video Doorbell 4","offers":{"@type":"Offer","price":"149.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09WZBPX7K?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Wyze Video Doorbell v2","offers":{"@type":"Offer","price":"33.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0C6XJZQFK?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Ring Indoor Cam (2nd Gen)","offers":{"@type":"Offer","price":"44.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09WGM878B?tag=hiddencamerastv-20"}}}]}
+              {"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Product","name":"<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v4","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0CWFPB81X?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Ring Video Doorbell 4","offers":{"@type":"Offer","price":"149.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09WZBPX7K?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Wyze Video Doorbell v2","offers":{"@type":"Offer","price":"33.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B0C6XJZQFK?tag=hiddencamerastv-20"}}},{"@type":"ListItem","position":4,"item":{"@type":"Product","name":"Ring Indoor Cam (2nd Gen)","offers":{"@type":"Offer","price":"44.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://www.amazon.com/dp/B09WGM878B?tag=hiddencamerastv-20"}}}]}
             ]
           }),
         }}
@@ -79,11 +79,11 @@ export default function Page() {
         <p><strong>Wyze</strong> wins on value and no-subscription features. <strong>Ring</strong> wins on ecosystem and reliability. Wyze delivers 2K resolution at $29.99 with free local storage. Ring offers a polished Alexa ecosystem, professional monitoring, and proven reliability at higher prices.</p>
 
         <h2>Video Quality</h2>
-        <p><strong>Wyze Cam v4</strong> delivers 2K QHD (2560x1440) HDR with color night vision — significantly sharper than Ring&apos;s 1080p. The higher resolution makes a real difference when zooming in on faces or license plates.</p>
+        <p><strong><a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v4</strong> delivers 2K QHD (2560x1440) HDR with color night vision — significantly sharper than Ring&apos;s 1080p. The higher resolution makes a real difference when zooming in on faces or license plates.</p>
         <p><strong>Ring cameras</strong> offer 1080p HD with HDR. The Video Doorbell 4 includes pre-roll video that captures the first few seconds before motion is triggered. Color night vision is available on Spotlight and Floodlight models.</p>
 
         <h2>Subscription Costs</h2>
-        <p><strong>Wyze Cam Plus:</strong> ~$1.99/month per camera or ~$9.99/month unlimited. Full-length recordings, no cooldown, person/vehicle/pet/package detection.</p>
+        <p><strong><a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> Plus:</strong> ~$1.99/month per camera or ~$9.99/month unlimited. Full-length recordings, no cooldown, person/vehicle/pet/package detection.</p>
         <p><strong>Ring Protect:</strong> $4.99/month per device or $10/month for unlimited devices at one location. Includes 180-day cloud history and person detection.</p>
         <p>Wyze is 60% cheaper per camera. For 4 cameras, Wyze unlimited costs ~$9.99/month vs Ring Plus at $10/month — similar for unlimited, but Wyze cameras cost half as much upfront.</p>
 
@@ -96,7 +96,7 @@ export default function Page() {
         <p><strong>Ring</strong> is cloud-dependent. No local storage option. Footage is stored on Amazon servers with standard encryption.</p>
 
         <h2>Price Comparison</h2>
-        <p><strong>Indoor Cameras:</strong> Wyze Cam v4 at $29.99 vs Ring Indoor Cam at $44.99. Wyze is 33% cheaper with higher resolution.</p>
+        <p><strong>Indoor Cameras:</strong> <a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v4 at $29.99 vs Ring Indoor Cam at $44.99. Wyze is 33% cheaper with higher resolution.</p>
         <p><strong>Doorbells:</strong> Wyze Doorbell v2 at $33.99 vs Ring Video Doorbell 4 at $149.99. Wyze is 77% cheaper with 2K resolution.</p>
         <p><strong>3-Year Total (4 cameras):</strong> Wyze ~$360 cameras + ~$360 subscription = ~$720. Ring ~$600 cameras + ~$360 subscription = ~$960. Wyze saves ~$240.</p>
 

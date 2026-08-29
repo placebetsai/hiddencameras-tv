@@ -44,7 +44,7 @@ const CAMERAS = [
   },
   {
     slug: "wyze-cam-v4",
-    name: "Wyze Cam v4",
+    name: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v4",
     brand: "Wyze",
     category: "Best Value",
     price: "$35.98",
@@ -61,7 +61,7 @@ const CAMERAS = [
   },
   {
     slug: "arlo-pro-5s",
-    name: "Arlo Pro 5S",
+    name: "<a href="https://www.amazon.com/dp/B0B8GVC8QH?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Arlo</a> 5S",
     brand: "Arlo",
     category: "Best Premium",
     price: "$199.99",

@@ -100,26 +100,26 @@ const CAMERAS = {
   visible: {
     home: [
       { name: "Ring Indoor Cam (2nd Gen)", price: "$59.99", asin: "B09WGY4T6K", reason: "Built-in siren, two-way audio, and Motion Detection. Hardwired for 24/7 recording. Alexa-compatible." },
-      { name: "Wyze Cam v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Starlight sensor for color night vision. IP65 weatherproof. Local SD card or cloud. Best budget option." },
+      { name: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Starlight sensor for color night vision. IP65 weatherproof. Local SD card or cloud. Best budget option." },
       { name: "eufy E30 Indoor Cam", price: "$49.99", asin: "B0C4XQJN5S", reason: "2K resolution, local storage with HomeBase, no subscription. Human/pet AI detection. Privacy mode." },
     ],
     nanny: [
-      { name: "Wyze Cam v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Affordable, reliable, and compact. Motion alerts sent to your phone. Two-way audio for checking in." },
+      { name: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Affordable, reliable, and compact. Motion alerts sent to your phone. Two-way audio for checking in." },
       { name: "Ring Indoor Cam (2nd Gen)", price: "$59.99", asin: "B09WGY4T6K", reason: "Discreet tabletop mount. Works with Alexa. Shared access for partners or family members." },
       { name: "eufy E30 Indoor Cam", price: "$49.99", asin: "B0C4XQJN5S", reason: "No monthly fees. Stores footage locally. Crystal-clear 2K with night vision." },
     ],
     elderly: [
-      { name: "Wyze Cam v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Two-way audio lets you talk to your parent remotely. Motion alerts show daily activity patterns." },
+      { name: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Two-way audio lets you talk to your parent remotely. Motion alerts show daily activity patterns." },
       { name: "Ring Indoor Cam (2nd Gen)", price: "$59.99", asin: "B09WGY4T6K", reason: "Quick setup, shared viewing for family. Integrates with Ring alarm system if already installed." },
       { name: "eufy E30 Indoor Cam", price: "$49.99", asin: "B0C4XQJN5S", reason: "Privacy mode toggles camera off when you visit. No subscription required for full functionality." },
     ],
     rental: [
       { name: "Ring Indoor Cam (2nd Gen)", price: "$59.99", asin: "B09WGY4T6K", reason: "Discreet design. Must be disclosed to guests per Airbnb policy and most state laws. Hardwired." },
-      { name: "Wyze Cam v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Low-cost option for monitoring common areas. Outdoor model available for exterior coverage." },
+      { name: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Low-cost option for monitoring common areas. Outdoor model available for exterior coverage." },
       { name: "eufy E30 Indoor Cam", price: "$49.99", asin: "B0C4XQJN5S", reason: "Local storage means guest footage stays on-premises. No cloud upload of guest activity." },
     ],
     pet: [
-      { name: "Wyze Cam v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Two-way audio for talking to pets. Motion tracking captures activity. Weatherproof for pet doors." },
+      { name: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Two-way audio for talking to pets. Motion tracking captures activity. Weatherproof for pet doors." },
       { name: "eufy E30 Indoor Cam", price: "$49.99", asin: "B0C4XQJN5S", reason: "Pet detection AI reduces false alerts. 2K clarity to see what your pet is chewing on." },
       { name: "Ring Indoor Cam (2nd Gen)", price: "$59.99", asin: "B09WGY4T6K", reason: "Works with Alexa: 'Show me the pet cam.' Instant live view on Echo Show or Fire TV." },
     ],
@@ -131,32 +131,32 @@ const CAMERAS = {
     business: [
       { name: "Ring Indoor Cam (2nd Gen)", price: "$59.99", asin: "B09WGY4T6K", reason: "Multi-camera setup via Ring app. Shared access for security staff. Professional monitoring available." },
       { name: "eufy E30 Indoor Cam", price: "$49.99", asin: "B0C4XQJN5S", reason: "No subscription for multiple cameras. Local storage keeps business footage on-site. AI person detection." },
-      { name: "Wyze Cam v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Deploy multiple units cheaply. Cloud or local storage options. Works in warehouses and offices." },
+      { name: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v3", price: "$35.98", asin: "B09WTKC8V4", reason: "Deploy multiple units cheaply. Cloud or local storage options. Works in warehouses and offices." },
     ],
   },
   hidden: {
     nanny: [
-      { name: "Mini Hidden Nanny Cam 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Disguised as an everyday object. 1080p recording with motion-triggered capture. No visible lens." },
+      { name: "Mini Hidden <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Disguised as an everyday object. 1080p recording with motion-triggered capture. No visible lens." },
       { name: "4K Mini WiFi Pinhole Camera", price: "$54.99", asin: "B07MFWKM6R", reason: "4K pinhole resolution captures faces clearly. WiFi remote viewing. SD card recording." },
       { name: "Night Vision 1080p Portable Mini Camera", price: "$18.67", asin: "B0C...?", reason: "Ultra-discreet design under $20. Built-in night vision. Motion-triggered 1080p capture." },
     ],
     elderly: [
-      { name: "Mini Hidden Nanny Cam 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Monitor without alarming your parent. Discreet placement in living areas or kitchen." },
+      { name: "Mini Hidden <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Monitor without alarming your parent. Discreet placement in living areas or kitchen." },
       { name: "Night Vision 1080p Portable Mini Camera", price: "$18.67", asin: "B0C...?", reason: "Budget option for room monitoring. Night vision works in low-light conditions." },
       { name: "4K Mini WiFi Pinhole Camera", price: "$54.99", asin: "B07MFWKM6R", reason: "High-resolution capture for identifying visitors. Remote WiFi access from your phone." },
     ],
     home: [
       { name: "4K Mini WiFi Pinhole Camera", price: "$54.99", asin: "B07MFWKM6R", reason: "4K hidden camera for maximum detail. WiFi for remote access. MicroSD recording." },
-      { name: "Mini Hidden Nanny Cam 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Concealed in common household item. Motion alerts and auto-recording." },
+      { name: "Mini Hidden <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Concealed in common household item. Motion alerts and auto-recording." },
       { name: "Night Vision 1080p Portable Mini Camera", price: "$18.67", asin: "B0C...?", reason: "Entry-level covert camera. Night vision and motion detection built in." },
     ],
     rental: [
       { name: "4K Mini WiFi Pinhole Camera", price: "$54.99", asin: "B07MFWKM6R", reason: "Highest quality covert recording. Important: disclosure laws vary by state for rental properties." },
-      { name: "Mini Hidden Nanny Cam 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Discreet monitoring. Check local laws — hidden cameras in rentals have strict rules in most states." },
+      { name: "Mini Hidden <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Discreet monitoring. Check local laws — hidden cameras in rentals have strict rules in most states." },
       { name: "Night Vision 1080p Portable Mini Camera", price: "$18.67", asin: "B0C...?", reason: "Low-cost covert option. Legal requirements vary — always check your state consent laws first." },
     ],
     pet: [
-      { name: "Mini Hidden Nanny Cam 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Place discreetly to see what pets do when alone. Motion-triggered recording saves storage." },
+      { name: "Mini Hidden <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Place discreetly to see what pets do when alone. Motion-triggered recording saves storage." },
       { name: "Night Vision 1080p Portable Mini Camera", price: "$18.67", asin: "B0C...?", reason: "Compact and portable. Move between rooms as needed. Night vision for dark areas." },
       { name: "4K Mini WiFi Pinhole Camera", price: "$54.99", asin: "B07MFWKM6R", reason: "4K detail catches every behavior. WiFi lets you check live from work or travel." },
     ],
@@ -167,7 +167,7 @@ const CAMERAS = {
     ],
     business: [
       { name: "4K Mini WiFi Pinhole Camera", price: "$54.99", asin: "B07MFWKM6R", reason: "Covert office monitoring. High resolution for identifying people. Important: employee notification laws apply." },
-      { name: "Mini Hidden Nanny Cam 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Discreet placement in office. Check local employment recording laws before deploying." },
+      { name: "Mini Hidden <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> 1080p", price: "$44.99", asin: "B0CJ9YX7DG", reason: "Discreet placement in office. Check local employment recording laws before deploying." },
       { name: "Night Vision 1080p Portable Mini Camera", price: "$18.67", asin: "B0C...?", reason: "Budget covert option. Most states require employee notification — verify your state rules." },
     ],
   },

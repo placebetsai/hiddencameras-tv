@@ -6,7 +6,7 @@ import AdUnit from "../components/AdUnit";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
-const PICKS = [{"r":1,"n":"Ring Indoor Cam (2nd Gen)","p":"$59.99","a":"B09WZBPX7K","w":"Best Ring indoor camera. 1080p, privacy shutter, two-way talk, works with Alexa. Ring Protect plan optional."},{"r":2,"n":"Blink Mini 2","p":"$34.99","a":"B0CGX9GQ3Q","w":"Best budget Blink camera. 1080p, built-in spotlight, motion detection zones, person detection with subscription."},{"r":3,"n":"Ring Spotlight Cam Plus","p":"$169.99","a":"B09DRKR4MJ","w":"Best Ring outdoor camera. 1080p HDR, LED spotlights, siren, color night vision, solar panel compatible."},{"r":4,"n":"Blink Outdoor 4","p":"$99.99","a":"B0CSVQ3CGZ","w":"Best Blink outdoor camera. 2-year battery, 1080p, infrared night vision, weather resistant."}];
+const PICKS = [{"r":1,"n":"Ring Indoor Cam (2nd Gen)","p":"$59.99","a":"B09WZBPX7K","w":"Best Ring indoor camera. 1080p, privacy shutter, two-way talk, works with Alexa. Ring Protect plan optional."},{"r":2,"n":"Blink Mini 2","p":"$34.99","a":"B0CGX9GQ3Q","w":"Best budget <a href="https://www.amazon.com/dp/B09TMQD7TP?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Blink</a>. 1080p, built-in spotlight, motion detection zones, person detection with subscription."},{"r":3,"n":"Ring Spotlight Cam Plus","p":"$169.99","a":"B09DRKR4MJ","w":"Best Ring outdoor camera. 1080p HDR, LED spotlights, siren, color night vision, solar panel compatible."},{"r":4,"n":"Blink Outdoor 4","p":"$99.99","a":"B0CSVQ3CGZ","w":"Best Blink outdoor camera. 2-year battery, 1080p, infrared night vision, weather resistant."}];
 
 export default function Page() {
   return (
