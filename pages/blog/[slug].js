@@ -73,7 +73,7 @@ function AuthorCard({ article }) {
 export default function Article({ article }) {
   if (!article || !article.title) return null;
 
-  const authorName = article.author || "Marcus Chen";
+  const authorName = article.author || "HiddenCameras Editorial";
   const author = AUTHORS[authorName] || AUTHORS["HiddenCameras Editorial"];
 
   const renderBody = (body) =>
