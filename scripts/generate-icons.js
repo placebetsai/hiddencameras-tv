@@ -108,6 +108,12 @@ const APPLE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
 </svg>`;
 
 async function generate() {
+  // Skip if all icons already exist (avoids sharp dependency in CI)
+  const icons = ["favicon-16x16.png","favicon-32x32.png","apple-touch-icon.png","icon-192.png","icon-512.png","og-image.png"];
+  if (icons.every(f => fs.existsSync(path.join(pub, f)))) {
+    console.log("[generate-icons] All icons exist — skipping.");
+    return;
+  }
   // Favicon 16x16
   await sharp(Buffer.from(FAVICON_SVG)).resize(16,16).png().toFile(path.join(pub,"favicon-16x16.png"));
   console.log("✓ favicon-16x16.png");
