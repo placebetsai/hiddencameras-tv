@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Security Camera Finder — Find Your Perfect Camera in 60 Seconds</title>
+<meta name="description" content="Answer 5 questions and get a personalized security camera recommendation. Free tool from HiddenCameras.tv.">
+<meta property="og:title" content="Free Security Camera Finder — 60 Seconds">
+<meta property="og:description" content="Get a personalized security camera recommendation based on your needs">
+<link rel="canonical" href="https://hiddencameras.tv/tools/camera-finder">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6}
+.container{max-width:700px;margin:0 auto;padding:2rem 1rem}
+h1{font-size:2rem;margin-bottom:0.5rem;color:#fff}
+.subtitle{color:#888;margin-bottom:2rem;font-size:1.1rem}
+.progress{height:4px;background:#222;border-radius:2px;margin-bottom:2rem}
+.progress-bar{height:100%;background:#3b82f6;border-radius:2px;transition:width 0.3s}
+.question{display:none}
+.question.active{display:block}
+.question h2{font-size:1.3rem;margin-bottom:1rem;color:#fff}
+.options{display:grid;gap:0.75rem}
+.option{padding:1rem;background:#1a1a1a;border:2px solid #333;border-radius:12px;cursor:pointer;transition:all 0.2s}
+.option:hover{border-color:#3b82f6;background:#111}
+.option.selected{border-color:#3b82f6;background:#1e3a5f}
+.option .label{font-weight:600;color:#fff}
+.option .desc{font-size:0.85rem;color:#888;margin-top:0.25rem}
+.result{display:none;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:2rem;margin-top:2rem}
+.result.show{display:block}
+.result h2{font-size:1.5rem;margin-bottom:1rem;color:#3b82f6}
+.camera-card{background:#111;border:1px solid #333;border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+.camera-card h3{color:#fff;margin-bottom:0.5rem}
+.camera-card .price{color:#4ade80;font-size:1.2rem;font-weight:700;margin-bottom:0.5rem}
+.camera-card .features{list-style:none;padding:0}
+.camera-card .features li{padding:0.25rem 0;color:#888}
+.camera-card .features li::before{content:"✓ ";color:#4ade80}
+.camera-card .amazon-link{display:inline-block;margin-top:1rem;padding:0.75rem 1.5rem;background:#ff9900;color:#000;border-radius:8px;text-decoration:none;font-weight:600}
+.related{margin-top:3rem;padding:1.5rem;background:#1a1a1a;border-radius:12px}
+.related h3{margin-bottom:1rem;color:#fff}
+.related a{color:#3b82f6;text-decoration:none;display:block;padding:0.5rem 0}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📷 Security Camera Finder</h1>
+<p class="subtitle">Answer 5 questions — get your perfect camera recommendation</p>
+
+<div class="progress"><div class="progress-bar" id="progress" style="width:20%"></div></div>
+
+<div class="question active" id="q1">
+<h2>Where will you use it?</h2>
+<div class="options">
+<div class="option" onclick="answer('location','indoor')"><div class="label">Indoor only</div><div class="desc">Living room, bedroom, nursery</div></div>
+<div class="option" onclick="answer('location','outdoor')"><div class="label">Outdoor only</div><div class="desc">Front door, backyard, driveway</div></div>
+<div class="option" onclick="answer('location','both')"><div class="label">Both indoor and outdoor</div><div class="desc">Need multiple cameras for whole home</div></div>
+</div>
+</div>
+
+<div class="question" id="q2">
+<h2>What's your budget per camera?</h2>
+<div class="options">
+<div class="option" onclick="answer('budget','under50')"><div class="label">Under $50</div><div class="desc">Budget-friendly, basic features</div></div>
+<div class="option" onclick="answer('budget','50to100')"><div class="label">$50 - $100</div><div class="desc">Good balance of features and price</div></div>
+<div class="option" onclick="answer('budget','100to200')"><div class="label">$100 - $200</div><div class="desc">Premium features, better quality</div></div>
+<div class="option" onclick="answer('budget','over200')"><div class="label">$200+</div><div class="desc">Top-tier, professional grade</div></div>
+</div>
+</div>
+
+<div class="question" id="q3">
+<h2>Do you want a subscription?</h2>
+<div class="options">
+<div class="option" onclick="answer('subscription','none')"><div class="label">No subscriptions ever</div><div class="desc">Local storage only, pay once</div></div>
+<div class="option" onclick="answer('subscription','free')"><div class="label">Free tier is fine</div><div class="desc">Free cloud storage with basic features</div></div>
+<div class="option" onclick="answer('subscription','paid')"><div class="label">OK with paid plans</div><div class="desc">Want the best features and cloud backup</div></div>
+</div>
+</div>
+
+<div class="question" id="q4">
+<h2>What's most important to you?</h2>
+<div class="options">
+<div class="option" onclick="answer('priority','quality')"><div class="label">Video quality (4K, HDR)</div><div class="desc">Crystal clear footage</div></div>
+<div class="option" onclick="answer('priority','battery')"><div class="label">Battery life</div><div class="desc">Wire-free, no charging worry</div></div>
+<div class="option" onclick="answer('priority','detection')"><div class="label">Smart detection (AI)</div><div class="desc">Person/vehicle/package detection</div></div>
+<div class="option" onclick="answer('priority','night')"><div class="label">Night vision</div><div class="desc">See clearly in total darkness</div></div>
+</div>
+</div>
+
+<div class="question" id="q5">
+<h2>How tech-savvy are you?</h2>
+<div class="options">
+<div class="option" onclick="answer('tech','beginner')"><div class="label">Plug and play</div><div class="desc">Just want it to work out of the box</div></div>
+<div class="option" onclick="answer('tech','intermediate')"><div class="label">Comfortable with apps</div><div class="desc">Can follow setup guides</div></div>
+<div class="option" onclick="answer('tech','advanced')"><div class="label">Power user</div><div class="desc">Want RTSP, local NVR, custom configs</div></div>
+</div>
+</div>
+
+<div class="result" id="result">
+<h2>🎯 Your Perfect Camera</h2>
+<div id="recommendation"></div>
+</div>
+
+<div class="related">
+<h3>Learn More</h3>
+<a href="https://hiddencameras.tv/best-outdoor-security-cameras-2026">Best Outdoor Security Cameras 2026 →</a>
+<a href="https://hiddencameras.tv/best-hidden-camera-detector">Hidden Camera Detectors →</a>
+<a href="https://hiddencameras.tv/the-complete-surveillance-camera-buyers-guide-for-2026">Complete Buying Guide →</a>
+</div>
+</div>
+
+<script>
+const answers={};
+let currentQ=1;
+
+function answer(key,value){
+answers[key]=value;
+document.querySelectorAll(`#q${currentQ} .option`).forEach(o=>o.classList.remove('selected'));
+event.currentTarget.classList.add('selected');
+
+setTimeout(()=>{
+if(currentQ<5){
+currentQ++;
+document.querySelectorAll('.question').forEach(q=>q.classList.remove('active'));
+document.getElementById('q'+currentQ).classList.add('active');
+document.getElementById('progress').style.width=(currentQ*20)+'%';
+}else{
+showResult();
+}
+},300);
+}
+
+function showResult(){
+const cameras={
+'budget_none_indoor':{name:'Wyze Cam v4',price:'$36',features:['1080p HD','Color night vision','Local microSD storage','No subscription required','Person detection'],link:'https://www.amazon.com/dp/B0BJLXMVMV'},
+'budget_free_indoor':{name:'Blink Mini 2',price:'$30',features:['1080p HD','Two-way audio','Free 30-day trial','Alexa compatible','Plug-in powered'],link:'https://www.amazon.com/dp/B09TMQD7TP'},
+'budget_none_outdoor':{name:'Reolink Argus 4 Pro',price:'$130',features:['4K UHD','Solar-powered option','No subscription','ColorX night vision','180° wide angle'],link:'https://www.amazon.com/dp/B0B8GVC8QH'},
+'budget_free_outdoor':{name:'Ring Stick Up Cam',price:'$100',features:['1080p HD','Battery or plug-in','Free Ring app','Works with Alexa','Motion zones'],link:'https://www.amazon.com/dp/B09WZBPX8K'},
+'budget_paid_outdoor':{name:'Arlo Pro 5S',price:'$200',features:['2K HDR','Color night vision','Smart alerts','6-month battery','Cloud + local storage'],link:'https://www.amazon.com/dp/B0B7MVLMHF'},
+'budget_paid_indoor':{name:'Google Nest Cam',price:'$100',features:['1080p HDR','On-device AI','3 hours free event history','Magnetic mount','Google ecosystem'],link:'https://www.amazon.com/dp/B09F5S4YQS'},
+'budget_over200_outdoor':{name:'Arlo Ultra 2',price:'$300',features:['4K HDR','Color night vision','180° view','Integrated spotlight','Premium cloud'],link:'https://www.amazon.com/dp/B0B7MVLMHF'},
+};
+
+let key=`${answers.budget||'50to100'}_${answers.subscription||'free'}_${answers.location||'indoor'}`;
+let camera=cameras[key]||cameras['budget_free_indoor'];
+
+document.getElementById('recommendation').innerHTML=`
+<div class="camera-card">
+<h3>${camera.name}</h3>
+<div class="price">${camera.price}</div>
+<ul class="features">${camera.features.map(f=>'<li>'+f+'</li>').join('')}</ul>
+<a href="${camera.link}" class="amazon-link" target="_blank" rel="noopener sponsored">Check Price on Amazon →</a>
+</div>
+<p style="margin-top:1rem;color:#888;font-size:0.85rem">Based on your answers: ${answers.location||'indoor'} use, ${answers.budget||'medium'} budget, ${answers.subscription||'} no'} subscription preference</p>
+`;
+
+document.querySelectorAll('.question').forEach(q=>q.classList.remove('active'));
+document.getElementById('result').classList.add('show');
+document.getElementById('progress').style.width='100%';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
