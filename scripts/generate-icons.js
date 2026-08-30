@@ -3,11 +3,19 @@
  * Generates all required PNG assets from SVG source using sharp.
  * Outputs: favicon-16.png, favicon-32.png, apple-touch-icon.png, og-image.png
  */
-const sharp = require("sharp");
 const path = require("path");
 const fs = require("fs");
 
 const pub = path.join(__dirname, "../public");
+
+// Skip if all icons already exist (avoids sharp dependency in CI)
+const ICONS = ["favicon-16x16.png","favicon-32x32.png","apple-touch-icon.png","icon-192.png","icon-512.png","og-image.png"];
+if (ICONS.every(f => fs.existsSync(path.join(pub, f)))) {
+  console.log("[generate-icons] All icons exist — skipping.");
+  process.exit(0);
+}
+
+const sharp = require("sharp");
 
 // ─── Favicon SVG (tight camera icon, green on dark) ──────────────────────────
 const FAVICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
@@ -108,12 +116,6 @@ const APPLE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
 </svg>`;
 
 async function generate() {
-  // Skip if all icons already exist (avoids sharp dependency in CI)
-  const icons = ["favicon-16x16.png","favicon-32x32.png","apple-touch-icon.png","icon-192.png","icon-512.png","og-image.png"];
-  if (icons.every(f => fs.existsSync(path.join(pub, f)))) {
-    console.log("[generate-icons] All icons exist — skipping.");
-    return;
-  }
   // Favicon 16x16
   await sharp(Buffer.from(FAVICON_SVG)).resize(16,16).png().toFile(path.join(pub,"favicon-16x16.png"));
   console.log("✓ favicon-16x16.png");
