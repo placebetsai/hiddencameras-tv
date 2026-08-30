@@ -1,3 +1,4 @@
+import AdUnit from "../components/AdUnit";
 import Link from "next/link";
 import Layout from "../components/Layout";
 
@@ -28,7 +29,10 @@ export default function WifiHiddenCamerasPage() {
             <h2 className="text-white font-black mb-2">Detection</h2>
             <p className="text-brand-muted text-sm">How to inspect rentals, hotels, and unfamiliar rooms.</p>
           </Link>
-        </div>
+        </div
+
+        <AdUnit slot="inContent" />
+>
       </section>
     </Layout>
   );

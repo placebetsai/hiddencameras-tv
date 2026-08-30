@@ -1,3 +1,4 @@
+import AdUnit from "../components/AdUnit";
 import Link from "next/link";
 import Layout from "../components/Layout";
 
@@ -43,7 +44,10 @@ export default function HiddenCamerasPage() {
               </p>
             </Link>
           ))}
-        </div>
+        </div
+
+        <AdUnit slot="inContent" />
+>
       </section>
     </Layout>
   );

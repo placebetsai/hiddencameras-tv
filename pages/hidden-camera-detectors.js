@@ -1,3 +1,4 @@
+import AdUnit from "../components/AdUnit";
 import Link from "next/link";
 import Layout from "../components/Layout";
 
@@ -24,7 +25,10 @@ export default function HiddenCameraDetectorsPage() {
             <h2 className="text-white font-black mb-2">Airbnb Room Checks</h2>
             <p className="text-brand-muted text-sm">A practical inspection path for rentals and hotel rooms.</p>
           </Link>
-        </div>
+        </div
+
+        <AdUnit slot="inContent" />
+>
       </section>
     </Layout>
   );
