@@ -44,7 +44,7 @@ export default function HiddenCamerasPage() {
               </p>
             </Link>
           ))}
-        </div
+        </div>
 
         <AdUnit slot="inContent" />
 >

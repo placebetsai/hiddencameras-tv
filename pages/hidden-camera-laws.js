@@ -15,7 +15,7 @@ export default function Page() {
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"Is it legal to put a hidden camera in my own home?","acceptedAnswer":{"@type":"Answer","text":"Yes, in all 50 US states you can place hidden cameras in your own home. Exceptions: you cannot put cameras in bathrooms, guest bedrooms, or any area where someone has a reasonable expectation of privacy."}},{"@type":"Question","name":"Can my landlord put hidden cameras in my apartment?","acceptedAnswer":{"@type":"Answer","text":"No. Landlords cannot place cameras inside rental units. This is illegal in every state. Cameras in common areas (hallways, lobbies, parking lots) are generally legal with notice."}},{"@type":"Question","name":"What are the penalties for illegal hidden cameras?","acceptedAnswer":{"@type":"Answer","text":"Penalties vary by state but typically include felony charges, 1-5 years in prison, and fines up to $10,000. Federal law (18 USC 1801) also criminalizes video voyeurism."}}] }) }} />
 
-      <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">LEGAL GUIDE</div
+      <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">LEGAL GUIDE</div>
 
         <AdUnit slot="inContent" />
 >
