@@ -2,10 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 
-const GROQ_KEY = process.env.NEXT_PUBLIC_GROQ_KEY || "";
-
-const SYSTEM = `You are HiddenCameras.tv — an expert on hidden cameras, security cameras, surveillance systems, and privacy. You know every brand (Ring, Arlo, Blink, Wyze, Nest, Eufy, Reolink), every type (nanny cams, dash cams, doorbell cameras, spy cameras, outdoor/indoor security), and the laws around surveillance. You help users pick the right camera, detect hidden cameras, understand privacy laws, and compare products. Be helpful, specific, and mention prices/features when relevant. Always recommend where to buy (Amazon links when possible).`;
-
 function stripThinking(text) {
   return text.replace(/<think>[\s\S]*?<\/think>/g, "").replace(/<think>[\s\S]*$/g, "").trim();
 }
@@ -28,22 +24,13 @@ export default function ChatBot() {
     setMessages((m) => [...m, { role: "user", text: q }]);
     setLoading(true);
     try {
-      const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      const res = await fetch("/api/chatbot", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${GROQ_KEY}` },
-        body: JSON.stringify({
-          model: "openai/gpt-oss-120b",
-          messages: [
-            { role: "system", content: SYSTEM },
-            { role: "user", content: q },
-          ],
-          temperature: 0.3,
-          max_tokens: 500,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: q }),
       });
       const d = await res.json();
-      const raw = d.choices?.[0]?.message?.content || "";
-      const clean = stripThinking(raw);
+      const clean = stripThinking(d.answer || "");
       setMessages((m) => [...m, { role: "bot", text: clean || "No response." }]);
     } catch {
       setMessages((m) => [...m, { role: "bot", text: "Connection error. Try again." }]);
