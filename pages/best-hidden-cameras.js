@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
-const PICKS = [{"r":1,"n":"Blink Mini 2","p":"$34.99","a":"B0CGX9GQ3Q","w":"Best overall. Tiny, affordable, 1080p HD with night vision and motion alerts."},{"r":2,"n":"<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v4","p":"$35.98","a":"B0CJ9YX7DG","w":"Incredible value. Color night vision, IP65 weatherproof, works indoor/outdoor."},{"r":3,"n":"Ring Indoor Cam","p":"$59.99","a":"B09WZBPX7K","w":"Alexa integration, privacy shutter, two-way talk. Great for smart home setups."},{"r":4,"n":"Arlo Essential Indoor","p":"$49.99","a":"B0C6FD1VZ1","w":"Wire-free, automated privacy shield, 130-degree field of view."},{"r":5,"n":"Eufy Solo IndoorCam C24","p":"$27.99","a":"B0CP6HKRZ3","w":"No monthly fees. Local storage, AI person detection, 2K resolution."}];
+const PICKS = [{"r":1,"n":"Blink Mini 2","p":"$34.99","a":"B0CGX9GQ3Q","w":"Best overall. Tiny, affordable, 1080p HD with night vision and motion alerts."},{"r":2,"n":"Wyze Cam v4","p":"$35.98","a":"B0CJ9YX7DG","w":"Incredible value. Color night vision, IP65 weatherproof, works indoor/outdoor."},{"r":3,"n":"Ring Indoor Cam","p":"$59.99","a":"B09WZBPX7K","w":"Alexa integration, privacy shutter, two-way talk. Great for smart home setups."},{"r":4,"n":"Arlo Essential Indoor","p":"$49.99","a":"B0C6FD1VZ1","w":"Wire-free, automated privacy shield, 130-degree field of view."},{"r":5,"n":"Eufy Solo IndoorCam C24","p":"$27.99","a":"B0CP6HKRZ3","w":"No monthly fees. Local storage, AI person detection, 2K resolution."}];
 
 export default function Page() {
   return (

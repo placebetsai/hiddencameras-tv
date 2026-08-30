@@ -7,7 +7,7 @@ export default function CompareIndex() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Security Camera Comparisons 2026",
-    description: "Head-to-head comparisons of Ring, Arlo, Wyze, Blink, Google Nest, <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>, and Eufy security cameras. Expert reviews with scores.",
+    description: "Head-to-head comparisons of Ring, Arlo, Wyze, Blink, Google Nest, Reolink, and Eufy security cameras. Expert reviews with scores.",
     url: "https://hiddencameras.tv/compare",
   };
 
@@ -19,7 +19,7 @@ export default function CompareIndex() {
   return (
     <Layout
       title="Security Camera Comparisons 2026 — HiddenCameras.tv"
-      description="Head-to-head comparisons of Ring, Arlo, Wyze, Blink, Google Nest, <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>, and Eufy. Expert reviews with scores and verdicts."
+      description="Head-to-head comparisons of Ring, Arlo, Wyze, Blink, Google Nest, Reolink, and Eufy. Expert reviews with scores and verdicts."
       canonical="https://hiddencameras.tv/compare"
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
@@ -46,9 +46,9 @@ export default function CompareIndex() {
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-3xl">{comp.brand1 === "Ring" ? "🔔" : comp.brand1 === "Arlo" ? "📡" : comp.brand1 === "Wyze" ? "👁" : comp.brand1 === "Blink" ? "⚡" : comp.brand1 === "Google Nest" ? "🏠" : comp.brand1 === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "📷" : "🛡"}</span>
+                  <span className="text-3xl">{comp.brand1 === "Ring" ? "🔔" : comp.brand1 === "Arlo" ? "📡" : comp.brand1 === "Wyze" ? "👁" : comp.brand1 === "Blink" ? "⚡" : comp.brand1 === "Google Nest" ? "🏠" : comp.brand1 === "Reolink" ? "📷" : "🛡"}</span>
                   <span className="text-gray-600 font-black text-lg">VS</span>
-                  <span className="text-3xl">{comp.brand2 === "Ring" ? "🔔" : comp.brand2 === "Arlo" ? "📡" : comp.brand2 === "Wyze" ? "👁" : comp.brand2 === "Blink" ? "⚡" : comp.brand2 === "Google Nest" ? "🏠" : comp.brand2 === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "📷" : "🛡"}</span>
+                  <span className="text-3xl">{comp.brand2 === "Ring" ? "🔔" : comp.brand2 === "Arlo" ? "📡" : comp.brand2 === "Wyze" ? "👁" : comp.brand2 === "Blink" ? "⚡" : comp.brand2 === "Google Nest" ? "🏠" : comp.brand2 === "Reolink" ? "📷" : "🛡"}</span>
                 </div>
               </div>
               <h2 className="font-black text-white text-base leading-snug mb-2 group-hover:text-brand-green transition-colors">

@@ -22,7 +22,7 @@ export default function AirbnbPage() {
             "@type": "FAQPage",
             mainEntity: [
               { "@type": "Question", name: "Are hidden cameras allowed on Airbnb?", acceptedAnswer: { "@type": "Answer", text: "Airbnb prohibits cameras inside the property (bedrooms, bathrooms, living areas). Outdoor cameras covering entrances are allowed if fully disclosed in the listing." } },
-              { "@type": "Question", name: "What cameras do Airbnb hosts use?", acceptedAnswer: { "@type": "Answer", text: "Most hosts use Blink Mini, Ring Indoor Cam, or <a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> for disclosed indoor common areas and Ring Video Doorbell or <a href="https://www.amazon.com/dp/B0B8GVC8QH?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Arlo</a> for outdoor use." } },
+              { "@type": "Question", name: "What cameras do Airbnb hosts use?", acceptedAnswer: { "@type": "Answer", text: "Most hosts use Blink Mini, Ring Indoor Cam, or Wyze Cam for disclosed indoor common areas and Ring Video Doorbell or Arlo Pro for outdoor use." } },
             ],
           }),
         }}

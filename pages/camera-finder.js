@@ -84,7 +84,7 @@ const CAMERAS = [
     reason: "Weatherproof IP65 rating handles rain and dust. WiFi-connected with remote viewing from your phone.",
   },
   {
-    name: "Mini Hidden <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a> 1080p",
+    name: "Mini Hidden Nanny Cam 1080p",
     price: "44.99",
     image: "https://cdn.shopify.com/s/files/1/0908/9830/1233/files/f87678c148429c744b40c5316309_import.webp?v=1776700515",
     url: "https://www.amazon.com/dp/B0CGX9GQ3Q?tag=hiddencamerastv-20",

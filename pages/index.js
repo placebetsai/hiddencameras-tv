@@ -29,7 +29,7 @@ const BRANDS = [
   { name: "Blink", icon: "⚡", color: "#d97706", desc: "Amazon-powered security" },
   { name: "Nest", icon: "🏠", color: "#4285f4", desc: "Google smart home cams" },
   { name: "Eufy", icon: "🛡", color: "#16a34a", desc: "Local storage, no fees" },
-  { name: "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>", icon: "📷", color: "#dc2626", desc: "Professional NVR systems" },
+  { name: "Reolink", icon: "📷", color: "#dc2626", desc: "Professional NVR systems" },
   { name: "Hikvision", icon: "🎥", color: "#9333ea", desc: "Enterprise surveillance" },
 ];
 
@@ -38,10 +38,10 @@ const AMAZON_TAG = "hiddencamerastv-20";
 
 const TOP_PICKS = [
   { name: "Smart Wireless Video Doorbell", tag: "EDITOR'S PICK", category: "Best Doorbell", price: "$59.99", rating: "4.5", asin: "B0B8QYZRSC", accent: "#1a73e8", pro: "Night vision, wireless chime included", icon: "🔔" },
-  { name: "Amcrest 1080p <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a>", tag: "BEST OVERALL", category: "Top Rated", price: "$69.99", rating: "4.5", asin: "B0C7VN19YS", accent: "#e87722", pro: "Two-way audio, baby & pet monitor", icon: "👶" },
-  { name: "Dice-Style Covert <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a>", tag: "BEST HIDDEN", category: "Covert Pick", price: "$44.99", rating: "4.4", asin: "B01A7MACL2", accent: "#0078d7", pro: "Disguised design, 1080p, no subscription", icon: "🎲" },
+  { name: "Amcrest 1080p Nanny Cam", tag: "BEST OVERALL", category: "Top Rated", price: "$69.99", rating: "4.5", asin: "B0C7VN19YS", accent: "#e87722", pro: "Two-way audio, baby & pet monitor", icon: "👶" },
+  { name: "Dice-Style Covert Nanny Cam", tag: "BEST HIDDEN", category: "Covert Pick", price: "$44.99", rating: "4.4", asin: "B01A7MACL2", accent: "#0078d7", pro: "Disguised design, 1080p, no subscription", icon: "🎲" },
   { name: "1080p Dashcam with CarPlay", tag: "BEST DASHCAM", category: "Dash Pick", price: "$64.99", rating: "4.3", asin: "B0CGX9GQ3Q", accent: "#7c3aed", pro: "CarPlay, G-sensor, loop recording", icon: "🚗" },
-  { name: "Mini Palm-Size WiFi <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a>", tag: "SMALLEST", category: "Portable", price: "$34.99", rating: "4.4", asin: "B0CJ9YX7DG", accent: "#4285f4", pro: "Palm-size, WiFi, two-way audio", icon: "📦" },
+  { name: "Mini Palm-Size WiFi Nanny Cam", tag: "SMALLEST", category: "Portable", price: "$34.99", rating: "4.4", asin: "B0CJ9YX7DG", accent: "#4285f4", pro: "Palm-size, WiFi, two-way audio", icon: "📦" },
   { name: "Smart WiFi Doorbell M7", tag: "BEST VALUE", category: "Budget Pick", price: "$44.99", rating: "4.5", asin: "B09NYZGGJD", accent: "#0d9488", pro: "Remote monitoring, instant alerts", icon: "🔐" },
 ];
 
@@ -50,8 +50,8 @@ const NEWS_ITEMS = [
   { badge: "BREAKING", badgeColor: "#ef4444", headline: "Airbnb Bans All Indoor Hidden Cameras Worldwide", summary: "Effective April 30, 2026, Airbnb prohibits all hidden cameras in rental properties. Hosts must disclose every camera before guests book.", date: "Apr 2, 2026", icon: "🏠" },
   { badge: "PRODUCT", badgeColor: "#f59e0b", headline: "Ring Pro 4 Gets AI Facial Recognition On-Device", summary: "Ring's flagship doorbell now uses on-device AI to identify faces without cloud processing, addressing major privacy concerns.", date: "Mar 28, 2026", icon: "🔔" },
   { badge: "PRIVACY", badgeColor: "#8b5cf6", headline: "EU Surveillance Camera Act Now in Full Effect", summary: "New EU regulations require GDPR-compliant camera signage and a 30-day maximum footage retention period for all public systems.", date: "Mar 15, 2026", icon: "🇪🇺" },
-  { badge: "SECURITY", badgeColor: "#10b981", headline: "<a href="https://www.amazon.com/s?k=hidden+camera+detector&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">detector</a> Sales Up 340% in 2026", summary: "Consumer demand surged following a series of hotel and short-term rental incidents reported across the US and Europe.", date: "Mar 10, 2026", icon: "🔍" },
-  { badge: "TECH", badgeColor: "#6366f1", headline: "<a href="https://www.amazon.com/dp/B0BJLXMVMV?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Wyze</a> v5 Leak: 4K, Local AI, No Subscription", summary: "Leaked specs suggest 4K resolution, on-device person detection, and a commitment to keeping all core features permanently free.", date: "Mar 5, 2026", icon: "📷" },
+  { badge: "SECURITY", badgeColor: "#10b981", headline: "Hidden Camera Detector Sales Up 340% in 2026", summary: "Consumer demand surged following a series of hotel and short-term rental incidents reported across the US and Europe.", date: "Mar 10, 2026", icon: "🔍" },
+  { badge: "TECH", badgeColor: "#6366f1", headline: "Wyze Cam v5 Leak: 4K, Local AI, No Subscription", summary: "Leaked specs suggest 4K resolution, on-device person detection, and a commitment to keeping all core features permanently free.", date: "Mar 5, 2026", icon: "📷" },
   { badge: "POLICY", badgeColor: "#f97316", headline: "FTC Fines Spy Cam Seller $2.1M for Deception", summary: "The FTC issued its largest hidden camera enforcement action against a retailer that marketed covert devices as household objects.", date: "Feb 28, 2026", icon: "⚖️" },
 ];
 
@@ -471,10 +471,10 @@ export default function Home({ articles }) {
                 </div>
                 <h2 className="text-2xl md:text-3xl font-black text-white mb-3">Today&apos;s Best Camera Deals</h2>
                 <p className="text-gray-400 text-base leading-relaxed mb-5 max-w-lg">
-                  We track every price drop across Ring, Arlo, Wyze, <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>, and Blink. Updated daily — never pay full price.
+                  We track every price drop across Ring, Arlo, Wyze, Reolink, and Blink. Updated daily — never pay full price.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {["Ring — $50 off", "Wyze — Lowest price", "Arlo — 20% off", "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a> — Launch discount"].map(f => (
+                  {["Ring — $50 off", "Wyze — Lowest price", "Arlo — 20% off", "Reolink — Launch discount"].map(f => (
                     <span key={f} className="text-xs text-gray-300 bg-brand-bg border border-brand-border rounded-full px-3 py-1.5 font-medium">{f}</span>
                   ))}
                 </div>
@@ -501,7 +501,7 @@ export default function Home({ articles }) {
               { href: "/compare/ring-vs-arlo", b1: "Ring", b2: "Arlo", icon1: "🔔", icon2: "📡", verdict: "Tie" },
               { href: "/compare/wyze-vs-blink", b1: "Wyze", b2: "Blink", icon1: "👁", icon2: "⚡", verdict: "Wyze wins" },
               { href: "/compare/wyze-vs-ring", b1: "Wyze", b2: "Ring", icon1: "👁", icon2: "🔔", verdict: "Wyze wins" },
-              { href: "/compare/<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>-vs-ring", b1: "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>", b2: "Ring", icon1: "📷", icon2: "🔔", verdict: "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a> wins" },
+              { href: "/compare/reolink-vs-ring", b1: "Reolink", b2: "Ring", icon1: "📷", icon2: "🔔", verdict: "Reolink wins" },
             ].map((item, i) => (
               <Link key={item.href} href={item.href}
                 className="hc-card p-5 flex flex-col items-center text-center group hc-fade-up hover:border-brand-green/30 transition-all"
@@ -582,10 +582,10 @@ export default function Home({ articles }) {
                   Have a Live Camera Feed?<br className="hidden sm:block" /> Share It With the World.
                 </h2>
                 <p className="text-gray-400 text-sm md:text-base mb-5 max-w-md leading-relaxed">
-                  Add your security cam, baby monitor, <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a>, or pet cam to our global live directory — keep it private or make it public. Your choice.
+                  Add your security cam, baby monitor, nanny cam, or pet cam to our global live directory — keep it private or make it public. Your choice.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {["🏠 Home Cam", "👶 Baby Monitor", "👀 <a href="https://www.amazon.com/s?k=nanny+cam&tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">nanny cam</a>", "🐾 Pet Cam", "🏢 Business"].map(f => (
+                  {["🏠 Home Cam", "👶 Baby Monitor", "👀 Nanny Cam", "🐾 Pet Cam", "🏢 Business"].map(f => (
                     <span key={f} className="text-xs text-gray-300 bg-brand-bg border border-brand-border rounded-full px-3 py-1.5 font-medium">{f}</span>
                   ))}
                 </div>

@@ -159,14 +159,14 @@ export default function ComparisonPage() {
             <h2 className="text-xl font-black text-white mb-6">Head-to-Head Scores</h2>
             <div className="grid grid-cols-[1fr_100px_1fr] gap-4 mb-6">
               <div className="text-center">
-                <span className="text-2xl">{brand1 === "Ring" ? "🔔" : brand1 === "Arlo" ? "📡" : brand1 === "Wyze" ? "👁" : brand1 === "Blink" ? "⚡" : brand1 === "Google Nest" ? "🏠" : brand1 === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "📷" : brand1 === "Eufy" ? "🛡" : "🔒"}</span>
+                <span className="text-2xl">{brand1 === "Ring" ? "🔔" : brand1 === "Arlo" ? "📡" : brand1 === "Wyze" ? "👁" : brand1 === "Blink" ? "⚡" : brand1 === "Google Nest" ? "🏠" : brand1 === "Reolink" ? "📷" : brand1 === "Eufy" ? "🛡" : "🔒"}</span>
                 <p className="font-black text-white text-lg mt-2">{brand1}</p>
               </div>
               <div className="text-center flex items-center justify-center">
                 <span className="text-gray-600 text-3xl font-black">VS</span>
               </div>
               <div className="text-center">
-                <span className="text-2xl">{brand2 === "Ring" ? "🔔" : brand2 === "Arlo" ? "📡" : brand2 === "Wyze" ? "👁" : brand2 === "Blink" ? "⚡" : brand2 === "Google Nest" ? "🏠" : brand2 === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "📷" : brand2 === "Eufy" ? "🛡" : "🔒"}</span>
+                <span className="text-2xl">{brand2 === "Ring" ? "🔔" : brand2 === "Arlo" ? "📡" : brand2 === "Wyze" ? "👁" : brand2 === "Blink" ? "⚡" : brand2 === "Google Nest" ? "🏠" : brand2 === "Reolink" ? "📷" : brand2 === "Eufy" ? "🛡" : "🔒"}</span>
                 <p className="font-black text-white text-lg mt-2">{brand2}</p>
               </div>
             </div>
@@ -231,8 +231,8 @@ export default function ComparisonPage() {
 
           <h2>Subscription Costs</h2>
           <p>
-            One of the biggest differences between these brands is ongoing cost. {brand1} {brand1 === "Wyze" || brand1 === "Eufy" || brand1 === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "offers full functionality without a subscription" : "requires a subscription plan for cloud recording and advanced features"}.
-            {brand2} {brand2 === "Wyze" || brand2 === "Eufy" || brand2 === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "also offers no-subscription options with local storage" : "requires a paid plan for most features"}.
+            One of the biggest differences between these brands is ongoing cost. {brand1} {brand1 === "Wyze" || brand1 === "Eufy" || brand1 === "Reolink" ? "offers full functionality without a subscription" : "requires a subscription plan for cloud recording and advanced features"}.
+            {brand2} {brand2 === "Wyze" || brand2 === "Eufy" || brand2 === "Reolink" ? "also offers no-subscription options with local storage" : "requires a paid plan for most features"}.
             Over 3 years, the subscription difference alone can exceed $300 — making no-fee cameras significantly cheaper in the long run.
           </p>
 
@@ -246,8 +246,8 @@ export default function ComparisonPage() {
 
           <h2>Privacy</h2>
           <p>
-            Privacy is increasingly important for security camera buyers. {brand1} {brand1 === "Eufy" ? "excels with local-only storage and no cloud requirement" : brand1 === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "offers NVR-based local storage with no cloud dependency" : "stores footage in the cloud with standard encryption"}.
-            {brand2} {brand2 === "Eufy" ? "excels with local-only storage" : brand2 === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "excels with NVR local storage" : "relies on cloud storage"}.
+            Privacy is increasingly important for security camera buyers. {brand1} {brand1 === "Eufy" ? "excels with local-only storage and no cloud requirement" : brand1 === "Reolink" ? "offers NVR-based local storage with no cloud dependency" : "stores footage in the cloud with standard encryption"}.
+            {brand2} {brand2 === "Eufy" ? "excels with local-only storage" : brand2 === "Reolink" ? "excels with NVR local storage" : "relies on cloud storage"}.
             If data privacy is your top priority, choose the brand that offers local storage without cloud dependency.
           </p>
         </section>

@@ -13,7 +13,7 @@ function DealCard({ deal }) {
     <div className="hc-card p-6 flex flex-col group hover:border-brand-green/30 transition-all">
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">{deal.brand === "Ring" ? "🔔" : deal.brand === "Arlo" ? "📡" : deal.brand === "Wyze" ? "👁" : deal.brand === "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>" ? "📷" : deal.brand === "Blink" ? "⚡" : deal.brand === "Eufy" ? "🛡" : "🔒"}</span>
+          <span className="text-2xl">{deal.brand === "Ring" ? "🔔" : deal.brand === "Arlo" ? "📡" : deal.brand === "Wyze" ? "👁" : deal.brand === "Reolink" ? "📷" : deal.brand === "Blink" ? "⚡" : deal.brand === "Eufy" ? "🛡" : "🔒"}</span>
           <span className="text-[10px] font-black tracking-widest px-2.5 py-1 rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">
             {deal.brand}
           </span>
@@ -72,7 +72,7 @@ export default function DealsPage() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Security Camera Deals & Promo Codes 2026",
-    description: "Latest deals, discounts, and promo codes for Ring, Arlo, Wyze, <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>, and Blink security cameras. Updated daily.",
+    description: "Latest deals, discounts, and promo codes for Ring, Arlo, Wyze, Reolink, and Blink security cameras. Updated daily.",
     url: "https://hiddencameras.tv/deals",
   };
 
@@ -85,7 +85,7 @@ export default function DealsPage() {
         name: "Where can I find the best security camera deals?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "This page is updated daily with the latest deals from Amazon, Ring, Arlo, Wyze, <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>, and other brands. We also have exclusive promo codes that aren't available elsewhere.",
+          text: "This page is updated daily with the latest deals from Amazon, Ring, Arlo, Wyze, Reolink, and other brands. We also have exclusive promo codes that aren't available elsewhere.",
         },
       },
       {
@@ -93,7 +93,7 @@ export default function DealsPage() {
         name: "Do security cameras go on sale often?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Security cameras typically see their biggest discounts during Amazon Prime Day (July), Black Friday (November), and holiday sales. However, brands like Wyze and <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a> offer competitive pricing year-round, and we track all price drops.",
+          text: "Security cameras typically see their biggest discounts during Amazon Prime Day (July), Black Friday (November), and holiday sales. However, brands like Wyze and Reolink offer competitive pricing year-round, and we track all price drops.",
         },
       },
       {
@@ -110,7 +110,7 @@ export default function DealsPage() {
   return (
     <Layout
       title="Security Camera Deals & Promo Codes 2026 — HiddenCameras.tv"
-      description="Latest deals, discounts, and promo codes for Ring, Arlo, Wyze, <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>, and Blink security cameras. Updated daily with verified codes."
+      description="Latest deals, discounts, and promo codes for Ring, Arlo, Wyze, Reolink, and Blink security cameras. Updated daily with verified codes."
       canonical="https://hiddencameras.tv/deals"
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
@@ -128,7 +128,7 @@ export default function DealsPage() {
             Security Camera Deals & Promo Codes
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl">
-            We track every price drop, promo code, and bundle deal across Ring, Arlo, Wyze, <a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>, Blink, and Eufy. Updated daily — never miss a sale.
+            We track every price drop, promo code, and bundle deal across Ring, Arlo, Wyze, Reolink, Blink, and Eufy. Updated daily — never miss a sale.
           </p>
         </div>
 
@@ -163,7 +163,7 @@ export default function DealsPage() {
               { brand: "Arlo", icon: "📡", color: "#7c3aed" },
               { brand: "Wyze", icon: "👁", color: "#0d9488" },
               { brand: "Blink", icon: "⚡", color: "#d97706" },
-              { brand: "<a href="https://www.amazon.com/dp/B0B7M6VM5J?tag=YOUR_AMAZON_TAG-20" target="_blank" rel="noopener sponsored">Reolink</a>", icon: "📷", color: "#dc2626" },
+              { brand: "Reolink", icon: "📷", color: "#dc2626" },
               { brand: "Eufy", icon: "🛡", color: "#16a34a" },
             ].map((b) => (
               <a
