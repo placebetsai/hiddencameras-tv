@@ -28,7 +28,6 @@ export default function HiddenCameraDetectorsPage() {
         </div>
 
         <AdUnit slot="inContent" />
->
       </section>
     </Layout>
   );

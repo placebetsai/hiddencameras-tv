@@ -18,7 +18,6 @@ export default function Page() {
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">LEGAL GUIDE</div>
 
         <AdUnit slot="inContent" />
->
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Hidden Camera Laws by State (2026)</h1>
       <p className="text-gray-400 mb-8 max-w-2xl">Complete guide to hidden camera and surveillance laws in all 50 US states. What's legal, recording consent rules, and penalties.</p>
 

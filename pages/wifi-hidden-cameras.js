@@ -32,7 +32,6 @@ export default function WifiHiddenCamerasPage() {
         </div>
 
         <AdUnit slot="inContent" />
->
       </section>
     </Layout>
   );
