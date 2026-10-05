@@ -5,3 +5,8 @@ node_modules/
 out/
 .DS_Store
 .git-rewrite
+
+# Cloudflare credentials — never commit.
+.env
+.env.*
+!.env.example
