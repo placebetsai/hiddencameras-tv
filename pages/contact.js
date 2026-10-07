@@ -28,6 +28,35 @@ export default function Contact() {
           </a>.
         </p>
 
+        <div className="card mb-6">
+          <h2 className="text-white text-base font-black mb-3">What to include</h2>
+          <ul className="text-gray-400 text-sm space-y-2 list-disc list-inside">
+            <li>
+              <strong className="text-brand-text">Corrections:</strong> the page URL, the line that
+              is wrong, and what the correct information is. Corrections are checked first and noted
+              on the updated page.
+            </li>
+            <li>
+              <strong className="text-brand-text">Product or guide questions:</strong> the model or
+              guide name and what you are deciding between — storage, power, night coverage, running
+              cost.
+            </li>
+            <li>
+              <strong className="text-brand-text">Reports about a camera you found:</strong> do not
+              send footage or personal details here. Contact the platform or property first, and the
+              police if you believe you were recorded.
+            </li>
+            <li>
+              <strong className="text-brand-text">Business enquiries:</strong> say who you are and
+              what you are proposing. We do not sell placement inside our roundups.
+            </li>
+          </ul>
+          <p className="text-gray-500 text-xs mt-3">
+            This site is edited by Israel Joffe. Messages go to the editorial inbox rather than a
+            ticket queue, so please keep one message to one topic.
+          </p>
+        </div>
+
         {sent ? (
           <div className="card text-center py-10">
             <p className="text-brand-green text-lg font-bold mb-2">Thank you for reaching out!</p>
