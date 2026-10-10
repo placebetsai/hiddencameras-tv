@@ -220,6 +220,7 @@ function CamRow({ cam }) {
 export default function CityPage({ city, related }) {
   return (
     <Layout
+      robots="noindex, follow"
       title={`${city.name} Live Webcams — Watch ${city.name} Online Free | HiddenCameras.tv`}
       description={`Watch ${city.name} live webcams free. ${city.highlights.slice(0, 3).join(", ")} and more — streaming 24/7. No login required.`}
       canonical={`https://hiddencameras.tv/live/${city.slug}`}
@@ -345,7 +346,7 @@ export default function CityPage({ city, related }) {
             ))}
           </div>
           <div className="text-center mt-4">
-            <Link href="/live" className="btn-outline text-sm">View All 60+ Cities →</Link>
+            <Link href="/live" className="btn-outline text-sm">View all 8 cities →</Link>
           </div>
         </section>
 

@@ -5,6 +5,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["car-cameras"];
 
@@ -15,7 +16,6 @@ export default function Page() {
       description="Protect yourself on the road. Top dash cams with accident recording, parking mode, and GPS tracking."
       canonical="https://hiddencameras.tv/car-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"Are dash cams legal?","acceptedAnswer":{"@type":"Answer","text":"Dash cams are legal in all 50 US states. Some states restrict windshield mounting position. Recording audio may require consent in two-party consent states."}},{"@type":"Question","name":"Do dash cams record when the car is off?","acceptedAnswer":{"@type":"Answer","text":"Dash cams with parking mode (like Viofo and Nextbase) can record motion events when parked, powered by a hardwire kit connected to the car battery."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">DASH CAMS</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Car Cameras & Dash Cams</h1>
@@ -29,6 +29,8 @@ export default function Page() {
       <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
+
+      <Editorial slug="car-cameras" />
 
       <HomeSecurityCTA />
 

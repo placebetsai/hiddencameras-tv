@@ -131,7 +131,52 @@ export default function Contact() {
             </p>
           </form>
         )}
+
       </div>
+
+      <div className="mt-12 grid md:grid-cols-2 gap-6">
+        <div className="card">
+          <h2 className="text-white font-bold mb-3">What happens after you write</h2>
+          <p className="text-gray-400 text-sm leading-relaxed mb-3">
+            Every message is read by a person, not a bot, and messages are answered in the order
+            they arrive — usually within one to two business days, and faster for a correction
+            that affects something published on the site.
+          </p>
+          <p className="text-gray-400 text-sm leading-relaxed">
+            If you are reporting a factual error, include the page address and what is wrong. Those
+            take priority over everything else in the queue, because a page that is wrong is worse
+            than a page that is missing. Corrections are applied and dated on the page itself.
+          </p>
+        </div>
+
+        <div className="card">
+          <h2 className="text-white font-bold mb-3">Common questions</h2>
+          <dl className="text-sm space-y-3">
+            <div>
+              <dt className="text-white font-semibold">Do you sell cameras?</dt>
+              <dd className="text-gray-400 leading-relaxed">No. We publish buying guides and link to retailers. We do not operate a shop and we do not fulfil orders.</dd>
+            </div>
+            <div>
+              <dt className="text-white font-semibold">Will you review my product?</dt>
+              <dd className="text-gray-400 leading-relaxed">We consider products that fit the categories we cover. We do not accept payment for coverage, and a loan unit does not guarantee a review or a positive one.</dd>
+            </div>
+            <div>
+              <dt className="text-white font-semibold">Can you tell me if a camera is legal where I live?</dt>
+              <dd className="text-gray-400 leading-relaxed">We can point you to our guides on recording law, which explain the general position. We cannot give legal advice, so confirm anything that matters with a qualified professional in your state.</dd>
+            </div>
+            <div>
+              <dt className="text-white font-semibold">I found a camera watching me. What now?</dt>
+              <dd className="text-gray-400 leading-relaxed">Do not move it. Photograph and video it in place, note the time, and report it through the platform or to the property owner. Our detection guides cover how to check a room systematically.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <p className="text-gray-500 text-sm mt-8 max-w-2xl leading-relaxed">
+        For privacy questions, see our <a href="/privacy" className="text-brand-green hover:underline">Privacy Policy</a>.
+        For the rules governing your use of this site, see our <a href="/terms" className="text-brand-green hover:underline">Terms of Use</a>.
+        To understand how we choose what to recommend, see <a href="/about" className="text-brand-green hover:underline">About</a>.
+      </p>
     </Layout>
   );
 }

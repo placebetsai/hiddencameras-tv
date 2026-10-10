@@ -221,7 +221,7 @@ export default function NewsPage() {
           </div>
           <div className="card">
             <h3 className="text-white font-bold mb-1 text-sm">Watch Live World Cams</h3>
-            <p className="text-gray-500 text-xs mb-3">60+ cities streaming free right now.</p>
+            <p className="text-gray-500 text-xs mb-3">8 cities streaming free right now.</p>
             <Link href="/live" className="btn-outline text-xs">Browse Live Cams →</Link>
           </div>
           <div className="card">

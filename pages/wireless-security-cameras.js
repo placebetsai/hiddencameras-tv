@@ -5,6 +5,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["wireless-security-cameras"];
 
@@ -15,7 +16,6 @@ export default function Page() {
       description="WiFi and battery-powered cameras with no wires. Easy install, smart alerts, and cloud or local storage."
       canonical="https://hiddencameras.tv/wireless-security-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"How long do wireless camera batteries last?","acceptedAnswer":{"@type":"Answer","text":"Blink cameras last up to 2 years on AA batteries. Arlo and Ring cameras last 3-6 months on a charge depending on activity. Solar panels can keep cameras charged indefinitely."}},{"@type":"Question","name":"Do wireless cameras work without internet?","acceptedAnswer":{"@type":"Answer","text":"Most wireless cameras require WiFi for remote viewing. Some can record locally to SD cards without internet, but you won't get alerts or live streaming."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">WIRE-FREE</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Wireless Security Cameras</h1>
@@ -29,6 +29,8 @@ export default function Page() {
       <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
+
+      <Editorial slug="wireless-security-cameras" />
 
       <HomeSecurityCTA />
 

@@ -142,7 +142,7 @@ export default function HeroCarousel() {
               ▶ Watch Live
             </Link>
             <Link href="/live" className="btn-outline text-xs sm:text-sm px-3 sm:px-5 py-2 sm:py-2.5">
-              60+ Cities
+              8 Cities
             </Link>
           </div>
         </div>

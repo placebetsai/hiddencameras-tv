@@ -13,7 +13,6 @@ const STATIC_PAGES = [
   { url: "/", priority: "1.0", changefreq: "daily" },
   { url: "/reviews/", priority: "0.9", changefreq: "weekly" },
   { url: "/blog/", priority: "0.9", changefreq: "daily" },
-  { url: "/live/", priority: "0.8", changefreq: "hourly" },
   { url: "/best-hidden-cameras-airbnb/", priority: "0.8", changefreq: "weekly" },
   { url: "/best-hidden-cameras/", priority: "0.8", changefreq: "weekly" },
   { url: "/best-hidden-cameras-2026/", priority: "0.9", changefreq: "weekly" },
@@ -50,6 +49,18 @@ const STATIC_PAGES = [
   { url: "/nest-cam-vs-arlo/", priority: "0.8", changefreq: "monthly" },
   { url: "/best-pet-camera-2026/", priority: "0.8", changefreq: "monthly" },
   { url: "/best-car-dash-cam-2026/", priority: "0.8", changefreq: "monthly" },
+  { url: "/compare/", priority: "0.85", changefreq: "weekly" },
+  { url: "/compare/arlo-vs-blink/", priority: "0.8", changefreq: "monthly" },
+  { url: "/compare/nest-cam-vs-arlo/", priority: "0.8", changefreq: "monthly" },
+  { url: "/compare/reolink-vs-ring/", priority: "0.8", changefreq: "monthly" },
+  { url: "/compare/ring-vs-arlo/", priority: "0.8", changefreq: "monthly" },
+  { url: "/compare/ring-vs-nest/", priority: "0.8", changefreq: "monthly" },
+  { url: "/compare/wyze-vs-blink/", priority: "0.8", changefreq: "monthly" },
+  { url: "/compare/wyze-vs-eufy/", priority: "0.8", changefreq: "monthly" },
+  { url: "/compare/wyze-vs-ring/", priority: "0.8", changefreq: "monthly" },
+  { url: "/camera-finder/", priority: "0.85", changefreq: "weekly" },
+  { url: "/deals/", priority: "0.8", changefreq: "daily" },
+  { url: "/legal-camera-chooser/", priority: "0.8", changefreq: "monthly" },
   { url: "/about/", priority: "0.6", changefreq: "monthly" },
   { url: "/contact/", priority: "0.4", changefreq: "monthly" },
   { url: "/privacy/", priority: "0.3", changefreq: "monthly" },
@@ -116,7 +127,7 @@ function buildSitemap() {
   </url>`),
     ...cities.map(slug => `
   <url>
-    <loc>${BASE}/live/${slug}/</loc>
+
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

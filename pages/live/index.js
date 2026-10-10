@@ -279,6 +279,7 @@ export default function LiveCams() {
 
   return (
     <Layout
+      robots="noindex, follow"
       title="Live Public Cameras Around the World — HiddenCameras.tv"
       description={`Watch ${CAMS.length}+ live public webcams from cities around the world. Times Square, Eiffel Tower, Shibuya Crossing — free, 24/7.`}
       canonical="https://hiddencameras.tv/live"

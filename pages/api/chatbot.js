@@ -10,7 +10,16 @@ function stripThinking(text) {
 
 export default async function handler(req) {
   try {
-    const { query } = await req.json();
+    const body = await req.json();
+    const query = typeof body?.query === "string" ? body.query.trim() : "";
+    const history = (Array.isArray(body?.messages) ? body.messages : Array.isArray(body?.history) ? body.history : [])
+      .slice(-8)
+      .map((turn) => {
+        const role = turn?.role === "assistant" || turn?.role === "bot" ? "assistant" : "user";
+        const content = String(turn?.content || turn?.text || "").trim();
+        return content ? { role, content } : null;
+      })
+      .filter(Boolean);
     if (!query) {
       return new Response(JSON.stringify({ error: "Missing query" }), { status: 400, headers: { "Content-Type": "application/json" } });
     }
@@ -21,7 +30,8 @@ export default async function handler(req) {
       body: JSON.stringify({
         model: "openai/gpt-oss-120b",
         messages: [
-          { role: "system", content: SYSTEM },
+          { role: "system", content: SYSTEM + " Use the conversation so far. Follow-up questions refer to the camera or law you just discussed." },
+          ...history,
           { role: "user", content: query },
         ],
         temperature: 0.3,

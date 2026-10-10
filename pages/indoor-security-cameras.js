@@ -5,6 +5,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["indoor-security-cameras"];
 
@@ -15,7 +16,6 @@ export default function Page() {
       description="Top indoor cameras for home security with person detection, two-way audio, and privacy shutters."
       canonical="https://hiddencameras.tv/indoor-security-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"Do I need a subscription for indoor cameras?","acceptedAnswer":{"@type":"Answer","text":"No. Eufy, Wyze, TP-Link Tapo, and Reolink all offer local storage via microSD card with no monthly fees. Cloud storage is optional."}},{"@type":"Question","name":"Where should I place indoor cameras?","acceptedAnswer":{"@type":"Answer","text":"Best spots: main entrances (front/back doors), living room, hallways, and stairways. Never in bathrooms or bedrooms of guests."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">INDOOR SECURITY</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Indoor Security Cameras</h1>
@@ -29,6 +29,8 @@ export default function Page() {
       <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
+
+      <Editorial slug="indoor-security-cameras" />
 
       <HomeSecurityCTA />
 

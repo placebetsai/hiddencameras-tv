@@ -240,7 +240,7 @@ export default function Home({ articles }) {
             <div className="hc-signal-bars">
               <span /><span /><span /><span />
             </div>
-            <span className="text-brand-green/60 font-mono text-[10px] tracking-widest">60+ STREAMS ACTIVE</span>
+            <span className="text-brand-green/60 font-mono text-[10px] tracking-widest">8 STREAMS ACTIVE</span>
           </div>
 
           {/* H1 */}
@@ -251,7 +251,7 @@ export default function Home({ articles }) {
           </h1>
 
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-            60+ live public cameras streaming 24/7. Expert reviews of Ring, Arlo, Wyze, Blink & Nest.
+            8 live public cameras streaming 24/7. Expert reviews of Ring, Arlo, Wyze, Blink & Nest.
             Find, detect, and protect — all in one place.
           </p>
 
@@ -271,7 +271,7 @@ export default function Home({ articles }) {
           {/* Stats bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
             {[
-              { n: "60+", label: "Live Cameras" },
+              { n: "8", label: "Live Cameras" },
               { n: "30+", label: "Countries" },
               { n: "300+", label: "Reviews" },
               { n: "24/7", label: "Streaming" },
@@ -342,7 +342,7 @@ export default function Home({ articles }) {
               <h2 className="text-2xl md:text-3xl font-black text-white">World Live Cameras</h2>
               <p className="text-gray-500 text-sm mt-1">Public live streams updated 24/7 — no login required</p>
             </div>
-            <Link href="/live" className="text-brand-green text-sm font-bold hover:underline whitespace-nowrap">All 60+ cameras →</Link>
+            <Link href="/live" className="text-brand-green text-sm font-bold hover:underline whitespace-nowrap">All 8 cameras →</Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" style={{ gridAutoRows: "130px" }}>
             {LIVE_GRID.slice(0, 1).map(cam => <LiveCamCard key={cam.city} cam={cam} featured />)}
@@ -592,7 +592,7 @@ export default function Home({ articles }) {
                 <Link href="/my-cams" className="btn-primary px-7 py-3">Upload Your Feed →</Link>
               </div>
               <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0">
-                {[{ n: "30+", l: "Countries" }, { n: "60+", l: "Live Feeds" }, { n: "24/7", l: "Always On" }, { n: "Free", l: "Forever" }].map(s => (
+                {[{ n: "8", l: "Countries" }, { n: "8", l: "Live Feeds" }, { n: "24/7", l: "Always On" }, { n: "Free", l: "Forever" }].map(s => (
                   <div key={s.l} className="hc-stat">
                     <div className="hc-stat-value">{s.n}</div>
                     <div className="hc-stat-label">{s.l}</div>

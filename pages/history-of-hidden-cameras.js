@@ -297,7 +297,7 @@ export default function HistoryPage() {
           <Link href="/live" className="card hover:border-brand-green/40 transition group text-center py-6">
             <div className="text-3xl mb-2">🌍</div>
             <div className="text-white font-bold mb-1 group-hover:text-brand-green transition">Live World Cams</div>
-            <div className="text-brand-muted text-xs">500+ streams, 60+ countries</div>
+            <div className="text-brand-muted text-xs">8 streams, 8 countries</div>
           </Link>
           <Link href="/detect-hidden-cameras" className="card hover:border-brand-green/40 transition group text-center py-6">
             <div className="text-3xl mb-2">🔍</div>

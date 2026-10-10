@@ -5,6 +5,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["body-cameras"];
 
@@ -15,7 +16,6 @@ export default function Page() {
       description="Body worn cameras for personal safety, delivery drivers, security guards, and ride-share drivers."
       canonical="https://hiddencameras.tv/body-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"Is it legal to wear a body camera?","acceptedAnswer":{"@type":"Answer","text":"In most US states, you can legally wear a body camera in public spaces. Recording in private spaces requires consent. Two-party consent states require you to inform others about audio recording."}},{"@type":"Question","name":"What body camera do security guards use?","acceptedAnswer":{"@type":"Answer","text":"Most security companies use the Boblov A22 or MIUFLY 1296P for their balance of price, battery life, and durability. Axon (used by police) is professional-grade but expensive."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">BODY CAMS</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Body Cameras 2026</h1>
@@ -29,6 +29,8 @@ export default function Page() {
       <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
+
+      <Editorial slug="body-cameras" />
 
       <HomeSecurityCTA />
 

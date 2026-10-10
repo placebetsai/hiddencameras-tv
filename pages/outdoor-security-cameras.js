@@ -5,6 +5,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["outdoor-security-cameras"];
 
@@ -15,7 +16,6 @@ export default function Page() {
       description="Weatherproof outdoor cameras with night vision, motion zones, and smart alerts. Protect your home exterior."
       canonical="https://hiddencameras.tv/outdoor-security-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"What outdoor camera has the best night vision?","acceptedAnswer":{"@type":"Answer","text":"The Reolink Argus 4 Pro and Arlo Pro 5S both have excellent color night vision. For budget options, the Wyze Cam v4 delivers surprisingly good color night vision at just $36."}},{"@type":"Question","name":"Do outdoor cameras work in winter?","acceptedAnswer":{"@type":"Answer","text":"Yes, most outdoor cameras are rated for -4°F to 113°F. Battery cameras may need more frequent charging in extreme cold. Wired cameras are unaffected by temperature."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">OUTDOOR SECURITY</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Outdoor Security Cameras</h1>
@@ -29,6 +29,8 @@ export default function Page() {
       <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
+
+      <Editorial slug="outdoor-security-cameras" />
 
       <HomeSecurityCTA />
 

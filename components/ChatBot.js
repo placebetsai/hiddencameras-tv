@@ -24,10 +24,14 @@ export default function ChatBot() {
     setMessages((m) => [...m, { role: "user", text: q }]);
     setLoading(true);
     try {
+      const history = messages.slice(-8).map((m) => ({
+        role: m.role === "bot" ? "assistant" : "user",
+        content: m.text,
+      }));
       const res = await fetch("/api/chatbot", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: q }),
+        body: JSON.stringify({ query: q, messages: history }),
       });
       const d = await res.json();
       const clean = stripThinking(d.answer || "");

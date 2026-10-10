@@ -388,7 +388,7 @@ export default function DetectHiddenCameras() {
         <div className="grid sm:grid-cols-2 gap-4 mb-8">
           <div className="card border-brand-green/20 bg-gradient-to-br from-brand-card to-brand-surface">
             <h3 className="text-white font-bold mb-1">Watch Live Public Cams</h3>
-            <p className="text-gray-400 text-sm mb-4">60+ cities streaming free 24/7. No login required.</p>
+            <p className="text-gray-400 text-sm mb-4">8 cities streaming free 24/7. No login required.</p>
             <Link href="/live" className="btn-primary text-sm">Browse Live Cams →</Link>
           </div>
           <div className="card border-yellow-500/10">

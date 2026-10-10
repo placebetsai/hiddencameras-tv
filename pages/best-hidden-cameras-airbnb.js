@@ -4,6 +4,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import AdUnit from "../components/AdUnit";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["best-hidden-cameras-airbnb"];
 
@@ -14,19 +15,6 @@ export default function AirbnbPage() {
       description="The best outdoor and indoor cameras for Airbnb hosts. Legal placement guide, Airbnb disclosure rules, and the exact models we recommend."
       canonical="https://hiddencameras.tv/best-hidden-cameras-airbnb"
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              { "@type": "Question", name: "Are hidden cameras allowed on Airbnb?", acceptedAnswer: { "@type": "Answer", text: "Airbnb prohibits cameras inside the property (bedrooms, bathrooms, living areas). Outdoor cameras covering entrances are allowed if fully disclosed in the listing." } },
-              { "@type": "Question", name: "What cameras do Airbnb hosts use?", acceptedAnswer: { "@type": "Answer", text: "Most hosts use Blink Mini, Ring Indoor Cam, or Wyze Cam for disclosed indoor common areas and Ring Video Doorbell or Arlo Pro for outdoor use." } },
-            ],
-          }),
-        }}
-      />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">AIRBNB HOST GUIDE</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Security Cameras for Airbnb Hosts</h1>
@@ -64,6 +52,8 @@ export default function AirbnbPage() {
         <h2>Do Guests Care?</h2>
         <p>Studies show 73% of guests are fine with disclosed cameras in common areas. The complaints come from undisclosed cameras — which can result in permanent account suspension and legal liability.</p>
       </section>
+
+      <Editorial slug="best-hidden-cameras-airbnb" />
 
       <HomeSecurityCTA />
     </Layout>

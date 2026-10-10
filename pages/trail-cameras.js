@@ -5,6 +5,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["trail-cameras"];
 
@@ -15,7 +16,6 @@ export default function Page() {
       description="Top trail cameras for hunting, wildlife photography, and rural property security. Cellular and WiFi models reviewed."
       canonical="https://hiddencameras.tv/trail-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"What is the best trail camera for the money?","acceptedAnswer":{"@type":"Answer","text":"The Campark T86 at $60 offers the best value with 30MP photos and WiFi connectivity. For cellular connectivity, the Moultrie Mobile Edge at $100 is the most affordable option."}},{"@type":"Question","name":"How do cellular trail cameras work?","acceptedAnswer":{"@type":"Answer","text":"Cellular trail cams have a built-in SIM card that sends photos to your phone via cell networks (AT&T, Verizon). They require a monthly data plan, typically $5-15/month."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">TRAIL & GAME CAMS</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Trail Cameras 2026</h1>
@@ -29,6 +29,8 @@ export default function Page() {
       <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
+
+      <Editorial slug="trail-cameras" />
 
       <HomeSecurityCTA />
 

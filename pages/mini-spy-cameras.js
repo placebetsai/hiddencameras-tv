@@ -5,6 +5,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["mini-spy-cameras"];
 
@@ -15,7 +16,6 @@ export default function Page() {
       description="The smallest hidden cameras you can buy. Mini WiFi spy cams, button cameras, USB charger cams and more."
       canonical="https://hiddencameras.tv/mini-spy-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"What is the smallest camera you can buy?","acceptedAnswer":{"@type":"Answer","text":"The smallest consumer cameras are approximately 0.8 to 1 inch square. Mini WiFi spy cameras at this size can record 1080p video and stream live to your phone."}},{"@type":"Question","name":"How long can a mini spy camera record?","acceptedAnswer":{"@type":"Answer","text":"Battery-powered mini cams typically record 1-4 hours continuously. With motion-only recording, they can last days. USB charger cameras record indefinitely while plugged in."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">ULTRA COMPACT</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Mini Spy Cameras</h1>
@@ -29,6 +29,8 @@ export default function Page() {
       <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
+
+      <Editorial slug="mini-spy-cameras" />
 
       <HomeSecurityCTA />
 

@@ -4,6 +4,7 @@ import ComparisonTable from "../components/ComparisonTable";
 import HomeSecurityCTA from "../components/HomeSecurityCTA";
 import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
@@ -16,7 +17,6 @@ export default function Page() {
       description="Expert-tested ranking of the best hidden cameras and spy cameras for home, office, and travel in 2026."
       canonical="https://hiddencameras.tv/best-hidden-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"What is the best hidden camera for home use?","acceptedAnswer":{"@type":"Answer","text":"The Blink Mini 2 is the best overall for most homes — tiny, affordable at $35, with 1080p video, night vision, and motion alerts. For no monthly fees, the Eufy Solo C24 is the top pick."}},{"@type":"Question","name":"Are hidden cameras legal?","acceptedAnswer":{"@type":"Answer","text":"In most US states, hidden cameras are legal in your own home. You cannot place them in bathrooms, bedrooms of guests, or anywhere with an expectation of privacy. Audio recording laws vary by state."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">TOP PICKS 2026</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Hidden Cameras 2026</h1>
@@ -52,6 +52,8 @@ export default function Page() {
       </div>
 
       <AdUnit />
+
+      <Editorial slug="best-hidden-cameras" />
 
       <HomeSecurityCTA />
 

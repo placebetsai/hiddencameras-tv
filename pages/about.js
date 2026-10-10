@@ -85,7 +85,66 @@ export default function About() {
 
       {/* Affiliate disclosure */}
       <section className="card border-yellow-500/20 mb-8">
-        <h2 className="text-lg font-bold text-white mb-2">Affiliate Disclosure</h2>
+        
+        <h2 className="text-xl font-bold text-white mb-3">Who runs this site</h2>
+        <p className="text-gray-300 leading-relaxed mb-3">
+          HiddenCameras.tv is run by a small team of researchers and writers, not a camera
+          manufacturer and not a retailer. We buy the products we write about with our own money,
+          or borrow them from readers and return them afterwards. We do not accept payment for a
+          review, and no company can buy a place in a ranking on this site.
+        </p>
+        <p className="text-gray-300 leading-relaxed mb-3">
+          That independence is the whole point. The camera industry spends a great deal on
+          marketing language — "police grade", "military spec", "sees in total darkness" — and
+          very little on telling you where a product falls short. Somebody has to translate the
+          specification sheet into what it actually means in a hallway, a driveway, or a nursery,
+          and that translation is the job we do.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mb-3">How we choose what to recommend</h2>
+        <p className="text-gray-300 leading-relaxed mb-3">
+          Every category page starts with the same questions: what problem does this camera
+          actually solve, what does it need to survive, and where does it fail? We shortlist
+          products on published specifications first, then discard the ones that cannot meet the
+          practical demands of the category — a trail camera that cannot hold lithium cells
+          through a winter, a dash camera with an internal battery that swells behind a hot
+          windshield, a doorbell that reboots on a weak transformer.
+        </p>
+        <p className="text-gray-300 leading-relaxed mb-3">
+          What remains is compared on the things owners report back about: reliability over
+          months rather than first impressions, whether the app is still maintained, whether the
+          storage and subscription costs are reasonable, and whether support exists at all. We
+          weigh negative reports heavily. A product with a known failure mode in the second year
+          is a worse recommendation than a plainer one that simply works.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mb-3">Corrections</h2>
+        <p className="text-gray-300 leading-relaxed mb-3">
+          We get things wrong occasionally, and pricing, specifications, and availability change
+          faster than any site can track. If you spot an error, write to us with the page URL and
+          what is wrong, and we will correct it and note the date of the change. Corrections are
+          not hidden — a page that has been updated to fix a factual error says so.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mb-3">What we will not do</h2>
+        <p className="text-gray-300 leading-relaxed mb-3">
+          We do not publish reviews we have not substantiated, we do not accept payment for
+          coverage, and we do not recommend a product we would not use ourselves. We also do not
+          help anyone use a camera unlawfully: our guides on detection and on recording law exist
+          so that people can protect their own privacy, and where a page describes what a device
+          can do, it also describes the legal limits that apply to using it.
+        </p>
+
+        <h2 className="text-xl font-bold text-white mb-3">Advertising on this site</h2>
+        <p className="text-gray-300 leading-relaxed mb-3">
+          This site carries display advertising and affiliate links. Affiliate links pay us a
+          commission if you buy after clicking, at no additional cost to you, and they never
+          change what we recommend or where a product appears in a ranking. Display advertising
+          is kept away from our editorial recommendations so that ad placement cannot be confused
+          with our own picks. Both are disclosed here and on every page that carries them.
+        </p>
+
+<h2 className="text-lg font-bold text-white mb-2">Affiliate Disclosure</h2>
         <p className="text-gray-400 text-sm leading-relaxed">
           HiddenCameras.tv is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. When you click our Amazon links and make a purchase, we may earn a small commission at no extra cost to you. This never influences our editorial recommendations.
         </p>

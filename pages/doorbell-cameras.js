@@ -5,6 +5,7 @@ import AffiliateDisclosure from "../components/AffiliateDisclosure";
 import { EditorPickGrid } from "../components/EditorPickCard";
 import { ROUNDUPS } from "../lib/fashionistasProducts";
 import Link from "next/link";
+import Editorial from "../components/Editorial";
 
 const PICKS = ROUNDUPS["doorbell-cameras"];
 
@@ -15,7 +16,6 @@ export default function Page() {
       description="See who's at your door from anywhere. Top video doorbells with motion detection, two-way talk, and package alerts."
       canonical="https://hiddencameras.tv/doorbell-cameras"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{"@type":"Question","name":"Do video doorbells work without a subscription?","acceptedAnswer":{"@type":"Answer","text":"Yes. Eufy and Blink offer free local storage. Ring and Nest offer basic functionality free but cloud recording requires a subscription ($4-$8/month)."}},{"@type":"Question","name":"Can you install a video doorbell in an apartment?","acceptedAnswer":{"@type":"Answer","text":"Yes. Battery-powered doorbells like Ring Battery and Nest Battery mount with adhesive strips — no drilling required. You can take it with you when you move."}}] }) }} />
 
       <div className="pill bg-brand-green/10 text-brand-green mb-3 inline-block">DOORBELL CAMS</div>
       <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-3">Best Video Doorbell Cameras</h1>
@@ -29,6 +29,8 @@ export default function Page() {
       <EditorPickGrid picks={PICKS} />
 
       <AdUnit />
+
+      <Editorial slug="doorbell-cameras" />
 
       <HomeSecurityCTA />
 
