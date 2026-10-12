@@ -17,7 +17,7 @@
 set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
-PROJECT="hiddencameras-tv"
+PROJECT="hiddencameras"
 BUILD=1
 [ "${1:-}" = "--no-build" ] && BUILD=0
 
