@@ -65,8 +65,8 @@ export default function Layout({ children, title, description, canonical, robots
   const [camerasOpen, setCamerasOpen] = useState(false);
   const [compareOpen, setCompareOpen] = useState(false);
   const router = useRouter();
-  const t = title || "HiddenCameras.tv — Live Cams & Security Reviews";
-  const d = description || "Watch 8 live public cameras worldwide. Expert reviews of Ring, Arlo, Blink, Wyze & Nest. Surveillance news 24/7.";
+  const t = title || "HiddenCameras.tv — Security Camera Reviews";
+  const d = description || "Independent reviews of Ring, Arlo, Blink, Wyze, and Nest, plus public webcams that actually stream.";
   const url = canonical || "https://hiddencameras.tv";
   const robotsContent = robots || "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
   const isContactRoute = router.pathname === "/contact";

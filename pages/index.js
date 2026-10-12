@@ -11,14 +11,6 @@ const LIVE_GRID = [
   { city: "Tokyo", label: "Shibuya Crossing", flag: "🇯🇵", slug: "tokyo", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=75&auto=format&fit=crop" },
   { city: "London", label: "Big Ben", flag: "🇬🇧", slug: "london", img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75&auto=format&fit=crop" },
   { city: "Paris", label: "Eiffel Tower", flag: "🇫🇷", slug: "paris", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=75&auto=format&fit=crop" },
-  { city: "Dubai", label: "Burj Khalifa", flag: "🇦🇪", slug: "dubai", img: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=75&auto=format&fit=crop" },
-  { city: "Sydney", label: "Opera House", flag: "🇦🇺", slug: "sydney", img: "https://images.unsplash.com/photo-1523428096881-5bd79d043006?w=600&q=75&auto=format&fit=crop" },
-  { city: "Rome", label: "Colosseum", flag: "🇮🇹", slug: "rome", img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=75&auto=format&fit=crop" },
-  { city: "Singapore", label: "Marina Bay", flag: "🇸🇬", slug: "singapore", img: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=75&auto=format&fit=crop" },
-  { city: "Amsterdam", label: "Canal District", flag: "🇳🇱", slug: null, img: "https://images.unsplash.com/photo-1534351590666-13e3e96b5702?w=600&q=75&auto=format&fit=crop" },
-  { city: "Istanbul", label: "Hagia Sophia", flag: "🇹🇷", slug: null, img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=75&auto=format&fit=crop" },
-  { city: "Rio", label: "Christ the Redeemer", flag: "🇧🇷", slug: null, img: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=600&q=75&auto=format&fit=crop" },
-  { city: "Bangkok", label: "City Center", flag: "🇹🇭", slug: null, img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=75&auto=format&fit=crop" },
 ];
 
 // ── Camera brand logos ────────────────────────────────────────────────────────
@@ -251,7 +243,7 @@ export default function Home({ articles }) {
           </h1>
 
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-            8 live public cameras streaming 24/7. Expert reviews of Ring, Arlo, Wyze, Blink & Nest.
+            4 public webcams that actually stream, plus reviews of Ring, Arlo, Wyze, Blink, and Nest.
             Find, detect, and protect — all in one place.
           </p>
 

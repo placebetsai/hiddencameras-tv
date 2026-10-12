@@ -268,7 +268,12 @@ export default function LiveCams() {
       });
   }, []);
 
-  const allCams = [...CAMS, ...submittedCams, ...userCams];
+  const playable = CAMS.filter((c) => c.ytId);
+  const allCams = [
+    ...playable,
+    ...submittedCams.filter((c) => c.ytId || c.streamUrl),
+    ...userCams.filter((c) => c.streamUrl),
+  ];
 
   const filtered = allCams.filter(c => {
     if (continent !== "All" && c.continent !== continent) return false;
@@ -281,7 +286,7 @@ export default function LiveCams() {
     <Layout
       robots="noindex, follow"
       title="Live Public Cameras Around the World — HiddenCameras.tv"
-      description={`Watch ${CAMS.length}+ live public webcams from cities around the world. Times Square, Eiffel Tower, Shibuya Crossing — free, 24/7.`}
+      description={`Watch ${playable.length} public webcams that are actually streaming. Times Square, Eiffel Tower, Shibuya Crossing.`}
       canonical="https://hiddencameras.tv/live"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
@@ -290,23 +295,23 @@ export default function LiveCams() {
         <section className="text-center mb-6 rounded-2xl border border-brand-border bg-brand-card px-5 py-8 sm:py-10">
           <div className="inline-flex items-center gap-2 pill bg-red-600/20 text-red-400 mb-3">
             <span className="live-dot w-2 h-2 rounded-full bg-red-400 inline-block" />
-            {allCams.length}+ CAMERAS WORLDWIDE
+            {allCams.length} CAMERAS STREAMING
           </div>
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-2 leading-tight tracking-tight">
             Watch the World<br /><span className="text-brand-green">Live &amp; Free</span>
           </h1>
           <p className="text-gray-400 max-w-lg mx-auto text-sm sm:text-base">
-            Public webcams from 7 continents — landmarks, beaches, city centers. Updated 24/7, no login required.
+            Only cameras with a real stream are listed. No login required.
           </p>
         </section>
 
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-5">
           {[
-            { n: `${allCams.length}+`, label: "Cameras" },
-            { n: "7", label: "Continents" },
-            { n: "45+", label: "Countries" },
-            { n: "24/7", label: "Live" },
+            { n: String(allCams.length), label: "Streaming" },
+            { n: "YouTube", label: "Source" },
+            { n: "Public", label: "Places" },
+            { n: "Free", label: "To watch" },
           ].map(s => (
             <div key={s.label} className="card text-center py-3">
               <div className="text-xl font-extrabold text-brand-green">{s.n}</div>

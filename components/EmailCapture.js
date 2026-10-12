@@ -9,15 +9,10 @@ export default function EmailCapture({ variant = "default" }) {
     if (!email) return;
     setStatus("loading");
     try {
-      const res = await fetch("https://formsubmit.co/ajax/hiddencameras.tv@gmail.com", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          _subject: "Security Tips Guide Request",
-          _captcha: "false",
-          _next: "https://hiddencameras.tv/thank-you",
-        }),
+        body: JSON.stringify({ email }),
       });
       if (res.ok) {
         setStatus("success");
