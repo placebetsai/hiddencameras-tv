@@ -58,16 +58,28 @@ echo "deploy: out/ contains $(find out -type f | wc -l) files"
 npx wrangler pages deploy out --project-name="$PROJECT" --branch=main --commit-dirty=true
 
 # --- verify ----------------------------------------------------------------
+# This used to curl `hiddencameras-tv.pages.dev`, which is the OLD project's
+# hostname and still serves the pre-fix build. It returns 200 regardless, so
+# the check passed even when the deploy had failed — a verification that cannot
+# fail is not a verification. Measured 2026-10-12:
+#   hiddencameras-tv.pages.dev  / -> 200,  POST /api/chatbot -> 405 (no route)
+#   hiddencameras.pages.dev     / -> 200,  POST /api/chatbot -> 200 (route live)
+# The chatbot is the thing that actually distinguishes the two builds — the
+# old one has no API routes at all (output:"export" dropped them) — so it is
+# what this now asserts, alongside the homepage.
 SHA="$(git rev-parse HEAD)"
 echo "deploy: verifying the live site reflects $SHA"
 for i in 1 2 3 4 5 6; do
-  code="$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 https://hiddencameras-tv.pages.dev/ || true)"
-  echo "  attempt $i: hiddencameras-tv.pages.dev -> HTTP $code"
-  if [ "$code" = "200" ]; then
+  home="$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 https://hiddencameras.pages.dev/ || true)"
+  # GET must be 405: the route exists and refuses the method. 404 means the
+  # deploy is still serving a build that has no chatbot at all.
+  chat="$(curl -s -o /dev/null -w '%{http_code}' --max-time 25 https://hiddencameras.pages.dev/api/chatbot || true)"
+  echo "  attempt $i: hiddencameras.pages.dev -> home=$home chatbot(GET)=$chat"
+  if [ "$home" = "200" ] && [ "$chat" = "405" ]; then
     echo "deploy: VERIFIED live (commit $SHA)"
     exit 0
   fi
   sleep 5
 done
-echo "deploy: NOT VERIFIED — the live site never returned 200" >&2
+echo "deploy: NOT VERIFIED — home=$home chatbot(GET)=$chat on hiddencameras.pages.dev" >&2
 exit 1
