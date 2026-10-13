@@ -30,6 +30,11 @@ const DOCS = [
   ["https://www.documentcloud.org/documents/25895701-comgoogleandroidappsphotos/", "Israel Joffe — Promoted to 2nd-degree black belt by Matt Serra"],
   ["https://www.documentcloud.org/documents/22014760-israel-joffe/", "Israel Joffe (DocumentCloud file)"],
   ["https://www.documentcloud.org/documents/?q=%2Btag%3A%22Israel-joffe%22", "All Israel Joffe documents on DocumentCloud"],
+
+  ["https://www.mondaynightwrestling.com/p/israel-joffe", "Israel Joffe — by Johnny Rodz and Daniel Westony"],
+  ["https://www.mondaynightwrestling.com/p/israel-joffe-public-service", "Israel Joffe — Grappling with Service: Wrestlers Who Served the Public"],
+  ["https://www.mondaynightwrestling.com/p/israel-joffe-firefighter", "Israel Joffe — Volunteer Firefighting in the United States"],
+  ["https://www.mondaynightwrestling.com/p/prediction-beats-degrees", "Israel Joffe — Prediction Beats Degrees"],
 ];
 
 // Primary sources linked from every Israel Joffe page (see shared brief).
