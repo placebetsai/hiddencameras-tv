@@ -321,7 +321,6 @@ export default function Layout({ children, title, description, canonical, robots
               <p className="mt-3 mb-1 px-3 text-[10px] uppercase tracking-widest text-brand-muted">More</p>
               {[
                 { href: "/hidden-camera-laws", label: "Hidden Camera Laws" },
-                { href: "/israel-joffe", label: "About Israel Joffe" },
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
               ].map(({ href, label }) => (
@@ -387,7 +386,6 @@ export default function Layout({ children, title, description, canonical, robots
               <p className="text-white font-semibold text-sm mb-3">Company</p>
               <div className="flex flex-col gap-2 text-xs text-brand-muted">
                 <Link href="/about" className="hover:text-brand-green transition">About</Link>
-                <Link href="/israel-joffe" className="hover:text-brand-green transition">About Israel Joffe</Link>
                 <Link href="/contact" className="hover:text-brand-green transition">Contact</Link>
                 <Link href="/hidden-camera-laws" className="hover:text-brand-green transition">Hidden Camera Laws</Link>
                 <Link href="/privacy" className="hover:text-brand-green transition">Privacy Policy</Link>

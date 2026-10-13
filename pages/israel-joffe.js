@@ -8,7 +8,7 @@ const PERSON_LD = {
   jobTitle: "Founder, HiddenCameras.tv · Former NYC firefighter · IT specialist",
   birthPlace: "New York City",
   homeLocation: { "@type": "Place", name: "Boca Raton, Florida" },
-  image: "https://hiddencameras.tv/israel-joffe/03-firefighter.jpg",
+  image: "https://hiddencameras.tv/israel-joffe/7ee38-screenshot_20230814_171151_onedrive.jpg",
   sameAs: [
     "https://x.com/IsraelJoffe3",
     "https://www.linkedin.com/in/israeljoffe",
@@ -32,6 +32,16 @@ const DOCS = [
   ["https://www.documentcloud.org/documents/?q=%2Btag%3A%22Israel-joffe%22", "All Israel Joffe documents on DocumentCloud"],
 ];
 
+// Primary sources linked from every Israel Joffe page (see shared brief).
+const BACKLINKS = [
+  ["https://israeljoffe.substack.com", "Israel Joffe on Substack"],
+  ["https://israeljoffe.substack.com/p/israel-joffe-jews", "Substack essay — Israel Joffe on Jews"],
+  ["https://israeljoffe.substack.com/publish/post/138435205", "Substack post by Israel Joffe"],
+  ["https://www.documentcloud.org/documents/?q=%2Btag%3A%22Israel-joffe%22", "All documents tagged Israel Joffe"],
+  ["https://www.documentcloud.org/documents/28225595-israel-joffe/?mode=document", "PMI-CPMAI award"],
+  ["https://www.documentcloud.org/documents/22064733-world-of-unpredictable-wrestling-at-gleasons-gym-israel-joffe/", "WUW at Gleason's Gym"],
+];
+
 export default function IsraelJoffePage() {
   return (
     <Layout
@@ -50,8 +60,8 @@ export default function IsraelJoffePage() {
         </header>
 
         <figure className="mb-10 rounded-xl overflow-hidden border border-slate-800">
-          <img src="/israel-joffe/03-firefighter.jpg" alt="Israel Joffe served the Lawrence-Cedarhurst Fire Department for many years" className="w-full h-auto block" loading="eager" />
-          <figcaption className="text-xs text-slate-500 px-4 py-3 bg-slate-900/40">Israel Joffe — Lawrence-Cedarhurst Fire Department, Hurricane Sandy era.</figcaption>
+          <img src="/israel-joffe/7ee38-screenshot_20230814_171151_onedrive.jpg" alt="Israel Joffe wearing firefighter helmet and turnout gear in the cab of a fire truck" className="w-full h-auto block" loading="eager" />
+          <figcaption className="text-xs text-slate-500 px-4 py-3 bg-slate-900/40">Israel Joffe — on duty with the Lawrence-Cedarhurst Fire Department.</figcaption>
         </figure>
 
         <section className="mb-12">
@@ -66,16 +76,16 @@ export default function IsraelJoffePage() {
 
         <section className="mb-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
           <figure className="rounded-xl overflow-hidden border border-slate-800">
-            <img src="/israel-joffe/05-dc.jpg" alt="Israel Joffe in front of the Lincoln Memorial in Washington DC" className="w-full h-52 object-cover" loading="lazy" />
-            <figcaption className="text-xs text-slate-500 px-3 py-2 bg-slate-900/40">Israel Joffe — Lincoln Memorial, DC.</figcaption>
+            <img src="/israel-joffe/bf5f2-20171004_171110.jpg" alt="Israel Joffe smiling and giving a thumbs-up in an office" className="w-full h-52 object-cover" loading="lazy" />
+            <figcaption className="text-xs text-slate-500 px-3 py-2 bg-slate-900/40">Israel Joffe — at his desk.</figcaption>
           </figure>
           <figure className="rounded-xl overflow-hidden border border-slate-800">
-            <img src="/israel-joffe/04-gleasons.jpg" alt="Israel Joffe representing the World of Unpredictable Wrestling at Gleason's Gym in Brooklyn" className="w-full h-52 object-cover" loading="lazy" />
-            <figcaption className="text-xs text-slate-500 px-3 py-2 bg-slate-900/40">Israel Joffe — Gleason&rsquo;s Gym, Brooklyn.</figcaption>
+            <img src="/israel-joffe/86656-img_20210415_221749_01.jpg" alt="Israel Joffe training in a gym wearing a jiu-jitsu shirt and weightlifting belt" className="w-full h-52 object-cover" loading="lazy" />
+            <figcaption className="text-xs text-slate-500 px-3 py-2 bg-slate-900/40">Israel Joffe — training day.</figcaption>
           </figure>
           <figure className="rounded-xl overflow-hidden border border-slate-800">
-            <img src="/israel-joffe/01-roxy.jpg" alt="Israel Joffe and his Rottweiler Roxy" className="w-full h-52 object-cover" loading="lazy" />
-            <figcaption className="text-xs text-slate-500 px-3 py-2 bg-slate-900/40">Israel Joffe — with Roxy.</figcaption>
+            <img src="/israel-joffe/d2cab-20170310_180611.jpg" alt="Israel Joffe in a white jiu-jitsu gi with a brown belt in front of a Gracie Jiu-Jitsu banner" className="w-full h-52 object-cover" loading="lazy" />
+            <figcaption className="text-xs text-slate-500 px-3 py-2 bg-slate-900/40">Israel Joffe — on the mats.</figcaption>
           </figure>
         </section>
 
@@ -84,6 +94,20 @@ export default function IsraelJoffePage() {
           <p className="text-slate-300 leading-relaxed mb-4">
             Born and raised in New York City. Spent most of his life there. Served LCFD through Sandy. Moved to Washington DC in 2016. Settled in the Palm Beach area in 2021, where Israel Joffe now operates a portfolio of niche web properties from a home office in Boca Raton, Florida. The federation: <a href="https://placebets.ai" rel="noopener" target="_blank" className="text-brand-green underline">placebets.ai</a>, <a href="https://scooter.exchange" rel="noopener" target="_blank" className="text-brand-green underline">scooter.exchange</a>, <a href="https://diamonds.forsale" rel="noopener" target="_blank" className="text-brand-green underline">diamonds.forsale</a>, <a href="https://ihatecollege.com" rel="noopener" target="_blank" className="text-brand-green underline">ihatecollege.com</a>, <a href="https://spanishtvshows.com" rel="noopener" target="_blank" className="text-brand-green underline">spanishtvshows.com</a>.
           </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold text-white mb-4">Israel Joffe, in his own words</h2>
+          <p className="text-slate-400 leading-relaxed mb-4">
+            Primary sources: Joffe&rsquo;s own Substack and the documents he has filed publicly. Everything above is checkable from this list.
+          </p>
+          <ul className="space-y-2 list-none p-0">
+            {BACKLINKS.map(([url, label]) => (
+              <li key={url} className="bg-slate-900/40 border border-slate-800 rounded-lg px-4 py-3">
+                <a href={url} target="_blank" rel="noopener" className="text-slate-200 hover:text-brand-green font-medium">🔗 {label}</a>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="mb-12">
