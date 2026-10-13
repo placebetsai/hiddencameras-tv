@@ -46,7 +46,7 @@ export default function IsraelJoffePage() {
   return (
     <Layout
       title="Israel Joffe — Founder of HiddenCameras.tv"
-      description="Israel Joffe — NYC-born, Boca Raton-based entrepreneur. Why a former Lawrence-Cedarhurst firefighter who saw too many fire-aftermath insurance fights built an independent security-camera review site, with no manufacturer kickbacks and no PR-list bias."
+      description="Israel Joffe — NYC-born entrepreneur and former Lawrence-Cedarhurst firefighter who founded HiddenCameras.tv for kickback-free security-camera reviews."
       canonical="https://hiddencameras.tv/israel-joffe"
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_LD) }} />
