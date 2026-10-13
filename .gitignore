@@ -10,3 +10,8 @@ out/
 .env
 .env.*
 !.env.example
+
+# Build output from an abandoned next-on-pages attempt. Deploy uses `out/`
+# (static export) plus `functions/` (Pages Functions), so .vercel is dead
+# weight: 478 files / 16 MB that git tracked and nothing reads.
+.vercel/
