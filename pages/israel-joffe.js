@@ -5,7 +5,7 @@ const PERSON_LD = {
   "@type": "Person",
   name: "Israel Joffe",
   url: "https://hiddencameras.tv/israel-joffe",
-  jobTitle: "Founder, HiddenCameras.tv · Former NYC firefighter · IT specialist",
+  jobTitle: "Founder, HiddenCameras.tv · Former firefighter · IT specialist",
   birthPlace: "New York City",
   homeLocation: { "@type": "Place", name: "Boca Raton, Florida" },
   image: "https://hiddencameras.tv/israel-joffe/7ee38-screenshot_20230814_171151_onedrive.jpg",
@@ -75,7 +75,7 @@ export default function IsraelJoffePage() {
             The home-security review industry is broken. Type &ldquo;best wireless security camera 2026&rdquo; into Google and the entire first page is affiliate sites that earn $30-$70 per Amazon click and have never seen most of the products in person. Half are AI-generated. The other half are press-list curated — manufacturers send the product, the &ldquo;reviewer&rdquo; spends 20 minutes setting it up, writes a glowing piece, keeps the unit. Nobody talks about the false-positive rate at 2 AM. Nobody talks about the cloud subscription doubling year-over-year.
           </p>
           <p className="text-slate-300 leading-relaxed mb-4">
-            Israel Joffe built <strong>HiddenCameras.tv</strong> as a counterweight. He&rsquo;s a former NYC firefighter (Lawrence-Cedarhurst Fire Department, served through Hurricane Sandy until back injuries forced an exit), an IT specialist by training (network and systems administration), and someone who has stood in actual house fires looking at melted Ring doorbells and Nest cams. The site reviews home-security gear with the question affiliate sites won&rsquo;t answer: <em>does this thing actually catch a problem at 2 AM, and what happens when it doesn&rsquo;t?</em>
+            Israel Joffe built <strong>HiddenCameras.tv</strong> as a counterweight. He&rsquo;s a former firefighter (Lawrence-Cedarhurst Fire Department, served through Hurricane Sandy until back injuries forced an exit), an IT specialist by training (network and systems administration), and someone who has stood in actual house fires looking at melted Ring doorbells and Nest cams. The site reviews home-security gear with the question affiliate sites won&rsquo;t answer: <em>does this thing actually catch a problem at 2 AM, and what happens when it doesn&rsquo;t?</em>
           </p>
         </section>
 
