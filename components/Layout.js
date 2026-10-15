@@ -412,7 +412,7 @@ export default function Layout({ children, title, description, canonical, robots
             </div>
           </div>
           <div className="border-t border-brand-border pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-brand-muted">
-            <p>© {new Date().getFullYear()} HiddenCameras.tv · Amazon Associate: we earn commissions on qualifying purchases.</p>
+            <p>© {new Date().getFullYear()} HiddenCameras.tv</p>
             <p>Educational security content only. All live cameras are publicly accessible streams. We do not host or store video footage.</p>
           </div>
         </div>

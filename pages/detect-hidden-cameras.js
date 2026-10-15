@@ -319,14 +319,14 @@ export default function DetectHiddenCameras() {
                     <a href={`https://www.amazon.com/dp/${d.asin}?tag=${AMAZON_TAG}`}
                       target="_blank" rel="nofollow sponsored noopener noreferrer"
                       className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-5 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20 inline-block">
-                      Buy on Amazon — {d.price} →
+                      Buy →
                     </a>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-gray-600 text-xs mt-3">* As an Amazon Associate we earn from qualifying purchases. Prices accurate as of April 2026.</p>
+          <p className="text-gray-600 text-xs mt-3">* Prices and availability are set by the retailer and were last checked in April 2026.</p>
         </section>
 
         {/* Counter-surveillance products */}
@@ -352,12 +352,12 @@ export default function DetectHiddenCameras() {
                   rel="nofollow sponsored noopener noreferrer"
                   className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-xs py-2.5 px-4 rounded-lg transition"
                 >
-                  Check Price on Amazon →
+                  Buy →
                 </a>
               </div>
             ))}
           </div>
-          <p className="text-gray-600 text-xs mt-3">* As an Amazon Associate we earn from qualifying purchases.</p>
+          <p className="text-gray-600 text-xs mt-3">* Prices and availability are set by the retailer.</p>
         </section>
 
         <HomeSecurityCTA />

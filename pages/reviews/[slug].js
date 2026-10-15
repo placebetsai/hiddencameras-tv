@@ -226,7 +226,7 @@ export default function ReviewPage({ cam }) {
         rel="nofollow sponsored noopener noreferrer"
         className="block w-full text-center bg-yellow-400 text-black font-bold py-4 rounded-xl hover:bg-yellow-300 transition mb-4 text-lg shadow-lg hover:shadow-yellow-400/30"
       >
-        Buy {cam.name} on Amazon — {cam.price} →
+        Buy {cam.name} →
       </a>
       <p className="text-gray-600 text-xs text-center mb-8">Free shipping with Amazon Prime. Price as of April 2026.</p>
 
@@ -245,14 +245,14 @@ export default function ReviewPage({ cam }) {
       {/* Mid-article CTA */}
       <div className="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-5 mb-8 text-center">
         <p className="text-white font-bold mb-1">Ready to buy the {cam.name}?</p>
-        <p className="text-gray-400 text-sm mb-4">Over {cam.rating * 1000}+ positive reviews on Amazon. Free returns on most orders.</p>
+        <p className="text-gray-400 text-sm mb-4">Free returns on most orders.</p>
         <a
           href={`https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`}
           target="_blank"
           rel="nofollow sponsored noopener noreferrer"
           className="inline-block bg-yellow-400 text-black font-bold py-3 px-8 rounded-xl hover:bg-yellow-300 transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
         >
-          Check Price on Amazon →
+          Buy →
         </a>
       </div>
 
@@ -298,7 +298,7 @@ export default function ReviewPage({ cam }) {
         rel="nofollow sponsored noopener noreferrer"
         className="block w-full text-center bg-yellow-400 text-black font-bold py-4 rounded-lg hover:bg-yellow-300 transition mb-8 text-lg"
       >
-        Buy {cam.name} on Amazon — {cam.price} →
+        Buy {cam.name} →
       </a>
 
       <AdUnit />

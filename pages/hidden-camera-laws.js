@@ -177,7 +177,7 @@ export default function Page() {
       </section>
 
       <p className="text-xs text-gray-600 mt-8">
-        As an Amazon Associate, HiddenCameras.tv earns from qualifying purchases.{" "}
+        Prices and availability are set by the retailer.{" "}
         <Link href="/privacy" className="underline">
           Privacy
         </Link>

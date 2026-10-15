@@ -90,7 +90,7 @@ export default function ComparisonTable({ products, title }) {
                     rel="nofollow noopener noreferrer"
                     className="inline-block bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-xs py-2 px-3 rounded-lg transition whitespace-nowrap"
                   >
-                    Buy on Amazon →
+                    Buy →
                   </a>
                 </td>
               </tr>
@@ -98,7 +98,7 @@ export default function ComparisonTable({ products, title }) {
           </tbody>
         </table>
       </div>
-      <p className="text-gray-600 text-xs mt-2">Prices may vary. As an Amazon Associate, we earn from qualifying purchases.</p>
+      <p className="text-gray-600 text-xs mt-2">Prices and availability are set by the retailer and can change.</p>
     </div>
   );
 }

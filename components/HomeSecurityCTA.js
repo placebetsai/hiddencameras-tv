@@ -32,7 +32,7 @@ export default function HomeSecurityCTA() {
           <div>
             <p className="text-white font-semibold text-sm">Solar Outdoor WiFi Camera</p>
             <p className="text-gray-500 text-xs mt-0.5">Weatherproof outdoor camera with night vision and solar panel. No wiring, no monthly fees — perfect companion to any alarm system.</p>
-            <span className="text-yellow-400 text-xs font-semibold mt-1 inline-block">Buy on Amazon →</span>
+            <span className="text-yellow-400 text-xs font-semibold mt-1 inline-block">Buy →</span>
           </div>
         </a>
       </div>

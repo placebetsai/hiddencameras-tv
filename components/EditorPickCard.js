@@ -65,7 +65,7 @@ export default function EditorPickCard({ p }) {
             rel="noopener nofollow"
             className="ml-auto bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-xs py-2 px-3 rounded-md transition"
           >
-            Buy on Amazon &rarr;
+            Buy &rarr;
           </a>
         </div>
       </div>

@@ -275,7 +275,7 @@ export default function Reviews() {
                   rel="nofollow sponsored noopener noreferrer"
                   className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-base py-3.5 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
                 >
-                  Buy on Amazon — {cam.price} →
+                  Buy →
                 </a>
               </div>
             </div>

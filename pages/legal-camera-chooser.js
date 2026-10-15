@@ -383,7 +383,7 @@ export default function LegalCameraChooserPage() {
                       </div>
                       <span className="text-brand-green font-black text-sm whitespace-nowrap">{cam.price}</span>
                     </div>
-                    <span className="text-brand-green text-xs font-semibold mt-2 inline-block">Check Price on Amazon →</span>
+                    <span className="text-brand-green text-xs font-semibold mt-2 inline-block">Buy →</span>
                   </a>
                 ))}
               </div>
@@ -517,7 +517,7 @@ export default function LegalCameraChooserPage() {
           </p>
         </div>
 
-        <p className="text-xs text-gray-600 mt-8">As an Amazon Associate, HiddenCameras.tv earns from qualifying purchases. <a href="/privacy" className="underline">Privacy Policy</a></p>
+        <p className="text-xs text-gray-600 mt-8">Prices and availability are set by the retailer. <a href="/privacy" className="underline">Privacy Policy</a></p>
       </div>
     </Layout>
   );

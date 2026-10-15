@@ -65,7 +65,7 @@ export default function Page() {
                 rel="nofollow sponsored noopener noreferrer"
                 className="block w-full text-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm py-3 px-4 rounded-lg transition shadow-sm hover:shadow-lg hover:shadow-yellow-400/20"
               >
-                Buy on Amazon — {p.p} &rarr;
+                Buy &rarr;
               </a>
             </div>
           </div>

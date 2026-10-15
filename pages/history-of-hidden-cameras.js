@@ -342,7 +342,7 @@ export default function HistoryPage() {
               <a href={`https://www.amazon.com/dp/${cam.asin}?tag=${AMAZON_TAG}`}
                 target="_blank" rel="nofollow sponsored noopener noreferrer"
                 className="mt-auto block w-full bg-yellow-400 text-black text-sm font-bold px-4 py-3 rounded-lg hover:bg-yellow-300 transition text-center shadow-sm hover:shadow-lg hover:shadow-yellow-400/20">
-                Buy on Amazon — {cam.price} →
+                Buy →
               </a>
             </div>
           ))}

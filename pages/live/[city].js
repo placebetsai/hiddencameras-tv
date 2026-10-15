@@ -351,9 +351,9 @@ export default function CityPage({ city, related }) {
               <a href={`https://www.amazon.com/dp/${city.asin}?tag=${AMAZON_TAG}`}
                 target="_blank" rel="noopener noreferrer sponsored"
                 className="btn-primary text-xs w-full text-center">
-                Check Price on Amazon →
+                Buy →
               </a>
-              <p className="text-gray-600 text-[10px] mt-2 text-center">Amazon Associate link</p>
+              <p className="text-gray-600 text-[10px] mt-2 text-center">Retailer link</p>
             </div>
 
             {/* Detect guide CTA */}

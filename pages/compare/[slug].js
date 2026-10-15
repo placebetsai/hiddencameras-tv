@@ -63,7 +63,7 @@ function ProductRow({ productKey, brand, rank }) {
               rel="nofollow sponsored noopener noreferrer"
               className="text-[10px] font-bold px-3 py-1.5 rounded-lg bg-yellow-400/10 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all text-center"
             >
-              Buy at {link.networkName} — {link.price}
+              Buy
             </a>
           ))}
         </div>

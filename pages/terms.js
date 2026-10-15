@@ -37,7 +37,7 @@ export default function Terms() {
 
         <h2>4. Affiliate Links and Advertising</h2>
         <p>
-          HiddenCameras.tv may earn commissions from qualifying purchases and may display ads.
+          HiddenCameras.tv may display advertisements. Product links are provided for reference.
           Affiliate relationships do not buy rankings or editorial placement. Sponsored or paid
           relationships, if any, should be disclosed on the relevant page.
         </p>
@@ -69,7 +69,7 @@ export default function Terms() {
           This site links to retailers, manufacturers, and other third parties, and carries
           display advertising. We do not control those sites and are not responsible for their
           content, pricing, privacy practices, or the fulfilment of any order you place with them.
-          Where a link is an affiliate link, we may earn a commission at no cost to you; this does
+          Where a link goes to a retailer, that retailer sets its own prices and availability; this does
           not influence our rankings or recommendations, which are made independently.
         </p>
 

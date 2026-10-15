@@ -70,7 +70,7 @@ export default function About() {
           {[
             { icon: "📦", title: "We Buy the Cameras", body: "Every camera in our reviews is purchased at retail or borrowed from real users — never sent by manufacturers for review." },
             { icon: "🧪", title: "Real-World Testing", body: "We test in actual homes and offices, not controlled lab environments. Night vision, motion alerts, app reliability — all tested over weeks, not hours." },
-            { icon: "💰", title: "No Pay-to-Play", body: "Our rankings are never for sale. Affiliate links help fund the site, but they never influence our scores or recommendations." },
+            { icon: "💰", title: "No Pay-to-Play", body: "Our rankings are never for sale. We do not accept payment for placements, and nothing influences our scores or recommendations." },
             { icon: "📝", title: "Editorial Review", body: "Guides are reviewed for legality, safety, product claims, and whether they help readers protect privacy rather than invade it." },
             { icon: "⚖️", title: "Safety First", body: "We do not endorse illegal recording, voyeurism, harassment, or monitoring people where they expect privacy." },
           ].map(item => (
@@ -137,7 +137,7 @@ export default function About() {
 
         <h2 className="text-xl font-bold text-white mb-3">Advertising on this site</h2>
         <p className="text-gray-300 leading-relaxed mb-3">
-          This site carries display advertising and affiliate links. Affiliate links pay us a
+          This site carries display advertising. Product links are not paid placements and we
           commission if you buy after clicking, at no additional cost to you, and they never
           change what we recommend or where a product appears in a ranking. Display advertising
           is kept away from our editorial recommendations so that ad placement cannot be confused
@@ -146,8 +146,7 @@ export default function About() {
 
 <h2 className="text-lg font-bold text-white mb-2">Affiliate Disclosure</h2>
         <p className="text-gray-400 text-sm leading-relaxed">
-          HiddenCameras.tv is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. When you click our Amazon links and make a purchase, we may earn a small commission at no extra cost to you. This never influences our editorial recommendations.
-        </p>
+          We do not currently run paid affiliate placements on this site. If that changes, this section will name the program and how it works.</p>
       </section>
 
       {/* Contact CTA */}

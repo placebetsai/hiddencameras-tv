@@ -42,8 +42,8 @@ export default function Privacy() {
         <h3>Google AdSense</h3>
         <p>We use Google AdSense to display advertisements on our website. Google AdSense may use cookies and web beacons to serve ads based on your prior visits to this site and other websites. Google&apos;s use of advertising cookies is governed by its own privacy policy. You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a> or <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">aboutads.info</a>.</p>
 
-        <h3>Amazon Associates Program</h3>
-        <p>HiddenCameras.tv is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. When you click on Amazon affiliate links on our site, Amazon may collect information about your visit and purchase activity in accordance with <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=468496" target="_blank" rel="noopener noreferrer">Amazon&apos;s Privacy Notice</a>. We earn commissions on qualifying purchases at no additional cost to you.</p>
+        <h3>Product links</h3>
+        <p>Product links on this site take you to the retailer&apos;s own page, where the retailer sets prices, stock and delivery. The retailer may set cookies or collect information about your visit in accordance with its own privacy notice.</p>
 
         <h2>4. Cookies and Tracking Technologies</h2>
         <p>Cookies are small data files stored on your device. We and our third-party partners use cookies for:</p>
@@ -51,7 +51,7 @@ export default function Privacy() {
           <li><strong>Essential cookies:</strong> Required for basic site functionality</li>
           <li><strong>Analytics cookies:</strong> Help us understand site usage (Google Analytics)</li>
           <li><strong>Advertising cookies:</strong> Used by Google AdSense to serve relevant ads</li>
-          <li><strong>Affiliate cookies:</strong> Used by Amazon to track referrals from our site</li>
+          <li><strong>Retailer cookies:</strong> Set when you follow a product link to a retailer</li>
         </ul>
         <p>You can control cookies through your browser settings. Disabling cookies may affect your experience on our site. Most browsers allow you to refuse cookies or alert you when cookies are being sent.</p>
 

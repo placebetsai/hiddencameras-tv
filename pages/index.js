@@ -192,7 +192,7 @@ function ProductCard({ cam }) {
           <span className="text-[10px] text-gray-600 font-mono">Free shipping</span>
         </div>
         <div className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-black text-sm py-3 px-4 rounded-xl text-center transition-all group-hover:shadow-lg group-hover:shadow-yellow-400/20 group-hover:-translate-y-0.5">
-          Buy on Amazon →
+          Buy →
         </div>
       </div>
     </a>

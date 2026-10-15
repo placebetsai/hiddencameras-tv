@@ -269,7 +269,7 @@ export default function CameraFinderPage() {
             <div className="rounded-2xl border border-brand-green/30 bg-brand-green/5 p-6 mb-8">
               <div className="text-brand-green text-xs font-mono uppercase tracking-widest mb-2">Your Results</div>
               <h2 className="text-xl font-bold text-white mb-2">We recommend these 3 cameras for you:</h2>
-              <p className="text-gray-400 text-sm">Ranked by how well they match your needs. Tap to check current prices on Amazon.</p>
+              <p className="text-gray-400 text-sm">Ranked by how well they match your needs. Tap to buy.</p>
             </div>
 
             <div className="space-y-4 mb-8">
@@ -302,7 +302,7 @@ export default function CameraFinderPage() {
                     </div>
                   </div>
                   <div className="flex items-center sm:items-end">
-                    <span className="text-brand-green text-xs font-bold whitespace-nowrap">Check Price on Amazon →</span>
+                    <span className="text-brand-green text-xs font-bold whitespace-nowrap">Buy →</span>
                   </div>
                 </a>
               ))}
