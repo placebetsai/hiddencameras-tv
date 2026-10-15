@@ -4,14 +4,54 @@ import AdUnit from "../components/AdUnit";
 import Link from "next/link";
 import path from "path";
 import fs from "fs";
+import liveCams from "../data/live-cams.json";
 
-// ── Live cam grid ─────────────────────────────────────────────────────────────
+// ── Real live-cam numbers (data/live-cams.json) — computed, never hardcoded ──
+const LIVE_CAM_COUNT = liveCams.streams.length;
+const COUNTRY_COUNT = new Set(liveCams.streams.map((s) => s.country)).size;
+const VERIFIED_DATE = (() => {
+  const d = new Date(liveCams.verified_at);
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+})();
+
+// City pages that exist under /live/[city]
+const CITY_PAGE_SLUGS = {
+  "New York City": "new-york-city",
+  Tokyo: "tokyo",
+  London: "london",
+  Paris: "paris",
+  Dubai: "dubai",
+  Sydney: "sydney",
+  Rome: "rome",
+  Singapore: "singapore",
+};
+
+const pickStream = (city, slot, prefer) => {
+  const pool = liveCams.streams.filter((s) => s.city === city && s.slot === slot);
+  return (prefer && pool.find((s) => prefer.test(s.title))) || pool[0] || null;
+};
+
+// ── Live cam grid: real verified streams, real YouTube frame thumbnails ──────
 const LIVE_GRID = [
-  { city: "New York", label: "Times Square", flag: "🇺🇸", slug: "new-york-city", img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80&auto=format&fit=crop", featured: true },
-  { city: "Tokyo", label: "Shibuya Crossing", flag: "🇯🇵", slug: "tokyo", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=75&auto=format&fit=crop" },
-  { city: "London", label: "Big Ben", flag: "🇬🇧", slug: "london", img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=75&auto=format&fit=crop" },
-  { city: "Paris", label: "Eiffel Tower", flag: "🇫🇷", slug: "paris", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=75&auto=format&fit=crop" },
-];
+  pickStream("New York City", "times-square", /Times Square/i),
+  pickStream("Tokyo", "tokyo-shibuya", /Shibuya/i),
+  pickStream("London", "london-big-ben", /London|EarthCam/i),
+  pickStream("Paris", "paris-eiffel", /Paris|Eiffel/i),
+  pickStream("Miami", "miami-beach", /Miami|Beach/i),
+  pickStream("Sydney", "sydney-opera", /Sydney|Opera/i),
+]
+  .filter(Boolean)
+  .map((s) => ({
+    city: s.city,
+    label: s.label,
+    flag: s.flag,
+    slug: CITY_PAGE_SLUGS[s.city] || null,
+    img: `https://i.ytimg.com/vi/${s.vid}/hqdefault.jpg`,
+    ytId: s.vid,
+    channel: s.channel,
+    verifiedOn: VERIFIED_DATE,
+  }));
 
 // ── Camera brand logos ────────────────────────────────────────────────────────
 const BRANDS = [
@@ -232,7 +272,7 @@ export default function Home({ articles }) {
             <div className="hc-signal-bars">
               <span /><span /><span /><span />
             </div>
-            <span className="text-brand-green/60 font-mono text-[10px] tracking-widest">8 STREAMS ACTIVE</span>
+            <span className="text-brand-green/60 font-mono text-[10px] tracking-widest">{LIVE_CAM_COUNT} STREAMS ACTIVE</span>
           </div>
 
           {/* H1 */}
@@ -243,7 +283,7 @@ export default function Home({ articles }) {
           </h1>
 
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-            4 public webcams that actually stream, plus reviews of Ring, Arlo, Wyze, Blink, and Nest.
+            {LIVE_CAM_COUNT} public webcams that actually stream, plus reviews of Ring, Arlo, Wyze, Blink, and Nest.
             Find, detect, and protect — all in one place.
           </p>
 
@@ -263,9 +303,9 @@ export default function Home({ articles }) {
           {/* Stats bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
             {[
-              { n: "8", label: "Live Cameras" },
-              { n: "30+", label: "Countries" },
-              { n: "300+", label: "Reviews" },
+              { n: String(LIVE_CAM_COUNT), label: "Live Cameras" },
+              { n: String(COUNTRY_COUNT), label: "Countries" },
+              { n: String(articles.length), label: "Articles" },
               { n: "24/7", label: "Streaming" },
             ].map((s, i) => (
               <div key={s.label} className="hc-stat hc-fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
@@ -334,7 +374,7 @@ export default function Home({ articles }) {
               <h2 className="text-2xl md:text-3xl font-black text-white">World Live Cameras</h2>
               <p className="text-gray-500 text-sm mt-1">Public live streams updated 24/7 — no login required</p>
             </div>
-            <Link href="/live" className="text-brand-green text-sm font-bold hover:underline whitespace-nowrap">All 8 cameras →</Link>
+            <Link href="/live" className="text-brand-green text-sm font-bold hover:underline whitespace-nowrap">All {LIVE_CAM_COUNT} cameras →</Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" style={{ gridAutoRows: "130px" }}>
             {LIVE_GRID.slice(0, 1).map(cam => <LiveCamCard key={cam.city} cam={cam} featured />)}
@@ -342,7 +382,7 @@ export default function Home({ articles }) {
           </div>
           <div className="mt-5 text-center">
             <Link href="/live" className="btn-outline text-sm px-8 py-3">
-              Explore All Cameras — 30+ Countries →
+              Explore All Cameras — {COUNTRY_COUNT} Countries →
             </Link>
           </div>
         </section>
@@ -584,7 +624,7 @@ export default function Home({ articles }) {
                 <Link href="/my-cams" className="btn-primary px-7 py-3">Upload Your Feed →</Link>
               </div>
               <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0">
-                {[{ n: "8", l: "Countries" }, { n: "8", l: "Live Feeds" }, { n: "24/7", l: "Always On" }, { n: "Free", l: "Forever" }].map(s => (
+                {[{ n: String(COUNTRY_COUNT), l: "Countries" }, { n: String(LIVE_CAM_COUNT), l: "Live Feeds" }, { n: "24/7", l: "Always On" }, { n: "Free", l: "Forever" }].map(s => (
                   <div key={s.l} className="hc-stat">
                     <div className="hc-stat-value">{s.n}</div>
                     <div className="hc-stat-label">{s.l}</div>

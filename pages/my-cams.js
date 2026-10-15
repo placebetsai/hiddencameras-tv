@@ -278,11 +278,11 @@ export default function MyCams() {
               </div>
               <div>
                 <label className="label">Stream URL *</label>
-                <input required type="url" placeholder="https://youtube.com/watch?v=... or https://..."
+                <input required type="url" placeholder="https://..."
                   value={form.stream_url}
                   onChange={e => setForm(f => ({ ...f, stream_url: e.target.value }))}
                   className="input" />
-                <p className="text-brand-muted text-xs mt-1">YouTube live streams, YouTube videos, or any public stream URL.</p>
+                <p className="text-brand-muted text-xs mt-1">Any public live stream URL.</p>
               </div>
               <div>
                 <label className="label">Description <span className="text-brand-muted font-normal">(optional)</span></label>

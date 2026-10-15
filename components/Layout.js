@@ -5,6 +5,11 @@ import { useState } from "react";
 import CameraIcon from "./CameraIcon";
 import NewsTicker from "./NewsTicker";
 import AdUnit from "./AdUnit";
+import liveCams from "../data/live-cams.json";
+
+// Real counts from the verified-live dataset — never hardcode these.
+const LIVE_CAM_COUNT = liveCams.streams.length;
+const COUNTRY_COUNT = new Set(liveCams.streams.map((s) => s.country)).size;
 
 const CAMERA_GROUPS = [
   {
@@ -357,11 +362,11 @@ export default function Layout({ children, title, description, canonical, robots
                 </span>
               </Link>
               <p className="text-brand-muted text-sm leading-relaxed mb-4 max-w-xs">
-                The world&apos;s largest live public webcam directory. Independent security camera reviews, surveillance news, and buying guides.
+                The public webcam directory with verified live streams. Independent security camera reviews, surveillance news, and buying guides.
               </p>
               <div className="flex items-center gap-1.5 text-xs text-brand-muted">
                 <span className="live-dot w-1.5 h-1.5 rounded-full bg-brand-green inline-block" />
-                8 cameras streaming live 24/7
+                {LIVE_CAM_COUNT} cameras streaming live 24/7 across {COUNTRY_COUNT} countries
               </div>
             </div>
             <div>

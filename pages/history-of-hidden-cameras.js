@@ -1,6 +1,10 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
 import AdUnit from "../components/AdUnit";
+import liveCams from "../data/live-cams.json";
+
+const LIVE_CAM_COUNT = liveCams.streams.length;
+const COUNTRY_COUNT = new Set(liveCams.streams.map((s) => s.country)).size;
 
 const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_TAG || "hiddencamerastv-20";
 
@@ -297,7 +301,7 @@ export default function HistoryPage() {
           <Link href="/live" className="card hover:border-brand-green/40 transition group text-center py-6">
             <div className="text-3xl mb-2">🌍</div>
             <div className="text-white font-bold mb-1 group-hover:text-brand-green transition">Live World Cams</div>
-            <div className="text-brand-muted text-xs">8 streams, 8 countries</div>
+            <div className="text-brand-muted text-xs">{LIVE_CAM_COUNT} streams, {COUNTRY_COUNT} countries</div>
           </Link>
           <Link href="/detect-hidden-cameras" className="card hover:border-brand-green/40 transition group text-center py-6">
             <div className="text-3xl mb-2">🔍</div>

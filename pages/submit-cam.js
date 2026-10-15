@@ -63,7 +63,7 @@ export default function SubmitCam() {
         </div>
 
         <div className="card border-yellow-500/20 mb-6 text-sm text-gray-400">
-          <p><strong className="text-white">Guidelines:</strong> Must be a publicly accessible live stream. YouTube Live, Earthcam, or direct stream URLs accepted. No private, paid, or adult content.</p>
+          <p><strong className="text-white">Guidelines:</strong> Must be a publicly accessible live stream. Public live stream URLs accepted. No private, paid, or adult content.</p>
         </div>
 
         {status === "sent" ? (
@@ -109,8 +109,8 @@ export default function SubmitCam() {
             <div>
               <label className="label">Stream URL <span className="text-red-500">*</span></label>
               <input required type="url" value={form.stream_url} onChange={set("stream_url")}
-                placeholder="https://youtube.com/watch?v=... or https://earthcam.com/..." className="input" />
-              <p className="text-gray-600 text-xs mt-1">YouTube, Earthcam, or any public stream URL</p>
+                placeholder="https://..." className="input" />
+              <p className="text-gray-600 text-xs mt-1">Any public live stream URL</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">

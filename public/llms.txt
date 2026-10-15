@@ -5,7 +5,7 @@
 HiddenCameras.tv is a directory of live public webcams and a buyer's guide for home security cameras. Coverage includes beach cams, city cams, wildlife cams, and detailed reviews of consumer security camera brands.
 
 ## Key Pages
-- [Live Cameras Directory](https://hiddencameras.tv/cameras)
+- [Live Cameras Directory](https://hiddencameras.tv/live)
 - [Security Camera Reviews](https://hiddencameras.tv/reviews)
 - [Ring Reviews](https://hiddencameras.tv/ring)
 - [Arlo Reviews](https://hiddencameras.tv/arlo)

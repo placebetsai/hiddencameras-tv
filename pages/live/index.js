@@ -3,85 +3,35 @@ import AdUnit from "../../components/AdUnit";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabase";
+import liveCams from "../../data/live-cams.json";
 
 const CONTINENTS = ["All", "North America", "Europe", "Asia", "Middle East", "South America", "Africa", "Oceania"];
 
-const CAMS = [
-  // North America
-  { id: "times-square", city: "New York City", country: "USA", continent: "North America", label: "Times Square", ytId: "kPnlOuCO3rA", flag: "🇺🇸", type: "City" },
-  { id: "nyc-brooklyn", city: "New York City", country: "USA", continent: "North America", label: "Brooklyn Bridge", ytId: null, flag: "🇺🇸", type: "Landmark" },
-  { id: "chicago-river", city: "Chicago", country: "USA", continent: "North America", label: "Chicago River", ytId: null, flag: "🇺🇸", type: "City" },
-  { id: "las-vegas", city: "Las Vegas", country: "USA", continent: "North America", label: "The Strip", ytId: "3nYR3dMrROQ", flag: "🇺🇸", type: "City" },
-  { id: "miami-beach", city: "Miami", country: "USA", continent: "North America", label: "South Beach", ytId: null, flag: "🇺🇸", type: "Beach" },
-  { id: "santa-monica", city: "Los Angeles", country: "USA", continent: "North America", label: "Santa Monica Pier", ytId: null, flag: "🇺🇸", type: "Beach" },
-  { id: "sf-golden-gate", city: "San Francisco", country: "USA", continent: "North America", label: "Golden Gate Bridge", ytId: null, flag: "🇺🇸", type: "Landmark" },
-  { id: "nashville", city: "Nashville", country: "USA", continent: "North America", label: "Broadway", ytId: null, flag: "🇺🇸", type: "City" },
-  { id: "new-orleans", city: "New Orleans", country: "USA", continent: "North America", label: "Bourbon Street", ytId: null, flag: "🇺🇸", type: "City" },
-  { id: "dc-mall", city: "Washington D.C.", country: "USA", continent: "North America", label: "National Mall", ytId: null, flag: "🇺🇸", type: "Landmark" },
-  { id: "niagara", city: "Niagara Falls", country: "Canada/USA", continent: "North America", label: "Niagara Falls", ytId: "4q6R8GBQHFM", flag: "🇨🇦", type: "Nature" },
-  { id: "toronto", city: "Toronto", country: "Canada", continent: "North America", label: "CN Tower", ytId: null, flag: "🇨🇦", type: "City" },
-  { id: "vancouver", city: "Vancouver", country: "Canada", continent: "North America", label: "Gastown", ytId: null, flag: "🇨🇦", type: "City" },
-  { id: "mexico-city", city: "Mexico City", country: "Mexico", continent: "North America", label: "Zócalo Square", ytId: null, flag: "🇲🇽", type: "City" },
+// Cam list built from data/live-cams.json at build time — one entry per verified
+// stream (a city with 35 verified cams shows 35 real cams). Every entry carries a
+// real, playable YouTube id: no dead or placeholder ids, ever.
+const slugify = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-  // Europe
-  { id: "paris-eiffel", city: "Paris", country: "France", continent: "Europe", label: "Eiffel Tower", ytId: "oCBQFl2KvVU", flag: "🇫🇷", type: "Landmark" },
-  { id: "paris-notre-dame", city: "Paris", country: "France", continent: "Europe", label: "Notre-Dame", ytId: null, flag: "🇫🇷", type: "Landmark" },
-  { id: "london-big-ben", city: "London", country: "UK", continent: "Europe", label: "Big Ben", ytId: "e1bXe-mBzuU", flag: "🇬🇧", type: "Landmark" },
-  { id: "london-trafalgar", city: "London", country: "UK", continent: "Europe", label: "Trafalgar Square", ytId: null, flag: "🇬🇧", type: "City" },
-  { id: "rome-colosseum", city: "Rome", country: "Italy", continent: "Europe", label: "Colosseum", ytId: null, flag: "🇮🇹", type: "Landmark" },
-  { id: "rome-trevi", city: "Rome", country: "Italy", continent: "Europe", label: "Trevi Fountain", ytId: null, flag: "🇮🇹", type: "Landmark" },
-  { id: "venice-canal", city: "Venice", country: "Italy", continent: "Europe", label: "Grand Canal", ytId: null, flag: "🇮🇹", type: "City" },
-  { id: "amsterdam-canal", city: "Amsterdam", country: "Netherlands", continent: "Europe", label: "Canal District", ytId: null, flag: "🇳🇱", type: "City" },
-  { id: "barcelona-sagrada", city: "Barcelona", country: "Spain", continent: "Europe", label: "Sagrada Familia", ytId: null, flag: "🇪🇸", type: "Landmark" },
-  { id: "madrid-plaza", city: "Madrid", country: "Spain", continent: "Europe", label: "Plaza Mayor", ytId: null, flag: "🇪🇸", type: "City" },
-  { id: "berlin-gate", city: "Berlin", country: "Germany", continent: "Europe", label: "Brandenburg Gate", ytId: null, flag: "🇩🇪", type: "Landmark" },
-  { id: "prague-old", city: "Prague", country: "Czech Republic", continent: "Europe", label: "Old Town Square", ytId: null, flag: "🇨🇿", type: "City" },
-  { id: "vienna-opera", city: "Vienna", country: "Austria", continent: "Europe", label: "State Opera", ytId: null, flag: "🇦🇹", type: "Landmark" },
-  { id: "zurich-lake", city: "Zurich", country: "Switzerland", continent: "Europe", label: "Lake Zurich", ytId: null, flag: "🇨🇭", type: "Nature" },
-  { id: "lisbon-belem", city: "Lisbon", country: "Portugal", continent: "Europe", label: "Belém Tower", ytId: null, flag: "🇵🇹", type: "Landmark" },
-  { id: "athens-acropolis", city: "Athens", country: "Greece", continent: "Europe", label: "Acropolis", ytId: null, flag: "🇬🇷", type: "Landmark" },
-  { id: "moscow-red-sq", city: "Moscow", country: "Russia", continent: "Europe", label: "Red Square", ytId: null, flag: "🇷🇺", type: "Landmark" },
-  { id: "istanbul-hagia", city: "Istanbul", country: "Turkey", continent: "Europe", label: "Hagia Sophia", ytId: null, flag: "🇹🇷", type: "Landmark" },
+const CAMS = liveCams.streams.map((s) => ({
+  id: `${slugify(s.city)}-${s.vid}`,
+  city: s.city,
+  country: s.country,
+  continent: s.continent,
+  label: s.label,
+  ytId: s.vid,
+  flag: s.flag,
+  type: s.type,
+  slot: s.slot, // id of the matching site place slot (reference only)
+  title: s.title,
+  channel: s.channel,
+}));
 
-  // Asia
-  { id: "tokyo-shibuya", city: "Tokyo", country: "Japan", continent: "Asia", label: "Shibuya Crossing", ytId: "6suFN3YhL-I", flag: "🇯🇵", type: "City" },
-  { id: "tokyo-shinjuku", city: "Tokyo", country: "Japan", continent: "Asia", label: "Shinjuku", ytId: null, flag: "🇯🇵", type: "City" },
-  { id: "kyoto-geisha", city: "Kyoto", country: "Japan", continent: "Asia", label: "Gion District", ytId: null, flag: "🇯🇵", type: "City" },
-  { id: "hong-kong", city: "Hong Kong", country: "China", continent: "Asia", label: "Victoria Harbour", ytId: null, flag: "🇭🇰", type: "City" },
-  { id: "shanghai-bund", city: "Shanghai", country: "China", continent: "Asia", label: "The Bund", ytId: null, flag: "🇨🇳", type: "City" },
-  { id: "singapore-marina", city: "Singapore", country: "Singapore", continent: "Asia", label: "Marina Bay Sands", ytId: null, flag: "🇸🇬", type: "Landmark" },
-  { id: "bangkok-sukhumvit", city: "Bangkok", country: "Thailand", continent: "Asia", label: "Sukhumvit", ytId: null, flag: "🇹🇭", type: "City" },
-  { id: "bali-beach", city: "Bali", country: "Indonesia", continent: "Asia", label: "Kuta Beach", ytId: null, flag: "🇮🇩", type: "Beach" },
-  { id: "mumbai-gateway", city: "Mumbai", country: "India", continent: "Asia", label: "Gateway of India", ytId: null, flag: "🇮🇳", type: "Landmark" },
-  { id: "seoul-gangnam", city: "Seoul", country: "South Korea", continent: "Asia", label: "Gangnam", ytId: null, flag: "🇰🇷", type: "City" },
-  { id: "taipei-101", city: "Taipei", country: "Taiwan", continent: "Asia", label: "Taipei 101", ytId: null, flag: "🇹🇼", type: "Landmark" },
-  { id: "kathmandu", city: "Kathmandu", country: "Nepal", continent: "Asia", label: "Boudhanath Stupa", ytId: null, flag: "🇳🇵", type: "Landmark" },
-
-  // Middle East
-  { id: "dubai-burj", city: "Dubai", country: "UAE", continent: "Middle East", label: "Burj Khalifa", ytId: null, flag: "🇦🇪", type: "Landmark" },
-  { id: "dubai-marina", city: "Dubai", country: "UAE", continent: "Middle East", label: "Dubai Marina", ytId: null, flag: "🇦🇪", type: "City" },
-  { id: "jerusalem-wall", city: "Jerusalem", country: "Israel", continent: "Middle East", label: "Western Wall", ytId: "SKFbMYBRPf8", flag: "🇮🇱", type: "Landmark" },
-  { id: "riyadh-kingdom", city: "Riyadh", country: "Saudi Arabia", continent: "Middle East", label: "Kingdom Tower", ytId: null, flag: "🇸🇦", type: "Landmark" },
-
-  // South America
-  { id: "rio-copacabana", city: "Rio de Janeiro", country: "Brazil", continent: "South America", label: "Copacabana Beach", ytId: null, flag: "🇧🇷", type: "Beach" },
-  { id: "rio-christ", city: "Rio de Janeiro", country: "Brazil", continent: "South America", label: "Christ the Redeemer", ytId: null, flag: "🇧🇷", type: "Landmark" },
-  { id: "buenos-aires", city: "Buenos Aires", country: "Argentina", continent: "South America", label: "Plaza de Mayo", ytId: null, flag: "🇦🇷", type: "City" },
-  { id: "santiago", city: "Santiago", country: "Chile", continent: "South America", label: "Plaza de Armas", ytId: null, flag: "🇨🇱", type: "City" },
-  { id: "bogota", city: "Bogotá", country: "Colombia", continent: "South America", label: "La Candelaria", ytId: null, flag: "🇨🇴", type: "City" },
-
-  // Africa
-  { id: "cape-town", city: "Cape Town", country: "South Africa", continent: "Africa", label: "Table Mountain", ytId: null, flag: "🇿🇦", type: "Nature" },
-  { id: "cairo-pyramids", city: "Cairo", country: "Egypt", continent: "Africa", label: "Pyramids of Giza", ytId: null, flag: "🇪🇬", type: "Landmark" },
-  { id: "marrakech", city: "Marrakech", country: "Morocco", continent: "Africa", label: "Jemaa el-Fna", ytId: null, flag: "🇲🇦", type: "City" },
-  { id: "nairobi", city: "Nairobi", country: "Kenya", continent: "Africa", label: "City Center", ytId: null, flag: "🇰🇪", type: "City" },
-
-  // Oceania
-  { id: "sydney-opera", city: "Sydney", country: "Australia", continent: "Oceania", label: "Opera House", ytId: null, flag: "🇦🇺", type: "Landmark" },
-  { id: "sydney-harbour", city: "Sydney", country: "Australia", continent: "Oceania", label: "Harbour Bridge", ytId: null, flag: "🇦🇺", type: "Landmark" },
-  { id: "auckland", city: "Auckland", country: "New Zealand", continent: "Oceania", label: "Sky Tower", ytId: null, flag: "🇳🇿", type: "Landmark" },
-  { id: "honolulu", city: "Honolulu", country: "USA (Hawaii)", continent: "Oceania", label: "Waikiki Beach", ytId: null, flag: "🇺🇸", type: "Beach" },
-];
+// Auditable provenance: the date each stream below was proven live (UTC).
+const VERIFIED_DATE = (() => {
+  const d = new Date(liveCams.verified_at);
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+})();
 
 const CAM_TYPES = ["All Types", "City", "Landmark", "Beach", "Nature", "Home", "Baby", "Pet"];
 
@@ -133,9 +83,10 @@ function LiveBadge() {
 
 function CamCard({ cam }) {
   const [showEmbed, setShowEmbed] = useState(false);
-  const img = CAM_IMAGES[cam.id];
+  const img = (cam.ytId ? `https://i.ytimg.com/vi/${cam.ytId}/hqdefault.jpg` : null)
+    || CAM_IMAGES[cam.id]
+    || null;
   const ytSearch = `https://www.youtube.com/results?search_query=${encodeURIComponent(cam.city + " " + cam.label + " live cam 24/7")}&sp=EgJAAQ%3D%3D`;
-  const earthcam = `https://www.earthcam.com/search/?searchquery=${encodeURIComponent(cam.city)}`;
 
   return (
     <div className="card p-0 overflow-hidden group hover:border-brand-green/40 transition-all flex flex-col">
@@ -203,12 +154,6 @@ function CamCard({ cam }) {
               ▶ Find Stream
             </a>
           )}
-          {!cam.streamUrl && (
-            <a href={earthcam} target="_blank" rel="noopener noreferrer"
-              className="text-[11px] py-1.5 px-2 rounded-lg border border-brand-border text-gray-400 hover:border-brand-green hover:text-white transition whitespace-nowrap">
-              EarthCam
-            </a>
-          )}
         </div>
       </div>
     </div>
@@ -274,6 +219,7 @@ export default function LiveCams() {
     ...submittedCams.filter((c) => c.ytId || c.streamUrl),
     ...userCams.filter((c) => c.streamUrl),
   ];
+  const countryCount = new Set(allCams.map((c) => c.country).filter(Boolean)).size;
 
   const filtered = allCams.filter(c => {
     if (continent !== "All" && c.continent !== continent) return false;
@@ -303,14 +249,17 @@ export default function LiveCams() {
           <p className="text-gray-400 max-w-lg mx-auto text-sm sm:text-base">
             Only cameras with a real stream are listed. No login required.
           </p>
+          <p className="text-gray-600 text-xs font-mono tracking-wide mt-3">
+            {CAMS.length} live cameras verified on {VERIFIED_DATE} · {new Set(CAMS.map(c => c.country)).size} countries
+          </p>
         </section>
 
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-5">
           {[
-            { n: String(allCams.length), label: "Streaming" },
-            { n: "YouTube", label: "Source" },
-            { n: "Public", label: "Places" },
+            { n: String(allCams.length), label: "Live Cameras" },
+            { n: String(countryCount), label: "Countries" },
+            { n: "24/7", label: "Always on" },
             { n: "Free", label: "To watch" },
           ].map(s => (
             <div key={s.label} className="card text-center py-3">

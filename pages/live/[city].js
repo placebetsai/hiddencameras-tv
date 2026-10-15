@@ -2,8 +2,51 @@ import Layout from "../../components/Layout";
 import Link from "next/link";
 import AdUnit from "../../components/AdUnit";
 import { useState } from "react";
+import liveCams from "../../data/live-cams.json";
 
 const AMAZON_TAG = "hiddencamerastv-20";
+
+// ── Merge verified streams (data/live-cams.json) into each city's cam list ───
+const slugify = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const tokens = (s) => new Set(slugify(s).split("-").filter(Boolean));
+const isSubset = (a, b) => [...a].every((t) => b.has(t));
+
+const VERIFIED_BY_CITY = liveCams.streams.reduce((acc, s) => {
+  (acc[s.city] = acc[s.city] || []).push(s);
+  return acc;
+}, {});
+
+// Curated cams keep their label/type; their ytId is filled from a verified stream
+// for that city when one matches (by slot or label). If no verified stream exists
+// the ytId stays null so the existing "Find Stream" fallback keeps working —
+// nothing is invented. Every remaining verified stream for the city is appended.
+function buildCityCams(city) {
+  const verified = VERIFIED_BY_CITY[city.name] || [];
+  const used = new Set();
+
+  const curated = city.cams.map((c) => {
+    const curatedSlug = slugify(c.label);
+    const curatedTokens = tokens(c.label);
+    const match =
+      verified.find((s) => !used.has(s.vid) && (slugify(s.label) === curatedSlug || s.slot === curatedSlug)) ||
+      verified.find((s) => {
+        if (used.has(s.vid)) return false;
+        const labelTokens = tokens(s.label);
+        return labelTokens.size >= 2 && isSubset(labelTokens, curatedTokens);
+      });
+    if (match) {
+      used.add(match.vid);
+      return { ...c, ytId: match.vid };
+    }
+    return { ...c, ytId: null };
+  });
+
+  const extras = verified
+    .filter((s) => !used.has(s.vid))
+    .map((s) => ({ label: s.label, ytId: s.vid, type: s.type }));
+
+  return [...curated, ...extras];
+}
 
 // Full city data — each city gets its own SEO page
 const CITIES = [
@@ -17,7 +60,7 @@ const CITIES = [
     highlights: ["Times Square", "Brooklyn Bridge", "Central Park", "Empire State Building", "One World Trade"],
     img: "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1200&q=80&auto=format&fit=crop",
     cams: [
-      { label: "Times Square", ytId: "kPnlOuCO3rA", type: "City Center" },
+      { label: "Times Square", ytId: null, type: "City Center" },
       { label: "Brooklyn Bridge", ytId: null, type: "Landmark" },
       { label: "Central Park", ytId: null, type: "Park" },
       { label: "Empire State Building", ytId: null, type: "Landmark" },
@@ -36,7 +79,7 @@ const CITIES = [
     highlights: ["Shibuya Crossing", "Shinjuku", "Akihabara", "Asakusa", "Tokyo Tower"],
     img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=80&auto=format&fit=crop",
     cams: [
-      { label: "Shibuya Crossing", ytId: "6suFN3YhL-I", type: "City Center" },
+      { label: "Shibuya Crossing", ytId: null, type: "City Center" },
       { label: "Shinjuku at Night", ytId: null, type: "City Center" },
       { label: "Tokyo Tower", ytId: null, type: "Landmark" },
     ],
@@ -54,7 +97,7 @@ const CITIES = [
     highlights: ["Big Ben", "Tower Bridge", "Trafalgar Square", "Buckingham Palace", "Piccadilly Circus"],
     img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1200&q=80&auto=format&fit=crop",
     cams: [
-      { label: "Big Ben & Westminster", ytId: "e1bXe-mBzuU", type: "Landmark" },
+      { label: "Big Ben & Westminster", ytId: null, type: "Landmark" },
       { label: "Trafalgar Square", ytId: null, type: "City Center" },
       { label: "Tower Bridge", ytId: null, type: "Landmark" },
     ],
@@ -72,7 +115,7 @@ const CITIES = [
     highlights: ["Eiffel Tower", "Notre-Dame", "Champs-Élysées", "Louvre", "Sacré-Cœur"],
     img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=80&auto=format&fit=crop",
     cams: [
-      { label: "Eiffel Tower", ytId: "oCBQFl2KvVU", type: "Landmark" },
+      { label: "Eiffel Tower", ytId: null, type: "Landmark" },
       { label: "Notre-Dame Reconstruction", ytId: null, type: "Landmark" },
       { label: "Champs-Élysées", ytId: null, type: "City Center" },
     ],
@@ -162,8 +205,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const city = CITIES.find(c => c.slug === params.city);
-  if (!city) return { notFound: true };
+  const base = CITIES.find(c => c.slug === params.city);
+  if (!base) return { notFound: true };
+  const city = { ...base, cams: buildCityCams(base) };
   const related = CITIES.filter(c => c.slug !== city.slug).slice(0, 4);
   return { props: { city, related } };
 }
@@ -271,14 +315,8 @@ export default function CityPage({ city, related }) {
             <section>
               <h2 className="text-white font-bold mb-3">{city.name} Live Camera Feeds</h2>
               <div className="space-y-2">
-                {city.cams.map(cam => <CamRow key={cam.label} cam={cam} />)}
+                {city.cams.map(cam => <CamRow key={cam.ytId || cam.label} cam={cam} />)}
               </div>
-              <a
-                href={`https://www.youtube.com/results?search_query=${encodeURIComponent(city.name + " live cam 24/7")}&sp=EgJAAQ%3D%3D`}
-                target="_blank" rel="noopener noreferrer"
-                className="btn-outline text-sm w-full mt-3 text-center">
-                Find More {city.name} Streams on YouTube →
-              </a>
             </section>
 
             <AdUnit />
@@ -346,7 +384,7 @@ export default function CityPage({ city, related }) {
             ))}
           </div>
           <div className="text-center mt-4">
-            <Link href="/live" className="btn-outline text-sm">View all 8 cities →</Link>
+            <Link href="/live" className="btn-outline text-sm">View all {CITIES.length} cities →</Link>
           </div>
         </section>
 

@@ -132,7 +132,7 @@ export default function Admin() {
                   {/* Quick edit fields */}
                   <div className="flex flex-col gap-2 text-xs shrink-0">
                     <input defaultValue={cam.yt_id || ""} onBlur={e => updateField(cam.id, "yt_id", e.target.value)}
-                      placeholder="YouTube ID (optional)" className="input text-xs py-1 px-2 w-48" />
+                      placeholder="Stream ID (optional)" className="input text-xs py-1 px-2 w-48" />
                     <input defaultValue={cam.flag || "🌍"} onBlur={e => updateField(cam.id, "flag", e.target.value)}
                       placeholder="Flag emoji" className="input text-xs py-1 px-2 w-48" maxLength={4} />
                     <select defaultValue={cam.continent} onBlur={e => updateField(cam.id, "continent", e.target.value)} className="input text-xs py-1 px-2 w-48">
