@@ -59,7 +59,7 @@ function DealCard({ deal }) {
         </a>
         {networkInfo && (
           <p className="text-center text-[10px] text-gray-600 mt-2">
-            via {networkInfo.name} · {networkInfo.commission} commission
+            via {networkInfo.name}
           </p>
         )}
       </div>
